@@ -43,9 +43,9 @@ _O projeto consiste em uma plataforma web voltada para a conexão entre empresas
 
 ### 1.1 Contextualização
 
-_Nos últimos anos, a digitalização dos processos seletivos tem transformado a forma como empresas recrutam talentos. Sabemos que uma parcela significativa das contratações já ocorre por meio de plataformas online, refletindo a necessidade de soluções mais ágeis e acessíveis no mercado de trabalho.
+_Nos últimos anos, a digitalização dos processos seletivos tem transformado a forma como empresas recrutam talentos. Sabemos que uma parcela significativa das contratações já ocorre por meio de plataformas online, refletindo a necessidade de soluções mais ágeis e acessíveis no mercado de trabalho._
 
-O WorkLink surge nesse contexto como uma plataforma web que conecta empresas e candidatos. Empresas podem cadastrar vagas, enquanto profissionais buscam oportunidades e se candidatam de maneira simplificada. Dessa forma, o sistema contribui para otimizar o recrutamento, tornando-o mais rápido e acessível para todos os envolvidos._
+_O WorkLink surge nesse contexto como uma plataforma web que conecta empresas e candidatos. Empresas podem cadastrar vagas, enquanto profissionais buscam oportunidades e se candidatam de maneira simplificada. Dessa forma, o sistema contribui para otimizar o recrutamento, tornando-o mais rápido e acessível para todos os envolvidos._
 
 ### 1.2 Problema
 
