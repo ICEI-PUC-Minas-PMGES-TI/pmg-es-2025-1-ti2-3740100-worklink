@@ -21,7 +21,7 @@ Professores:
 
 **Joana Gabriela Ribeiro de Souza**
 
-**Prof. Nome do Prof 3**
+**Danilo de Quadros Maia Filho**
 
 ---
 
