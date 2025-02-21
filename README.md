@@ -1,6 +1,8 @@
 # WorkLink
 
-Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
+Nosso projeto consiste em uma plataforma web voltada para a conexão entre empresas e candidatos que buscam oportunidades de emprego. A aplicação permitirá que empresas se cadastrem, publiquem vagas e gerenciem candidaturas de forma simples e organizada. Por outro lado, candidatos poderão se registrar, visualizar vagas compatíveis com seus perfis e se candidatar enviando seus currículos diretamente pelo site.
+
+O objetivo principal é facilitar o processo de recrutamento e seleção, tornando-o mais ágil e acessível para ambos os lados. Com uma interface intuitiva e funcionalidades essenciais, buscamos otimizar a experiência dos usuários, promovendo um ambiente eficiente para a busca e oferta de empregos.
 
 ## Integrantes
 
