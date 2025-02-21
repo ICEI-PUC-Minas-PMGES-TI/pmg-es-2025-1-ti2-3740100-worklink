@@ -11,7 +11,7 @@
 
 **Pedro Henrique Santos Vieira, email do aluno 5**
 
-**Rafael de Oliveira Caldeira Lopes, email do aluno 6**
+**Rafael de Oliveira Caldeira Lopes, rafaeldeoliveiracl@gmail.com**
 
 ---
 
