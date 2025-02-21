@@ -31,8 +31,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade Cató
 
 ---
 
-_**Resumo**. Escrever aqui o resumo. O resumo deve contextualizar rapidamente o trabalho, descrever seu objetivo e, ao final, 
-mostrar algum resultado relevante do trabalho (até 10 linhas)._
+_**Resumo**. O WorkLink é uma plataforma web de recrutamento que conecta empresas e candidatos de forma eficiente. Com o avanço da digitalização no mercado de trabalho, torna-se essencial um sistema que agilize o processo seletivo e facilite o acesso às oportunidades. O objetivo do projeto é permitir que empresas cadastrem vagas e que profissionais encontrem e se candidatem a essas oportunidades de maneira simplificada. A plataforma busca otimizar o recrutamento, reduzindo burocracias e tornando o processo mais acessível. Como resultado, espera-se aumentar a eficiência na seleção de talentos e melhorar a experiência tanto para empregadores quanto para candidatos._
 
 ---
 
