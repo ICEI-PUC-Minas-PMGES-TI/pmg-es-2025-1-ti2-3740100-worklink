@@ -17,7 +17,7 @@ O objetivo principal é facilitar o processo de recrutamento e seleção, tornan
 
 * Michelle Hanne Soares de Andrade
 * Joana Gabriela Ribeiro de Souza
-* Nome completo do professor 3
+* Danilo de Quadros Maia Filho
 
 ## Instruções de utilização
 
