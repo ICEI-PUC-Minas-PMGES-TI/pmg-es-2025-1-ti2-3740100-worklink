@@ -17,11 +17,11 @@
 
 Professores:
 
-** Michelle Hanne Soares de Andrade **
+**Michelle Hanne Soares de Andrade**
 
-** Joana Gabriela Ribeiro de Souza **
+**Joana Gabriela Ribeiro de Souza**
 
-** Prof. Nome do Prof 3 **
+**Prof. Nome do Prof 3**
 
 ---
 
