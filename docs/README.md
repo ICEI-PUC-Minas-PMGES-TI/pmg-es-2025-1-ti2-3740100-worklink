@@ -48,15 +48,11 @@ _O WorkLink surge nesse contexto como uma plataforma web que conecta empresas e 
 
 ### 1.2 Problema
 
-_Em seguida o aluno deve caminhar a contextualização para descrever o **problema** que o trabalho trata. 
-O **problema** pode ser algo vivido em uma empresa específica. Neste caso, o aluno deve rapidamente apresentar 
-o cenário de problema da empresa. A empresa só deve ser citada explicitamente se o aluno tiver autorização 
-para tal._
+_Muitas pessoas enfrentam dificuldades para encontrar vagas de emprego alinhadas ao seu perfil e habilidades. Os métodos tradicionais de busca exigem que os candidatos naveguem por diversos sites, enfrentando problemas como falta de filtros eficientes, vagas desatualizadas e a ausência de um retorno claro sobre suas candidaturas. Além disso, a comunicação entre empresas e candidatos nem sempre é organizada, o que pode prolongar o processo de seleção e dificultar a contratação._
 
 ### 1.3 Objetivo geral
 
-_O aluno deve escrever um pequeno parágrafo ou frase com o **objetivo geral** do trabalho. 
-O objetivo deve ser bem direto, específico e definido com verbos de ação (elaborar, propor, avaliar, comparar, desenvolver, etc.). No caso específico deste projeto, o objetivo deste trabalho é desenvolver um sistema para automação de processos para um problema específico._
+_Desenvolver um software que facilite o processo de recrutamento e candidatura a vagas de emprego. Na plataforma, as empresas poderão cadastrar suas vagas, e os candidatos poderão visualizar as oportunidades disponíveis, enviar seus currículos e passar pelo processo seletivo de forma organizada e digital._
 
 #### 1.3.1 Objetivos específicos
 
