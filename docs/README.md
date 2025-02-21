@@ -1,25 +1,25 @@
-# TITULO DO PROJETO
+# WorkLink
 
 
-**Nome completo do Aluno 1, email do aluno 1**
+**Gabriel Máximo de Castro, email do aluno 1**
 
-**Nome completo do Aluno 2, email do aluno 2**
+**Gustavo Lima Dias, email do aluno 2**
 
-**Nome completo do Aluno 3, email do aluno 3**
+**Ítalo Vinhas Antunes Silva, email do aluno 3**
 
-**Nome completo do Aluno 4, email do aluno 4**
+**Luís Henrique Fantini Almeida, email do aluno 4**
 
-**Nome completo do Aluno 5, email do aluno 5**
+**Pedro Henrique Santos Vieira, email do aluno 5**
 
-**Nome completo do Aluno 6, email do aluno 6**
+**Rafael de Oliveira Caldeira Lopes, email do aluno 6**
 
 ---
 
 Professores:
 
-** Prof. Nome do Prof 1 **
+** Michelle Hanne Soares de Andrade **
 
-** Prof. Nome do Prof 2 **
+** Joana Gabriela Ribeiro de Souza **
 
 ** Prof. Nome do Prof 3 **
 
