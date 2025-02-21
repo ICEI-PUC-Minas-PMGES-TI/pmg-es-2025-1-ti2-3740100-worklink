@@ -39,13 +39,13 @@ mostrar algum resultado relevante do trabalho (até 10 linhas)._
 
 ## 1. Introdução
 
-_Apresente uma frase introdutória definindo o que será apresentado._
+_O projeto consiste em uma plataforma web voltada para a conexão entre empresas e candidatos que buscam oportunidades de emprego. A aplicação permitirá que empresas se cadastrem, publiquem vagas e gerenciem candidaturas de forma simples e organizada. Por outro lado, candidatos poderão se registrar, visualizar vagas compatíveis com seus perfis e se candidatar enviando seus currículos diretamente pelo site._
 
 ### 1.1 Contextualização
 
-_Na **contextualização**, o aluno deve dizer do que se trata o trabalho, em que área ou contexto se insere.
-A **contextualização** deve ser desenvolvida de algo mais genérico para algo mais específico. 
-A citação de pesquisas quantitativas é bem aceita aqui (corretamente referenciadas)._
+_Nos últimos anos, a digitalização dos processos seletivos tem transformado a forma como empresas recrutam talentos. Sabemos que uma parcela significativa das contratações já ocorre por meio de plataformas online, refletindo a necessidade de soluções mais ágeis e acessíveis no mercado de trabalho.
+
+O WorkLink surge nesse contexto como uma plataforma web que conecta empresas e candidatos. Empresas podem cadastrar vagas, enquanto profissionais buscam oportunidades e se candidatam de maneira simplificada. Dessa forma, o sistema contribui para otimizar o recrutamento, tornando-o mais rápido e acessível para todos os envolvidos._
 
 ### 1.2 Problema
 
