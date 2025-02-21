@@ -56,8 +56,10 @@ _Desenvolver um software que facilite o processo de recrutamento e candidatura a
 
 #### 1.3.1 Objetivos específicos
 
-_Apresente também alguns (pelo menos 2) **objetivos específicos** dependendo de onde você vai querer 
-concentrar sua prática investigativa, ou como você irá aprofundar seu trabalho._
+- Publicar vagas de emprego;
+- Cadastrar empresas e candidatos;
+- Gerenciar candidaturas;
+- Facilitar a candidatura às vagas.
 
 ### 1.4 Justificativas
 
