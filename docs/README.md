@@ -61,8 +61,7 @@ concentrar sua prática investigativa, ou como você irá aprofundar seu trabalh
 
 ### 1.4 Justificativas
 
-_Mostre também as **justificativas** para o 
-desenvolvimento do seu trabalho e, caso deseje, destaque alguma contribuição do trabalho._
+_O WorkLink justifica-se pela crescente digitalização do recrutamento e pela necessidade de uma plataforma mais intuitiva e acessível. Muitas soluções atuais são burocráticas e pouco eficientes na correspondência entre vagas e candidatos. O projeto busca otimizar esse processo, facilitando a conexão entre empresas e profissionais, reduzindo o tempo de contratação e aumentando a assertividade na seleção de talentos. Dessa forma, contribui para democratizar o acesso às oportunidades e tornar o recrutamento mais eficiente para ambas as partes._
 
 ## 2. Participantes do processo
 
