@@ -7,7 +7,7 @@
 
 **Ítalo Vinhas Antunes Silva, email do aluno 3**
 
-**Luís Henrique Fantini Almeida, email do aluno 4**
+**Luís Henrique Fantini Almeida, luishfantini@gmail.com**
 
 **Pedro Henrique Santos Vieira, email do aluno 5**
 
