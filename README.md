@@ -1,20 +1,20 @@
-# Nome do projeto
+# WorkLink
 
 Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-* Nome completo do aluno 5
-* Nome completo do aluno 6
+* Gabriel Máximo de Castro
+* Gustavo Lima Dias
+* Ítalo Vinhas Antunes Silva
+* Luís Henrique Fantini Almeida
+* Pedro Henrique Santos Vieira
+* Rafael de Oliveira Caldeira Lopes
 
 ## Professor
 
-* Nome completo do professor 1
-* Nome completo do professor 2
+* Michelle Hanne Soares de Andrade
+* Joana Gabriela Ribeiro de Souza
 * Nome completo do professor 3
 
 ## Instruções de utilização
