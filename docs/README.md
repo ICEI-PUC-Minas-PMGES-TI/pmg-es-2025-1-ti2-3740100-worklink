@@ -84,14 +84,14 @@ Apesar da ampla adoção dessas plataformas, a falta de feedback contínuo e a d
 
 ### 3.2. Descrição geral da proposta de solução
 
-_A proposta do WorkLink é criar uma plataforma digital que não só simplifique e otimize o processo de recrutamento, mas também se preocupe com o desenvolvimento e feedback constante dos candidatos. O sistema será focado na qualidade do processo seletivo, oferecendo feedbacks construtivos e organizados para os candidatos que não forem selecionados. Além disso, o WorkLink proporcionará uma experiência mais humanizada e acessível, tanto para empresas quanto para candidatos, tornando o recrutamento mais assertivo e alinhado ao perfil dos profissionais.
+_A proposta do WorkLink é criar uma plataforma digital que não só simplifique e otimize o processo de recrutamento, mas também se preocupe com o desenvolvimento e feedback constante dos candidatos. O sistema será focado na qualidade do processo seletivo, oferecendo feedbacks construtivos e organizados para os candidatos que não forem selecionados. Além disso, o WorkLink proporcionará uma experiência mais humanizada e acessível, tanto para empresas quanto para candidatos, tornando o recrutamento mais assertivo e alinhado ao perfil dos profissionais_.
 
 A proposta é baseada nos seguintes princípios:
 
 - Feedback contínuo e educativo: Garantir que os candidatos sempre recebam retorno sobre o seu desempenho nas candidaturas, contribuindo para o seu desenvolvimento.
 - Foco na qualidade, não na quantidade: Empresas poderão gerenciar suas vagas de forma eficiente, priorizando candidatos alinhados ao perfil desejado, em vez de uma grande quantidade de candidaturas.
-- Plataforma humanizada e acessível: A interface será simples, intuitiva e voltada para a inclusão, permitindo fácil acesso às oportunidades de emprego para todos os perfis de candidatos._
-
+- Plataforma humanizada e acessível: A interface será simples, intuitiva e voltada para a inclusão, permitindo fácil acesso às oportunidades de emprego para todos os perfis de candidatos.
+  
 ### 3.3. Modelagem dos processos
 
 [PROCESSO 1 - Nome do Processo](processo-1-nome-do-processo.md "Detalhamento do Processo 1.")
