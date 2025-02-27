@@ -65,14 +65,6 @@ _Desenvolver um software que facilite o processo de recrutamento e candidatura a
 
 _O WorkLink justifica-se pela crescente digitalização do recrutamento e pela necessidade de uma plataforma mais intuitiva e acessível. Muitas soluções atuais são burocráticas e pouco eficientes na correspondência entre vagas e candidatos. O projeto busca otimizar esse processo, facilitando a conexão entre empresas e profissionais, reduzindo o tempo de contratação e aumentando a assertividade na seleção de talentos. Dessa forma, contribui para democratizar o acesso às oportunidades e tornar o recrutamento mais eficiente para ambas as partes._
 
-### 1.5 Diferencial
-
-_O WorkLink se destaca no cenário de plataformas de recrutamento por seu compromisso com a qualidade, transparência e humanização no processo de contratação. Ao contrário de outras plataformas que priorizam o volume de candidaturas, nossa missão é criar conexões significativas entre empresas e candidatos, garantindo uma experiência mais eficiente e personalizada_
-
-- Feedback Constante e Educativo;
-- Foco em Qualidade, Não em Quantidade;
-- Plataforma Humanizada e Acessível;
-
 ## 2. Participantes do processo
 
 - Empresas Recrutadoras: _Publicam vagas, avaliam candidaturas e fornecem feedbacks construtivos_;
@@ -92,7 +84,13 @@ Apesar da ampla adoção dessas plataformas, a falta de feedback contínuo e a d
 
 ### 3.2. Descrição geral da proposta de solução
 
-_Apresente aqui uma descrição da sua proposta abordando seus limites e suas ligações com as estratégias e objetivos do negócio. Apresente aqui as oportunidades de melhorias._
+_A proposta do WorkLink é criar uma plataforma digital que não só simplifique e otimize o processo de recrutamento, mas também se preocupe com o desenvolvimento e feedback constante dos candidatos. O sistema será focado na qualidade do processo seletivo, oferecendo feedbacks construtivos e organizados para os candidatos que não forem selecionados. Além disso, o WorkLink proporcionará uma experiência mais humanizada e acessível, tanto para empresas quanto para candidatos, tornando o recrutamento mais assertivo e alinhado ao perfil dos profissionais.
+
+A proposta é baseada nos seguintes princípios:
+
+Feedback contínuo e educativo: Garantir que os candidatos sempre recebam retorno sobre o seu desempenho nas candidaturas, contribuindo para o seu desenvolvimento.
+Foco na qualidade, não na quantidade: Empresas poderão gerenciar suas vagas de forma eficiente, priorizando candidatos alinhados ao perfil desejado, em vez de uma grande quantidade de candidaturas.
+Plataforma humanizada e acessível: A interface será simples, intuitiva e voltada para a inclusão, permitindo fácil acesso às oportunidades de emprego para todos os perfis de candidatos._
 
 ### 3.3. Modelagem dos processos
 
