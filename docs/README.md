@@ -88,9 +88,9 @@ _A proposta do WorkLink é criar uma plataforma digital que não só simplifique
 
 A proposta é baseada nos seguintes princípios:
 
-Feedback contínuo e educativo: Garantir que os candidatos sempre recebam retorno sobre o seu desempenho nas candidaturas, contribuindo para o seu desenvolvimento.
-Foco na qualidade, não na quantidade: Empresas poderão gerenciar suas vagas de forma eficiente, priorizando candidatos alinhados ao perfil desejado, em vez de uma grande quantidade de candidaturas.
-Plataforma humanizada e acessível: A interface será simples, intuitiva e voltada para a inclusão, permitindo fácil acesso às oportunidades de emprego para todos os perfis de candidatos._
+- Feedback contínuo e educativo: Garantir que os candidatos sempre recebam retorno sobre o seu desempenho nas candidaturas, contribuindo para o seu desenvolvimento.
+- Foco na qualidade, não na quantidade: Empresas poderão gerenciar suas vagas de forma eficiente, priorizando candidatos alinhados ao perfil desejado, em vez de uma grande quantidade de candidaturas.
+- Plataforma humanizada e acessível: A interface será simples, intuitiva e voltada para a inclusão, permitindo fácil acesso às oportunidades de emprego para todos os perfis de candidatos._
 
 ### 3.3. Modelagem dos processos
 
