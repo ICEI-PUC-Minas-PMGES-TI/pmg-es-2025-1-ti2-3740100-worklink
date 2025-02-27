@@ -88,9 +88,7 @@ _O WorkLink se destaca no cenário de plataformas de recrutamento por seu compro
 
 _Atualmente, as plataformas de recrutamento como LinkedIn, Indeed e Glassdoor oferecem soluções para conectar empresas a candidatos. Essas plataformas possibilitam a criação de perfis profissionais, publicação de vagas e envio de candidaturas. No entanto, os sistemas existentes enfrentam desafios como falta de personalização nos processos seletivos, baixa taxa de feedback para candidatos, e dificuldades para organizar as candidaturas de forma eficiente. Além disso, a comunicação entre empresas e candidatos nem sempre é clara e objetiva, resultando em um processo de recrutamento muitas vezes demorado e ineficaz.
 
-Apesar da ampla adoção dessas plataformas, a falta de feedback contínuo e a dificuldade em encontrar uma correspondência precisa entre vagas e candidatos tornam o processo de recrutamento ineficiente, o que pode prejudicar a experiência tanto de empresas quanto de candidatos.
-
-Proposta_
+Apesar da ampla adoção dessas plataformas, a falta de feedback contínuo e a dificuldade em encontrar uma correspondência precisa entre vagas e candidatos tornam o processo de recrutamento ineficiente, o que pode prejudicar a experiência tanto de empresas quanto de candidatos._
 
 ### 3.2. Descrição geral da proposta de solução
 
