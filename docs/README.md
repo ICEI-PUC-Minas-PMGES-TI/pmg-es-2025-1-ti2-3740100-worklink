@@ -75,7 +75,12 @@ _O WorkLink se destaca no cenário de plataformas de recrutamento por seu compro
 
 ## 2. Participantes do processo
 
-_Apresente aqui os perfis dos usuários-chave do sistema. Diversas são as informações que podem ser relevantes para a definição dos perfis dos usuários, tais como idade, gênero, aspectos culturais, nível de educação, entre outros. A pesquisa de mercado pode ser uma ferramenta poderosa para se identificar e caracterizar os perfis de usuários. Apresente claramente o papel a ser desempenhado por cada usuário._
+- Empresas Recrutadoras: Publicam vagas, avaliam candidaturas e fornecem feedbacks construtivos;
+- Candidatos: Se cadastram, buscam e se candidatam a vagas, e recebem feedback sobre seu desempenho;
+- Administradores da Plataforma: Gerenciam o sistema e garantem a experiência do usuário;
+- Sistema de Recomendação: Optimiza a correspondência entre vagas e candidatos, tornando o processo mais eficiente:
+- Feedback Automatizado: Auxilia na melhoria do perfil do candidato com sugestões construtivas;
+
 
 ## 3. Modelagem do processo de negócio
 
