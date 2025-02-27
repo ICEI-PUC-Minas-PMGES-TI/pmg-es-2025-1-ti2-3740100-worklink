@@ -75,11 +75,11 @@ _O WorkLink se destaca no cenário de plataformas de recrutamento por seu compro
 
 ## 2. Participantes do processo
 
-- Empresas Recrutadoras: Publicam vagas, avaliam candidaturas e fornecem feedbacks construtivos;
-- Candidatos: Se cadastram, buscam e se candidatam a vagas, e recebem feedback sobre seu desempenho;
-- Administradores da Plataforma: Gerenciam o sistema e garantem a experiência do usuário;
-- Sistema de Recomendação: Optimiza a correspondência entre vagas e candidatos, tornando o processo mais eficiente:
-- Feedback Automatizado: Auxilia na melhoria do perfil do candidato com sugestões construtivas;
+- Empresas Recrutadoras: _Publicam vagas, avaliam candidaturas e fornecem feedbacks construtivos_;
+- Candidatos: _Se cadastram, buscam e se candidatam a vagas, e recebem feedback sobre seu desempenho_;
+- Administradores da Plataforma: _Gerenciam o sistema e garantem a experiência do usuário_;
+- Sistema de Recomendação: _Optimiza a correspondência entre vagas e candidatos, tornando o processo mais eficiente_:
+- Feedback Automatizado: _Auxilia na melhoria do perfil do candidato com sugestões construtivas_;
 
 
 ## 3. Modelagem do processo de negócio
