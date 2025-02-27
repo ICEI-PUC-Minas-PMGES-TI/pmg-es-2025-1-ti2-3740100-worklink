@@ -9,7 +9,7 @@
 
 **Luís Henrique Fantini Almeida, luishfantini@gmail.com**
 
-**Pedro Henrique Santos Vieira, email do aluno 5**
+**Pedro Henrique Santos Vieira, pedrohsantos355@gmail.com**
 
 **Rafael de Oliveira Caldeira Lopes, rafaeldeoliveiracl@gmail.com**
 
