@@ -44,7 +44,7 @@ _O projeto consiste em uma plataforma web voltada para a conexão entre empresas
 
 _Nos últimos anos, a digitalização dos processos seletivos tem transformado a forma como empresas recrutam talentos. Sabemos que uma parcela significativa das contratações já ocorre por meio de plataformas online, refletindo a necessidade de soluções mais ágeis e acessíveis no mercado de trabalho._
 
-_O WorkLink surge nesse contexto como uma plataforma web que conecta empresas e candidatos. Empresas podem cadastrar vagas, enquanto profissionais buscam oportunidades e se candidatam de maneira simplificada. Dessa forma, o sistema contribui para otimizar o recrutamento, tornando-o mais rápido e acessível para todos os envolvidos._
+_O WorkLink surge nesse contexto como uma plataforma web que conecta empresas e candidatos. Empresas podem cadastrar vagas, enquanto profissionais buscam oportunidades e se candidatam de maneira simplificada. Além disso, garantimos que todas as empresas forneçam feedback aos candidatos que não forem contratados, contribuindo para que cada profissional receba orientações valiosas e possa aprimorar seu currículo e suas habilidades para futuras oportunidades. Dessa forma, o sistema contribui para otimizar o recrutamento, tornando-o mais rápido, transparente e acessível para todos os envolvidos.._
 
 ### 1.2 Problema
 
@@ -64,6 +64,13 @@ _Desenvolver um software que facilite o processo de recrutamento e candidatura a
 ### 1.4 Justificativas
 
 _O WorkLink justifica-se pela crescente digitalização do recrutamento e pela necessidade de uma plataforma mais intuitiva e acessível. Muitas soluções atuais são burocráticas e pouco eficientes na correspondência entre vagas e candidatos. O projeto busca otimizar esse processo, facilitando a conexão entre empresas e profissionais, reduzindo o tempo de contratação e aumentando a assertividade na seleção de talentos. Dessa forma, contribui para democratizar o acesso às oportunidades e tornar o recrutamento mais eficiente para ambas as partes._
+
+### 1.5 Diferencial
+
+_O WorkLink se destaca no cenário de plataformas de recrutamento por seu compromisso com a qualidade, transparência e humanização no processo de contratação. Ao contrário de outras plataformas que priorizam o volume de candidaturas, nossa missão é criar conexões significativas entre empresas e candidatos, garantindo uma experiência mais eficiente e personalizada.
+-Feedback Constante e Educativo
+-Foco em Qualidade, Não em Quantidade
+-Plataforma Humanizada e Acessível_
 
 ## 2. Participantes do processo
 
