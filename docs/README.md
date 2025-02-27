@@ -67,10 +67,10 @@ _O WorkLink justifica-se pela crescente digitalização do recrutamento e pela n
 
 ### 1.5 Diferencial
 
-_O WorkLink se destaca no cenário de plataformas de recrutamento por seu compromisso com a qualidade, transparência e humanização no processo de contratação. Ao contrário de outras plataformas que priorizam o volume de candidaturas, nossa missão é criar conexões significativas entre empresas e candidatos, garantindo uma experiência mais eficiente e personalizada.
+_O WorkLink se destaca no cenário de plataformas de recrutamento por seu compromisso com a qualidade, transparência e humanização no processo de contratação. Ao contrário de outras plataformas que priorizam o volume de candidaturas, nossa missão é criar conexões significativas entre empresas e candidatos, garantindo uma experiência mais eficiente e personalizada_
 ##Feedback Constante e Educativo
 ##Foco em Qualidade, Não em Quantidade
-##Plataforma Humanizada e Acessível_
+##Plataforma Humanizada e Acessível
 
 ## 2. Participantes do processo
 
