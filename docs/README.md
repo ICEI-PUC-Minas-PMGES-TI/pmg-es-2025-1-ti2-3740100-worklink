@@ -13,6 +13,8 @@
 
 **Rafael de Oliveira Caldeira Lopes, rafaeldeoliveiracl@gmail.com**
 
+**Arthur Fonseca Delmiro de Jesus**
+
 ---
 
 Professores:
