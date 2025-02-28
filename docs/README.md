@@ -44,28 +44,29 @@ _O projeto consiste em uma plataforma web voltada para a conexão entre empresas
 
 ### 1.1 Contextualização
 
-_Nos últimos anos, a digitalização dos processos seletivos tem transformado a forma como empresas recrutam talentos. Sabemos que uma parcela significativa das contratações já ocorre por meio de plataformas online, refletindo a necessidade de soluções mais ágeis e acessíveis no mercado de trabalho._
+_Nos últimos anos, a digitalização dos processos seletivos tem transformado a forma como as empresas recrutam talentos. Uma parcela significativa das contratações já ocorre por meio de plataformas online, refletindo a necessidade de soluções mais ágeis e acessíveis no mercado de trabalho [1.1]._
 
-_O WorkLink surge nesse contexto como uma plataforma web que conecta empresas e candidatos. Empresas podem cadastrar vagas, enquanto profissionais buscam oportunidades e se candidatam de maneira simplificada. Além disso, garantimos que todas as empresas forneçam feedback aos candidatos que não forem contratados, contribuindo para que cada profissional receba orientações valiosas e possa aprimorar seu currículo e suas habilidades para futuras oportunidades. Dessa forma, o sistema contribui para otimizar o recrutamento, tornando-o mais rápido, transparente e acessível para todos os envolvidos.._
+_O WorkLink surge nesse contexto como uma plataforma web voltada à conexão entre empresas e candidatos. O sistema permite que empresas cadastrem vagas, enquanto profissionais podem buscar oportunidades e se candidatar de maneira simplificada. Além disso, a plataforma exige que todas as empresas forneçam feedback aos candidatos não selecionados, proporcionando orientações valiosas para o aprimoramento de currículos e habilidades. Dessa forma, o sistema contribui para a otimização do recrutamento, tornando-o mais rápido, transparente e acessível para todos os envolvidos._
 
 ### 1.2 Problema
 
-_Muitas pessoas enfrentam dificuldades para encontrar vagas de emprego alinhadas ao seu perfil e habilidades. Os métodos tradicionais de busca exigem que os candidatos naveguem por diversos sites, enfrentando problemas como falta de filtros eficientes, vagas desatualizadas e a ausência de um retorno claro sobre suas candidaturas. Além disso, a comunicação entre empresas e candidatos nem sempre é organizada, o que pode prolongar o processo de seleção e dificultar a contratação._
+_A busca por vagas de emprego alinhadas ao perfil e às habilidades dos candidatos pode ser desafiadora. Os métodos tradicionais exigem a navegação por múltiplos sites, resultando em dificuldades como a ausência de filtros eficientes, a presença de vagas desatualizadas e a falta de retorno sobre as candidaturas. Além disso, a comunicação entre empresas e candidatos nem sempre ocorre de maneira organizada, o que pode prolongar o processo seletivo e dificultar a contratação._
 
 ### 1.3 Objetivo geral
 
-_Desenvolver um software que facilite o processo de recrutamento e candidatura a vagas de emprego. Na plataforma, as empresas poderão cadastrar suas vagas, e os candidatos poderão visualizar as oportunidades disponíveis, enviar seus currículos e passar pelo processo seletivo de forma organizada e digital._
+_Desenvolvimento de um software para otimizar o processo de recrutamento e candidatura a vagas de emprego. A plataforma permitirá o cadastro de vagas por empresas, enquanto candidatos poderão visualizar as oportunidades disponíveis, enviar currículos e participar do processo seletivo de maneira organizada e digital._
 
 #### 1.3.1 Objetivos específicos
 
-- Publicar vagas de emprego;
-- Cadastrar empresas e candidatos;
-- Gerenciar candidaturas;
-- Facilitar a candidatura às vagas.
+- Possibilitar a publicação vagas de emprego;
+- Possibilitar o cadastro de empresas e candidatos;
+- Possibilitar gerenciamento de candidaturas;
 
 ### 1.4 Justificativas
 
-_O WorkLink justifica-se pela crescente digitalização do recrutamento e pela necessidade de uma plataforma mais intuitiva e acessível. Muitas soluções atuais são burocráticas e pouco eficientes na correspondência entre vagas e candidatos. O projeto busca otimizar esse processo, facilitando a conexão entre empresas e profissionais, reduzindo o tempo de contratação e aumentando a assertividade na seleção de talentos. Dessa forma, contribui para democratizar o acesso às oportunidades e tornar o recrutamento mais eficiente para ambas as partes._
+_A digitalização dos processos seletivos tem impactado significativamente o recrutamento, tornando-o mais ágil e acessível. De acordo com o IBGE (2022), uma parcela crescente das contratações já ocorre por meio de plataformas online, evidenciando a necessidade de ferramentas que otimizem a conexão entre empresas e candidatos. No entanto, muitas plataformas existentes ainda apresentam desafios, como a falta de filtros eficientes, vagas desatualizadas e ausência de retorno sobre candidaturas, o que dificulta a experiência dos candidatos e prolonga o tempo de contratação [1.1]._
+
+_Além disso, a falta de transparência no processo seletivo e a dificuldade na comunicação entre empresas e profissionais contribuem para um mercado de trabalho menos eficiente. A ausência de feedback para candidatos não selecionados também representa um obstáculo para o aprimoramento profissional, limitando as chances de recolocação no mercado. O projeto tem como objetivo otimizar esse processo, facilitando a conexão entre empresas e profissionais, reduzindo o tempo de contratação e aumentando a precisão na seleção de talentos. Dessa forma, contribui para a ampliação do acesso às oportunidades e para a eficiência do recrutamento. Diante desse cenário, torna-se essencial a adoção de soluções que tornem o recrutamento mais dinâmico, acessível e estruturado._
 
 ## 2. Participantes do processo
 
@@ -136,16 +137,7 @@ _Verifique no link abaixo como devem ser as referências no padrão ABNT:_
 
 http://portal.pucminas.br/imagedb/documento/DOC_DSC_NOME_ARQUI20160217102425.pdf
 
-**[1.1]** - _ELMASRI, Ramez; NAVATHE, Sham. **Sistemas de banco de dados**. 7. ed. São Paulo: Pearson, c2019. E-book. ISBN 9788543025001._
-
-**[1.2]** - _COPPIN, Ben. **Inteligência artificial**. Rio de Janeiro, RJ: LTC, c2010. E-book. ISBN 978-85-216-2936-8._
-
-**[1.3]** - _CORMEN, Thomas H. et al. **Algoritmos: teoria e prática**. Rio de Janeiro, RJ: Elsevier, Campus, c2012. xvi, 926 p. ISBN 9788535236996._
-
-**[1.4]** - _SUTHERLAND, Jeffrey Victor. **Scrum: a arte de fazer o dobro do trabalho na metade do tempo**. 2. ed. rev. São Paulo, SP: Leya, 2016. 236, [4] p. ISBN 9788544104514._
-
-**[1.5]** - _RUSSELL, Stuart J.; NORVIG, Peter. **Inteligência artificial**. Rio de Janeiro: Elsevier, c2013. xxi, 988 p. ISBN 9788535237016._
-
+**[1.1]** - _Instituto Brasileiro de Geografia e Estatística (IBGE). Pesquisa Nacional por Amostra de Domicílios Contínua - Trabalho e Rendimento, 2022._
 
 
 # APÊNDICES
