@@ -99,7 +99,7 @@ A proposta é baseada nos seguintes princípios:
 
 [PROCESSO 1 - Cadastro de Vagas](processo-1-nome-do-processo.md "Detalhamento do Processo 1.")
 
-[PROCESSO 2 - Cadastro de Candidatos](processo-2-nome-do-processo.md "Detalhamento do Processo 2.")
+[PROCESSO 2 - Cadastro de Candidatos ou Empresas](processo-2-nome-do-processo.md "Detalhamento do Processo 2.")
 
 [PROCESSO 3 - Processo Seletivo](processo-3-nome-do-processo.md "Detalhamento do Processo 3.")
 
