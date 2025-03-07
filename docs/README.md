@@ -4,9 +4,9 @@
 
 **Gabriel Máximo de Castro, email do aluno 1**
 
-**Gustavo Lima Dias, email do aluno 2**
+**Gustavo Lima Dias, gudias0503@gmail.com**
 
-**Ítalo Vinhas Antunes Silva, email do aluno 3**
+**Ítalo Vinhas Antunes Silva, italovinhas@icloud.com**
 
 **Luís Henrique Fantini Almeida, luishfantini@gmail.com**
 
