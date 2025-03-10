@@ -105,6 +105,9 @@ A proposta é baseada nos seguintes princípios:
 
 [PROCESSO 4 - Gerenciamento das Aplicações](processo-4-nome-do-processo.md "Detalhamento do Processo 4.")
 
+[PROCESSO 5 - Comunicação e Notificações](processo-4-nome-do-processo.md "Detalhamento do Processo 4.")
+
+
 ## 4. Projeto da solução
 
 _O documento a seguir apresenta o detalhamento do projeto da solução. São apresentadas duas seções que descrevem, respectivamente: modelo relacional e tecnologias._
