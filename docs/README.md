@@ -97,15 +97,15 @@ A proposta é baseada nos seguintes princípios:
   
 ### 3.3. Modelagem dos processos
 
-[PROCESSO 1 - Cadastro de Vagas](Processos/Cadastro_de_Vagas "Detalhamento do Processo 1.")
+[PROCESSO 1 - Cadastro de Vagas](Processos/Cadastro_de_Vagas.md "Detalhamento do Processo 1.")
 
-[PROCESSO 2 - Cadastro de Candidatos ou Empresas](Processos/Cadastro_de_Candidatos_ou_Empresas "Detalhamento do Processo 2.")
+[PROCESSO 2 - Cadastro de Candidatos ou Empresas](Processos/Cadastro_de_Candidatos_ou_Empresas.md "Detalhamento do Processo 2.")
 
-[PROCESSO 3 - Processo Seletivo](Processos/Processo_Seletivo "Detalhamento do Processo 3.")
+[PROCESSO 3 - Processo Seletivo](Processos/Processo_Seletivo.md "Detalhamento do Processo 3.")
 
-[PROCESSO 4 - Gerenciamento das Aplicações](Processos/Gerenciamento_das_Aplicações "Detalhamento do Processo 4.")
+[PROCESSO 4 - Gerenciamento das Aplicações](Processos/Gerenciamento_das_Aplicações.md "Detalhamento do Processo 4.")
 
-[PROCESSO 5 - Comunicação e Notificações](Processos/Comunicação_e_Notificações "Detalhamento do Processo 4.")
+[PROCESSO 5 - Comunicação e Notificações](Processos/Comunicação_e_Notificações.md "Detalhamento do Processo 4.")
 
 
 ## 4. Projeto da solução
