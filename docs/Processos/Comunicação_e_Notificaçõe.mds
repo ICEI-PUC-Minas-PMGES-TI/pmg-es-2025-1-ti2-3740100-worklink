@@ -3,7 +3,7 @@
 _Apresente aqui o nome e as oportunidades de melhoria para o processo 4. 
 Em seguida, apresente o modelo do processo 4, descrito no padrão BPMN._
 
-![Exemplo de um Modelo BPMN do PROCESSO 4](images/process.png "Modelo BPMN do Processo 4.")
+![Modelo BPMN do Processo 1](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/process.png)
 
 
 #### Detalhamento das atividades
