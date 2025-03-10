@@ -12,6 +12,7 @@ O objetivo principal é facilitar o processo de recrutamento e seleção, tornan
 * Luís Henrique Fantini Almeida
 * Pedro Henrique Santos Vieira
 * Rafael de Oliveira Caldeira Lopes
+* Arthur Fonseca Delmiro de Jesus
 
 ## Professor
 
