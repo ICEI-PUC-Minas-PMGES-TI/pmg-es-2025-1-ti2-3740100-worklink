@@ -1,68 +1,77 @@
-### 3.3.4 Processo 4 – NOME DO PROCESSO
+### 3.3.4 Processo 4 – Comunicação e Notificações
 
-_Apresente aqui o nome e as oportunidades de melhoria para o processo 4. 
-Em seguida, apresente o modelo do processo 4, descrito no padrão BPMN._
+_Este processo trata do envio e recebimento de mensagens entre usuários e a empresa, permitindo tanto o envio de currículos quanto a solicitação de suporte ou qualquer outra comunicação necessária._
 
-![Modelo BPMN do Processo 1](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/process.png)
+#### Oportunidades de melhoria:
+- Melhor organização das mensagens enviadas e recebidas.
+- Padronização do fluxo de comunicação.
+- Automatização de respostas para aumentar a eficiência do atendimento.
 
+### Modelo BPMN
+
+_(Aqui deve ser inserido o diagrama BPMN correspondente ao fluxo de comunicação e notificações)_
 
 #### Detalhamento das atividades
 
-_Descreva aqui cada uma das propriedades das atividades do processo 4. 
-Devem estar relacionadas com o modelo de processo apresentado anteriormente._
+_Este processo permite o envio de mensagens de diferentes tipos para a empresa e o recebimento de respostas. As atividades descritas abaixo abrangem o fluxo geral de comunicação._
 
-_Os tipos de dados a serem utilizados são:_
+_Os tipos de dados utilizados são:_
 
-_* **Área de texto** - campo texto de múltiplas linhas_
+_* **Área de texto** - campo para mensagens longas._
+_* **Caixa de texto** - campo para assuntos curtos._
+_* **Número** - campo para identificação de protocolos._
+_* **Data e Hora** - registro de quando a mensagem foi enviada/recebida._
+_* **Arquivo** - upload de documentos, como currículos ou capturas de tela para suporte._
+_* **Seleção única** - escolha do tipo de mensagem (currículo, suporte, outro)._
+_* **Link** - armazenamento de URLs relevantes._
 
-_* **Caixa de texto** - campo texto de uma linha_
+---
 
-_* **Número** - campo numérico_
-
-_* **Data** - campo do tipo data (dd-mm-aaaa)_
-
-_* **Hora** - campo do tipo hora (hh:mm:ss)_
-
-_* **Data e Hora** - campo do tipo data e hora (dd-mm-aaaa, hh:mm:ss)_
-
-_* **Imagem** - campo contendo uma imagem_
-
-_* **Seleção única** - campo com várias opções de valores que são mutuamente exclusivas (tradicional radio button ou combobox)_
-
-_* **Seleção múltipla** - campo com várias opções que podem ser selecionadas mutuamente (tradicional checkbox ou listbox)_
-
-_* **Arquivo** - campo de upload de documento_
-
-_* **Link** - campo que armazena uma URL_
-
-_* **Tabela** - campo formado por uma matriz de valores_
-
-**Nome da atividade 1**
+**Atividade 1: Envio de Mensagem**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| [Nome do campo] | [tipo de dados]  |                |                   |
-| ***Exemplo:***  |                  |                |                   |
-| login           | Caixa de Texto   | formato de e-mail |                |
-| senha           | Caixa de Texto   | mínimo de 8 caracteres |           |
+| Nome do remetente | Caixa de Texto | Obrigatório | - |
+| E-mail | Caixa de Texto | Formato de e-mail | - |
+| Tipo de mensagem | Seleção única | (Currículo, Suporte, Outro) | Outro |
+| Mensagem | Área de texto | Mínimo 10 caracteres | - |
+| Arquivo anexo | Arquivo | Opcional | - |
 
-| **Comandos**         |  **Destino**                   | **Tipo** |
-| ---                  | ---                            | ---               |
-| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  ) |
-| ***Exemplo:***       |                                |                   |
-| entrar               | Fim do Processo 1              | default           |
-| cadastrar            | Início do proceso de cadastro  |                   |
+| **Comandos**   | **Destino**             | **Tipo**  |
+| ---            | ---                      | ---       |
+| Enviar        | Processamento da mensagem | Default   |
+| Cancelar      | Cancelamento da ação     | Cancel    |
 
+---
 
-**Nome da atividade 2**
+**Atividade 2: Processamento da Mensagem**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| [Nome do campo] | [tipo de dados]  |                |                   |
-|                 |                  |                |                   |
+| ID da mensagem | Número | Gerado automaticamente | - |
+| Data e hora do recebimento | Data e Hora | Automático | - |
+| Status | Seleção única | (Recebido, Em Análise, Respondido) | Recebido |
 
-| **Comandos**         |  **Destino**                   | **Tipo**          |
-| ---                  | ---                            | ---               |
-| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel/  ) |
-|                      |                                |                   |
+| **Comandos**   | **Destino**                     | **Tipo**  |
+| ---            | ---                              | ---       |
+| Responder     | Geração de resposta              | Default   |
+| Encaminhar    | Encaminhamento para setor responsável | Default   |
+| Fechar        | Finalização do atendimento       | Cancel    |
 
+---
+
+**Atividade 3: Resposta ao Usuário**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+| ID da mensagem | Número | Obrigatório | - |
+| Resposta | Área de texto | Obrigatório | - |
+| Anexo (se necessário) | Arquivo | Opcional | - |
+| Data e hora da resposta | Data e Hora | Automático | - |
+
+| **Comandos**   | **Destino**             | **Tipo**  |
+| ---            | ---                      | ---       |
+| Enviar resposta | Fim do Processo | Default   |
+| Reabrir solicitação | Retorno ao Processamento da Mensagem | Default   |
+
+---
