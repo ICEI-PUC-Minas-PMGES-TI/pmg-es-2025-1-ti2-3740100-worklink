@@ -9,8 +9,7 @@ _Este processo trata do envio e recebimento de mensagens entre usuários e a emp
 
 ### Modelo BPMN
 
-_![image](https://github.com/user-attachments/assets/775c8d98-30c2-4dfb-a242-344db0805f49)
-_
+![image](https://github.com/user-attachments/assets/775c8d98-30c2-4dfb-a242-344db0805f49)
 
 #### Detalhamento das atividades
 
