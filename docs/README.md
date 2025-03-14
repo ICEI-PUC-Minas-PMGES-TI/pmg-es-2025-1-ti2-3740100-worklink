@@ -33,7 +33,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade Cató
 
 ---
 
-_**Resumo**. O WorkLink é uma plataforma web de recrutamento que conecta empresas e candidatos de forma ágil e eficiente. Com a crescente digitalização do mercado de trabalho, torna-se essencial um sistema que simplifique o processo seletivo e amplie o acesso às oportunidades. A plataforma permite que empresas cadastrem vagas e que profissionais encontrem e se candidatem a elas de maneira intuitiva, além de fornecer feedbacks personalizados sobre desempenho e pontos de melhoria. Ao reduzir burocracias e tornar o recrutamento mais acessível, o WorkLink visa aumentar a eficiência na seleção de talentos e proporcionar uma experiência mais positiva para empregadores e candidatos.
+_**Resumo**. O WorkLink é uma plataforma web de recrutamento que conecta empresas e candidatos de forma ágil e eficiente. Com a crescente digitalização do mercado de trabalho, torna-se essencial um sistema que simplifique o processo seletivo e amplie o acesso às oportunidades. A plataforma permite que empresas cadastrem vagas e que profissionais encontrem e se candidatem a elas de maneira intuitiva, além de fornecer feedbacks personalizados sobre desempenho e pontos de melhoria. Ao reduzir burocracias e tornar o recrutamento mais acessível, o WorkLink visa aumentar a eficiência na seleção de talentos e proporcionar uma experiência mais positiva para empregadores e candidatos._
 
 
 ## 1. Introdução
