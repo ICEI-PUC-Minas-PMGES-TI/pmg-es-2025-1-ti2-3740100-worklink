@@ -77,11 +77,7 @@ _Além disso, a falta de transparência no processo seletivo e a dificuldade na 
 
 ### 3.1. Análise da situação atual
 
-_Atualmente, diversas plataformas de recrutamento, como LinkedIn, Indeed, Glassdoor, Rupe, Solides e Vagas.com, oferecem soluções para conectar empresas a candidatos. Essas ferramentas permitem a criação de perfis profissionais, a publicação de vagas e o envio de candidaturas, facilitando o contato entre empregadores e talentos. No entanto, os sistemas existentes ainda enfrentam desafios que comprometem a eficiência do recrutamento. Entre os principais problemas estão a falta de personalização nos processos seletivos, a baixa taxa de retorno para os candidatos e a dificuldade das empresas em organizar candidaturas de forma prática e estruturada.
-
-Outro ponto crítico é a comunicação entre empresas e candidatos, que nem sempre ocorre de maneira clara e objetiva, tornando o processo seletivo mais longo e menos eficaz. Além disso, muitas plataformas não oferecem um sistema de feedback estruturado, o que impede que os candidatos recebam insights sobre seu desempenho e pontos de melhoria, dificultando seu crescimento profissional e reduzindo suas chances de sucesso em futuras seleções.
-
-Diante desse cenário, o desenvolvimento de um software mais eficiente e acessível se torna essencial. A proposta é criar uma plataforma que otimize a conexão entre empresas e profissionais, oferecendo não apenas um ambiente organizado para a divulgação e gestão de vagas, mas também um sistema estruturado de feedback. Dessa forma, o recrutamento se torna mais transparente, ágil e benéfico para ambas as partes, contribuindo para uma experiência mais positiva e assertiva no mercado de trabalho._
+_A proposta do WorkLink é criar uma plataforma digital que não só simplifique e otimize o processo de recrutamento, mas também se preocupe com o desenvolvimento e feedback constante dos candidatos. O sistema será focado na qualidade do processo seletivo, oferecendo feedbacks construtivos e organizados para os candidatos que não forem selecionados. Além disso, o WorkLink proporcionará uma experiência mais humanizada e acessível, tanto para empresas quanto para candidatos, tornando o recrutamento mais assertivo e alinhado ao perfil dos profissionais_.
 
 ### 3.2. Descrição geral da proposta de solução
 
