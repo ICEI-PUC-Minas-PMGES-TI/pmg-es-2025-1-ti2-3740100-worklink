@@ -1,9 +1,8 @@
-### 3.3.1 Processo 1 – NOME DO PROCESSO
+### 3.3.1 Processo 1 – Cadastro de Vagas
 
-_Apresente aqui o nome e as oportunidades de melhoria para o processo 1. 
-Em seguida, apresente o modelo do processo 1, descrito no padrão BPMN._
+_O processo inicia quando a empresa faz login e acessa a página de criação de vagas. Em seguida, preenche as informações da vaga (descrição, requisitos, salário, etc) e decide se a vaga possui algum tipo de teste. Caso sim, deve enviar um arquivo .pdf do teste; caso contrário, segue diretamente para a revisão. O sistema então exibe as informações preenchidas para a empresa revisar. Após a revisão, a empresa pode confirmar ou cancelar a publicação da vaga. Se confirmada, a vaga é publicada, encerrando o processo._
 
-![Modelo BPMN do Processo 1](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/process.png)
+![Modelo BPMN do Processo 1](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/processo1-CadastroVagas.png)
 
 
 #### Detalhamento das atividades
