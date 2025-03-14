@@ -2,11 +2,12 @@ Processo Seletivo – Aplicativo de Vagas de Emprego
 
 Este documento apresenta o modelo BPMN completo para o Processo Seletivo do Aplicativo de Vagas de Emprego. São destacados os fluxos principais, as oportunidades de melhoria, o detalhamento das atividades com os campos e comandos, além dos tipos de dados a serem utilizados.
 
-![Modelo BPMN do Processo 1](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/process.png)
+![Untitled diagram-2025-03-14-232249](https://github.com/user-attachments/assets/10642f8c-66d5-4ee7-905e-11cb75663134)
 
 Descrição do Processo
 Fluxo do Processo
 O fluxo do processo seletivo é dividido em duas atividades principais:
+
 
 Inscrição do Candidato
 Nesta etapa, o candidato se cadastra no aplicativo fornecendo informações essenciais, como e-mail, senha, nome completo e telefone. São oferecidos comandos para submeter a candidatura ou cancelar a inscrição.
