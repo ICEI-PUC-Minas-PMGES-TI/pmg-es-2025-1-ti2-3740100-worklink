@@ -48,7 +48,7 @@ _O WorkLink surge nesse contexto como uma plataforma web voltada à conexão ent
 
 ### 1.2 Problema
 
-_A busca por vagas de emprego alinhadas ao perfil e às habilidades dos candidatos pode ser desafiadora. Os métodos tradicionais exigem a navegação por múltiplos sites, resultando em dificuldades como a ausência de filtros eficientes, a presença de vagas desatualizadas e a falta de retorno sobre as candidaturas. Além disso, a comunicação entre empresas e candidatos nem sempre ocorre de maneira organizada, o que pode prolongar o processo seletivo e dificultar a contratação._
+_A busca por vagas de emprego alinhadas ao perfil e às habilidades dos candidatos ainda é um desafio devido à ineficiência dos métodos tradicionais. Muitas vezes, os profissionais precisam navegar por múltiplos sites, enfrentando a falta de filtros precisos, a presença de vagas desatualizadas e a ausência de um retorno claro sobre suas candidaturas. Além disso, a comunicação entre empresas e candidatos é frequentemente desorganizada, tornando o processo seletivo mais demorado e menos transparente. A falta de feedback também impede que os candidatos entendam seus pontos fortes e áreas de melhoria, dificultando seu desenvolvimento profissional e reduzindo suas chances de sucesso em futuras seleções._
 
 ### 1.3 Objetivo geral
 
