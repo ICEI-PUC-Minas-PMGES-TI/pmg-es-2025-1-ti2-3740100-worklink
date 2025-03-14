@@ -56,9 +56,11 @@ _Desenvolvimento de um software para otimizar o processo de recrutamento e candi
 
 #### 1.3.1 Objetivos específicos
 
+- Possibilitar o cadastro de empresas;
+- Possibilitar o cadastro de canditados;
 - Possibilitar a publicação vagas de emprego;
-- Possibilitar o cadastro de empresas e candidatos;
-- Possibilitar gerenciamento de candidaturas;
+- Possibilitar o acompanhamento e gerenciamento de candidaturas;
+- Possobilitar a aplicação do canditado na vaga;
 
 ### 1.4 Justificativas
 
