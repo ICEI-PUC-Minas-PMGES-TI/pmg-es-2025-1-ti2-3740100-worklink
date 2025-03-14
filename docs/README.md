@@ -83,8 +83,6 @@ Outro ponto crítico é a comunicação entre empresas e candidatos, que nem sem
 
 Diante desse cenário, o desenvolvimento de um software mais eficiente e acessível se torna essencial. A proposta é criar uma plataforma que otimize a conexão entre empresas e profissionais, oferecendo não apenas um ambiente organizado para a divulgação e gestão de vagas, mas também um sistema estruturado de feedback. Dessa forma, o recrutamento se torna mais transparente, ágil e benéfico para ambas as partes, contribuindo para uma experiência mais positiva e assertiva no mercado de trabalho._
 
-_Apesar da ampla adoção dessas plataformas, a falta de feedback contínuo e a dificuldade em encontrar uma correspondência precisa entre vagas e candidatos tornam o processo de recrutamento ineficiente, o que pode prejudicar a experiência tanto de empresas quanto de candidatos._
-
 ### 3.2. Descrição geral da proposta de solução
 
 _A proposta do WorkLink é criar uma plataforma digital que não só simplifique e otimize o processo de recrutamento, mas também se preocupe com o desenvolvimento e feedback constante dos candidatos. O sistema será focado na qualidade do processo seletivo, oferecendo feedbacks construtivos e organizados para os candidatos que não forem selecionados. Além disso, o WorkLink proporcionará uma experiência mais humanizada e acessível, tanto para empresas quanto para candidatos, tornando o recrutamento mais assertivo e alinhado ao perfil dos profissionais_.
