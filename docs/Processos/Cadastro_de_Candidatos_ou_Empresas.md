@@ -4,7 +4,7 @@ Processo de Cadastro de Candidato e Empresa – Aplicativo de Vagas de Emprego
 Este documento apresenta o modelo BPMN completo para o Processo de Cadastro de Candidato e Empresa do Aplicativo de Vagas de Emprego. São destacados os fluxos principais, as oportunidades de melhoria, o detalhamento das atividades com os campos e comandos, além dos tipos de dados a serem utilizados.
 
 
-![Modelo BPMN do Processo 1](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/process.png)
+![Modelo BPMN do Processo 1](https://github.com/ICEI-PUC-Minas-PMGES-TI/docs/images/Processo de cadastro de candidato ou empresaaa Diagrama.png)
 
 
 Fluxo do Processo
