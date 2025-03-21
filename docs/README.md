@@ -99,7 +99,7 @@ A proposta é baseada nos seguintes princípios:
 
 [PROCESSO 4 - Gerenciamento das Aplicações](Processos/Gerenciamento-das-Aplicações.md "Detalhamento do Processo 4.")
 
-[PROCESSO 5 - Comunicação e Notificações](Processos/Comunicação_e_Notificações.md "Detalhamento do Processo 4.")
+[PROCESSO 5 - Comunicação e Notificações](Processos/Comunicacao_e_Notificacoe.md "Detalhamento do Processo 4.")
 
 
 ## 4. Projeto da solução
