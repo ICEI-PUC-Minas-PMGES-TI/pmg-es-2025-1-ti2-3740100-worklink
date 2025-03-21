@@ -99,5 +99,3 @@ _* **Link** - armazenamento de URLs relevantes._
 
 ---
 
-_Esse fluxo garante uma comunicação eficiente e estruturada entre usuários e empresa, melhorando a gestão de mensagens e respostas._
-
