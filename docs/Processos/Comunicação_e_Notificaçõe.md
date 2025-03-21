@@ -1,4 +1,4 @@
-### 3.3.4 Processo 4 – Comunicação e Notificações
+### 3.3.4 Processo 5 – Comunicação e Notificações
 
 _Este processo trata do envio e recebimento de mensagens entre usuários e a empresa, permitindo tanto o envio de currículos quanto a solicitação de suporte ou qualquer outra comunicação necessária._
 
