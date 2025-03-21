@@ -34,7 +34,7 @@ _* **Link** - armazenamento de URLs relevantes._
 | Nome do remetente | Caixa de Texto | Obrigatório | - |
 | E-mail | Caixa de Texto | Formato de e-mail | - |
 | Tipo de mensagem | Seleção única | (Currículo, Suporte, Outro) | Outro |
-| Mensagem | Área de texto | Mínimo 10 caracteres | - |
+| Mensagem | Área de texto | Mínimo 2 caracteres | - |
 | Arquivo anexo | Arquivo | Opcional | - |
 
 | **Comandos**   | **Destino**             | **Tipo**  |
@@ -44,23 +44,34 @@ _* **Link** - armazenamento de URLs relevantes._
 
 ---
 
-**Atividade 2: Processamento da Mensagem**
+**Atividade 2: Roteamento da Mensagem**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| ID da mensagem | Número | Gerado automaticamente | - |
-| Data e hora do recebimento | Data e Hora | Automático | - |
+| Destinatário | Seleção única | (RH, Candidato) | - |
 | Status | Seleção única | (Recebido, Em Análise, Respondido) | Recebido |
 
 | **Comandos**   | **Destino**                     | **Tipo**  |
 | ---            | ---                              | ---       |
-| Responder     | Geração de resposta              | Default   |
-| Encaminhar    | Encaminhamento para setor responsável | Default   |
-| Fechar        | Finalização do atendimento       | Cancel    |
+| Encaminhar    | Setor responsável | Default   |
+| Aguardar Resposta | Verificação de inatividade | Default   |
 
 ---
 
-**Atividade 3: Resposta ao Usuário**
+**Atividade 3: Verificação de Inatividade**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+| Tempo de Inatividade | Número | Medido em horas | 48h |
+
+| **Comandos**   | **Destino**             | **Tipo**  |
+| ---            | ---                      | ---       |
+| Continuar Aguardando | Retorno ao fluxo principal | Default   |
+| Encerrar Conversa | Finalização da comunicação | Default   |
+
+---
+
+**Atividade 4: Resposta ao Usuário**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
@@ -75,3 +86,18 @@ _* **Link** - armazenamento de URLs relevantes._
 | Reabrir solicitação | Retorno ao Processamento da Mensagem | Default   |
 
 ---
+
+**Atividade 5: Encerramento da Conversa**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+| Mensagem Final | Área de texto | Obrigatório | "Sua conversa foi encerrada. Caso precise de mais informações, inicie um novo contato." |
+
+| **Comandos**   | **Destino**             | **Tipo**  |
+| ---            | ---                      | ---       |
+| Finalizar | Arquivamento da comunicação | Default   |
+
+---
+
+_Esse fluxo garante uma comunicação eficiente e estruturada entre usuários e empresa, melhorando a gestão de mensagens e respostas._
+
