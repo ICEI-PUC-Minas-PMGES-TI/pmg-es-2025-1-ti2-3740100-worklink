@@ -9,7 +9,7 @@ _Este processo trata do envio e recebimento de mensagens entre usuários e a emp
 
 ### Modelo BPMN
 
-![image](https://github.com/user-attachments/assets/775c8d98-30c2-4dfb-a242-344db0805f49)
+![image](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/Notifica%C3%A7%C3%A3o%20e%20comunica%C3%A7%C3%A3o%20Diagrama.png?raw=true)
 
 #### Detalhamento das atividades
 
