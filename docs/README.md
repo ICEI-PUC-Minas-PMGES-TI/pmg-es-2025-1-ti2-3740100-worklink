@@ -97,9 +97,9 @@ A proposta é baseada nos seguintes princípios:
 
 [PROCESSO 3 - Processo Seletivo](Processos/Processo_Seletivo.md "Detalhamento do Processo 3.")
 
-[PROCESSO 4 - Gerenciamento das Aplicações](docs/Processos/Gerenciamento-das-Aplicações.md "Detalhamento do Processo 4.")
+[PROCESSO 4 - Gerenciamento das Aplicações](/Processos/Gerenciamento-das-Aplicações.md "Detalhamento do Processo 4.")
 
-[PROCESSO 5 - Comunicação e Notificações](Processos/Comunicação_e_Notificações.md "Detalhamento do Processo 4.")
+[PROCESSO 5 - Comunicação e Notificações](/Processos/Comunicação_e_Notificações.md "Detalhamento do Processo 4.")
 
 
 ## 4. Projeto da solução
