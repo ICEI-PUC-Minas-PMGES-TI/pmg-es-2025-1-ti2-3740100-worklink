@@ -1,7 +1,7 @@
 
 ### 3.3.3 Processo 3 – PROCESSO SELETIVOO
 
-Este documento apresenta o modelo BPMN completo para o Processo Seletivo do Aplicativo de Vagas de Emprego. São destacados os fluxos principais, as oportunidades de melhoria, o detalhamento das atividades com os campos e comandos, além dos tipos de dados a serem utilizados.
+_Este documento apresenta o modelo BPMN completo para o Processo Seletivo do Aplicativo de Vagas de Emprego. São destacados os fluxos principais, as oportunidades de melhoria, o detalhamento das atividades com os campos e comandos, além dos tipos de dados a serem utilizados._
 
 ![Usuário Se candidata a vaga](https://github.com/user-attachments/assets/a027d559-6b2e-441f-8fa9-2ca274422fc8)
 
