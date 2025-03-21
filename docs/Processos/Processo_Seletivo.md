@@ -2,7 +2,7 @@ Processo Seletivo – Aplicativo de Vagas de Emprego
 
 Este documento apresenta o modelo BPMN completo para o Processo Seletivo do Aplicativo de Vagas de Emprego. São destacados os fluxos principais, as oportunidades de melhoria, o detalhamento das atividades com os campos e comandos, além dos tipos de dados a serem utilizados.
 
-![Untitled diagram-2025-03-14-232249](https://github.com/user-attachments/assets/10642f8c-66d5-4ee7-905e-11cb75663134)
+![Usuário Se candidata a vaga](https://github.com/user-attachments/assets/a027d559-6b2e-441f-8fa9-2ca274422fc8)
 
 Descrição do Processo
 Fluxo do Processo
