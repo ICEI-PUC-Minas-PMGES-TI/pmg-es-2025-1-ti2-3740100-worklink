@@ -1,8 +1,8 @@
-### 3.3.1 Processo 1 – Cadastro de Vagas
+### 3.3.1 Processo 1 – Gerenciar Vagas
 
-_O processo inicia quando a empresa faz login e acessa a página de criação de vagas. Em seguida, preenche as informações da vaga (descrição, requisitos, salário, etc) e decide se a vaga possui algum tipo de teste. Caso sim, deve enviar um arquivo .pdf do teste; caso contrário, segue diretamente para a revisão. O sistema então exibe as informações preenchidas para a empresa revisar. Após a revisão, a empresa pode confirmar ou cancelar a publicação da vaga. Se confirmada, a vaga é publicada, encerrando o processo._
+_O processo Gerenciar Vagas permite que uma empresa crie, edite ou exclua vagas em um sistema. Inicialmente, um gateway exclusivo direciona a ação escolhida. Se a empresa optar por criar uma vaga, ela preenche as informações necessárias e, caso a vaga exija um teste, deve enviar um arquivo em PDF antes da revisão e publicação. Se a opção for editar uma vaga, a empresa acessa a página de edição, escolhe os campos a modificar e visualiza as alterações antes de confirmar. Para excluir uma vaga, basta acessar a página de edição, selecionar a opção de deletar e confirmar a remoção. O processo garante que todas as alterações passem por uma etapa de revisão antes da finalização._
 
-![Modelo BPMN do Processo 1](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/processo1-CadastroVagas.png)
+![Modelo BPMN do Processo 1](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/processo1-GerenciarVagas.png)
 
 
 #### Detalhamento das atividades
