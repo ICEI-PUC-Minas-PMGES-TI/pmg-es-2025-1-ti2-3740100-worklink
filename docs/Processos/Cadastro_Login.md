@@ -1,4 +1,4 @@
-### 3.3.4 Processo 1 – CADASTRO E LOGIN
+### 3.3.4 Processo 2 – CADASTRO E LOGIN
 
 _O processo inicia quando o candidato se inscreve em uma vaga. A empresa avalia sua candidatura e decide se ele está apto. Se não estiver, envia um feedback. Se estiver, pode agendar uma entrevista ou aprová-lo diretamente. O candidato recebe notificações conforme sua situação.Todas as decisões são registradas no sistema, encerrando o processo._
 
