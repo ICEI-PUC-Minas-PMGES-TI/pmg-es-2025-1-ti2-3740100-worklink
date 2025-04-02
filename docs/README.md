@@ -95,12 +95,13 @@ A proposta é baseada nos seguintes princípios:
 
 [PROCESSO 2 - Cadastro e Login](Processos/Cadastro_de_Candidatos_ou_Empresas.md "Detalhamento do Processo 2.")
 
-[PROCESSO 3 - Processo Seletivo](Processos/Processo_Seletivo.md "Detalhamento do Processo 3.")
+[PROCESSO 3 - Pesquisa e Aplicação de vagas](Processos/Processo_Seletivo.md "Detalhamento do Processo 3.")
 
 [PROCESSO 4 - Gerenciamento das Candidaturas](Processos/Gerenciamento-das-Aplicações.md "Detalhamento do Processo 4.")
 
-[PROCESSO 5 - Comunicação e Notificações](Processos/Comunicacao_e_Notificacoe.md "Detalhamento do Processo 4.")
+[PROCESSO 5 - Fechamento da vaga](Processos/Comunicacao_e_Notificacoe.md "Detalhamento do Processo 4.")
 
+[PROCESSO 6 - Avaliação da empresa](Processos/Comunicacao_e_Notificacoe.md "Detalhamento do Processo 4.")
 
 ## 4. Projeto da solução
 
