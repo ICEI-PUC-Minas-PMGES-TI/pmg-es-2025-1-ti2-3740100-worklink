@@ -1,4 +1,4 @@
-### 3.3.1 Processo 2 – GESTÂO DE VAGAS
+### 3.3.1 Processo 2 – GESTÃO DE VAGAS
 
 _O processo Gerenciar Vagas permite que uma empresa crie, edite ou exclua vagas em um sistema. Inicialmente, um gateway exclusivo direciona a ação escolhida. Se a empresa optar por criar uma vaga, ela preenche as informações necessárias e, caso a vaga exija um teste, deve enviar um arquivo em PDF antes da revisão e publicação. Se a opção for editar uma vaga, a empresa acessa a página de edição, escolhe os campos a modificar e visualiza as alterações antes de confirmar. Para excluir uma vaga, basta acessar a página de edição, selecionar a opção de deletar e confirmar a remoção. O processo garante que todas as alterações passem por uma etapa de revisão antes da finalização._
 
