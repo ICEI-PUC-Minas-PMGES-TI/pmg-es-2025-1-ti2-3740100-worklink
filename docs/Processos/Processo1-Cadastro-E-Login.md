@@ -1,66 +1,72 @@
 ### 3.3.1 Processo 1 – CADASTRO E LOGIN
 
-_O processo inicia quando o candidato se inscreve em uma vaga. A empresa avalia sua candidatura e decide se ele está apto. Se não estiver, envia um feedback. Se estiver, pode agendar uma entrevista ou aprová-lo diretamente. O candidato recebe notificações conforme sua situação.Todas as decisões são registradas no sistema, encerrando o processo._
+_O processo inicia quando o usuário seleciona entre login ou cadastro. Se optar por login, insere suas credenciais, que são validadas pelo sistema. Caso inválidas, o sistema retorna um erro e solicita correção. Se válidas, o usuário é redirecionado conforme seu perfil (candidato ou empresa). Para cadastro, o usuário preenche um formulário e aguarda validação. Se houver erro, é notificado; se bem-sucedido, a conta é criada e confirmada, encerrando o processo._
 
-![Modelo BPMN do Processo 1](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/Cadastro%20e%20Login%20Diagrama.png?raw=true)
-
+![Modelo BPMN do Processo 1](docs/images/Cadastro_Login_BPMN.png)
 
 #### Detalhamento das atividades
 
-_Descreva aqui cada uma das propriedades das atividades do processo 1. 
-Devem estar relacionadas com o modelo de processo apresentado anteriormente._
-
-_Os tipos de dados a serem utilizados são:_
-
-_* **Área de texto** - campo texto de múltiplas linhas_
-
-_* **Caixa de texto** - campo texto de uma linha_
-
-_* **Número** - campo numérico_
-
-_* **Data** - campo do tipo data (dd-mm-aaaa)_
-
-_* **Hora** - campo do tipo hora (hh:mm:ss)_
-
-_* **Data e Hora** - campo do tipo data e hora (dd-mm-aaaa, hh:mm:ss)_
-
-_* **Imagem** - campo contendo uma imagem_
-
-_* **Seleção única** - campo com várias opções de valores que são mutuamente exclusivas (tradicional radio button ou combobox)_
-
-_* **Seleção múltipla** - campo com várias opções que podem ser selecionadas mutuamente (tradicional checkbox ou listbox)_
-
-_* **Arquivo** - campo de upload de documento_
-
-_* **Link** - campo que armazena uma URL_
-
-_* **Tabela** - campo formado por uma matriz de valores_
-
-**Nome da atividade 1**
+##### Seleciona login ou cadastro
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
-| ---             | ---              | ---            | ---               |
-| [Nome do campo] | [tipo de dados]  |                |                   |
-| ***Exemplo:***  |                  |                |                   |
-| login           | Caixa de Texto   | formato de e-mail |                |
-| senha           | Caixa de Texto   | mínimo de 8 caracteres |           |
+|-----------------|-----------------|---------------|-------------------|
+| Escolha        | Seleção única    | Login/Cadastro | - |
 
-| **Comandos**         |  **Destino**                   | **Tipo** |
-| ---                  | ---                            | ---               |
-| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  ) |
-| ***Exemplo:***       |                                |                   |
-| entrar               | Fim do Processo 1              | default           |
-| cadastrar            | Início do proceso de cadastro  |                   |
+| **Comandos**   | **Destino**        | **Tipo**  |
+|---------------|------------------|----------|
+| Próximo      | Insere credenciais / Preencher formulário | Default |
 
+##### Insere credenciais
 
-**Nome da atividade 2**
+| **Campo** | **Tipo**       | **Restrições**         | **Valor default** |
+|----------|---------------|-----------------------|-------------------|
+| E-mail   | Caixa de texto | Formato de e-mail      | - |
+| Senha    | Caixa de texto | Mínimo de 8 caracteres | - |
 
-| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
-| ---             | ---              | ---            | ---               |
-| [Nome do campo] | [tipo de dados]  |                |                   |
-|                 |                  |                |                   |
+| **Comandos**   | **Destino**          | **Tipo**  |
+|---------------|------------------|----------|
+| Entrar       | Validação de credenciais | Default |
 
-| **Comandos**         |  **Destino**                   | **Tipo**          |
-| ---                  | ---                            | ---               |
-| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel/  ) |
-|                      |                                |                   |
+##### Validação de credenciais
+
+| **Campo**        | **Tipo**     | **Restrições**  | **Valor default** |
+|-----------------|-------------|---------------|-------------------|
+| Status         | Seleção única | Válido/Inválido | - |
+
+| **Comandos**   | **Destino**                         | **Tipo**  |
+|---------------|---------------------------------|----------|
+| Redirecionar | Página de vagas / Gerenciamento de vagas | Default |
+| Tentar novamente | Insere credenciais | Cancel |
+
+##### Preencher formulário
+
+| **Campo**      | **Tipo**       | **Restrições**         | **Valor default** |
+|---------------|---------------|-----------------------|-------------------|
+| Nome         | Caixa de texto | Obrigatório           | - |
+| E-mail       | Caixa de texto | Formato de e-mail     | - |
+| Senha        | Caixa de texto | Mínimo de 8 caracteres | - |
+
+| **Comandos**    | **Destino**                 | **Tipo**  |
+|----------------|---------------------------|----------|
+| Enviar        | Validação de cadastro       | Default |
+
+##### Validação de cadastro
+
+| **Campo**        | **Tipo**     | **Restrições**  | **Valor default** |
+|-----------------|-------------|---------------|-------------------|
+| Status         | Seleção única | Válido/Inválido | - |
+
+| **Comandos**       | **Destino**                    | **Tipo**  |
+|------------------|--------------------------------|----------|
+| Criar conta     | Confirmação de cadastro         | Default |
+| Tentar novamente | Preencher formulário           | Cancel |
+
+##### Confirmação de cadastro
+
+| **Campo**       | **Tipo**     | **Restrições** | **Valor default** |
+|----------------|-------------|--------------|-------------------|
+| Mensagem      | Texto        | -            | "Perfil criado com sucesso!" |
+
+| **Comandos**   | **Destino** | **Tipo**  |
+|---------------|-------------|----------|
+| Finalizar    | Fim do processo | Default |
