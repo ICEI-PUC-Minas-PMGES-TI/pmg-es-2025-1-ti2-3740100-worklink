@@ -2,8 +2,7 @@
 
 _O processo inicia quando o candidato se inscreve em uma vaga. A empresa avalia sua candidatura e decide se ele está apto. Se não estiver, envia um feedback. Se estiver, pode agendar uma entrevista ou aprová-lo diretamente. O candidato recebe notificações conforme sua situação.Todas as decisões são registradas no sistema, encerrando o processo._
 
-![Modelo BPMN do Processo 1]([https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/PESQUISA-E-APLICACAO-DE-VAGAS-Diagrama.png)
-
+![PESQUISA-E-APLICACAO-DE-VAGAS-Diagrama](https://github.com/user-attachments/assets/3b017e59-44ec-493e-8a0a-31cb4beba2f1)
 
 #### Detalhamento das atividades
 
