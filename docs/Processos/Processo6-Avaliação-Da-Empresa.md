@@ -7,7 +7,7 @@ _O processo inicia quando o candidato se inscreve em uma vaga. A empresa avalia 
 
 #### Detalhamento das atividades
 
-Avaliação do Processo Seletivo (do candidato)
+**Avaliação do Processo Seletivo (do candidato)**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
