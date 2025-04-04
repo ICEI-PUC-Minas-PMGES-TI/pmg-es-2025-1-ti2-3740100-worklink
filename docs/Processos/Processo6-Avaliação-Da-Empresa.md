@@ -1,8 +1,8 @@
 ### 3.3.6 Processo 6 – AVALIAÇÃO DA EMPRESA
 
-_O processo inicia quando o candidato se inscreve em uma vaga. A empresa avalia sua candidatura e decide se ele está apto. Se não estiver, envia um feedback. Se estiver, pode agendar uma entrevista ou aprová-lo diretamente. O candidato recebe notificações conforme sua situação.Todas as decisões são registradas no sistema, encerrando o processo._
+_O processo de avaliação do candidato inicia quando ele completa a avaliação do processo seletivo da empresa. A empresa avalia suas respostas e decide se o processo segue para a próxima etapa ou se um feedback é enviado ao candidato. Caso o candidato avance, ele pode ser avaliado em uma entrevista técnica ou comportamental. Durante todas as etapas, o candidato é notificado sobre sua situação no processo. As decisões tomadas pela empresa e o feedback fornecido ao candidato são registrados no sistema, encerrando o processo de avaliação._
 
-![Modelo BPMN do Processo 6](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/Status%20da%20candidatura%20Diagrama.png?raw=true)
+![Modelo BPMN do Processo 6](https://github.com/user-attachments/assets/59a43058-d0c0-4908-8f8e-3043157ad2b0)
 
 
 #### Detalhamento das atividades
@@ -20,7 +20,7 @@ _O processo inicia quando o candidato se inscreve em uma vaga. A empresa avalia 
 | cancelar | Fim do processo de avaliação  | cancel |
 
 
-Avaliação da Entrevista (do candidato)
+**Avaliação da Entrevista (do candidato)**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
@@ -32,7 +32,7 @@ Avaliação da Entrevista (do candidato)
 | enviar_feedback               | Fim do processo de avaliação              | default           |
 | cancelar            | Fim do processo de avaliação  |        cancel           |
 
-Avaliação do Processo de Seleção (da empresa)
+**Avaliação do Processo de Seleção (da empresa)**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
@@ -44,7 +44,7 @@ Avaliação do Processo de Seleção (da empresa)
 | enviar_feedback               | Fim do processo de avaliação              | default           |
 | cancelar            | Fim do processo de avaliação  |        cancel           |
 
-Avaliação do Tempo do Processo (da empresa)
+**Avaliação do Tempo do Processo (da empresa)**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
@@ -55,7 +55,7 @@ Avaliação do Tempo do Processo (da empresa)
 | enviar_feedback               | Fim do processo de avaliação              | default           |
 | cancelar            | Fim do processo de avaliação  |        cancel           |
 
-Comentários Finais (Candidato e Empresa)
+**Comentários Finais (Candidato e Empresa)**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
