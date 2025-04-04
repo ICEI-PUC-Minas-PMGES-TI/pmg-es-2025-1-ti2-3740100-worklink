@@ -7,10 +7,10 @@ _O diagrama BPMN representa o processo de fechamento de uma vaga por uma empresa
 
 #### Detalhamento das atividades
 
-**Nome da atividade 1**
+**Analisar o desempenho do candidato**
 
 | **Campo**         | **Tipo**       | **Restrições**          | **Valor default** |
-| Nome do candidato | Caixa de Texto | Somente caracteres      |                  |
+| Nome do candidato | Caixa de Texto | Somente caracteres      |                   |
 | Nota da Avaliação | Número         | Somente números         |                   |
 | Comentários       | Área de Texto  | Máximo de 500 caracteres|                   |
 | Data da avaliação | Data           | Formato dd-mm-aaaa      |                   |
@@ -19,7 +19,7 @@ _O diagrama BPMN representa o processo de fechamento de uma vaga por uma empresa
 | Continuar            | Aprovado                       | Default  |
 
 
-**Nome da atividade 2**
+**Enviar mensagem para o candidato informando aprovação**
 
 | **Campo**           | **Tipo**        | **Restrições**               | **Valor default**              |
 | Nome do candidato   | Caixa de Texto  | Somente caracteres           | -                              |
