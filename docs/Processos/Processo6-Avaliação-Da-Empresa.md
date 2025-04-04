@@ -7,60 +7,61 @@ _O processo inicia quando o candidato se inscreve em uma vaga. A empresa avalia 
 
 #### Detalhamento das atividades
 
-_Descreva aqui cada uma das propriedades das atividades do processo 6. 
-Devem estar relacionadas com o modelo de processo apresentado anteriormente._
-
-_Os tipos de dados a serem utilizados são:_
-
-_* **Área de texto** - campo texto de múltiplas linhas_
-
-_* **Caixa de texto** - campo texto de uma linha_
-
-_* **Número** - campo numérico_
-
-_* **Data** - campo do tipo data (dd-mm-aaaa)_
-
-_* **Hora** - campo do tipo hora (hh:mm:ss)_
-
-_* **Data e Hora** - campo do tipo data e hora (dd-mm-aaaa, hh:mm:ss)_
-
-_* **Imagem** - campo contendo uma imagem_
-
-_* **Seleção única** - campo com várias opções de valores que são mutuamente exclusivas (tradicional radio button ou combobox)_
-
-_* **Seleção múltipla** - campo com várias opções que podem ser selecionadas mutuamente (tradicional checkbox ou listbox)_
-
-_* **Arquivo** - campo de upload de documento_
-
-_* **Link** - campo que armazena uma URL_
-
-_* **Tabela** - campo formado por uma matriz de valores_
-
-**Nome da atividade 1**
+Avaliação do Processo Seletivo (do candidato)
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| [Nome do campo] | [tipo de dados]  |                |                   |
-| ***Exemplo:***  |                  |                |                   |
-| login           | Caixa de Texto   | formato de e-mail |                |
-| senha           | Caixa de Texto   | mínimo de 8 caracteres |           |
+| clareza_informacoes           | Caixa de Texto   | mínimo 10 palavras |                |
+| facilidade_uso           | Caixa de Texto   | mínimo 10 palavras |           |
 
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
-| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  ) |
-| ***Exemplo:***       |                                |                   |
-| entrar               | Fim do Processo 1              | default           |
-| cadastrar            | Início do proceso de cadastro  |                   |
+| enviar_feedback | Fim do processo de avaliação | default |
+| cancelar | Fim do processo de avaliação  | cancel |
 
 
-**Nome da atividade 2**
+Avaliação da Entrevista (do candidato)
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| [Nome do campo] | [tipo de dados]  |                |                   |
-|                 |                  |                |                   |
+| clareza_perguntas | Caixa de Texto  | mínimo 10 palavras |                   |
+| qualidade_entrevistador | Caixa de Texto | mínimo 10 palavras |                   |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
-| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel/  ) |
-|                      |                                |                   |
+| enviar_feedback               | Fim do processo de avaliação              | default           |
+| cancelar            | Fim do processo de avaliação  |        cancel           |
+
+Avaliação do Processo de Seleção (da empresa)
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+| satisfação_geral | Caixa de Texto   | mínimo 10 palavras |                |
+| pontos_fortes | Caixa de Texto   | mínimo 10 palavras |           |
+
+| **Comandos**         |  **Destino**                   | **Tipo** |
+| ---                  | ---                            | ---               |
+| enviar_feedback               | Fim do processo de avaliação              | default           |
+| cancelar            | Fim do processo de avaliação  |        cancel           |
+
+Avaliação do Tempo do Processo (da empresa)
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+| tempo_total | Caixa de Texto   | texto livre |                |
+
+| **Comandos**         |  **Destino**                   | **Tipo** |
+| ---                  | ---                            | ---               |
+| enviar_feedback               | Fim do processo de avaliação              | default           |
+| cancelar            | Fim do processo de avaliação  |        cancel           |
+
+Comentários Finais (Candidato e Empresa)
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+| feedback_geral	 | Caixa de Texto   | mínimo 10 palavras |                |
+
+| **Comandos**         |  **Destino**                   | **Tipo** |
+| ---                  | ---                            | ---               |
+| enviar_feedback               | Fim do processo de avaliação              | default           |
+| cancelar            | Fim do processo de avaliação  |        cancel           |
