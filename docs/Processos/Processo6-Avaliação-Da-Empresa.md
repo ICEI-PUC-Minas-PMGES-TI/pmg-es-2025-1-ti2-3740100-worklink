@@ -2,8 +2,7 @@
 
 _O processo de avaliação do candidato inicia quando ele completa a avaliação do processo seletivo da empresa. A empresa avalia suas respostas e decide se o processo segue para a próxima etapa ou se um feedback é enviado ao candidato. Caso o candidato avance, ele pode ser avaliado em uma entrevista técnica ou comportamental. Durante todas as etapas, o candidato é notificado sobre sua situação no processo. As decisões tomadas pela empresa e o feedback fornecido ao candidato são registrados no sistema, encerrando o processo de avaliação._
 
-![Modelo BPMN do Processo 6](https://github.com/user-attachments/assets/72768c6b-dd6c-40e0-a6e3-22e6685bf060)
-
+![Modelo BPMN do Processo 6](https://github.com/user-attachments/assets/4c8185b8-f03f-407b-98cc-048ecf2b5f54)
 
 #### Detalhamento das atividades
 
