@@ -1,4 +1,4 @@
-### 3.3.1 Processo 1 – CADASTRO E LOGIN
+### 3.3.3 Processo 3 – PESQUISA E APLICAÇÃO DE VAGAS
 
 _O processo inicia quando o candidato se inscreve em uma vaga. A empresa avalia sua candidatura e decide se ele está apto. Se não estiver, envia um feedback. Se estiver, pode agendar uma entrevista ou aprová-lo diretamente. O candidato recebe notificações conforme sua situação.Todas as decisões são registradas no sistema, encerrando o processo._
 
@@ -7,7 +7,7 @@ _O processo inicia quando o candidato se inscreve em uma vaga. A empresa avalia 
 
 #### Detalhamento das atividades
 
-_Descreva aqui cada uma das propriedades das atividades do processo 1. 
+_Descreva aqui cada uma das propriedades das atividades do processo 3. 
 Devem estar relacionadas com o modelo de processo apresentado anteriormente._
 
 _Os tipos de dados a serem utilizados são:_
