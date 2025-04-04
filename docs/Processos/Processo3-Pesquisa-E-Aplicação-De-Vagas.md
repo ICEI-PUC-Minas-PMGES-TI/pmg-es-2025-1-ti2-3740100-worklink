@@ -36,93 +36,92 @@ _* **Link** - campo que armazena uma URL_
 
 _* **Tabela** - campo formado por uma matriz de valores_
 
-### **Atividade 1: Login no Sistema**
+### 1️ Acesso ao Sistema
+O candidato acessa o sistema para visualizar e se candidatar a vagas de emprego.
 
-| **Campo**      | **Tipo**         | **Restrições**             | **Valor default** |
-|---------------|----------------|---------------------------|-------------------|
-| E-mail        | Caixa de Texto  | Formato de e-mail válido  |                   |
-| Senha         | Caixa de Texto  | Mínimo de 8 caracteres    |                   |
+| **Campo**        | **Tipo**       | **Restrições**             | **Valor default** |
+|-----------------|---------------|----------------------------|-------------------|
+| Email          | Caixa de texto | Formato de e-mail válido  | -                 |
+| Senha          | Caixa de texto | Mínimo de 8 caracteres    | -                 |
 
-#### **Comandos**
-
-| **Nome do botão/link** | **Destino**        | **Tipo**   |
-|------------------------|--------------------|------------|
-| Entrar                | Área de Vagas       | default    |
-| Esqueci a senha       | Recuperação de Senha |            |
-
----
-
-### **Atividade 2: Pesquisa de Vagas**
-
-| **Campo**            | **Tipo**         | **Restrições**                       | **Valor default** |
-|----------------------|------------------|--------------------------------------|-------------------|
-| Palavra-chave       | Caixa de Texto   | Mínimo de 3 caracteres               |                   |
-| Localização         | Caixa de Texto   |                                      |                   |
-| Modalidade          | Seleção única    | Remoto, Presencial, Híbrido          |                   |
-| Área de atuação     | Seleção única    |                                      |                   |
-| Faixa salarial      | Número           | Apenas valores positivos             |                   |
-| Nível da vaga       | Seleção única    | Júnior, Pleno, Sênior                |                   |
-| Data da publicação  | Data             |                                      |                   |
-
-#### **Comandos**
-
-| **Nome do botão/link** | **Destino**               | **Tipo**   |
-|------------------------|---------------------------|------------|
-| Buscar                | Listagem de Vagas          | default    |
-| Limpar filtros        | Pesquisa de Vagas          | cancel     |
-| Visualizar vaga       | Detalhes da Vaga           | default    |
+| **Comandos**   | **Destino**         | **Tipo**    |
+|--------------|-------------------|------------|
+| Entrar       | Verificação de Cadastro | Default    |
+| Esqueci a senha | Recuperação de Senha | Default    |
 
 ---
 
-### **Atividade 3: Aplicação na Vaga**
+### 2️ Usuário Cadastrado?
+Verifica se o usuário já tem uma conta.
 
-| **Campo**                | **Tipo**         | **Restrições**                       | **Valor default** |
-|--------------------------|------------------|--------------------------------------|-------------------|
-| Nome completo           | Caixa de Texto   | Obrigatório                          |                   |
-| E-mail                  | Caixa de Texto   | Formato de e-mail                    |                   |
-| Currículo               | Arquivo          | Formato PDF, máx 5MB                 |                   |
-| Mensagem de apresentação | Área de Texto    | Até 1000 caracteres                  |                   |
-| Data da aplicação       | Data e Hora      | Preenchido automaticamente           | Data atual        |
-| Perfil do GitHub        | Link             | Deve começar com `https://`          |                   |
-| Tecnologias dominadas   | Seleção múltipla |                                      |                   |
-
-#### **Comandos**
-
-| **Nome do botão/link** | **Destino**                | **Tipo**   |
-|------------------------|----------------------------|------------|
-| Aplicar                | Confirmação de Aplicação    | default    |
-| Cancelar               | Fim do processo de Aplicação| cancel     |
+| **Decisão**       | **Destino**          |
+|------------------|--------------------|
+| Sim             | Área de Vagas       |
+| Não             | Fim do Processo     |
 
 ---
 
-### **Atividade 4: Edição ou Exclusão da Vaga (Empresa)**
+### 3️ Área de Vagas
+O candidato acessa a área onde pode pesquisar oportunidades.
 
-| **Campo**            | **Tipo**         | **Restrições**                            | **Valor default** |
-|----------------------|------------------|-------------------------------------------|-------------------|
-| Vaga Selecionada    | Seleção única    | Apenas vagas cadastradas pela empresa    |                   |
-| Novo Título         | Caixa de Texto   | Opcional                                  |                   |
-| Nova Descrição      | Área de Texto    | Opcional                                  |                   |
-| Nova Faixa Salarial | Número           | Apenas valores positivos                  |                   |
+| **Campo**      | **Tipo**       | **Restrições** | **Valor default** |
+|--------------|---------------|--------------|----------------|
+| Barra de Pesquisa | Caixa de texto | Palavra-chave | - |
+| Filtros        | Seleção múltipla | Localização, Salário, Tipo de Contrato | - |
 
-#### **Comandos**
-
-| **Nome do botão/link** | **Destino**               | **Tipo**   |
-|------------------------|---------------------------|------------|
-| Alterar vaga          | Validação de Alterações    | default    |
-| Excluir vaga          | Confirmação de Exclusão    | default    |
-| Cancelar              | Área de Vagas              | cancel     |
+| **Comandos**   | **Destino**      | **Tipo**   |
+|--------------|-----------------|---------|
+| Pesquisar    | Lista de Vagas  | Default |
 
 ---
 
-### **Atividade 5: Confirmação de Exclusão de Vaga**
+### 4️ Pesquisar Vagas
+O candidato realiza uma busca e visualiza os resultados.
 
-| **Campo**    | **Tipo**         | **Restrições** | **Valor default** |
-|-------------|----------------|---------------|-------------------|
-| Vaga        | Seleção única   | Apenas vagas cadastradas |   |
+| **Campo**      | **Tipo**       | **Restrições** | **Valor default** |
+|--------------|---------------|--------------|----------------|
+| Lista de Vagas | Tabela        | Dados de vagas disponíveis | - |
 
-#### **Comandos**
+| **Comandos**       | **Destino**         | **Tipo**    |
+|------------------|-------------------|------------|
+| Selecionar Vaga | Visualizar Detalhes da Vaga | Default |
 
-| **Nome do botão/link** | **Destino**                     | **Tipo**   |
-|------------------------|---------------------------------|------------|
-| Confirmar exclusão    | Remover Vaga do Banco de Dados | default    |
-| Cancelar              | Área de Vagas                  | cancel     |
+---
+
+### 5️ Visualizar Detalhes da Vaga
+O candidato acessa informações detalhadas sobre uma vaga.
+
+| **Campo**          | **Tipo**  | **Restrições** | **Valor default** |
+|------------------|---------|--------------|----------------|
+| Nome da Empresa | Caixa de texto | - | - |
+| Cargo          | Caixa de texto | - | - |
+| Salário       | Número | Apenas números positivos | - |
+| Descrição da Vaga | Área de texto | - | - |
+
+| **Comandos**   | **Destino**          | **Tipo**    |
+|--------------|-------------------|------------|
+| Candidatar-se | Decisão: Candidatar a Vaga? | Default |
+
+---
+
+### 6️ Candidatar a Vaga?
+O candidato decide se quer se candidatar à vaga.
+
+| **Decisão**       | **Destino**          |
+|------------------|--------------------|
+| Sim             | Aplicar Vaga       |
+| Não             | Fim do Processo    |
+
+---
+
+### 7️ Aplicar Vaga
+O candidato finaliza sua candidatura na vaga desejada.
+
+| **Campo**      | **Tipo**       | **Restrições** | **Valor default** |
+|--------------|---------------|--------------|----------------|
+| Currículo    | Arquivo       | PDF, máximo 5MB | - |
+| Carta de Apresentação | Área de texto | - | - |
+
+| **Comandos**   | **Destino**   | **Tipo**  |
+|--------------|------------|---------|
+| Enviar      | Fim do Processo | Default |
