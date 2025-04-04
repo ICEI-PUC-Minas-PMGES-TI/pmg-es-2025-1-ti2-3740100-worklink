@@ -36,24 +36,47 @@ _* **Link** - campo que armazena uma URL_
 
 _* **Tabela** - campo formado por uma matriz de valores_
 
-**Nome da atividade 1**
+**Visualizar aplicações**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
 | [Nome do campo] | [tipo de dados]  |                |                   |
-| ***Exemplo:***  |                  |                |                   |
-| login           | Caixa de Texto   | formato de e-mail |                |
-| senha           | Caixa de Texto   | mínimo de 8 caracteres |           |
+|                 |                  |                |                   |
+|                 |                  |                |                   |
 
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
 | [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  ) |
-| ***Exemplo:***       |                                |                   |
-| entrar               | Fim do Processo 1              | default           |
-| cadastrar            | Início do proceso de cadastro  |                   |
+| Agendar entrevista               | Início da atividade de agendar entrevista       | default           |
+| Realizar teste técnico           | Início da atividade de teste técnico            | default           |
+| Desistir da vaga                 | Início da atividade desistir da vaga            | default           |
 
+**Agendar entrevista**
 
-**Nome da atividade 2**
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+| [Nome do campo] | [tipo de dados]  |                |                   |
+| Data                |   Data            |                |  dd-mm-aaaa               |
+| Horario             |   Hora            |                |  hh:mm:ss                 |
+
+| **Comandos**         |  **Destino**                   | **Tipo**          |
+| ---                  | ---                            | ---               |
+| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  ) |
+|  Enviar agendamento                    |     Envia o agendamento para a empresa                  |     default              |
+
+**Realizar teste técnico**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+| [Nome do campo] | [tipo de dados]  |                |                   |
+| Upload do teste               |   Arquivo            |                |                 |
+
+| **Comandos**         |  **Destino**                   | **Tipo**          |
+| ---                  | ---                            | ---               |
+| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  ) |
+|  Enviar Teste        |     Envia o teste para a empresa avaliar                  |     default              |
+
+**Desistir da vaga**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
@@ -62,5 +85,19 @@ _* **Tabela** - campo formado por uma matriz de valores_
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
-| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel/  ) |
-|                      |                                |                   |
+| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  )|
+|  Cancelar            |  Cancela a desistencia         |     cancel        |
+|  Desistir            |  Desiste da vaga               |     default       |
+
+**Avaliar teste do candidato**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+| [Nome do campo] | [tipo de dados]  |                |                   |
+| Feedback                |  Área de texto                |                |                   |
+
+| **Comandos**         |  **Destino**                   | **Tipo**          |
+| ---                  | ---                            | ---               |
+| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  )|
+|  Aprovar             |  Aprova o candidato para a proxima etapa      |     default       |
+|  Reprovar            |  Reprova o candidato da seleção               |     default       |
