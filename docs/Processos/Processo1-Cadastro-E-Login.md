@@ -7,7 +7,7 @@ _O processo inicia quando o candidato se inscreve em uma vaga. A empresa avalia 
 
 #### Detalhamento das atividades
 
-_Descreva aqui cada uma das propriedades das atividades do processo 4. 
+_Descreva aqui cada uma das propriedades das atividades do processo 1. 
 Devem estar relacionadas com o modelo de processo apresentado anteriormente._
 
 _Os tipos de dados a serem utilizados são:_
