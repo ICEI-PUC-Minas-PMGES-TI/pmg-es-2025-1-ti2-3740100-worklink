@@ -32,11 +32,11 @@ _O diagrama BPMN representa o processo de fechamento de uma vaga por uma empresa
 | Enviar           | Fim                                 | Default  |
 | Cancelar         | Analisar o desempenho do candidato  | Cancel   |
 
-##### Tela Inicial: Escolha entre Login ou Cadastro
+##### Analisar o desempenho do candidato
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 |-----------------|------------------|----------------|-------------------|
-| Ação desejada   | Seleção única    | Login/Cadastro | -                 |
+| Nome do candidato   | Caixa de Texto    | Somente caracteres | -        |
 
 | **Comandos**   | **Destino**        | **Tipo**  |
 |----------------|--------------------|-----------|
