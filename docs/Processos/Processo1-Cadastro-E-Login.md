@@ -2,7 +2,8 @@
 
 _O processo inicia quando o usuário seleciona entre login ou cadastro. Se optar por login, insere suas credenciais, que são validadas pelo sistema. Caso inválidas, o sistema retorna um erro e solicita correção. Se válidas, o usuário é redirecionado conforme seu perfil (candidato ou empresa). Para cadastro, o usuário preenche um formulário e aguarda validação. Se houver erro, é notificado; se bem-sucedido, a conta é criada e confirmada, encerrando o processo._
 
-![Modelo BPMN do Processo 1](docs/images/Cadastro_Login_BPMN.png)
+![Modelo BPMN do Processo 1](../images/Cadastro_Login_BPMN.png)
+
 
 #### Detalhamento das atividades
 
