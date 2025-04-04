@@ -91,7 +91,7 @@ A proposta é baseada nos seguintes princípios:
   
 ### 3.3. Modelagem dos processos
 
-[PROCESSO 1 - Cadastro de Vagas](Processos/Cadastro_de_Vagas.md "Detalhamento do Processo 1.")
+[PROCESSO 1 - Gerenciamento de Vagas](Processos/Gerenciar_Vagas.md "Detalhamento do Processo 1.")
 
 [PROCESSO 2 - Cadastro de Candidatos ou Empresas](Processos/Cadastro_de_Candidatos_ou_Empresas.md "Detalhamento do Processo 2.")
 
