@@ -36,31 +36,93 @@ _* **Link** - campo que armazena uma URL_
 
 _* **Tabela** - campo formado por uma matriz de valores_
 
-**Nome da atividade 1**
+### **Atividade 1: Login no Sistema**
 
-| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
-| ---             | ---              | ---            | ---               |
-| [Nome do campo] | [tipo de dados]  |                |                   |
-| ***Exemplo:***  |                  |                |                   |
-| login           | Caixa de Texto   | formato de e-mail |                |
-| senha           | Caixa de Texto   | mínimo de 8 caracteres |           |
+| **Campo**      | **Tipo**         | **Restrições**             | **Valor default** |
+|---------------|----------------|---------------------------|-------------------|
+| E-mail        | Caixa de Texto  | Formato de e-mail válido  |                   |
+| Senha         | Caixa de Texto  | Mínimo de 8 caracteres    |                   |
 
-| **Comandos**         |  **Destino**                   | **Tipo** |
-| ---                  | ---                            | ---               |
-| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  ) |
-| ***Exemplo:***       |                                |                   |
-| entrar               | Fim do Processo 1              | default           |
-| cadastrar            | Início do proceso de cadastro  |                   |
+#### **Comandos**
 
+| **Nome do botão/link** | **Destino**        | **Tipo**   |
+|------------------------|--------------------|------------|
+| Entrar                | Área de Vagas       | default    |
+| Esqueci a senha       | Recuperação de Senha |            |
 
-**Nome da atividade 2**
+---
 
-| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
-| ---             | ---              | ---            | ---               |
-| [Nome do campo] | [tipo de dados]  |                |                   |
-|                 |                  |                |                   |
+### **Atividade 2: Pesquisa de Vagas**
 
-| **Comandos**         |  **Destino**                   | **Tipo**          |
-| ---                  | ---                            | ---               |
-| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel/  ) |
-|                      |                                |                   |
+| **Campo**            | **Tipo**         | **Restrições**                       | **Valor default** |
+|----------------------|------------------|--------------------------------------|-------------------|
+| Palavra-chave       | Caixa de Texto   | Mínimo de 3 caracteres               |                   |
+| Localização         | Caixa de Texto   |                                      |                   |
+| Modalidade          | Seleção única    | Remoto, Presencial, Híbrido          |                   |
+| Área de atuação     | Seleção única    |                                      |                   |
+| Faixa salarial      | Número           | Apenas valores positivos             |                   |
+| Nível da vaga       | Seleção única    | Júnior, Pleno, Sênior                |                   |
+| Data da publicação  | Data             |                                      |                   |
+
+#### **Comandos**
+
+| **Nome do botão/link** | **Destino**               | **Tipo**   |
+|------------------------|---------------------------|------------|
+| Buscar                | Listagem de Vagas          | default    |
+| Limpar filtros        | Pesquisa de Vagas          | cancel     |
+| Visualizar vaga       | Detalhes da Vaga           | default    |
+
+---
+
+### **Atividade 3: Aplicação na Vaga**
+
+| **Campo**                | **Tipo**         | **Restrições**                       | **Valor default** |
+|--------------------------|------------------|--------------------------------------|-------------------|
+| Nome completo           | Caixa de Texto   | Obrigatório                          |                   |
+| E-mail                  | Caixa de Texto   | Formato de e-mail                    |                   |
+| Currículo               | Arquivo          | Formato PDF, máx 5MB                 |                   |
+| Mensagem de apresentação | Área de Texto    | Até 1000 caracteres                  |                   |
+| Data da aplicação       | Data e Hora      | Preenchido automaticamente           | Data atual        |
+| Perfil do GitHub        | Link             | Deve começar com `https://`          |                   |
+| Tecnologias dominadas   | Seleção múltipla |                                      |                   |
+
+#### **Comandos**
+
+| **Nome do botão/link** | **Destino**                | **Tipo**   |
+|------------------------|----------------------------|------------|
+| Aplicar                | Confirmação de Aplicação    | default    |
+| Cancelar               | Fim do processo de Aplicação| cancel     |
+
+---
+
+### **Atividade 4: Edição ou Exclusão da Vaga (Empresa)**
+
+| **Campo**            | **Tipo**         | **Restrições**                            | **Valor default** |
+|----------------------|------------------|-------------------------------------------|-------------------|
+| Vaga Selecionada    | Seleção única    | Apenas vagas cadastradas pela empresa    |                   |
+| Novo Título         | Caixa de Texto   | Opcional                                  |                   |
+| Nova Descrição      | Área de Texto    | Opcional                                  |                   |
+| Nova Faixa Salarial | Número           | Apenas valores positivos                  |                   |
+
+#### **Comandos**
+
+| **Nome do botão/link** | **Destino**               | **Tipo**   |
+|------------------------|---------------------------|------------|
+| Alterar vaga          | Validação de Alterações    | default    |
+| Excluir vaga          | Confirmação de Exclusão    | default    |
+| Cancelar              | Área de Vagas              | cancel     |
+
+---
+
+### **Atividade 5: Confirmação de Exclusão de Vaga**
+
+| **Campo**    | **Tipo**         | **Restrições** | **Valor default** |
+|-------------|----------------|---------------|-------------------|
+| Vaga        | Seleção única   | Apenas vagas cadastradas |   |
+
+#### **Comandos**
+
+| **Nome do botão/link** | **Destino**                     | **Tipo**   |
+|------------------------|---------------------------------|------------|
+| Confirmar exclusão    | Remover Vaga do Banco de Dados | default    |
+| Cancelar              | Área de Vagas                  | cancel     |
