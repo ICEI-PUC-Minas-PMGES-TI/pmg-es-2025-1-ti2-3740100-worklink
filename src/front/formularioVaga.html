@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/formularioVaga.css">
+    <title>Criar Vaga</title>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav id="nav-mobile">
+        <div class="menu-mobile">
+            <div class="icone-mobile" onclick="ativaMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="links-menu">
+                <li><a href="" onclick="ativaMenu()">Pag1</a></li>
+                <li><a href="" onclick="ativaMenu()">Pag2</a></li>
+                <li><a href="" onclick="ativaMenu()">Pag3</a></li>
+                <li><a href="" onclick="ativaMenu()">Pag4</a></li>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FORMULÁRIO DE CRIAÇÃO DE VAGA -->
+    <section id="formulario">
+        <h1 id="titulo">Criar Vaga</h1>
+
+        <div class="formulario">
+            <div class="col-esq">
+                <div class="titulo">
+                    <p>TÍTULO DA VAGA</p>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Título da Vaga">
+                    </div>
+                </div>
+
+                <div class="descricao">
+                    <p>DESCRIÇÃO</p>
+                    <div class="input-group input mb-3">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="faixa-salarial">
+                    <p>FAIXA SALARIAL</p>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="R$ 0,00">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-dir">
+                <div class="data-final">
+                    <p>DATA FINAL PARA INSCRIÇÕES</p>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="__ / __ / ____">
+                    </div>
+                </div>
+
+                <div class="tipo-contrato">
+                    <p>TIPO DE CONTRATO</p>
+                    <select class="form-select" aria-label="Tipo de Contrato">
+                        <option selected></option>
+                        <option value="1">CLT</option>
+                        <option value="2">Estágio</option>
+                        <option value="3">Menor Aprendiz</option>
+                        <option value="4">PJ</option>
+                    </select>
+                </div>
+
+                <div class="modalidade">
+                    <p>MODALIDADE</p>
+                    <select class="form-select" aria-label="Modalidade">
+                        <option selected></option>
+                        <option value="1">Presencial</option>
+                        <option value="2">Remoto</option>
+                        <option value="3">Híbrido</option>
+                    </select>
+                </div>
+
+                <div class="beneficios">
+                    <p>BENEFÍCIOS</p>
+                    <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Benefícios">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="botoes">
+            <a class="btn-cancelar" href="">CANCELAR</a>
+            <a class="btn-seguir" href="">SEGUIR</a>
+          </div>
+    </section>
+
+    <script src="assets/script/formularioVaga.js"></script>
+</body>
+
+</html>
