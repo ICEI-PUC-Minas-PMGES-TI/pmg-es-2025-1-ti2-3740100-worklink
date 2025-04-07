@@ -1,4 +1,4 @@
-## Arquivo [Vaga.java](back/Vaga.java)
+## Arquivo [Vaga.java](Vaga.java)
 
 O arquivo **Vaga.java** contém:
 
