@@ -7,7 +7,8 @@ import jakarta.persistence.id;
 public class Vaga {
     
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Gera um id unico automaticamente
+    private Long id;
     
     private String titulo;
     private String descricao;
