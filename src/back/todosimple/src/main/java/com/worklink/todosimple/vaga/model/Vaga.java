@@ -1,40 +1,47 @@
 package com.worklink.todosimple.vaga.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.id;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
 public class Vaga {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //Gera um id unico automaticamente
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String titulo;
     private String descricao;
     private String requisitos;
     private double salario;
 
-    public Vaga(String id,String titulo, String descricao, String requisitos, double salario){
-            this.id = id;
-            this.titulo = titulo;
-            this.descricao = descricao;
-            this.requisitos = requisitos;
-            this.salario = salario;
+    // Construtor padrão (necessário para o JPA)
+    public Vaga() {}
+
+    // Construtor completo
+    public Vaga(Long id, String titulo, String descricao, String requisitos, double salario) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.requisitos = requisitos;
+        this.salario = salario;
     }
 
-    //Getter e Setter
-
-    public String getId() {
+    // Getters e Setters
+    public Long getId() {
         return id;
     }
-    public void setId(String id) {
+
+    public void setId(Long id) {  // Corrigido: era String
         this.id = id;
     }
 
     public String getTitulo() {
         return titulo;
     }
+
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
@@ -42,6 +49,7 @@ public class Vaga {
     public String getDescricao() {
         return descricao;
     }
+
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
@@ -49,15 +57,16 @@ public class Vaga {
     public String getRequisitos() {
         return requisitos;
     }
+
     public void setRequisitos(String requisitos) {
         this.requisitos = requisitos;
     }
-    
+
     public double getSalario() {
         return salario;
     }
+
     public void setSalario(double salario) {
         this.salario = salario;
     }
-
 }
