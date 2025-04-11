@@ -16,6 +16,6 @@ _Descreva qual(is) tecnologias você vai usar para resolver o seu problema, ou s
 | SGBD                     | MySQL           |
 | Front end                | HTML+CSS+JS     |
 | Framework - Front end    | Bootstrap       |
-| Back end                 | Java SpringBoot |
+| Back end                 | Java + SpringBoot |
 | Deploy                   | Github Pages    |
 
