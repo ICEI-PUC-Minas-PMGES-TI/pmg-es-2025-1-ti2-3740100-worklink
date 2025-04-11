@@ -31,3 +31,63 @@ valorInput.addEventListener('input', (e) => {
 
   e.target.value = value;
 });
+
+// Salva dados da página formularioVaga.html no local sessionStorage
+function salvarDadosLocalmente() {
+    const vaga = {
+        titulo: document.querySelector('.dado1').value,
+        descricao: document.querySelector('.dado2').value,
+        faixaSalarial: document.querySelector('.dado3').value,
+        dataFinal: document.querySelector('.dado4').value,
+        tipoContrato: document.querySelector('.dado5').value,
+        modalidade: document.querySelector('.dado6').value,
+        beneficios: document.querySelector('.dado7').value
+    };
+
+    sessionStorage.setItem('dadosVaga', JSON.stringify(vaga));
+    console.log('Dados salvos no sessionStorage:', vaga); // Adicionado para depuração
+}
+
+// Salva dados da página envioTesteVaga.html no local sessionStorage
+const arquivoInput = document.querySelector('.dado8');
+if (arquivoInput) {
+    arquivoInput.addEventListener('change', function () {
+        const file = arquivoInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function () {
+            sessionStorage.setItem('arquivoPDF', reader.result); // base64
+        };
+
+        reader.readAsDataURL(file);
+    });
+}
+
+// Pega dados do local sessionStorage e preenche os campos do formulário disabilitados
+function preencherCampos() {
+    console.log('Função preencherCampos chamada'); // Adicionado para depuração
+
+    const dadosVaga = JSON.parse(sessionStorage.getItem('dadosVaga'));
+
+    if (dadosVaga) {
+        document.querySelector('.resumoDado1').value = dadosVaga.titulo;
+        document.querySelector('.resumoDado2').value = dadosVaga.descricao;
+        document.querySelector('.resumoDado3').value = dadosVaga.faixaSalarial;
+        document.querySelector('.resumoDado4').value = dadosVaga.dataFinal;
+        document.querySelector('.resumoDado5').value = dadosVaga.tipoContrato;
+        document.querySelector('.resumoDado6').value = dadosVaga.modalidade;
+        document.querySelector('.resumoDado7').value = dadosVaga.beneficios;
+    } else {
+        console.log('Nenhum dado encontrado no sessionStorage'); // Adicionado para depuração
+    }
+}
+
+//const arquivo = sessionStorage.getItem('arquivoPDF');
+//document.getElementById('pdfPreview').src = arquivo; // se for um iframe/pdf-viewer
+
+// Limpar dados salvos no sessionStorage se clicar no btn-cancelar
+function limparDadosLocalmente() {
+    sessionStorage.removeItem('dadosVaga'); // Remove os dados da vaga
+    sessionStorage.removeItem('arquivoPDF'); // Remove o arquivo PDF, se necessário
+    console.log('Dados removidos do sessionStorage'); // Adicionado para depuração
+}
