@@ -127,6 +127,10 @@ nav {
     gap: 1rem;
 }
 
+.no-resize {
+    resize: none; /* tira opção de mudar o tamanho do campo descrição */
+}
+  
 /* BOTÕES */
 .botoes {
     display: flex;

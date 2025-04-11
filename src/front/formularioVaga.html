@@ -37,21 +37,21 @@
                 <div class="titulo">
                     <p>TÍTULO DA VAGA</p>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Título da Vaga">
+                        <input type="text" class="form-control" placeholder="Digite o título da vaga...">
                     </div>
                 </div>
 
                 <div class="descricao">
                     <p>DESCRIÇÃO</p>
                     <div class="input-group input mb-3">
-                        <input type="text" class="form-control">
+                        <textarea class="form-control no-resize" rows="4" placeholder="Digite a descrição..."></textarea>
                     </div>
                 </div>
 
-                <div class="faixa-salarial">
-                    <p>FAIXA SALARIAL</p>
+                <div class="beneficios">
+                    <p>BENEFÍCIOS</p>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="R$ 0,00">
+                    <input type="text" class="form-control" placeholder="Digite os benefícios da vaga...">
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 <div class="data-final">
                     <p>DATA FINAL PARA INSCRIÇÕES</p>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="__ / __ / ____">
+                        <input type="text" class="form-control" id="data" maxlength="10" placeholder="dd/mm/aaaa">
                     </div>
                 </div>
 
@@ -72,6 +72,7 @@
                         <option value="2">Estágio</option>
                         <option value="3">Menor Aprendiz</option>
                         <option value="4">PJ</option>
+                        <option value="5">Outro - (Especificar na descrição)</option>
                     </select>
                 </div>
 
@@ -85,10 +86,10 @@
                     </select>
                 </div>
 
-                <div class="beneficios">
-                    <p>BENEFÍCIOS</p>
+                <div class="faixa-salarial">
+                    <p>FAIXA SALARIAL</p>
                     <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Benefícios">
+                        <input type="text" class="form-control" id="valor" placeholder="R$ 0,00">
                     </div>
                 </div>
             </div>
