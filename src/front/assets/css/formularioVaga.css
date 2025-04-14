@@ -127,6 +127,20 @@ nav {
     gap: 1rem;
 }
 
+.no-resize {
+    resize: none; /* tira opção de mudar o tamanho do campo descrição */
+}
+
+.form-control:focus {
+    border-color: rgb(53, 53, 53);
+    box-shadow: 0 0 0 0.2rem rgba(71, 71, 71, 0.25);
+}
+
+.form-select:focus {
+    border-color: rgb(53, 53, 53);
+    box-shadow: 0 0 0 0.2rem rgba(71, 71, 71, 0.25);
+}
+  
 /* BOTÕES */
 .botoes {
     display: flex;
@@ -134,9 +148,9 @@ nav {
     gap: 3rem;
     margin-top: 7rem;
     margin-right: 7rem;
-  }
+}
   
-  .botoes a {
+.botoes a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -150,10 +164,43 @@ nav {
     cursor: pointer;
     color: white;
     border-radius: 0.5rem;
-  }
+}
   
-  .botoes a:hover {
+.botoes a:hover {
     background-color: rgb(53, 53, 53);
     border: rgb(53, 53, 53) 0.14rem solid;
-  }
+}
+
+/* ENVIO TESTE */
+#envioTeste {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+}
+
+.opcional {
+    text-align: center;
+    color: rgb(204, 77, 77);
+    font-size: 1.5rem;
+}
   
+#envioTeste #titulo {
+    margin: 0;
+}
+
+.envio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-upload {
+    height: 20rem;
+    width: 20rem;
+}
+
+.input-upload {
+    width: 30rem;
+}
+
+/* RESUMO DAS INFORMAÇÕES */
