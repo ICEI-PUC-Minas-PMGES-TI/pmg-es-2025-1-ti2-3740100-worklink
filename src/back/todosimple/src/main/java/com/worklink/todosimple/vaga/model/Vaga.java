@@ -4,14 +4,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @RestController
-@RequestMapping("/api/vagas") //Para que eu chame a API pro JavaScript
-@CrossOrigin(origins = "*") //permite que o JavaScript acesse a API
+@RequestMapping("/api/vagas") // Para que eu chame a API pro JavaScript
+@CrossOrigin(origins = "*") // Permite que o JavaScript acesse a API
 
 @Entity
 public class Vaga {
