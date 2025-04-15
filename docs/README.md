@@ -91,15 +91,17 @@ A proposta é baseada nos seguintes princípios:
   
 ### 3.3. Modelagem dos processos
 
-[PROCESSO 1 - Gerenciamento de Vagas](Processos/Cadastro_de_Vagas.md "Detalhamento do Processo 1.")
+[PROCESSO 1 - Cadastro e Login](Processos/Processo1-Cadastro-E-Login.md "Detalhamento do Processo 1.")
 
-[PROCESSO 2 - Cadastro e Login](Processos/Cadastro_de_Candidatos_ou_Empresas.md "Detalhamento do Processo 2.")
+[PROCESSO 2 - Gestão de Vagas](Processos/Processo2-Gestao-De-Vagas.md "Detalhamento do Processo 2.")
 
-[PROCESSO 3 - Pesquisa e Aplicação de vagas](Processos/Processo_Seletivo.md "Detalhamento do Processo 3.")
+[PROCESSO 3 - Pesquisa e Aplicação de Vagas](Processos/Processo3-Pesquisa-E-Aplicação-De-Vagas.md "Detalhamento do Processo 3.")
 
-[PROCESSO 4 - Gerenciamento das Candidaturas](Processos/Gerenciamento-das-Aplicações.md "Detalhamento do Processo 4.")
+[PROCESSO 4 - Gerenciamento de Candidaturas](Processos/Processo4–Gerenciamento-De-Candidaturas.md "Detalhamento do Processo 4.")
 
-[PROCESSO 5 - Fechamento da vaga](Processos/Comunicacao_e_Notificacoe.md "Detalhamento do Processo 4.")
+[PROCESSO 5 - Fechamento da Vaga](Processos/Processo5-Fechamento-Da-Vaga.md "Detalhamento do Processo 5.")
+
+[PROCESSO 6 - Avaliação da Empresa](Processos/Processo6-Avaliação-Da-Empresa.md "Detalhamento do Processo 6.")
 
 [PROCESSO 6 - Avaliação da empresa](Processos/Comunicacao_e_Notificacoe.md "Detalhamento do Processo 4.")
 
