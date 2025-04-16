@@ -1,73 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
- 	<modelVersion>4.0.0</modelVersion>
- 	<parent>
- 		<groupId>org.springframework.boot</groupId>
- 		<artifactId>spring-boot-starter-parent</artifactId>
- 		<version>2.7.2</version>
- 		<relativePath/> <!-- lookup parent from repository -->
- 	</parent>
- 	<groupId>com.worklink</groupId>
- 	<artifactId>todosimple</artifactId>
- 	<version>0.0.1-SNAPSHOT</version>
- 	<name>todosimple</name>
- 	<description>Spring Boot API for To Do App</description>
- 	<properties>
- 		<java.version>17</java.version>
- 	</properties>
- 	<dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.2</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.worklink</groupId>
+    <artifactId>todosimple</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>todosimple</name>
+    <description>Spring Boot API for To Do App</description>
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+    <dependencies>
+        <!-- Dependência para JPA (Java Persistence API) com o Spring Data JPA. Permite integrar o Spring Boot com bancos de dados relacionais -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>2.7.3</version>
+        </dependency>
 
- 		<dependency>
- 			<groupId>org.springframework.boot</groupId>
- 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>2.7.3</version>
- 		</dependency>
+        <!-- Dependência para o Spring Web, que oferece suporte para construção de aplicações web e APIs RESTful -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.7.3</version>
+        </dependency>
 
- 		<dependency>
- 			<groupId>org.springframework.boot</groupId>
- 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>2.7.3</version>
- 		</dependency>
- 
- 		<dependency>
- 			<groupId>org.springframework.boot</groupId>
- 			<artifactId>spring-boot-devtools</artifactId>
-			<version>2.7.3</version>
- 			<scope>runtime</scope>
- 			<optional>true</optional>
- 		</dependency>
+        <!-- Dependência para o Spring Boot DevTools, que facilita o desenvolvimento ao permitir a reinicialização automática da aplicação -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>2.7.3</version>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
 
- 		<dependency>
- 			<groupId>com.h2database</groupId>
- 			<artifactId>h2</artifactId>
-			<version>2.1.214</version>
- 			<scope>runtime</scope>
- 		</dependency>
+        <!-- Dependência para o banco de dados H2 em memória. Pode ser usado para desenvolvimento e testes locais -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.1.214</version>
+            <scope>runtime</scope>
+        </dependency>
 
- 		<dependency>
- 			<groupId>mysql</groupId>
- 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.30</version>
- 			<scope>runtime</scope>
- 		</dependency>
+        <!-- Dependência para o conector MySQL. Necessário para conectar o Spring Boot a um banco de dados MySQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version>
+            <scope>runtime</scope>
+        </dependency>
 
- 		<dependency>
- 			<groupId>org.springframework.boot</groupId>
- 			<artifactId>spring-boot-starter-test</artifactId>
-			<version>2.7.3</version>
- 			<scope>test</scope>
- 		</dependency>
+        <!-- Dependência para testes com o Spring Boot. Permite executar testes automatizados na sua aplicação -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.7.3</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
- 	</dependencies>
- 
- 	<build>
- 		<plugins>
- 			<plugin>
- 				<groupId>org.springframework.boot</groupId>
- 				<artifactId>spring-boot-maven-plugin</artifactId>
- 			</plugin>
- 		</plugins>
- 	</build>
- 
- </project>
+    <build>
+        <plugins>
+            <!-- Plugin para o Spring Boot, que facilita o processo de empacotamento e execução da aplicação -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
