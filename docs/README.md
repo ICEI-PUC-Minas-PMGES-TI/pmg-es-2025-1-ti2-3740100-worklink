@@ -103,6 +103,7 @@ A proposta é baseada nos seguintes princípios:
 
 [PROCESSO 6 - Avaliação da Empresa](Processos/Processo6-Avaliação-Da-Empresa.md "Detalhamento do Processo 6.")
 
+[PROCESSO 6 - Avaliação da empresa](Processos/Comunicacao_e_Notificacoe.md "Detalhamento do Processo 4.")
 
 ## 4. Projeto da solução
 
