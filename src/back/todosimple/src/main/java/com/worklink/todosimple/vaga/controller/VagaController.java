@@ -15,44 +15,42 @@ public class VagaController {
     @Autowired
     private VagaRepository vagaRepository;
 
-    // GET todas as vagas
+    //* GET todas as vagas */
     @GetMapping
     public List<Vaga> getAllVagas() {
         return vagaRepository.findAll();
     }
 
-    // GET vaga por ID
+    //* GET vaga por ID */
     @GetMapping("/{id}")
-    public Optional<Vaga> getVagaById(@PathVariable Long id) {
+    public Optional<Vaga> getVagaByID(@PathVariable long id) {
         return vagaRepository.findById(id);
     }
 
-    // POST criar vaga
+    //* POST criar vaga */
     @PostMapping
     public Vaga createVaga(@RequestBody Vaga vaga) {
         return vagaRepository.save(vaga);
     }
 
-    // PUT atualizar vaga
+    //* PUT atualizar vaga */
     @PutMapping("/{id}")
     public Vaga updateVaga(@PathVariable Long id, @RequestBody Vaga vagaAtualizada) {
-        return vagaRepository.findById(id)
-            .map(vaga -> {
-                vaga.setTitulo(vagaAtualizada.getTitulo());
-                vaga.setDescricao(vagaAtualizada.getDescricao());
-                vaga.setRequisitos(vagaAtualizada.getRequisitos());
-                vaga.setSalario(vagaAtualizada.getSalario());
-                return vagaRepository.save(vaga);
-            }).orElseGet(() -> {
-                vagaAtualizada.setId(id);
-                return vagaRepository.save(vagaAtualizada);
-            });
+        return vagaRepository.findById(id).map(vaga -> {
+            vaga.setTitulo(vagaAtualizada.getTitulo());
+            vaga.setDescricao(vagaAtualizada.getDescricao());
+            vaga.setRequisitos(vagaAtualizada.getRequisitos());
+            vaga.setSalario(vagaAtualizada.getSalario());
+            return vagaRepository.save(vaga);
+        }).orElseGet(() -> {
+            vagaAtualizada.setId(id);
+            return vagaRepository.save(vagaAtualizada);
+        });
     }
 
-    // DELETE vaga
+    //* DELETE vaga */
     @DeleteMapping("/{id}")
     public void deleteVaga(@PathVariable Long id) {
         vagaRepository.deleteById(id);
     }
 }
-
