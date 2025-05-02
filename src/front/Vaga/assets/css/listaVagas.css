@@ -1,0 +1,47 @@
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.container-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.vaga-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vaga-card h2 {
+    margin-top: 0;
+    color: #007bff;
+}
+
+.vaga-card p {
+    margin: 8px 0;
+}
+
+.vaga-card button {
+    margin: 5px 5px 0 0;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.editar {
+    background-color: #ffc107;
+    color: white;
+}
+
+button.excluir {
+    background-color: #dc3545;
+    color: white;
+}

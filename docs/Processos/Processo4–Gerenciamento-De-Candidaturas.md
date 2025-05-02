@@ -47,34 +47,34 @@ _* **Tabela** - campo formado por uma matriz de valores_
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
 | [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  ) |
-| Agendar entrevista               | Início da atividade de agendar entrevista       | default           |
-| Realizar teste técnico           | Início da atividade de teste técnico            | default           |
-| Desistir da vaga                 | Início da atividade desistir da vaga            | default           |
+| btn-agendarentrevista               | Início da atividade de agendar entrevista       | default           |
+| btn-testetécnico           | Início da atividade de teste técnico            | default           |
+| btn-desistir                 | Início da atividade desistir da vaga            | default           |
 
 **Agendar entrevista**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
 | [Nome do campo] | [tipo de dados]  |                |                   |
-| Data                |   Data            |                |  dd-mm-aaaa               |
-| Horario             |   Hora            |                |  hh:mm:ss                 |
+| data                |   Data            |                |  dd-mm-aaaa               |
+| horario             |   Hora            |                |  hh:mm:ss                 |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
 | [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  ) |
-|  Enviar agendamento                    |     Envia o agendamento para a empresa                  |     default              |
+|  btn-enviarAgendamento                    |     Envia o agendamento para a empresa                  |     default              |
 
 **Realizar teste técnico**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
 | [Nome do campo] | [tipo de dados]  |                |                   |
-| Upload do teste               |   Arquivo            |                |                 |
+| upload-teste               |   Arquivo            |                |                 |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
 | [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  ) |
-|  Enviar Teste        |     Envia o teste para a empresa avaliar                  |     default              |
+|  btn-enviarTeste        |     Envia o teste para a empresa avaliar                  |     default              |
 
 **Desistir da vaga**
 
@@ -86,18 +86,18 @@ _* **Tabela** - campo formado por uma matriz de valores_
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
 | [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  )|
-|  Cancelar            |  Cancela a desistencia         |     cancel        |
-|  Desistir            |  Desiste da vaga               |     default       |
+|  btn-cancelar            |  Cancela a desistencia         |     cancel        |
+|  btn-desistir            |  Desiste da vaga               |     default       |
 
 **Avaliar teste do candidato**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
 | [Nome do campo] | [tipo de dados]  |                |                   |
-| Feedback                |  Área de texto                |                |                   |
+| feedback                |  Área de texto                |                |                   |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
 | [Nome do botão/link] | Atividade/processo de destino  | (default/cancel  )|
-|  Aprovar             |  Aprova o candidato para a proxima etapa      |     default       |
-|  Reprovar            |  Reprova o candidato da seleção               |     default       |
+|  btn-aprovar             |  Aprova o candidato para a proxima etapa      |     default       |
+|  btn-reprovar            |  Reprova o candidato da seleção               |     default       |

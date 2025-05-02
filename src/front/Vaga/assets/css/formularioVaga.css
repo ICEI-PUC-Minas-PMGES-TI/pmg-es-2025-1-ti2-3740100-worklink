@@ -94,7 +94,7 @@ nav {
     height: 90vh;
 }
 
-#titulo {
+#caixaTitulo {
     padding-top: 4rem;
 }
 
@@ -170,6 +170,33 @@ nav {
     background-color: rgb(53, 53, 53);
     border: rgb(53, 53, 53) 0.14rem solid;
 }
+.botoes button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.5rem;
+    width: 10rem;
+    background: rgb(0, 0, 0);
+    border: rgb(0, 0, 0) 0.14rem solid;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 300ms ease;
+    cursor: pointer;
+    color: white;
+    border-radius: 0.5rem;
+}
+  
+.botoes button:hover {
+    background-color: rgb(53, 53, 53);
+    border: rgb(53, 53, 53) 0.14rem solid;
+}
+
+/* Botão VOLTAR alinhado à esquerda e afastado da borda */
+.btn-voltar {
+    float: left; /* Move o botão para o lado esquerdo */
+    margin-left: 6rem; /* Adiciona espaçamento da borda esquerda */
+    margin-right: auto; /* Garante que ele fique alinhado à esquerda */
+}
 
 /* ENVIO TESTE */
 #envioTeste {
@@ -202,5 +229,11 @@ nav {
 .input-upload {
     width: 30rem;
 }
+
+.erro {
+    border: 2px solid red;
+    background-color: #ffe6e6; /* Opcional: adiciona um fundo claro para destacar */
+}
+
 
 /* RESUMO DAS INFORMAÇÕES */

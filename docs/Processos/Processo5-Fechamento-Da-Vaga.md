@@ -2,7 +2,7 @@
 
 _O diagrama BPMN representa o processo de fechamento de uma vaga por uma empresa recrutadora. Após a análise do desempenho do candidato, uma decisão é tomada para determinar se ele foi aprovado. Caso seja aprovado, a empresa envia uma mensagem informando a aprovação ao candidato. O processo então se encerra._
 
-![Modelo BPMN do Processo 1](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/tis%20Diagrama%20fechamento%20de%20vaga.png)
+![Modelo BPMN do Processo 1](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/tis%20Diagrama.png)
 
 
 #### Detalhamento das atividades

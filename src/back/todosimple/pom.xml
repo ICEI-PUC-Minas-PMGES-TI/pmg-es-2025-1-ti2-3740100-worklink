@@ -1,73 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
- 	<modelVersion>4.0.0</modelVersion>
- 	<parent>
- 		<groupId>org.springframework.boot</groupId>
- 		<artifactId>spring-boot-starter-parent</artifactId>
- 		<version>2.7.2</version>
- 		<relativePath/> <!-- lookup parent from repository -->
- 	</parent>
- 	<groupId>com.worklink</groupId>
- 	<artifactId>todosimple</artifactId>
- 	<version>0.0.1-SNAPSHOT</version>
- 	<name>todosimple</name>
- 	<description>Spring Boot API for To Do App</description>
- 	<properties>
- 		<java.version>17</java.version>
- 	</properties>
- 	<dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
- 		<dependency>
- 			<groupId>org.springframework.boot</groupId>
- 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>2.7.3</version>
- 		</dependency>
+    <modelVersion>4.0.0</modelVersion>
 
- 		<dependency>
- 			<groupId>org.springframework.boot</groupId>
- 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>2.7.3</version>
- 		</dependency>
- 
- 		<dependency>
- 			<groupId>org.springframework.boot</groupId>
- 			<artifactId>spring-boot-devtools</artifactId>
-			<version>2.7.3</version>
- 			<scope>runtime</scope>
- 			<optional>true</optional>
- 		</dependency>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
- 		<dependency>
- 			<groupId>com.h2database</groupId>
- 			<artifactId>h2</artifactId>
-			<version>2.1.214</version>
- 			<scope>runtime</scope>
- 		</dependency>
+    <groupId>com.worklink</groupId>
+    <artifactId>todosimple</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>todosimple</name>
+    <description>Spring Boot API for To Do App</description>
 
- 		<dependency>
- 			<groupId>mysql</groupId>
- 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.30</version>
- 			<scope>runtime</scope>
- 		</dependency>
+    <properties>
+        <java.version>21</java.version>
+    </properties>
 
- 		<dependency>
- 			<groupId>org.springframework.boot</groupId>
- 			<artifactId>spring-boot-starter-test</artifactId>
-			<version>2.7.3</version>
- 			<scope>test</scope>
- 		</dependency>
+    <dependencies>
+        <!-- Spring Boot: Web e JPA -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
- 	</dependencies>
- 
- 	<build>
- 		<plugins>
- 			<plugin>
- 				<groupId>org.springframework.boot</groupId>
- 				<artifactId>spring-boot-maven-plugin</artifactId>
- 			</plugin>
- 		</plugins>
- 	</build>
- 
- </project>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Banco de dados em memória (H2) -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Conector MySQL -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- DevTools (Hot reload para desenvolvimento) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Dependência para testes -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Plugin Spring Boot -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                 <version>3.2.5</version>
+            </plugin>
+
+            <!-- Plugin do compilador Java -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+<!-- RODAR O BANCO DE DADOS:...\src\back\todosimple> -->

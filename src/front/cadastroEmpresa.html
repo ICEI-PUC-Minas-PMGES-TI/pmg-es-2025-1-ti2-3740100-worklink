@@ -1,0 +1,147 @@
+<!--Pagina de login-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastro Empresa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        .required::after {
+            content: " *";
+            color: red;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" style="background-color: grey; z-index: 1; width: 100%;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="" style="color: #fff;">
+            <i class="fa-solid fa-beer-mug-empty"></i>
+            Worklink
+          </a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="row" style="text-align: center; margin-top: 10%;">
+            <h1 style="color: grey;">Cadastro Empresa</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="caduser_nome" class="required">Nome</label>
+                <input type="text" class="form-control" id="caduser_nome" placeholder="Nome" name="caduser_nome" style="margin-bottom: 20px;" required pattern="[A-Za-zÀ-ÿ\s]+" title="Apenas letras e espaços são permitidos">
+            </div>
+            
+            <div class="col-md-6">
+                <label for="caduser_email" class="required">Email</label>
+                <input type="email" class="form-control" id="caduser_email" placeholder="Email" name="caduser_email" style="margin-bottom: 20px;" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Digite um email válido">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label for="caduser_conSenha" class="required">Senha</label>
+                <input type="password" class="form-control" id="caduser_conSenha" placeholder="Senha" name="caduser_conSenha" style="margin-bottom: 20px;" required>
+            </div>
+
+            <div class="col-md-4">
+                <label for="caduser_cpf" class="required">CNPJ</label>
+                <input type="text" class="form-control" id="caduser_cnpj" placeholder="000.000.000-00" name="caduser_cnpj" style="margin-bottom: 20px;" required maxlength="14">
+            </div>
+
+            <div class="col-md-4">
+                <label for="caduser_cpf" class="required">Telefone</label>
+                <input type="text" class="form-control" id="caduser_cnpj" placeholder="000.000.000-00" name="caduser_cnpj" style="margin-bottom: 20px;" required maxlength="14">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="caduser_rg" class="required">Endereço</label>
+                <input type="text" class="form-control" id="caduser_rg" placeholder="RG" name="caduser_rg" style="margin-bottom: 20px;" required>
+            </div>
+
+            <div class="col-md-6">
+                <label for="caduser_profissao" class="required">Descrição</label>
+                <input type="text" class="form-control" id="caduser_profissao" placeholder="Profissão" name="caduser_profissao" style="margin-bottom: 20px;" required>
+            </div>
+        </div>
+
+        <div class="row" style="display: flex; justify-content: center;">
+            <input type="button" class="btn btn-success" id="cadUser" value="Cadastrar" style="background-color: grey; width: 40%;">
+        </div>
+        <div class="row">
+            <p id="errorMessage" class="error-message">Por favor, preencha todos os campos obrigatórios.</p>
+        </div>
+    </div>
+        
+</body>
+</html>
+
+<script src="assets/script/login.js"></script>
+<script>
+    $(document).ready(function() {
+        // Validação do campo Nome
+        $('#caduser_nome').on('input', function() {
+            this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');
+        });
+
+        // Formatação do campo CPF
+        $('#caduser_cpf').on('input', function() {
+            let cpf = this.value.replace(/\D/g, '');
+            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+            cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            this.value = cpf.slice(0, 14);  // Limita o CPF a 14 caracteres (incluindo pontos e traço)
+        });
+
+        // Validação do campo Email
+        $('#caduser_email').on('input', function() {
+            if (!this.validity.valid) {
+                this.setCustomValidity('Por favor, insira um email válido.');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        // Validação dos campos obrigatórios
+        $('#cadUser').on('click', function() {
+            let isValid = true;
+            $('input[required]').each(function() {
+                if ($(this).val().trim() === '') {
+                    isValid = false;
+                    $(this).addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+
+            if (!isValid) {
+                $('#errorMessage').show();
+            } else {
+                $('#errorMessage').hide();
+                // Aqui você precisa chamar a função que realiza o cadastro
+            }
+        });
+
+        // Remove a classe is-invalid quando o usuário começa a digitar
+        $('input[required]').on('input', function() {
+            $(this).removeClass('is-invalid');
+            if ($('input[required].is-invalid').length === 0) {
+                $('#errorMessage').hide();
+            }
+        });
+    });
+</script>
