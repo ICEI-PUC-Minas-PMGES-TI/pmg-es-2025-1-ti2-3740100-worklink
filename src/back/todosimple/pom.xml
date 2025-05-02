@@ -63,13 +63,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!-- Dependência para validação de dados -->
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-            <version>3.0.2</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -78,6 +71,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                 <version>3.2.5</version>
             </plugin>
 
             <!-- Plugin do compilador Java -->
@@ -93,3 +87,5 @@
         </plugins>
     </build>
 </project>
+
+<!-- RODAR O BANCO DE DADOS:...\src\back\todosimple> -->

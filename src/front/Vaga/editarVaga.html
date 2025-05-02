@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Vaga</title>
+    <link rel="stylesheet" href="assets/css/editarVaga.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Editar Vaga</h1>
+        <form id="form-editar-vaga">
+            <label for="titulo">Título</label>
+            <div class="input-group">
+                <input type="text" id="titulo" name="titulo" class="dado1" disabled>
+                <button type="button" onclick="habilitarEdicao('titulo')">✏️</button>
+                <button type="button" onclick="salvarCampo('titulo')">Salvar</button>
+            </div>
+
+            <label for="descricao">Descrição</label>
+            <div class="input-group">
+                <textarea id="descricao" name="descricao" class="dado2" disabled></textarea>
+                <button type="button" onclick="habilitarEdicao('descricao')">✏️</button>
+                <button type="button" onclick="salvarCampo('descricao')">Salvar</button>
+            </div>
+
+            <label for="beneficios">Benefícios</label>
+            <div class="input-group">
+                <textarea id="beneficios" name="beneficios" class="dado3" disabled></textarea>
+                <button type="button" onclick="habilitarEdicao('beneficios')">✏️</button>
+                <button type="button" onclick="salvarCampo('beneficios')">Salvar</button>
+            </div>
+
+            <label for="dataFinal">Data Final</label>
+            <div class="input-group">
+                <input type="text" id="dataFinal" name="dataFinal" class="dado4" disabled>
+                <button type="button" onclick="habilitarEdicao('dataFinal')">✏️</button>
+                <button type="button" onclick="salvarCampo('dataFinal')">Salvar</button>
+            </div>
+
+            <label for="tipoContrato">Tipo de Contrato</label>
+            <div class="input-group">
+                <select id="tipoContrato" name="tipoContrato" class="dado5" disabled>
+                    <option value="">Selecione</option>
+                    <option value="CLT">CLT</option>
+                    <option value="PJ">PJ</option>
+                    <option value="Estágio">Estágio</option>
+                </select>
+                <button type="button" onclick="habilitarEdicao('tipoContrato')">✏️</button>
+                <button type="button" onclick="salvarCampo('tipoContrato')">Salvar</button>
+            </div>
+
+            <label for="modalidade">Modalidade</label>
+            <div class="input-group">
+                <select id="modalidade" name="modalidade" class="dado6" disabled>
+                    <option value="">Selecione</option>
+                    <option value="Presencial">Presencial</option>
+                    <option value="Remoto">Remoto</option>
+                    <option value="Híbrido">Híbrido</option>
+                </select>
+                <button type="button" onclick="habilitarEdicao('modalidade')">✏️</button>
+                <button type="button" onclick="salvarCampo('modalidade')">Salvar</button>
+            </div>
+
+            <label for="salario">Faixa Salarial</label>
+            <div class="input-group">
+                <input type="text" id="salario" name="salario" class="dado7" placeholder="R$ 0,00" disabled>
+                <button type="button" onclick="habilitarEdicao('salario')">✏️</button>
+                <button type="button" onclick="salvarCampo('salario')">Salvar</button>
+            </div>
+
+            <button type="button" onclick="salvarAlteracoes()">Salvar Alterações</button>
+        </form>
+    </div>
+
+    <script src="../assets/script/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', carregarDados);
+
+        function carregarDados() {
+            const id = sessionStorage.getItem('idVagaEdicao');
+            if (!id) {
+                alert("Nenhum ID encontrado. Redirecionando...");
+                window.location.href = "formularioVaga.html";
+                return;
+            }
+
+            fetch(`${API_URL}/${id}`)
+                .then(res => res.json())
+                .then(dados => {
+                    document.getElementById('titulo').value = dados.titulo;
+                    document.getElementById('descricao').value = dados.descricao;
+                    document.getElementById('beneficios').value = dados.beneficios;
+                    document.getElementById('dataFinal').value = dados.dataFinal;
+                    document.getElementById('tipoContrato').value = dados.tipoContrato;
+                    document.getElementById('modalidade').value = dados.modalidade;
+                    document.getElementById('salario').value = `R$ ${parseFloat(dados.salario).toFixed(2).replace('.', ',')}`;
+                })
+                .catch(err => console.error("Erro ao carregar os dados da vaga:", err));
+        }
+
+        function habilitarEdicao(campoId) {
+            const campo = document.getElementById(campoId);
+            campo.disabled = false; // Habilita o campo para edição
+        }
+
+        function salvarCampo(campoId) {
+            const campo = document.getElementById(campoId);
+            const valor = campo.value;
+
+            // Salva o valor no sessionStorage
+            sessionStorage.setItem(campoId, valor);
+
+            // Desabilita o campo novamente
+            campo.disabled = true;
+        }
+
+        function salvarAlteracoes() {
+            const id = sessionStorage.getItem('idVagaEdicao');
+            const vagaAtualizada = {
+                titulo: sessionStorage.getItem('titulo'),
+                descricao: sessionStorage.getItem('descricao'),
+                beneficios: sessionStorage.getItem('beneficios'),
+                dataFinal: sessionStorage.getItem('dataFinal'),
+                tipoContrato: sessionStorage.getItem('tipoContrato'),
+                modalidade: sessionStorage.getItem('modalidade'),
+                salario: limparValor(sessionStorage.getItem('salario'))
+            };
+
+            fetch(`${API_URL}/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(vagaAtualizada)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert("Alterações salvas com sucesso!");
+                    console.log("Dados atualizados:", data);
+                    window.location.href = "HomeEmpresa.html";
+                })
+                .catch(err => console.error("Erro ao salvar alterações:", err));
+        }
+
+        document.getElementById('dataFinal').addEventListener('input', function (e) {
+            let valor = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
+
+            if (valor.length > 8) {
+                valor = valor.slice(0, 8); // Limita o valor a 8 caracteres (ddMMyyyy)
+            }
+
+            // Adiciona as barras automaticamente
+            if (valor.length >= 5) {
+                valor = valor.replace(/(\d{2})(\d{2})(\d{0,4})/, '$1/$2/$3');
+            } else if (valor.length >= 3) {
+                valor = valor.replace(/(\d{2})(\d{0,2})/, '$1/$2');
+            }
+
+            e.target.value = valor; // Atualiza o valor do campo
+        });
+
+        document.getElementById('salario').addEventListener('input', function (e) {
+            let valor = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
+
+            if (valor.length === 0) {
+                e.target.value = ''; // Limpa o campo se não houver valor
+                return;
+            }
+
+            // Formata o valor para exibição no formato R$ 0,00
+            valor = (parseInt(valor, 10) / 100).toFixed(2); // Divide por 100 para obter os centavos
+            valor = valor.replace('.', ','); // Substitui o ponto por vírgula
+            valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Adiciona os pontos de milhar
+
+            e.target.value = `R$ ${valor}`; // Atualiza o valor do campo com o formato
+        });
+    </script>
+</body>
+</html>

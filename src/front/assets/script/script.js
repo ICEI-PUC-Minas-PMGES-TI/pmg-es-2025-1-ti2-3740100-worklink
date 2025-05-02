@@ -1,43 +1,47 @@
-const API_URL = "http://localhost:8080/api/vagas";
+const API_URL = "http://localhost:8080/vagas";
 
 //GET
-function getVagas(){
+function getVagas() {
     fetch(API_URL)
         .then(resp => resp.json())
         .then(vagas => {
-            console.log("Vagas: ", vagas);
+            console.log("Vagas recebidas:", vagas);
             exibirVagas(vagas);
         })
-} 
+        .catch(err => console.error("Erro ao buscar vagas:", err));
+}
 
 //POST
-function postVagas(){
-    const urlParams = new URLSearchParams(window.location.search);
+function postVagas() {
+    const dadosVaga = JSON.parse(sessionStorage.getItem('dadosVaga'));
 
-    const novaVagas = {
-        titulo: document.querySelector("#titulo").value,
-        descricao: document.querySelector("#descricao").value,
-        requisitos: document.querySelector("#requisitos").value,
-        salario: parseFloat(document.querySelector("#salario").value)
-    };
+    if (!dadosVaga) {
+        alert("Nenhum dado encontrado para enviar. Por favor, volte e preencha o formulário.");
+        window.location.href = "formularioVaga.html";
+        return;
+    }
 
-    fetch(API_URL, {
+    fetch("http://localhost:8080/vagas", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-
-        body: JSON.stringify(novaVagas)
+        body: JSON.stringify(dadosVaga)
     })
-
-    .then(res => res.json())
+    .then(res => {
+        if (!res.ok) throw new Error("Erro ao criar a vaga.");
+        return res.json();
+    })
     .then(data => {
-        alert("Vaga criada com sucesso");
-        console.log(data);
-        window.location.href = "formularioVaga.html";
+        alert("Vaga criada com sucesso!");
+        console.log("Dados enviados ao backend:", data);
+        sessionStorage.removeItem('dadosVaga'); // Limpa os dados locais após o envio
+        window.location.href = "HomeEmpresa.html"; // Redireciona para a página inicial
     })
-
-    .catch(err => console.error("Erro ao criar vaga: ", err));
+    .catch(err => {
+        console.error("Erro ao criar a vaga:", err);
+        alert("Ocorreu um erro ao criar a vaga. Tente novamente.");
+    });
 }
 
 //PUT
@@ -45,8 +49,11 @@ function putVagas(id){
     const vagaAtualizada = {
         titulo: document.querySelector("#titulo").value,
         descricao: document.querySelector("#descricao").value,
-        requisitos: document.querySelector("#requisitos").value,
-        salario: parseFloat(document.querySelector("#salario").value)
+        beneficios: document.querySelector("#Beneficios").value,
+        dataFinal: document.querySelector("#DataFinal").value,
+        tipoContrato: document.querySelector("#Tipo").value,
+        modalidade: document.querySelector("#Modalidade").value,
+        salario: limparValor(document.querySelector("#salario").value)
     };
 
     fetch(`${API_URL}/${id}`, {
@@ -69,36 +76,96 @@ function putVagas(id){
 }
 
 //DELETE
-function deleteVagas(id){
-    if(confirm("Tem certeza que deseja deletar esta vaga")){
+function deletarVaga(id) {
+    if (confirm("Tem certeza que deseja deletar esta vaga?")) {
         fetch(`${API_URL}/${id}`, {
             method: "DELETE"
         })
-
         .then(() => {
-            alert("Vaga deletada com sucesso");
-            getVagas()//atualiza a lista de vagas apos deletar
+            alert("Vaga deletada com sucesso!");
+            getVagas();
         })
-
-        .catch(err => console.error("Erro ao deletar a vaga: ", err));
+        .catch(err => console.error("Erro ao deletar vaga:", err));
     }
 }
 
 //exibirVagas -> Lista
-function exibirVagas(vagas){
+function exibirVagas(vagas) {
     const lista = document.getElementById("lista-vagas");
-    lista.innerHTML = ""; //limpa antes de carregar de novo
+    lista.innerHTML = ""; // Limpa a lista antes de adicionar novos cards
+
+    // Ordena as vagas pelo maior ID (mais recente primeiro)
+    vagas.sort((a, b) => b.id - a.id);
 
     vagas.forEach(vaga => {
-        const item = document.createElement("div");
-        item.classList.add("vaga-item");
-        item.innerHTML = `
-        <h4>${vaga.titulo}</h4>
-        <p>${vaga.descricao}</p>
-        <p><strong>Salário:</strong> R$ ${vaga.salario.toFixed(2)}</p>
-        <button onclick="putVagas(${vagas.id})">Editar</button>
-        <button onvclick="deleteVagas(${vaga.id})">Deletar</button>`;
-        
-        lista.appendChild(item);
+        const card = document.createElement("div");
+        card.classList.add("vaga-card");
+
+        // Trata o campo dataFinal
+        let dataFinal = "Não especificada";
+        if (vaga.dataFinal) {
+            // Usa a data diretamente no formato dd/MM/yyyy
+            dataFinal = vaga.dataFinal;
+        }
+
+        const modalidade = vaga.modalidade || 'Não especificada'; // Mapeia a modalidade
+        const tipoContrato = vaga.tipoContrato || 'Não especificado'; // Mapeia o tipo de contrato
+        const beneficios = vaga.beneficios && vaga.beneficios.trim() !== "" ? vaga.beneficios : 'Não informado';
+
+        card.innerHTML = `
+        <h2>${vaga.titulo}</h2>
+            <p><strong>Sobre:</strong> ${vaga.descricao}</p>
+            <p><strong>Benefícios:</strong> ${beneficios}</p>
+            <p><strong>Data Final:</strong> ${dataFinal}</p>
+            <p><strong>Modalidade:</strong> ${modalidade}</p>
+            <p><strong>Tipo de Contrato:</strong> ${tipoContrato}</p>
+            <p><strong>Salário:</strong> R$ ${vaga.salario.toFixed(2)}</p>
+            <button class="editar" onclick="editarVaga(${vaga.id})">Editar</button>
+            <button class="excluir" onclick="deletarVaga(${vaga.id})">Excluir</button>
+        `;
+
+        lista.appendChild(card);
     });
 }
+
+function editarVaga(id) {
+    sessionStorage.setItem('idVagaEdicao', id); // Salva o ID da vaga no sessionStorage
+    window.location.href = "editarVaga.html"; // Redireciona para a página de edição
+}
+
+function limparValor(valor) {
+    return parseFloat(
+        valor
+        .replace('R$', '')  // tira o símbolo
+        .replace(/\./g, '') // tira os pontos de milhar
+        .replace(',', '.') // troca a vírgula decimal
+        .trim()
+    );
+}
+
+// Função para contar vagas ativas
+function contarVagasAtivas() {
+    fetch("http://localhost:8080/vagas") // Substitua pela URL correta da sua API
+        .then(response => {
+            if (!response.ok) throw new Error("Erro ao buscar vagas");
+            return response.json();
+        })
+        .then(vagas => {
+            const quantidade = vagas.length; // Conta o número total de vagas
+            console.log(`Quantidade de vagas ativas: ${quantidade}`);
+            
+            // Atualiza o contador no DOM
+            const contador = document.getElementById("empresa-perfil-vagas-count");
+            if (contador) {
+                contador.textContent = quantidade; // Atualiza o número de vagas
+            }
+        })
+        .catch(error => console.error("Erro ao contar vagas ativas:", error));
+}
+
+// Chamar a função ao carregar a página
+document.addEventListener("DOMContentLoaded", () => {
+    contarVagasAtivas();
+});
+
+getVagas();
