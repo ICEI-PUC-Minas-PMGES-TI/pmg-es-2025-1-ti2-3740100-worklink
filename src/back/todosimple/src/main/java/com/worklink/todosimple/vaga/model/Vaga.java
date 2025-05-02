@@ -1,41 +1,50 @@
 package com.worklink.todosimple.vaga.model;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import java.util.*;
 
-
-@RestController
-@RequestMapping("/api/vagas") // Para que eu chame a API pro JavaScript
-@CrossOrigin(origins = "*") // Permite que o JavaScript acesse a API
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Vaga {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    
+    private long id;
     private String titulo;
     private String descricao;
-    private String requisitos;
+    private String beneficios;
+
+    
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date dataFinal;
+    private String tipoContrato; //CLT|ESTAGIO|APRENDIZ|PJ|OUTROS|
+    private String modalidade; //PRESENCIAL|REMOTO|HIBRIDO|
+    private String teste; //Arquivo em pdf
+    //!private String cnpjEmpresa; | Puxar o id da empresa para linkar a vaga á empresa referente
+
+
+
     private double salario;
 
-    // Construtor padrão (necessário para o JPA)
+    // Construtor padrão
     public Vaga() {}
 
     // Construtor completo
-    public Vaga(Long id, String titulo, String descricao, String requisitos, double salario) {
+    public Vaga(Long id, String titulo, String descricao, String beneficios, double salario, Date dataFinal, String tipoContrato, String modalidade, String teste ) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
-        this.requisitos = requisitos;
+        this.beneficios = beneficios;
         this.salario = salario;
+        this.dataFinal = dataFinal;
+        this.tipoContrato = tipoContrato;
+        this.modalidade = modalidade;
+        this.teste = teste;
     }
 
     // Getters e Setters
@@ -43,7 +52,7 @@ public class Vaga {
         return id;
     }
 
-    public void setId(Long id) {  // Corrigido: era String
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -63,12 +72,12 @@ public class Vaga {
         this.descricao = descricao;
     }
 
-    public String getRequisitos() {
-        return requisitos;
+    public String getBeneficios() {
+        return beneficios;
     }
 
-    public void setRequisitos(String requisitos) {
-        this.requisitos = requisitos;
+    public void setBeneficios(String beneficios) {
+        this.beneficios = beneficios;
     }
 
     public double getSalario() {
@@ -78,4 +87,39 @@ public class Vaga {
     public void setSalario(double salario) {
         this.salario = salario;
     }
+
+    public Date getDataFinal() {
+        return dataFinal;
+    }
+    
+    public void setDataFinal(Date dataFinal) {
+        this.dataFinal = dataFinal;
+    }
+    
+    public String getTipoContrato() {
+        return tipoContrato;
+    }
+    
+    public void setTipoContrato(String tipoContrato) {
+        this.tipoContrato = tipoContrato;
+    }
+    
+    public String getModalidade() {
+        return modalidade;
+    }
+    
+    public void setModalidade(String modalidade) {
+        this.modalidade = modalidade;
+    }
+    
+    public String getTeste() {
+        return teste;
+    }
+    
+    public void setTeste(String teste) {
+        this.teste = teste;
+    }
+    
+
+
 }

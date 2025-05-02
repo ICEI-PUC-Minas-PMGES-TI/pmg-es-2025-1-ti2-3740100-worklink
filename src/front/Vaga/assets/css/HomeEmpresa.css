@@ -1,0 +1,661 @@
+/* Estilos Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f6fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Header */
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+header nav ul {
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 1.5rem;
+}
+
+header nav ul li a {
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover,
+header nav ul li a.active {
+    color: #3498db;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    padding: 2rem 0;
+}
+
+/* Vagas Section */
+.vagas-section {
+    margin-bottom: 2rem;
+}
+
+/* Centraliza o texto "Vagas Disponíveis" e adiciona espaço abaixo */
+.section-header {
+    display: flex;
+    flex-direction: column; /* Alinha os itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    text-align: center; /* Centraliza o texto */
+    margin-bottom: 3rem; /* Adiciona mais espaço entre o título e o conteúdo */
+}
+
+.section-header h2 {
+    color: #2c3e50;
+    margin-top: 3rem; /* Espaçamento entre o título e o botão (se houver) */
+}
+
+.vagas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Contêiner das vagas */
+#vagas-container {
+    display: flex;
+    flex-direction: column; /* Alinha os itens verticalmente */
+    gap: 10px; /* Espaçamento entre os itens */
+    width: 100%; /* Garante que o contêiner ocupe toda a largura */
+    margin-top: 20px; /* Espaçamento superior */
+    padding: 0 20px; /* Adiciona espaçamento interno nas laterais */
+}
+
+/* Cards de vagas */
+.vaga-card {
+    display: flex;
+    flex-direction: column; /* Alinha o conteúdo verticalmente */
+    justify-content: space-between; /* Garante que os botões fiquem na parte inferior */
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma leve sombra */
+    border-left: 4px solid #3498db; /* Adiciona um destaque na lateral */
+    width: 100%; /* Ocupa toda a largura do contêiner */
+    height: auto; /* Permite que o card se ajuste ao conteúdo */
+    min-height: 300px; /* Define uma altura mínima para os cards */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Adiciona transição suave */
+}
+
+.vaga-card:hover {
+    background-color: #e9e7e7; /* Muda o fundo ao passar o mouse */
+    box-shadow: 0 6px 10px rgba(10, 10, 10, 0.25); /* Aumenta a sombra ao passar o mouse */
+    border-left: 4px solid #0565b9; /* Altera a cor da borda ao passar o mouse */
+}
+
+/* Títulos e textos */
+.vaga-card h3 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+    font-size: 1.2rem;
+}
+
+.vaga-card p {
+    margin: 5px 0;
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    flex-grow: 1; /* Faz o texto ocupar o espaço disponível */
+}
+
+/* Botões de ação */
+.vaga-card .editar,
+.vaga-card .excluir {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.vaga-card .editar {
+    background-color: #3498db;
+    color: white;
+}
+
+.vaga-card .editar:hover {
+    background-color: #2980b9;
+}
+
+.vaga-card .excluir {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.vaga-card .excluir:hover {
+    background-color: #c0392b;
+}
+
+/* Contêiner dos botões */
+.vaga-card .botoes {
+    display: flex;
+    justify-content: flex-start; /* Alinha os botões à esquerda */
+    gap: 10px; /* Espaçamento entre os botões */
+    margin-top: auto; /* Garante que os botões fiquem na parte inferior */
+}
+
+/* Formulário */
+.form-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-section h2 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-vaga {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #34495e;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #27ae60;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #219a52;
+}
+
+.btn-secondary {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+.btn-editar {
+    background-color: #3498db;
+    color: white;
+    flex: 1;
+}
+
+.btn-editar:hover {
+    background-color: #2980b9;
+}
+
+.btn-deletar {
+    background-color: #e74c3c;
+    color: white;
+    flex: 1;
+}
+
+.btn-deletar:hover {
+    background-color: #c0392b;
+}
+
+/* Estilos para o botão de história da empresa */
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid #3498db;
+    color: #3498db;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    transition: all 0.3s;
+}
+
+.btn-outline:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Botões fixos */
+.botoes {
+    position: fixed; /* Torna o contêiner fixo na tela */
+    bottom: 20px; /* Posiciona os botões a 20px do fundo da tela */
+    right: 20px; /* Posiciona os botões a 20px do lado direito da tela */
+    display: flex;
+    gap: 10px; /* Espaçamento entre os botões */
+    z-index: 1000; /* Garante que os botões fiquem acima de outros elementos */
+}
+
+.botoes a,
+.botoes button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.botoes .btn-cancelar {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.botoes .btn-cancelar:hover {
+    background-color: #c0392b;
+}
+
+.botoes .btn-seguir {
+    background-color: #3498db;
+    color: white;
+}
+
+.botoes .btn-seguir:hover {
+    background-color: #2980b9;
+}
+
+/* Footer */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 2rem 0;
+    margin-top: auto;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #3498db;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #7f8c8d;
+}
+
+.close:hover {
+    color: #2c3e50;
+}
+
+/* Loading e Error */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: #7f8c8d;
+    font-size: 1.2rem;
+}
+
+.error {
+    background-color: #fde8e8;
+    color: #e74c3c;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    header nav ul {
+        margin-top: 1rem;
+    }
+    
+    header nav ul li {
+        margin: 0 0.75rem;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .vagas-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    footer .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .footer-links {
+        justify-content: center;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}
+
+.empresa-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.empresa-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-right: 1rem;
+    background-color: white;
+    padding: 0.5rem;
+}
+
+.empresa-detalhes {
+    flex: 1;
+}
+
+.empresa-nome {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.empresa-setor {
+    margin: 0.25rem 0 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Estilos para o perfil da empresa */
+.empresa-perfil {
+    margin-bottom: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.empresa-perfil-container {
+    padding: 2rem;
+}
+
+.empresa-perfil-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.empresa-perfil-logo {
+    width: 150px;
+    height: 150px;
+    margin-right: 2rem;
+    flex-shrink: 0;
+}
+
+.empresa-perfil-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    padding: 1rem;
+}
+
+.empresa-perfil-info {
+    flex: 1;
+}
+
+.empresa-perfil-info h2 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+    font-size: 1.8rem;
+}
+
+.empresa-perfil-ano {
+    color: #7f8c8d;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.empresa-perfil-descricao {
+    color: #34495e;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.empresa-perfil-stats {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1.5rem;
+    border-top: 1px solid #ecf0f1;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+/* Responsividade para o perfil da empresa */
+@media (max-width: 768px) {
+    .empresa-perfil-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .empresa-perfil-logo {
+        width: 120px;
+        height: 120px;
+        margin: 0 0 1.5rem 0;
+    }
+
+    .empresa-perfil-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+/* Estilos para o modal de história da empresa */
+.empresa-historia-content {
+    margin-top: 1.5rem;
+}
+
+.empresa-historia-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.empresa-historia-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-right: 1rem;
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+}
+
+.empresa-historia-header h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.5rem;
+}
+
+.empresa-historia-ano {
+    color: #7f8c8d;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.empresa-historia-descricao h4 {
+    color: #2c3e50;
+    margin: 1.5rem 0 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.empresa-historia-descricao p {
+    color: #34495e;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Responsividade para o modal de história */
+@media (max-width: 768px) {
+    .empresa-historia-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .empresa-historia-logo {
+        margin: 0 0 1rem 0;
+    }
+}
