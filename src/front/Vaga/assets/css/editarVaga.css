@@ -13,7 +13,7 @@ body {
 /* Título */
 h1 {
     text-align: center;
-    color: #333;
+    color: #5c3d2e;
     margin-bottom: 20px;
 }
 
@@ -67,7 +67,7 @@ textarea {
 /* Botões */
 button {
     padding: 12px 20px;
-    background-color: #007bff;
+    background-color: #e48f4f;
     color: white;
     border: none;
     border-radius: 5px;
@@ -77,12 +77,12 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #d4772a;
     transform: scale(1.02);
 }
 
 button:disabled {
-    background-color: #ccc;
+    background-color: #e48f4f;
     cursor: not-allowed;
 }
 
