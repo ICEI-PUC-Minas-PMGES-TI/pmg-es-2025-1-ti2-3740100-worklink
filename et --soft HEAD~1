@@ -1,0 +1,1861 @@
+[33mcommit a54f5b55cd64acf64a4c5c8bf4a905d2a89840d8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: PdroVieiraa <pedrohsantos355@gmail.com>
+Date:   Fri May 2 02:29:56 2025 -0300
+
+    Crud Vagas
+
+[33mcommit 085fcf46d891af5e4fc702998e1bb29ea915e7bf[m
+Author: PdroVieiraa <pedrohsantos355@gmail.com>
+Date:   Fri May 2 02:08:26 2025 -0300
+
+    Descreva aqui suas alterações
+    CRUD VAGAS
+
+[33mcommit 8806918ce5b17d4ba841df2437bcc52207135cc6[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 25 17:57:16 2025 -0300
+
+    updates
+
+[33mcommit 0688e6ad141628e4abc577d4360f6d54af138629[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 25 15:29:29 2025 -0300
+
+    update frontend Cadastro e Login
+
+[33mcommit 11de0100aac4e414c79692400094d0029588431f[m[33m ([m[1;31morigin/branch-rafael[m[33m)[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Apr 25 14:56:38 2025 -0300
+
+    Add back-end cadastro de Empresa e Candidato
+
+[33mcommit 83e8f6e73066f9d32e177ed4f744b198ac86b26c[m[33m ([m[1;31morigin/branchLuisFantini[m[33m)[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 25 13:45:23 2025 -0300
+
+    front e conexao login e cadastro
+
+[33mcommit 784e8bd92e4b374c0298d23611b79f3d813798a2[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Apr 25 12:26:09 2025 -0300
+
+    Add back cadastro
+
+[33mcommit e8dc7a72e8c68be486f990a51babbd6e13a61161[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Apr 25 10:47:02 2025 -0300
+
+    Update Diagrama-De-Dados.png
+
+[33mcommit c73d99f44d5477ef332ae6f4b4d189a7e0d6e850[m
+Author: Pedro Vieira <pedrohsantos355@gmail.com>
+Date:   Sat Apr 19 19:21:00 2025 -0300
+
+    Atualização de versão do java, springboot e conecxão com o banco de dados
+
+[33mcommit 15996ae68bd08e76040500797febc5058197a377[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 15 21:27:35 2025 -0300
+
+    Update VagaController.java
+
+[33mcommit 1d3a56b326b9fcb174058180a5e14bb239467dd5[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 15 21:26:20 2025 -0300
+
+    Create VagaController.java
+
+[33mcommit 89a094350407b60657b6c8374187697a1b9b183b[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 15 21:24:28 2025 -0300
+
+    Mudança no codigo de acordo com a versão do Springboot
+
+[33mcommit ea6335fe5c91ea8a38c77f5dce5308c45013151b[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 15 21:23:48 2025 -0300
+
+    Comentários em cada depenência
+
+[33mcommit 4b78b66cdbd6276893e76e828562058da60fe8eb[m
+Merge: d6bd6a1 f4b49fd
+Author: Italo Vinhas <italovas05@outlook.com>
+Date:   Mon Apr 14 20:46:20 2025 -0300
+
+    Merge branch 'main' of https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink
+
+[33mcommit d6bd6a17b760b1e1987b24b2397ab08b3fce69ae[m
+Author: Italo Vinhas <italovas05@outlook.com>
+Date:   Mon Apr 14 20:46:16 2025 -0300
+
+    JavaScript API Fetch URL.
+
+[33mcommit f4b49fd475375d229282796c9a1695ecb01e887a[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 11 19:36:25 2025 -0300
+
+    Update solution-design.md
+
+[33mcommit af0c8937331b475a36b45a9a754491bac5fa448e[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 11 19:19:37 2025 -0300
+
+    Update Processo3-Pesquisa-E-Aplicação-De-Vagas.md
+
+[33mcommit 080206856912ad22bb3b5d302bdc4d23096cab8d[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 11 19:18:56 2025 -0300
+
+    Rename PESQUISA E APLICAÇÃO DE VAGAS Diagrama (1).png to Processo3-PESQUISA-E-APLICACAO-DE-VAGAS-Diagrama.png
+
+[33mcommit 8d5d9505b9a98f4d18b800d53fc08816f321c697[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 11 19:17:58 2025 -0300
+
+    Add files via upload
+
+[33mcommit 9820efeb3634eda39621d88b9d343527423721ea[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 11 19:17:43 2025 -0300
+
+    Delete docs/images/PESQUISA-E-APLICACAO-DE-VAGAS-Diagrama.png
+
+[33mcommit d80a314d88bd35ed9ec3a0cb82f5085cd0b84ccc[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 11 19:16:46 2025 -0300
+
+    Rename PESQUISA E APLICAÇÃO DE VAGAS Diagrama (1).png to PESQUISA-E-APLICACAO-DE-VAGAS-Diagrama.png
+
+[33mcommit 74baca2c9f8784a3d82fde7b98bf6286ae468f5d[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 11 19:16:19 2025 -0300
+
+    Add files via upload
+
+[33mcommit 6f1e3bad2f805066914720c67e081306a4c7ca90[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 11 19:15:55 2025 -0300
+
+    Delete docs/images/PESQUISA-E-APLICACAO-DE-VAGAS-Diagrama.png
+
+[33mcommit 4ad6839148af622c206fc7bb5abc2b8999b49e13[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 11 19:07:45 2025 -0300
+
+    Update Processo4–Gerenciamento-De-Candidaturas.md
+
+[33mcommit fca90bbcbb9b6a2c920d4d594c3cd2253556050a[m
+Merge: d31e841 8db4bce
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Apr 11 18:03:38 2025 -0300
+
+    Merge branch 'main' of https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink
+
+[33mcommit d31e8413452377851f4abbe0543b376655aa5d2a[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Apr 11 18:03:15 2025 -0300
+
+    Add resumoVaga.html funcional
+
+[33mcommit 8db4bce84c7045a794b5a527ee5c245a9cf674a8[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 11 17:57:08 2025 -0300
+
+    Update Processo5-Fechamento-Da-Vaga.md
+
+[33mcommit 431265a9648e8645d508dcce61ca1b03d2f32415[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 11 17:55:56 2025 -0300
+
+    Add files via upload
+
+[33mcommit 1ab08f9af634cac15858f32a0aaec34f9ed9c109[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 11 17:55:41 2025 -0300
+
+    Delete docs/images/tis Diagrama fechamento de vaga.png
+
+[33mcommit ecf4b40178b2ba5dc9b91941158e8bc603e1c222[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Apr 11 16:07:09 2025 -0300
+
+    Add envioTesteVaga
+
+[33mcommit ed69ec899801cb37958715b24885453e8cf1bdd0[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Apr 11 13:50:19 2025 -0300
+
+    Add estilizações formularioVaga
+
+[33mcommit 3c8e6b6b482be9750a04caca37549b543f4dfee5[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Apr 11 13:20:41 2025 -0300
+
+    mudancas detalhamento das atividades e modelagem de dados
+
+[33mcommit 7ddd4befdf97671c7344d9f77c23964cca6c1c0c[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:40:46 2025 -0300
+
+    Delete src/back/todosimple/src/main/java/com/worklink/todosimple/vaga/repository/aa
+
+[33mcommit 4d0e352003f719858698d970c025b5e0477d03bb[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:40:19 2025 -0300
+
+    Create VagaRepository.java
+
+[33mcommit 112cf45dc94ea689b295dd82f58906983d84fbaf[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:39:54 2025 -0300
+
+    Create aa
+
+[33mcommit 441adcf5b6d6ba33c1359a597e7fcf9b4efbdfac[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:37:04 2025 -0300
+
+    Update Vaga.java
+
+[33mcommit e71eca038a7ae3ef483b02bb76054d85a8376a26[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:35:58 2025 -0300
+
+    Update Vaga.java
+
+[33mcommit 4aae024bf6aaf41aa397406c1ea8fafdedaad74d[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:31:54 2025 -0300
+
+    Delete src/back/todosimple/src/main/java/com/worklink/todosimple/vaga/model/li
+
+[33mcommit 53673106788e2e79218b63c5e9c7e75286cdaf84[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:31:22 2025 -0300
+
+    Add files via upload
+
+[33mcommit 2e0ab2f1f322a096d0baeb311689ee48e506ed7c[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:31:08 2025 -0300
+
+    Create li
+
+[33mcommit a4788091ece6fbadb2fd8172e42a858afd3a2eec[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:30:37 2025 -0300
+
+    Delete src/back/todosimple/src/main/java/com/worklink/todosimple/vaga/model/Vaga.java
+
+[33mcommit b1483fc862dd8c10efb9794b4a07f9282e51bc43[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:25:37 2025 -0300
+
+    Delete src/back/todosimple/src/main/java/com/worklink/todosimple/vaga/model/links
+
+[33mcommit 505c0f819a805b661a637760e886b49d7c9498fe[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:25:13 2025 -0300
+
+    Add files via upload
+
+[33mcommit bc131c27f7b0f64e50d02b819738dd0f3282578d[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:24:47 2025 -0300
+
+    Create links
+
+[33mcommit 4f167faf7ad93a1ba0fdbb7422f369da652258d0[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:23:59 2025 -0300
+
+    Delete src/back/todosimple/src/main/java/com/worklink/todosimple/vaga/model
+
+[33mcommit 8628d313d3d2869352f4a5444f859d7bed9963ac[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:21:32 2025 -0300
+
+    Delete src/back/Vaga.java
+
+[33mcommit 8eb5fce23e0895db3a8f8d883671dcf4df781604[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Tue Apr 8 15:20:34 2025 -0300
+
+    Create model
+
+[33mcommit 9c1dc78f64393504950d0998f181823c020b62b5[m[33m ([m[1;31morigin/Arthur_Listagem_vagas[m[33m)[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Apr 7 20:43:06 2025 -0300
+
+    Update README.md
+
+[33mcommit f21e52d9055ec4a7fa482fffe538a2cce23e68ee[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Apr 7 20:42:55 2025 -0300
+
+    Update README.md
+
+[33mcommit e9c90f06704daf58b4d904c14d07e6ac66f28d05[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Apr 7 20:42:41 2025 -0300
+
+    Update README.md
+
+[33mcommit 052c4e1e3a4d79f9a10a47b3265ed4b6093ead56[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Apr 7 20:42:25 2025 -0300
+
+    Update README.md
+
+[33mcommit 8f52c28418a44174c74b5439bfb7c75eea799bca[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Apr 7 20:42:02 2025 -0300
+
+    Update README.md
+
+[33mcommit dbb04390b0a8f28f84369ff5ff4c1ac0ff289bb1[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Apr 7 20:41:32 2025 -0300
+
+    Update README.md
+
+[33mcommit 22f6212cf0a7e1c1fbcedd9ccab2e8c7827fe872[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Apr 7 20:41:13 2025 -0300
+
+    Update README.md
+
+[33mcommit d8130b13b8f51b150e30b76e6c56f5060d448ef4[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Apr 7 20:39:28 2025 -0300
+
+    Add files via upload
+
+[33mcommit 3b3a0b5788a667cf60ba787ece9c40858f5fd738[m
+Merge: 390f224 492538b
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Sat Apr 5 23:07:11 2025 -0300
+
+    Merge pull request #36 from ICEI-PUC-Minas-PMGES-TI/branchLuisFantini
+    
+    add springboot
+
+[33mcommit 492538bf8ffd7061d6651c6c3e521155075fe581[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Sat Apr 5 23:05:56 2025 -0300
+
+    add springboot
+
+[33mcommit 390f224447d479e5588dddba344808398d2dce2c[m
+Merge: e3ed4d4 ac1b6fa
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Sat Apr 5 22:50:57 2025 -0300
+
+    Merge pull request #35 from ICEI-PUC-Minas-PMGES-TI/branch-rafael
+    
+    Add formulário da vaga
+
+[33mcommit ac1b6faddbe8034bb878f4b320c532a599d853fe[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Sat Apr 5 22:49:14 2025 -0300
+
+    Add formulário da vaga
+
+[33mcommit e3ed4d42f3dd010d676defce4ece0186c323feed[m
+Author: Arthur Fonseca <156089974+arthurfons@users.noreply.github.com>
+Date:   Fri Apr 4 19:21:27 2025 -0300
+
+    Update Processo6-Avaliação-Da-Empresa.md
+
+[33mcommit ba999dbb12c4359b572dcc0c03a163289908bc7f[m
+Author: Arthur Fonseca <156089974+arthurfons@users.noreply.github.com>
+Date:   Fri Apr 4 19:09:49 2025 -0300
+
+    Update Processo3-Pesquisa-E-Aplicação-De-Vagas.md
+
+[33mcommit f466dba36472d80276993624380380ce65c89a0e[m
+Author: Arthur Fonseca <156089974+arthurfons@users.noreply.github.com>
+Date:   Fri Apr 4 18:52:55 2025 -0300
+
+    Update Processo6-Avaliação-Da-Empresa.md
+
+[33mcommit 31f582066c9dee1004f70a6ee7763836be3e226a[m
+Author: Arthur Fonseca <156089974+arthurfons@users.noreply.github.com>
+Date:   Fri Apr 4 18:31:18 2025 -0300
+
+    Update Processo6-Avaliação-Da-Empresa.md
+
+[33mcommit 8d46cfe0a0e78029e7440161b1a57b0d4639bb8f[m
+Author: Arthur Fonseca <156089974+arthurfons@users.noreply.github.com>
+Date:   Fri Apr 4 18:24:22 2025 -0300
+
+    Update Processo6-Avaliação-Da-Empresa.md
+
+[33mcommit 474ef45481533beba613dbdd1c90259ae4f80845[m
+Author: Arthur Fonseca <156089974+arthurfons@users.noreply.github.com>
+Date:   Fri Apr 4 18:23:48 2025 -0300
+
+    Update Processo6-Avaliação-Da-Empresa.md
+
+[33mcommit 38731bb78d3463e1ffef0ae7b4aa2a8c3812ff71[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Apr 4 18:15:38 2025 -0300
+
+    Mundando modelo de dados
+
+[33mcommit fff8a369dadfb9966efd575dc4cf63d467ddf488[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 4 17:18:28 2025 -0300
+
+    Update Processo3-Pesquisa-E-Aplicação-De-Vagas.md
+
+[33mcommit 0e2cb9a52a67e5b2345221b05a8c86638909f569[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 4 17:17:44 2025 -0300
+
+    Rename PESQUISA_E_APLICACAO_DE_VAGAS_Diagrama.png to PESQUISA-E-APLICACAO-DE-VAGAS-Diagrama.png
+
+[33mcommit 4d282b6a31fd956fe5a1631b760417828d747abd[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 4 17:15:58 2025 -0300
+
+    Update Processo3-Pesquisa-E-Aplicação-De-Vagas.md
+
+[33mcommit e40142874924745d4286466c30a1610c20fed490[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 4 17:15:12 2025 -0300
+
+    Update Processo3-Pesquisa-E-Aplicação-De-Vagas.md
+
+[33mcommit 29d4004d5556c13be28d98671bf1c400a32e8229[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 4 17:14:06 2025 -0300
+
+    Update Processo3-Pesquisa-E-Aplicação-De-Vagas.md
+
+[33mcommit c81215a1648fdd56dabe780e2bf3a89f70d2dc47[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 4 17:13:34 2025 -0300
+
+    Rename PESQUISA E APLICAÇÃO DE VAGAS Diagrama.png to PESQUISA_E_APLICACAO_DE_VAGAS_Diagrama.png
+
+[33mcommit 3b3fd2722230bddc4891cb5639a4663dbe755653[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 4 17:12:46 2025 -0300
+
+    Update Processo3-Pesquisa-E-Aplicação-De-Vagas.md
+
+[33mcommit 254ef3ca401b7851435aafcaeafb5ab468946bdd[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 4 17:11:35 2025 -0300
+
+    Add files via upload
+
+[33mcommit b539cca9f5dba720c9cbe98263d4d9358b58de2e[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 4 17:09:51 2025 -0300
+
+    Update Processo3-Pesquisa-E-Aplicação-De-Vagas.md
+
+[33mcommit 586d406ec925e4651cebd2a012a37de95b590328[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Apr 4 16:51:43 2025 -0300
+
+    Add modelo de dados
+
+[33mcommit d768699a6bffb70e99ba166db984ae64b4c46269[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 4 15:29:37 2025 -0300
+
+    Update Processo5-Fechamento-Da-Vaga.md
+
+[33mcommit d74fb8e1dfe0afbfaaff90f941e74ea3eb352ba9[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 4 15:29:11 2025 -0300
+
+    Update Processo5-Fechamento-Da-Vaga.md
+
+[33mcommit a760ec23a597809be67ceb304dd390ac1d3862cc[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 4 15:25:15 2025 -0300
+
+    Update Processo5-Fechamento-Da-Vaga.md
+
+[33mcommit 9c9721f2209a408e9f36869e02f9deff194c1b16[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 4 15:23:12 2025 -0300
+
+    Update Processo5-Fechamento-Da-Vaga.md
+
+[33mcommit 1ff544c6845bfb158c0ffbf1d0752b646e9b706c[m
+Merge: 8524ce7 fd433be
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Apr 4 15:21:21 2025 -0300
+
+    Merge branch 'main' of https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink
+
+[33mcommit 8524ce7e72e7035bbb58dd4738fdccdc31ed93d3[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Apr 4 15:21:14 2025 -0300
+
+    Add detalhamento das atividades
+
+[33mcommit fd433befb5f2f643fefc1f3b0f5976d195bffdb4[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 4 15:20:38 2025 -0300
+
+    Update Processo5-Fechamento-Da-Vaga.md
+
+[33mcommit 61b98216fc40bcb332a2e5cc211f8fb127f79b2c[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 4 15:14:50 2025 -0300
+
+    Update Processo1-Cadastro-E-Login.md
+
+[33mcommit 97678c939901d9c9a98f2f3d6b7cd8dd62445e55[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 4 15:13:54 2025 -0300
+
+    Add files via upload
+
+[33mcommit d68162ca74aa33b1a4001c4b8708dc3deb624e7e[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 4 14:48:50 2025 -0300
+
+    Delete docs/images/Cadastro_Login_BPMN.png
+
+[33mcommit 900982b760eebb5e8e4cf9139cea1017a0f52667[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 4 14:47:46 2025 -0300
+
+    Add files via upload
+
+[33mcommit cc9d5a152a6fce2dd797b0c59a0d3c28246a4d3c[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 4 14:47:09 2025 -0300
+
+    Delete docs/images/Cadastro_Login_BPMN.png
+
+[33mcommit dfe4d83a4ef85949e0902329186d80ecd2cf8599[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 4 14:46:55 2025 -0300
+
+    Update Processo1-Cadastro-E-Login.md
+
+[33mcommit 04cde13dfbc189dd5e891b803d7b0a497bd070f6[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 4 14:45:53 2025 -0300
+
+    Add files via upload
+
+[33mcommit c779c6d1a327cb36e5b933399c2389008ac9c132[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 4 14:45:28 2025 -0300
+
+    Delete docs/images/Cadastro_Login_BPMN.png
+
+[33mcommit f837085deacea5c5477f2aaa0d63d9b838d6a78e[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Apr 4 13:58:16 2025 -0300
+
+    Add mudancas na modelagem
+
+[33mcommit 3e7381a0a03d5579699954127e054f93b7539d10[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Apr 4 12:49:25 2025 -0300
+
+    Update Processo3-Pesquisa-E-Aplicação-De-Vagas.md
+
+[33mcommit 41ead9dc15d6e4a2c2eeb4aec4abb8369ee259f6[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 12:25:34 2025 -0300
+
+    Update Processo4–Gerenciamento-De-Candidaturas.md
+
+[33mcommit 80a01542ecd9af086b9cca17434b4e4dd556a699[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 4 12:15:33 2025 -0300
+
+    Update Processo5-Fechamento-Da-Vaga.md
+
+[33mcommit 724f256931dd13a3e82788e53680c05d3992b50c[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 4 12:12:35 2025 -0300
+
+    Update Processo5-Fechamento-Da-Vaga.md
+
+[33mcommit 654fa9df76371d1f88cca38c6ee24e46add5797d[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 4 12:10:30 2025 -0300
+
+    Update Processo5-Fechamento-Da-Vaga.md
+
+[33mcommit e42b0db31a43b442db2e400309cdf274e78bb8f8[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 4 12:00:49 2025 -0300
+
+    Update Processo1-Cadastro-E-Login.md
+
+[33mcommit 4798505d6170586e1b0a9bd92582d446a9a4e01c[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 4 11:56:37 2025 -0300
+
+    Update Processo1-Cadastro-E-Login.md
+
+[33mcommit c7683266a3d398befbb2b96027f5162cd431e8ae[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 4 11:54:25 2025 -0300
+
+    Update Processo1-Cadastro-E-Login.md
+
+[33mcommit 96e730922cd3cde038a7c8f1e0c407a719ec9364[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 4 11:52:43 2025 -0300
+
+    Add files via upload
+
+[33mcommit 9b6a9585ca701e962318631a86abee373eae4070[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 4 11:51:47 2025 -0300
+
+    Update Processo5-Fechamento-Da-Vaga.md
+
+[33mcommit a2cb642b92d44a2b79738b94a6bbee39fe2e65c9[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Apr 4 11:51:38 2025 -0300
+
+    Delete docs/images/Cadastro e Login Diagrama.png
+
+[33mcommit 17f0d1626ee8452f9b7b477974b9d06ed81046a8[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 4 11:50:41 2025 -0300
+
+    Update Processo5-Fechamento-Da-Vaga.md
+
+[33mcommit 7b1a52ec1b391ec62bd9e9ea99cfb8bad0cfbb78[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 4 11:50:13 2025 -0300
+
+    Update Processo5-Fechamento-Da-Vaga.md
+
+[33mcommit 99fb4b17dbb39f4b9078e0aa541b98ae16585a35[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 4 11:47:23 2025 -0300
+
+    Delete docs/images/tis Diagrama.png
+
+[33mcommit f63aab1eb419b810a5451fdc5879045b5c153999[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Apr 4 11:46:59 2025 -0300
+
+    Add files via upload
+
+[33mcommit 582abcf56bc71a5dd165413bebced388e827b268[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:33:57 2025 -0300
+
+    Update Processo6-Avaliação-Da-Empresa.md
+
+[33mcommit 3eac79a4915586dbffb891bb40804a2b772e81c5[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:33:47 2025 -0300
+
+    Update Processo5-Fechamento-Da-Vaga.md
+
+[33mcommit 55d618c356f4f21c745fb02c23124f1f2c68c079[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:33:03 2025 -0300
+
+    Update Processo6-Avaliação-Da-Empresa.md
+
+[33mcommit a7dc1272d781d35e41c7812994de75dff6e89835[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:31:20 2025 -0300
+
+    Update Processo3-Pesquisa-E-Aplicação-De-Vagas.md
+
+[33mcommit dbbc048a4b234424bcf87ab90ed8c42d3071a8cb[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:30:38 2025 -0300
+
+    Update Processo2-Gestao-De-Vagas.md
+
+[33mcommit 6397401a90766e265ae7ce3e4732acab2779b896[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:30:29 2025 -0300
+
+    Update Processo1-Cadastro-E-Login.md
+
+[33mcommit e84621ad0231277b659dd1669fcc0d7bcb5c6599[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:26:45 2025 -0300
+
+    Add files via upload
+
+[33mcommit 3c1a2225726097c4dff48a184f1d82081ecfffab[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:26:27 2025 -0300
+
+    Delete docs/images/Processo4-Gerenciamento-De-Candidaturas.png
+
+[33mcommit 1c16f0c1206395c7f100dee3975915f78462a0ff[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:25:29 2025 -0300
+
+    Add files via upload
+
+[33mcommit 046422fcde2dc797f591fcd0a9af877cd5f5de23[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:25:17 2025 -0300
+
+    Delete docs/images/Processo4-Gerenciamento-De-Candidaturas.png
+
+[33mcommit a96c399be4a6e835c79edc58b7f6ceb446c3402b[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:23:46 2025 -0300
+
+    Update Processo4–Gerenciamento-De-Candidaturas.md
+
+[33mcommit 0c22d16942b78f80377e1f60b56551661eb4625a[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:23:27 2025 -0300
+
+    Add files via upload
+
+[33mcommit 814ccc88f0f8de499f52fdd9c369d6b644b98776[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:23:11 2025 -0300
+
+    Delete docs/images/GerenciamentodasAplicaçõesDiagrama.png
+
+[33mcommit 99494705d4f6bdc17af4caa1b0ad8ffb25b294fe[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:21:11 2025 -0300
+
+    Update Processo2-Gestao-De-Vagas.md
+
+[33mcommit 2fd3c26680c756fd8adcd25db2649bdf1ae96040[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:19:24 2025 -0300
+
+    Update README.md
+
+[33mcommit 531d8c9b49b6bc896020297da95e5e7b36094dca[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:14:28 2025 -0300
+
+    Update Processos
+
+[33mcommit 3871a95594b49ce510ede86ce0261370b2a829f1[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:02:58 2025 -0300
+
+    Update Processo1-Cadastro-E-Login.md
+
+[33mcommit cf8c66c64728559f03e6601cb20457133d5ffe38[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:02:31 2025 -0300
+
+    Update and rename Cadastro_Login.md to Processo1-Cadastro-E-Login.md
+
+[33mcommit 493f0fffd2eae21aceaac47efff8646f3618c23f[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:02:11 2025 -0300
+
+    Rename Processo1-Cadastro-E-Login.md to Cadastro-E-Login.md
+
+[33mcommit 8d5e8290b08a68561cada595766b0339899adbc5[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 11:01:07 2025 -0300
+
+    Update and rename GerenciarVagas.md to Processo1-Cadastro-E-Login.md
+
+[33mcommit 986ac839704d69990cb152576b9f97088cfd7543[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 10:59:55 2025 -0300
+
+    Update and rename Gerenciar_Vagas.md to Processo2-Gestao-De-Vagas.md
+
+[33mcommit e8a7f30bf3558f2928de5c77e0b0bec9464f95ce[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Apr 4 10:56:37 2025 -0300
+
+    Update and rename Gerenciamento-das-Aplicações.md to Processo4–Gerenciamento-De-Candidaturas.md
+
+[33mcommit 599c481b7cea47a089e7493e1cfa5b94c2e3ee6e[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Apr 4 10:01:48 2025 -0300
+
+    Update README.md
+
+[33mcommit 75fc9bfa3e553404ed405ad8e404a5ff88eb206e[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Mar 28 23:04:46 2025 -0300
+
+    Add files via upload
+
+[33mcommit 708ed3408620bdb1307b9f120baf6741a2ac32f8[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Mar 28 23:04:34 2025 -0300
+
+    Delete docs/images/processo1-GerenciarVagas.png
+
+[33mcommit d01fb3afb808853d265e22ea9d095ba520ee3e06[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 19:02:52 2025 -0300
+
+    Update GerenciarVagas.md
+
+[33mcommit 191cdf98a51aa492db0c8af1e1ea5ba13eff6181[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 19:02:39 2025 -0300
+
+    Update Cadastro_Login.md
+
+[33mcommit 9724d6349b78b0e71f37bc467fb6630469990cb3[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 19:02:14 2025 -0300
+
+    Create StatusCandidatura.md
+
+[33mcommit ff93e35bb111d99039a527ee8fe55de705a2bbcc[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 19:01:20 2025 -0300
+
+    Update Cadastro_Login.md
+
+[33mcommit 0cc3f0afc95ed2f6c6cefac96f4c72f70045428b[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 19:01:09 2025 -0300
+
+    Update GerenciarVagas.md
+
+[33mcommit 9faaec5fb171bc2e9a26b60aa98d1cfb3fed7408[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 19:00:40 2025 -0300
+
+    Create Cadastro_Login.md
+
+[33mcommit f7b37fd1361d5657c99a244937273b6a0aae6904[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 18:59:14 2025 -0300
+
+    Update GerenciarVagas.md
+
+[33mcommit 914889cd44657567bcd87b40a9375285a65cedfc[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 18:58:46 2025 -0300
+
+    Create GerenciarVagas.md
+
+[33mcommit b01b26f6b7aeaa9192b7725f9c0a78090929a6e0[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 18:56:28 2025 -0300
+
+    Delete docs/Processos/Cadastro_de_Candidatos_ou_Empresas.md
+
+[33mcommit 6c0590cc0665319af3ab929b8f4556ddc067e96c[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 18:56:15 2025 -0300
+
+    Delete docs/Processos/Processo_Seletivo.md
+
+[33mcommit 7151f4352be25141f655b14659e6885e63048b5e[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 18:55:12 2025 -0300
+
+    Delete docs/Processos/Comunicacao_e_Notificacoe.md
+
+[33mcommit 16df841f5009f052dba4a939c72b5de660bf8ea9[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 18:54:47 2025 -0300
+
+    Add files via upload
+
+[33mcommit f7f0b0bc85c5b284614071b3f97e3a71bcc733de[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 18:54:28 2025 -0300
+
+    Delete docs/images/Notificacao_e_comunicacao_Diagrama.png
+
+[33mcommit 4089f52ee0510372be1ad477d643b88a7c79c594[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 28 18:54:05 2025 -0300
+
+    Delete docs/images/ProcessoDeCadastroDeCandidatoOuEmpresa.png
+
+[33mcommit 6f84c0bd173a77c42520373c58fdc2e917998cc7[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Mar 28 18:28:26 2025 -0300
+
+    Update Gerenciamento-das-Aplicações.md
+
+[33mcommit 3a5a94fb1483d4a97ac4a6a30e63546e8f1a265c[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Mar 28 18:28:05 2025 -0300
+
+    Add files via upload
+
+[33mcommit aaf28a96faf1416c224c6a3a3ddbbdf643d862bd[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Mar 28 18:27:23 2025 -0300
+
+    Delete docs/images/Processo4-gerenciamentodasaplicacoes.png
+
+[33mcommit 0d57181c2a35e9d619d228e61c7b3b0edb268ac9[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Mar 28 17:00:49 2025 -0300
+
+    Mudanças na modelagem do processo 1
+
+[33mcommit 3754493d8cc8bd04043ba3c1198a8635dc3237e7[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Mar 21 20:12:35 2025 -0300
+
+    Update Cadastro_de_Candidatos_ou_Empresas.md
+
+[33mcommit 4ccb6d8b308038c4b4fd6173b3c5485958a01107[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Mar 21 20:12:14 2025 -0300
+
+    Update Cadastro_de_Candidatos_ou_Empresas.md
+
+[33mcommit 1fa70c9d83d51d29cbd19263a1729786207fb17c[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Mar 21 20:11:44 2025 -0300
+
+    Update Cadastro_de_Candidatos_ou_Empresas.md
+
+[33mcommit 100400802d7fdf5cd83f3988064872de17ec8c7b[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Mar 21 20:10:37 2025 -0300
+
+    Update Cadastro_de_Candidatos_ou_Empresas.md
+
+[33mcommit 14edcc216a4ef1e512a48e84274d90b856e912ac[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Mar 21 20:10:13 2025 -0300
+
+    Rename Processo de cadastro de candidato ou empresaaa Diagrama.png to ProcessoDeCadastroDeCandidatoOuEmpresa.png
+
+[33mcommit 0bcc99a4ed6ed185000c40595ff53d6ccfe7c774[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Mar 21 20:09:22 2025 -0300
+
+    Update Cadastro_de_Candidatos_ou_Empresas.md
+
+[33mcommit 119db6a7d9fd645d36913c393bae22b0b002a624[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Mar 21 20:07:55 2025 -0300
+
+    Add files via upload
+
+[33mcommit 7e661aa8121fe7435fc3b337aaf8f2bb347c7dbf[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 19:57:10 2025 -0300
+
+    Update Comunicacao_e_Notificacoe.md
+
+[33mcommit 5feb8d89118e94fb2c61081f2ce9473d4734ad59[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 19:56:46 2025 -0300
+
+    Rename Notificação e comunicação Diagrama.png to Notificacao_e_comunicacao_Diagrama.png
+
+[33mcommit a5b1e42e78e61a7fae3e0e9cf20b7669bf518963[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 19:55:52 2025 -0300
+
+    Update README.md
+
+[33mcommit ae9084392d4fd378e446b4761595e1883303d54b[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 19:55:23 2025 -0300
+
+    Rename Comunicação_e_Notificaçõe.md to Comunicacao_e_Notificacoe.md
+
+[33mcommit e0c40c192ebc0a2f3995478fcee147d6bdd92a66[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 19:54:46 2025 -0300
+
+    Update README.md
+
+[33mcommit 177c88549ae8caea1ab63dad2463be041798236f[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 19:54:14 2025 -0300
+
+    Update README.md
+
+[33mcommit fcc77030b89243671498e9d70a481b4ce490ca6e[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 19:53:50 2025 -0300
+
+    Update README.md
+
+[33mcommit ad7665bbb07e4bd73f71cbab27e2a1ea983d6fb7[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Mar 21 19:50:09 2025 -0300
+
+    Update Cadastro_de_Candidatos_ou_Empresas.md
+
+[33mcommit 426be7c339220f1d0dac9f4587a81c44de1e60ea[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 19:35:15 2025 -0300
+
+    Update Processo_Seletivo.md
+
+[33mcommit b0a6bca8dea53e4ea9726f41af5ab5b39d66462e[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 19:34:44 2025 -0300
+
+    Update Processo_Seletivo.md
+
+[33mcommit bfce37159b8dd44dd1268077cfee4ad5579e05ad[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 19:33:50 2025 -0300
+
+    Update Comunicação_e_Notificaçõe.md
+
+[33mcommit 66ed77cc7754e50c6e6a611e3aa1fd6e8103ddae[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 19:33:36 2025 -0300
+
+    Update Cadastro_de_Candidatos_ou_Empresas.md
+
+[33mcommit 05348c6cc47e85d36ecb9e9e36da1742f09dda2b[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 19:33:03 2025 -0300
+
+    Update Comunicação_e_Notificaçõe.md
+
+[33mcommit 75bf5e3e02167605f5666ba0e5ef2031012747f9[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 19:32:40 2025 -0300
+
+    Rename Processo 4 - Gerenciamento-das-Aplicações.md to Gerenciamento-das-Aplicações.md
+
+[33mcommit 2f91a0ab69eba7351f83be470704528b7c35144c[m
+Author: Arthur Fonseca <156089974+arthurfons@users.noreply.github.com>
+Date:   Fri Mar 21 19:32:10 2025 -0300
+
+    Update Processo_Seletivo.md
+
+[33mcommit 98be6897b6ec1752ed9efa79a9a3e4bccf9313d2[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Mar 21 12:38:39 2025 -0300
+
+    Update Processo 4 - Gerenciamento-das-Aplicações.md
+
+[33mcommit ece18683fe103a1489b5b6f80682a3da2365b743[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Mar 21 12:38:09 2025 -0300
+
+    Delete docs/images/Processo4-GerenciamentoDasAplicações.png
+
+[33mcommit 2942c10df7d7f9d69c6274d80cfa9490d99f99a9[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Mar 21 12:37:40 2025 -0300
+
+    Add files via upload
+
+[33mcommit ac5c403790ed01de9435281ee81596d371f799fc[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 00:48:44 2025 -0300
+
+    Update Comunicação_e_Notificaçõe.md
+
+[33mcommit 08382dd746cf452b96485577511a70d888dbf030[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 00:47:57 2025 -0300
+
+    Update Comunicação_e_Notificaçõe.md
+
+[33mcommit 9be8aa739e78b79500d77ac3c7d21da9a2851baf[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 00:45:37 2025 -0300
+
+    Update Comunicação_e_Notificaçõe.md
+
+[33mcommit eccae809aaab017653dae9686b73973b4fc75da6[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 00:45:02 2025 -0300
+
+    Delete docs/images/NOTIFICAÇÃO_BMPN.png
+
+[33mcommit c9f83c940b42c0c224391005105b3d19bd797956[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 21 00:44:33 2025 -0300
+
+    Add files via upload
+
+[33mcommit de1f765623983a4cdbbd09a0a3eb36bcada1c8d2[m
+Author: Arthur Fonseca <156089974+arthurfons@users.noreply.github.com>
+Date:   Fri Mar 14 20:23:15 2025 -0300
+
+    Update Processo_Seletivo.md
+
+[33mcommit b583c9e79a0fc66aa8a1c9fc42f453bfdf885025[m
+Author: Arthur Fonseca <156089974+arthurfons@users.noreply.github.com>
+Date:   Fri Mar 14 19:47:35 2025 -0300
+
+    Update Processo_Seletivo.md
+
+[33mcommit 71a67202c264298f72ca4d74a87aafdd03e360fa[m
+Author: Arthur Fonseca <156089974+arthurfons@users.noreply.github.com>
+Date:   Fri Mar 14 19:22:45 2025 -0300
+
+    Update Processo_Seletivo.md
+
+[33mcommit 1c7719d72a8b6ff4fa82ce389a00302c9748a258[m
+Author: Arthur Fonseca <156089974+arthurfons@users.noreply.github.com>
+Date:   Fri Mar 14 19:11:14 2025 -0300
+
+    Update Processo_Seletivo.md
+
+[33mcommit b0a96d81e3a9e2a33e66f3eabbbe7cbd0c4e6d1f[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 14 18:33:55 2025 -0300
+
+    Update Comunicação_e_Notificaçõe.md
+
+[33mcommit 035adcdb388d17704625647862dd8d7802b6f6a1[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 14 18:33:39 2025 -0300
+
+    Update Comunicação_e_Notificaçõe.md
+
+[33mcommit 810fbf5b9acc04ee6db24cbc86f923a9c1adc840[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 14 18:33:29 2025 -0300
+
+    Update Comunicação_e_Notificaçõe.md
+
+[33mcommit 8429d63d5294f2731246dfcffbf3c958b690a4b0[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 14 18:33:07 2025 -0300
+
+    Rename NOTIFICAÇÃO BMPN.png to NOTIFICAÇÃO_BMPN.png
+
+[33mcommit cc94b73420e13f819ef9fb8e91aaca19f1f69707[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 14 18:32:48 2025 -0300
+
+    Update Comunicação_e_Notificaçõe.md
+
+[33mcommit de369e7ef266d985d3ce3e1081d71c07126aeee4[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 14 18:32:29 2025 -0300
+
+    Update Comunicação_e_Notificaçõe.md
+
+[33mcommit 5ce07809b7b4382c6d29c81323eacdeadaf995a4[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 14 18:31:53 2025 -0300
+
+    Add files via upload
+
+[33mcommit e83453d1f9f309d5977b7be567336d3c9c1202e3[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Mar 14 18:31:16 2025 -0300
+
+    Update Comunicação_e_Notificaçõe.md
+
+[33mcommit 094bdcfcbdfbc5acad45cb306a3742804c3eb915[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Mar 14 15:20:02 2025 -0300
+
+    Update and rename Gerenciamento_das_Aplicações.md to Processo 4 - Gerenciamento-das-Aplicações.md
+
+[33mcommit 37f301305cd45f05eaae9796b9456e267138a5e4[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Mar 14 15:10:34 2025 -0300
+
+    Update Gerenciamento_das_Aplicações.md
+
+[33mcommit 9a06a8b0f7ebe3da7d1830240f2d8dbc54b1574f[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Mar 14 15:10:15 2025 -0300
+
+    Add files via upload
+
+[33mcommit cd077ae3cb4266c3c9c7e3f4b1a613752aed1439[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Mar 14 15:09:30 2025 -0300
+
+    Delete docs/images/Gerenciamento das aplicações Diagrama.png
+
+[33mcommit dcb1344b95d3571803152c77ad313b22e5d718ad[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Mar 14 15:08:58 2025 -0300
+
+    Update Gerenciamento_das_Aplicações.md
+
+[33mcommit 3e7d69b4df107ea536ad53008a4ea62e24df372f[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Mar 14 15:07:59 2025 -0300
+
+    Add files via upload
+
+[33mcommit 521f22add79563dd8bf7dc71d76dbab978e2ec0e[m
+Author: Rafael Lopes <rafaeldeoliveiracl@gmail.com>
+Date:   Fri Mar 14 14:48:02 2025 -0300
+
+    Add modelagem processo 1
+
+[33mcommit bdbcb2b0194ebfc5cd8cbc7c79c7cf7a22f7797e[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Mar 14 13:02:09 2025 -0300
+
+    Update Cadastro_de_Candidatos_ou_Empresas.md
+
+[33mcommit 598455a833baa8586521e000f9f59f314b9a5750[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 10:58:43 2025 -0300
+
+    Update README.md
+
+[33mcommit da3c8e93874d9f66d69ed80bf5db2978403c88a5[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 10:56:55 2025 -0300
+
+    Update README.md
+    
+    atualização da situação atual
+
+[33mcommit eb80a561019d88240701bb58266fb96fe06f4c18[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 10:35:12 2025 -0300
+
+    Update README.md
+
+[33mcommit b8b19a2e0f724202e6d57163d79c8f15c5b9b5f6[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 10:34:34 2025 -0300
+
+    Update README.md
+
+[33mcommit 6cb675ec6963d296b926271fa168c0418f668b4f[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 10:32:25 2025 -0300
+
+    Update README.md
+    
+    atualização da situação atual
+
+[33mcommit 27fae8a30ca40e395ea18e0858c12f26ae453a2b[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 10:26:52 2025 -0300
+
+    Update README.md
+    
+    atualização dos participantes do processo
+
+[33mcommit da6da6213f5ab62bdb83aac71475c3debe566dcb[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 10:25:41 2025 -0300
+
+    Update README.md
+    
+    atualização dos objetivos específicos
+
+[33mcommit d031b2da187e3eb2a6a1d1265535d94a2104eb85[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 10:11:20 2025 -0300
+
+    Update README.md
+    
+    atualização do problema
+
+[33mcommit c8c3870561735d1fa4bd95fd23745fa9c41d7e82[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 10:08:10 2025 -0300
+
+    Update README.md
+    
+    atualização da introdução
+
+[33mcommit 0f070758aafde30aaf0006afcd6c1fe178c6fae4[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 10:04:16 2025 -0300
+
+    Update README.md
+
+[33mcommit 55e5a102bb8b81dba97e30852930a6962244ae5e[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 10:02:24 2025 -0300
+
+    Update README.md
+
+[33mcommit ff4e119da32ae1c26d7082951cc5e19d04712c24[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 10:00:21 2025 -0300
+
+    Update README.md
+
+[33mcommit 6e0b3a4a2e1c5a73d797603f2cb235eddd00b13e[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 09:59:37 2025 -0300
+
+    Update README.md
+
+[33mcommit 9ed1483455d4db6237a03ec7ebab7411600571f4[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 09:58:30 2025 -0300
+
+    Update README.md
+    
+    atualização do resumo
+
+[33mcommit 6f62d7022a14d43903fb6ab7a64e4ced089272bb[m
+Author: Gustavo Lima Dias <164088884+GustavoLimaDias@users.noreply.github.com>
+Date:   Fri Mar 14 09:57:44 2025 -0300
+
+    Update README.md
+    
+    atualização do resumo
+
+[33mcommit d6cc57e4b54b1a60a7ea0a9f012f72792e0cc196[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:51:21 2025 -0300
+
+    Update Cadastro_de_Candidatos_ou_Empresas.md
+
+[33mcommit 6b51f5c04c3c834a4ddf23f4f9a265f9ca836cac[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:51:07 2025 -0300
+
+    Rename Cadastro to Cadastro_de_Candidatos_ou_Empresas.md
+
+[33mcommit 41be0500a14c04ea21ab6edb2026b972a6e4e2ea[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:50:38 2025 -0300
+
+    Update README.md
+
+[33mcommit 290f673eda4ac7b7ef91fe4cf3ebaf887d787cae[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:50:15 2025 -0300
+
+    Create Cadastro
+
+[33mcommit fac1c2f7b45d494e9f117aec581ceb272883f37c[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:49:37 2025 -0300
+
+    Delete docs/Processos/Gerenciamento.md
+
+[33mcommit 60bfdd2827ea0f36d76c7e86bb5cbfa2d724aced[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:48:35 2025 -0300
+
+    Rename docs/ProcessosGerenciamento_das_Aplicações.md to docs/Processos/Gerenciamento.md
+
+[33mcommit 58c2b02b46afb29edb27d8cd51efca1ecc1d04a8[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:47:58 2025 -0300
+
+    Rename Cadastro_de_Candidatos_ou_Empresas to ProcessosGerenciamento_das_Aplicações.md
+
+[33mcommit 5c944a3f35485ecdfc30f4bbc0c91fef38a31ce9[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:47:05 2025 -0300
+
+    Update and rename Processo_Seletivo to Processo_Seletivo.md
+
+[33mcommit 7e1b3d32b52b6b0192056a428ddab106ecea604f[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:46:53 2025 -0300
+
+    Update Gerenciamento_das_Aplicações.md
+
+[33mcommit 04fb9898f395a08e69409a60982224a4ee846b68[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:46:44 2025 -0300
+
+    Rename Gerenciamento_das_Aplicações to Gerenciamento_das_Aplicações.md
+
+[33mcommit b64b9ec675261e0dfc49f2a31c73cb8dec20df28[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:46:15 2025 -0300
+
+    Rename Comunicação_e_Notificaçõe.mds to Comunicação_e_Notificaçõe.md
+
+[33mcommit ccfc3a2eeb4c39dc33ef961f5db75e3456a9279e[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:46:06 2025 -0300
+
+    Update Comunicação_e_Notificaçõe.mds
+
+[33mcommit eda5e1b6d60d334ee5a5f2bbde7f4810b061881e[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:45:34 2025 -0300
+
+    Rename Comunicação_e_Notificações to Comunicação_e_Notificaçõe.mds
+
+[33mcommit a84a6940b89e21f8998904a9f3a6f7adf579e84d[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:45:22 2025 -0300
+
+    Rename Cadastro_de_Vagas.me to Cadastro_de_Vagas.md
+
+[33mcommit 67fbc338dd6c832000f20bdf13505b77ee3ccd92[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:44:53 2025 -0300
+
+    Rename Cadastro_de_Vagas to Cadastro_de_Vagas.me
+
+[33mcommit e6cc7846e4eb2105b9814047e889a9c783b7327f[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:43:18 2025 -0300
+
+    Update Cadastro_de_Vagas
+
+[33mcommit 05decb89b456cc90ee8b871f044b320e72861d82[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:42:26 2025 -0300
+
+    Update Cadastro_de_Vagas
+
+[33mcommit f9ccae7926a3b30e515fa92b2909c26baaaf21d4[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:40:20 2025 -0300
+
+    Update Cadastro_de_Vagas
+
+[33mcommit 7b3bb106a205af87713646cea7046b05947d0e86[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:39:11 2025 -0300
+
+    Rename docs/Processos/Cadastro_de_Candidatos_ou_Empresas to docs/Cadastro_de_Candidatos_ou_Empresas
+
+[33mcommit 4da20887a1e3621e3b7c2fba84303477a3190170[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:38:40 2025 -0300
+
+    Update Cadastro_de_Candidatos_ou_Empresas
+
+[33mcommit 653975b0e16f849c1a1cc9dbd1e5f4ee080e7970[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:29:15 2025 -0300
+
+    Update README.md
+
+[33mcommit 8f3a5faa88030583f332d61e925e713bd758bed7[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:28:41 2025 -0300
+
+    Rename  Gerenciamento_das_Aplicações to Gerenciamento_das_Aplicações
+
+[33mcommit 12be9ce809d1b4560d5106ed90386b1a2322b3cd[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:25:26 2025 -0300
+
+    Rename Processo Seletivo to Processo_Seletivo
+
+[33mcommit eb3750d4595e793233d84cb96ccfc486d53fbdba[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:25:10 2025 -0300
+
+    Rename Comunicação e Notificações to Comunicação_e_Notificações
+
+[33mcommit e1102042ae05e4ef6e1bae59d36f811c047079bd[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:24:51 2025 -0300
+
+    Rename Cadastro de Candidatos ou Empresas to Cadastro_de_Candidatos_ou_Empresas
+
+[33mcommit 6ce5674ce383396e1408bc08cd971cff9bb83703[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:24:32 2025 -0300
+
+    Rename  Gerenciamento das Aplicações to  Gerenciamento_das_Aplicações
+
+[33mcommit f7e235f111191f2bc2d83ae7316211d3b48e674e[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:23:58 2025 -0300
+
+    Update README.md
+
+[33mcommit 7e4070023747fbdf733009e18bce2dd2774c59bd[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:23:40 2025 -0300
+
+    Update README.md
+
+[33mcommit db669b0e6e2bc8e7d7a10ec0255306a853c3a10e[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:23:08 2025 -0300
+
+    Update README.md
+
+[33mcommit ad76b49f75876f867149df7cc1a11c061c5f5251[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:22:35 2025 -0300
+
+    Update README.md
+
+[33mcommit ac58c0af7613116b489e0ce2ea7034b805762c7f[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:22:12 2025 -0300
+
+    Update README.md
+
+[33mcommit ca7f9e1bdb8c051e245cc58790d142314ead716b[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:21:46 2025 -0300
+
+    Update README.md
+
+[33mcommit b2285d52ceb0cce933ce83687e01968bde7f1852[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:21:10 2025 -0300
+
+    Update README.md
+
+[33mcommit 170d7bff79752fec62969f77bc9633dab80ff90a[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:20:43 2025 -0300
+
+    Update README.md
+
+[33mcommit 7b4e6f1c3c1a021b20573f0a5fb6e27f824362bc[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:20:19 2025 -0300
+
+    Update README.md
+
+[33mcommit c6c3d9e1f2e158705fd78dbb57ded8992c8f1bce[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:20:13 2025 -0300
+
+    Rename Cadastro de Vagas to Cadastro_de_Vagas
+
+[33mcommit 200ef566ae61944cf095f15d49d0efdef00a0d38[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:18:02 2025 -0300
+
+    Rename docs/Processo Seletivo to docs/Processos/Processo Seletivo
+
+[33mcommit eb88c11041ce2c687e986d48f121925a17ac3dee[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:17:44 2025 -0300
+
+    Rename docs/Comunicação e Notificações to docs/Processos/Comunicação e Notificações
+
+[33mcommit fcbebd35b113d12822dc6100acf1da4346bd3660[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:17:23 2025 -0300
+
+    Rename docs/Cadastro de Vagas to docs/Processos/Cadastro de Vagas
+
+[33mcommit 1d7bcdbdfff821bdd740171b569d348c0e71bb23[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:16:53 2025 -0300
+
+    Rename docs/ProcessosCadastro de Candidatos ou Empresas to docs/Processos/Cadastro de Candidatos ou Empresas
+
+[33mcommit 55384b110beb8bda9214cadb30f28a73319f9c99[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:16:39 2025 -0300
+
+    Rename Cadastro de Candidatos ou Empresas to ProcessosCadastro de Candidatos ou Empresas
+
+[33mcommit 47b0033cc61bd5b19d830f02e306b1fffa86da80[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:16:02 2025 -0300
+
+    Rename docs/Processos /Cadastro de Candidatos ou Empresas to docs/Cadastro de Candidatos ou Empresas
+
+[33mcommit e733299491b5bf3147a8738c1452c2ee7699c1b0[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:15:45 2025 -0300
+
+    Rename docs/Cadastro de Candidatos ou Empresas to docs/Processos /Cadastro de Candidatos ou Empresas
+
+[33mcommit e4f9329d9cfa542d37e128bd9b66c18e2948f359[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:15:35 2025 -0300
+
+    Rename docs/ Gerenciamento das Aplicações to docs/Processos/ Gerenciamento das Aplicações
+
+[33mcommit f9ca58f339f5b5fd60293a3f1bf9e1bafa7e41e3[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:14:16 2025 -0300
+
+    Rename processo-5-nome-do-processo.md to Comunicação e Notificações
+
+[33mcommit ce5663392cdeee9697b18124d5629098cda372df[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:13:53 2025 -0300
+
+    Rename processo-4-nome-do-processo.md to  Gerenciamento das Aplicações
+
+[33mcommit 3a052c8e45eb515d9d20b7d701330e6c7f79c944[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:13:41 2025 -0300
+
+    Rename processo-3-nome-do-processo.md to Processo Seletivo
+
+[33mcommit 577847c3947a26634786720a0510e92faac0939b[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:13:20 2025 -0300
+
+    Rename processo-2-nome-do-processo.md to Cadastro de Candidatos ou Empresas
+
+[33mcommit 8ab426f936ec3e3d7959bd8bf03cba10dcf750b5[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:12:10 2025 -0300
+
+    Rename processo-1-nome-do-processo.md to Cadastro de Vagas
+
+[33mcommit 14a8fd020b9be12309e840b889a697e817a51208[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:10:52 2025 -0300
+
+    Update processo-5-nome-do-processo.md
+
+[33mcommit 2d26efc504d32a3bd58e90609252c1ec9e6859e3[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:10:37 2025 -0300
+
+    Create processo-5-nome-do-processo.md
+
+[33mcommit 3fcf552c2c9528b84309ba2dc9dd4c384118ce1e[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Mon Mar 10 17:09:10 2025 -0300
+
+    Novo processo (05)
+
+[33mcommit 003c1f7fe5f0e1563c9f2043a13834a01be2ceb4[m
+Author: Arthur Fonseca <156089974+arthurfons@users.noreply.github.com>
+Date:   Mon Mar 10 12:01:48 2025 -0300
+
+    Update README.md
+
+[33mcommit 01ac15e7124ceff8e1cbe9b303a4b7d6c6d5c621[m
+Author: Italo Vinhas <160562349+italovinn@users.noreply.github.com>
+Date:   Fri Mar 7 19:12:07 2025 -0300
+
+    Update README.md
+
+[33mcommit 7294d048802a4f7db4dd4d1259873948c3acbb5c[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Fri Feb 28 19:29:55 2025 -0300
+
+    Add files via upload
+
+[33mcommit 541b826adeab16c976d2a5ded6c7c8702100de6a[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 28 15:03:53 2025 -0300
+
+    Update README.md
+
+[33mcommit db79e6f61ddf4a9603d0b618320796144ea9a965[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 28 15:00:18 2025 -0300
+
+    Update README.md
+
+[33mcommit 4eac3451f2eeadb36030ba5bd4fb8faad7cb05a6[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 28 14:52:52 2025 -0300
+
+    Update README.md
+
+[33mcommit 29932a7dce1c6dbafa42a7732804cb3229799186[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Feb 28 13:28:09 2025 -0300
+
+    Update README.md
+
+[33mcommit e95568499cde350127f6dd9c4dfb135b4da73cbc[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 20:17:31 2025 -0300
+
+    Update README.md
+
+[33mcommit e70f694593d8fa34819ddcfb913f87c86c1f01ca[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 20:17:17 2025 -0300
+
+    Update README.md
+
+[33mcommit b36e64b73b6f4dee4b2087cf4a073ffc79b0e17c[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 19:58:56 2025 -0300
+
+    Update README.md
+
+[33mcommit 0764a8ded1cbdc8558b9193bae8936af45222c93[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 19:58:32 2025 -0300
+
+    Update README.md
+
+[33mcommit d5c19f7f25c15ad94d20f3da3a5926fba504bff0[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 19:58:03 2025 -0300
+
+    Update README.md
+
+[33mcommit a47e954a8d93716629e9b70d3f2f0648b820eac9[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 19:56:56 2025 -0300
+
+    Update README.md
+
+[33mcommit 9d9b10af243b800f1be2d5b32dd2bbbce5a20f07[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 19:56:33 2025 -0300
+
+    Update README.md
+
+[33mcommit 880ae72d7d337a5af537852432c474cf1d206841[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 19:51:18 2025 -0300
+
+    Update README.md
+
+[33mcommit 9a76bc9b7bf3279e76bd83d8c1352acce19c747a[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 19:50:32 2025 -0300
+
+    Update README.md
+
+[33mcommit 659cae44102e1172049149640cf588dc7d98ea2d[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 19:47:53 2025 -0300
+
+    Update README.md
+
+[33mcommit c9658fb00fbbb0668e8d1da8157e2bbbd6c70d92[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 19:47:22 2025 -0300
+
+    Update README.md
+
+[33mcommit 7da3e7012b1050451ca3cc4b9b080969ae2c76f7[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 19:46:39 2025 -0300
+
+    Update README.md
+
+[33mcommit b66cbc01c1848c0a5946a515b81ca13b87f31253[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 19:46:19 2025 -0300
+
+    Update README.md
+
+[33mcommit c409fe427c86556de7c551c735e70c7c14c89ed2[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 19:45:11 2025 -0300
+
+    Atualizando texto
+
+[33mcommit 7a07801152dab7aedea3901d76232b82ae8e2f2a[m
+Author: Pedro Vieira <164975732+PdroVieiraa@users.noreply.github.com>
+Date:   Thu Feb 27 19:33:45 2025 -0300
+
+    Adição do EMAIL
+
+[33mcommit d39448feff7a0f3a0c169b4a2cd8c891dc2e97b1[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 21 19:48:04 2025 -0300
+
+    Update README.md
+
+[33mcommit 607a87a771d1fd7b53fce71eb0b4bc9e711ff278[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 21 19:47:32 2025 -0300
+
+    Update CITATION.cff
+
+[33mcommit 13121ca5bf00beb64a2f4521f93d56e0b9c33835[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 21 19:46:39 2025 -0300
+
+    Update README.md
+
+[33mcommit d7a8a23bc7a900c0f5cbdc6c88608484e899dc35[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Feb 21 16:20:02 2025 -0300
+
+    Update README.md
+
+[33mcommit e4c942cd0005f967a73093495232571079804f9f[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 21 16:09:05 2025 -0300
+
+    Update README.md
+
+[33mcommit 174ed323327e58e30f21aae3d983f929119e285a[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Feb 21 16:03:32 2025 -0300
+
+    Update README.md
+
+[33mcommit a85ea4cae81186a20d6816eebc124ee51246fa8f[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 21 16:01:46 2025 -0300
+
+    Update README.md
+
+[33mcommit f93371bb1cefabc30ad5bdd8ae2bd91a622839fd[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 21 15:58:59 2025 -0300
+
+    Update README.md
+
+[33mcommit 7e2d7eb4f561dc6200b2f90762ce485768e4a979[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 21 15:58:44 2025 -0300
+
+    Update README.md
+
+[33mcommit 6d5371126e52e730ec2ad8c0f9503373ab5d545d[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 21 15:44:09 2025 -0300
+
+    Update README.md
+
+[33mcommit 7c43b1fe11f4c33c533aa3365b05764959d9e043[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Feb 21 15:43:39 2025 -0300
+
+    Update README.md
+
+[33mcommit 96ee52f74f39066b95915cb8d1b43e0ddabcf745[m
+Author: Luis Fantini <130558587+LuisFantini@users.noreply.github.com>
+Date:   Fri Feb 21 15:40:34 2025 -0300
+
+    Update README.md
+
+[33mcommit 87b72036498f5ea1787f86e6d02f899cf57425a0[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 21 15:39:10 2025 -0300
+
+    Update README.md
+
+[33mcommit 3aecc4acb26038e41866640b00a4a3781840bd5c[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 21 15:38:47 2025 -0300
+
+    Update README.md
+
+[33mcommit 807dc75eae517f4de41f0258ba3a86758871926f[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 21 15:36:16 2025 -0300
+
+    Update CITATION.cff
+
+[33mcommit 81179bd9d689242a07abc8cf7993b76e5e7674cd[m
+Author: Rafael Lopes <145872285+RafaelLopes1810@users.noreply.github.com>
+Date:   Fri Feb 21 15:30:32 2025 -0300
+
+    Update README.md
+
+[33mcommit e226613485d537adf75c8317c1f72d986ec1c7f6[m
+Author: github-classroom[bot] <66690702+github-classroom[bot]@users.noreply.github.com>
+Date:   Fri Feb 14 21:16:17 2025 +0000
+
+    Initial commit
