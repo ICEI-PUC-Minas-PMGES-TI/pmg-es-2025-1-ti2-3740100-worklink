@@ -40,13 +40,16 @@
 
         <div class="row">
             <div class="col-md-6">
-                <label for="caduser_nome" class="required">Nome</label>
-                <input type="text" class="form-control" id="caduser_nome" placeholder="Nome" name="caduser_nome" style="margin-bottom: 20px;" required pattern="[A-Za-zÀ-ÿ\s]+" title="Apenas letras e espaços são permitidos">
+                <label for="caduser_nome" class="required">Nome da Empresa</label>
+                <input type="text" class="form-control" id="caduser_nome" placeholder="Nome da Empresa" name="caduser_nome" style="margin-bottom: 20px;" required pattern="[A-Za-zÀ-ÿ\s]+" title="Apenas letras e espaços são permitidos">
             </div>
             
             <div class="col-md-6">
                 <label for="caduser_email" class="required">Email</label>
-                <input type="email" class="form-control" id="caduser_email" placeholder="Email" name="caduser_email" style="margin-bottom: 20px;" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Digite um email válido">
+                <input type="email" class="form-control" id="caduser_email" name="caduser_email"
+                    placeholder="Email" required
+                    pattern=".+@.+\..+"
+                    title="Digite um email válido">
             </div>
         </div>
 
@@ -57,91 +60,39 @@
             </div>
 
             <div class="col-md-4">
-                <label for="caduser_cpf" class="required">CNPJ</label>
-                <input type="text" class="form-control" id="caduser_cnpj" placeholder="000.000.000-00" name="caduser_cnpj" style="margin-bottom: 20px;" required maxlength="14">
+                <label for="caduser_cnpj" class="required">CNPJ</label>
+                <input type="text" class="form-control" id="caduser_cnpj" placeholder="00.000.000/0000-00" name="caduser_cnpj" style="margin-bottom: 20px;" required maxlength="18" oninput="formatarCNPJ(this)">
             </div>
 
             <div class="col-md-4">
-                <label for="caduser_cpf" class="required">Telefone</label>
-                <input type="text" class="form-control" id="caduser_cnpj" placeholder="000.000.000-00" name="caduser_cnpj" style="margin-bottom: 20px;" required maxlength="14">
+                <label for="caduser_tel" class="required">Telefone</label>
+                <input type="text" class="form-control" id="caduser_tel" placeholder="(00) 00000-0000" name="caduser_tel" style="margin-bottom: 20px;" required maxlength="15" oninput="formatarTelefone(this)">
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6">
-                <label for="caduser_rg" class="required">Endereço</label>
-                <input type="text" class="form-control" id="caduser_rg" placeholder="RG" name="caduser_rg" style="margin-bottom: 20px;" required>
+                <label for="caduser_endereco" class="required">Endereço</label>
+                <input type="text" class="form-control" id="caduser_endereco" placeholder="Endereço" name="caduser_endereco" style="margin-bottom: 20px;" required>
             </div>
 
             <div class="col-md-6">
-                <label for="caduser_profissao" class="required">Descrição</label>
-                <input type="text" class="form-control" id="caduser_profissao" placeholder="Profissão" name="caduser_profissao" style="margin-bottom: 20px;" required>
+                <label for="descricao" class="required">Descrição</label>
+                <input type="text" class="form-control" id="descricao" placeholder="Descrição da Empresa" name="descricao" style="margin-bottom: 20px;" required>
             </div>
         </div>
 
         <div class="row" style="display: flex; justify-content: center;">
-            <input type="button" class="btn btn-success" id="cadUser" value="Cadastrar" style="background-color: #e48f4f; width: 40%;">
+            <input type="button" class="btn btn-success" id="cadEmpresa" value="Cadastrar" style="background-color: #e48f4f; width: 40%;">
         </div>
         <div class="row">
             <p id="errorMessage" class="error-message">Por favor, preencha todos os campos obrigatórios.</p>
         </div>
     </div>
         
+    <script src="assets/login.js"></script>
+    <script src="assets/cadastroEmpresa.js"></script>
 </body>
 </html>
 
-<script src="assets/script/login.js"></script>
-<script>
-    $(document).ready(function() {
-        // Validação do campo Nome
-        $('#caduser_nome').on('input', function() {
-            this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');
-        });
 
-        // Formatação do campo CPF
-        $('#caduser_cpf').on('input', function() {
-            let cpf = this.value.replace(/\D/g, '');
-            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
-            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
-            cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-            this.value = cpf.slice(0, 14);  // Limita o CPF a 14 caracteres (incluindo pontos e traço)
-        });
-
-        // Validação do campo Email
-        $('#caduser_email').on('input', function() {
-            if (!this.validity.valid) {
-                this.setCustomValidity('Por favor, insira um email válido.');
-            } else {
-                this.setCustomValidity('');
-            }
-        });
-
-        // Validação dos campos obrigatórios
-        $('#cadUser').on('click', function() {
-            let isValid = true;
-            $('input[required]').each(function() {
-                if ($(this).val().trim() === '') {
-                    isValid = false;
-                    $(this).addClass('is-invalid');
-                } else {
-                    $(this).removeClass('is-invalid');
-                }
-            });
-
-            if (!isValid) {
-                $('#errorMessage').show();
-            } else {
-                $('#errorMessage').hide();
-                // Aqui você precisa chamar a função que realiza o cadastro
-            }
-        });
-
-        // Remove a classe is-invalid quando o usuário começa a digitar
-        $('input[required]').on('input', function() {
-            $(this).removeClass('is-invalid');
-            if ($('input[required].is-invalid').length === 0) {
-                $('#errorMessage').hide();
-            }
-        });
-    });
-</script>

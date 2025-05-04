@@ -21,6 +21,9 @@ public class CandidatoController {
 
     @PostMapping
     public ResponseEntity<Candidato> create(@RequestBody Candidato candidato) {
+        if (usuarioService.emailJaExiste(candidato.getEmail())) {
+            return ResponseEntity.status(409).build(); // 409 Conflict
+        }
         candidato = usuarioService.createCandidato(candidato);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
             .path("/{id}").buildAndExpand(candidato.getId()).toUri();

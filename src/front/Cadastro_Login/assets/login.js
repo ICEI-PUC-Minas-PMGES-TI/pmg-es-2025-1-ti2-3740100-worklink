@@ -1,4 +1,3 @@
-const URL = "http://localhost:8080"
 
 // Cadastra um usuário
 $(document).on('click', "#cadUser", function(){

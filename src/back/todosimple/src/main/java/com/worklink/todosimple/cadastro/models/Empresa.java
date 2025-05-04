@@ -19,7 +19,7 @@ public class Empresa extends Usuario {
     }
 
     public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+        this.cnpj = cnpj.replaceAll("\\D", "");
     }
 
     public String getDescricao() {

@@ -107,6 +107,10 @@
 <script src="assets/script/login.js"></script>
 <script src="assets/script/cadastroCandidato.js"></script>
 <script>
+    function limparMascaraCPF(cpf) {
+        return cpf.replace(/\D/g, '');
+    }
+
     $(document).ready(function() {
         // Validação do campo Nome
         $('#caduser_nome').on('input', function() {
@@ -147,6 +151,9 @@
                 $('#errorMessage').show();
             } else {
                 $('#errorMessage').hide();
+                // No envio:
+                const cpf = limparMascaraCPF($('#caduser_cpf').val());
+                console.log(cpf); // Aqui você pode usar o CPF sem máscara
                 // Aqui você precisa chamar a função que realiza o cadastro
             }
         });

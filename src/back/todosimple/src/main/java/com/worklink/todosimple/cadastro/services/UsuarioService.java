@@ -10,6 +10,7 @@ import com.worklink.todosimple.cadastro.models.Candidato;
 import com.worklink.todosimple.cadastro.models.Empresa;
 import com.worklink.todosimple.cadastro.repositories.CandidatoRepository;
 import com.worklink.todosimple.cadastro.repositories.EmpresaRepository;
+
 import java.util.List;
 
 @Service
@@ -25,6 +26,19 @@ public class UsuarioService {
     public Empresa findEmpresaById(Integer id) {
         Optional<Empresa> empresa = empresaRepository.findById(id);
         return empresa.orElseThrow(() -> new RuntimeException("Empresa não encontrada"));
+    }
+
+    public Empresa findEmpresaByEmail(String email) {
+        // Supondo que você tenha um repositório EmpresaRepository com o método apropriado
+        return empresaRepository.findByEmail(email);
+    }
+
+    public Empresa findEmpresaByCnpj(String cnpj) {
+        return empresaRepository.findByCnpj(cnpj);
+    }
+
+    public Empresa findEmpresaByTelefone(String telefone) {
+        return empresaRepository.findByTelefone(telefone);
     }
 
     public List<Empresa> findAllEmpresas() {
@@ -98,5 +112,17 @@ public class UsuarioService {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao deletar: pode haver vínculos com outras entidades");
         }
+    }
+
+    public boolean emailJaExiste(String email) {
+        // Verifica em Empresa
+        if (empresaRepository.findByEmail(email) != null) {
+            return true;
+        }
+        // Verifica em Candidato
+        if (candidatoRepository.findByEmail(email) != null) {
+            return true;
+        }
+        return false;
     }
 }
