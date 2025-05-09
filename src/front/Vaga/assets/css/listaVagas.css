@@ -1,7 +1,15 @@
+header{
+    background-color: #e48f4f;
+    color: #5c3d2e;
+}
+
+footer{
+    background-color: #e48f4f;
+    color: #5c3d2e;
+}
 
 h1 {
     text-align: center;
-    color: #333;
 }
 
 .container-cards {
@@ -9,6 +17,10 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+}
+
+#empresa-perfil-nome{
+    color: #5c3d2e;
 }
 
 .vaga-card {
@@ -44,4 +56,42 @@ button.editar {
 button.excluir {
     background-color: #dc3545;
     color: white;
+}
+
+.btn-primary{
+    background-color: #e48f4f;
+}
+
+.btn-primary:hover{
+    background-color: #d85d0b;
+}
+
+.btn-outline{
+    background-color: #8a9a5b;
+    color: white;
+    border-color: #f7f1e8;
+}
+
+.btn-outline:hover{
+    background-color: #626d41;
+}
+
+.botoes-header{
+    text-decoration: none;
+}
+
+#btn-editar-empresa{
+    background-color: #e48f4f;
+}
+
+#btn-editar-empresa:hover{
+    background-color: #944009;
+}
+
+.stat-value{
+    color: #5c3d2e
+}
+
+.btn-secondary{
+    background-color: #8a9a5b;
 }

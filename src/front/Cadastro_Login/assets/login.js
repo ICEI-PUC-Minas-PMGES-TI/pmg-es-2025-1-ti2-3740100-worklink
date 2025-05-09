@@ -64,3 +64,4 @@ function getDataLista(){
         $("#tableUsuario").append(tableContent)
     })
 }
+

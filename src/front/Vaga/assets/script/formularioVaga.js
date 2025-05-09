@@ -218,9 +218,9 @@ function validarESalvar() {
 
 function enviarPDF() {
     // Simula o envio do PDF
-    alert("PDF enviado com sucesso!");
+            alert("PDF enviado com sucesso!");
 
     // Redireciona para a página de resumo
-    window.location.href = "resumoVaga.html";
-}
+        window.location.href = "resumoVaga.html";
+    }
 

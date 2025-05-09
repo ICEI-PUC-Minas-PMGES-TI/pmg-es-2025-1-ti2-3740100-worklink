@@ -2,7 +2,12 @@ const API_URL = "http://localhost:8080/vagas";
 
 //GET
 function getVagas() {
-    fetch(API_URL)
+    const cnpj = localStorage.getItem("empresaCnpj");
+    if (!cnpj) {
+        alert("CNPJ da empresa não encontrado. Faça login novamente.");
+        return;
+    }
+    fetch(`http://localhost:8080/vagas/empresa/cnpj/${encodeURIComponent(cnpj)}`)
         .then(resp => resp.json())
         .then(vagas => {
             console.log("Vagas recebidas:", vagas);

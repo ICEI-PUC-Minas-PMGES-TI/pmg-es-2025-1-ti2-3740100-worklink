@@ -4,7 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 import java.util.*;
+import com.worklink.todosimple.cadastro.models.Empresa;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -19,15 +22,15 @@ public class Vaga {
     private String descricao;
     private String beneficios;
 
-    
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataFinal;
     private String tipoContrato; //CLT|ESTAGIO|APRENDIZ|PJ|OUTROS|
     private String modalidade; //PRESENCIAL|REMOTO|HIBRIDO|
     private String teste; //Arquivo em pdf
-    //!private String cnpjEmpresa; | Puxar o id da empresa para linkar a vaga á empresa referente
 
-
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
 
     private double salario;
 
@@ -120,6 +123,11 @@ public class Vaga {
         this.teste = teste;
     }
     
+    public Empresa getEmpresa() {
+        return empresa;
+    }
 
-
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
 }
