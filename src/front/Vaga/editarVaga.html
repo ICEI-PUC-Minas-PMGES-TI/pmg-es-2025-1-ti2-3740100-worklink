@@ -68,6 +68,13 @@
                 <button type="button" onclick="habilitarEdicao('salario')">✏️</button>
                 <button type="button" onclick="salvarCampo('salario')">Salvar</button>
             </div>
+ 
+            <label for="novoTeste">Novo PDF do Teste</label>
+            <div class="input-group">
+                <input type="file" id="novoTeste" accept="application/pdf">
+                <button type="button" onclick="salvarNovoPDF()">Salvar PDF</button>
+            </div>
+            <p id="pdf-atual"></p>
 
             <button type="button" onclick="salvarAlteracoes()">Salvar Alterações</button>
         </form>
@@ -95,6 +102,7 @@
                     document.getElementById('tipoContrato').value = dados.tipoContrato;
                     document.getElementById('modalidade').value = dados.modalidade;
                     document.getElementById('salario').value = `R$ ${parseFloat(dados.salario).toFixed(2).replace('.', ',')}`;
+                    document.getElementById('pdf-atual').textContent = dados.teste ? `PDF atual: ${dados.teste}` : "Nenhum PDF cadastrado";
                 })
                 .catch(err => console.error("Erro ao carregar os dados da vaga:", err));
         }
@@ -124,7 +132,8 @@
                 dataFinal: sessionStorage.getItem('dataFinal'),
                 tipoContrato: sessionStorage.getItem('tipoContrato'),
                 modalidade: sessionStorage.getItem('modalidade'),
-                salario: limparValor(sessionStorage.getItem('salario'))
+                salario: limparValor(sessionStorage.getItem('salario')),
+                teste: sessionStorage.getItem('teste') // <-- Adicione esta linha
             };
 
             fetch(`${API_URL}/${id}`, {
@@ -134,13 +143,25 @@
                 },
                 body: JSON.stringify(vagaAtualizada)
             })
-                .then(res => res.json())
-                .then(data => {
-                    alert("Alterações salvas com sucesso!");
-                    console.log("Dados atualizados:", data);
-                    window.location.href = "HomeEmpresa.html";
-                })
-                .catch(err => console.error("Erro ao salvar alterações:", err));
+            .then(res => res.json())
+            .then(data => {
+                alert("Alterações salvas com sucesso!");
+                console.log("Dados atualizados:", data);
+                window.location.href = "HomeEmpresa.html";
+            })
+            .catch(err => console.error("Erro ao salvar alterações:", err));
+        }
+
+        function salvarNovoPDF() {
+            const input = document.getElementById('novoTeste');
+            if (input.files.length > 0) {
+                const file = input.files[0];
+                sessionStorage.setItem('teste', file.name);
+                document.getElementById('pdf-atual').textContent = `PDF atual: ${file.name}`;
+                alert("Novo PDF selecionado!");
+            } else {
+                alert("Selecione um arquivo PDF.");
+            }
         }
 
         document.getElementById('dataFinal').addEventListener('input', function (e) {
