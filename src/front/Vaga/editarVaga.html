@@ -102,6 +102,7 @@
                     document.getElementById('tipoContrato').value = dados.tipoContrato;
                     document.getElementById('modalidade').value = dados.modalidade;
                     document.getElementById('salario').value = `R$ ${parseFloat(dados.salario).toFixed(2).replace('.', ',')}`;
+                    sessionStorage.setItem('teste', dados.teste || "");
                     document.getElementById('pdf-atual').textContent = dados.teste ? `PDF atual: ${dados.teste}` : "Nenhum PDF cadastrado";
                 })
                 .catch(err => console.error("Erro ao carregar os dados da vaga:", err));
@@ -126,14 +127,14 @@
         function salvarAlteracoes() {
             const id = sessionStorage.getItem('idVagaEdicao');
             const vagaAtualizada = {
-                titulo: sessionStorage.getItem('titulo'),
-                descricao: sessionStorage.getItem('descricao'),
-                beneficios: sessionStorage.getItem('beneficios'),
-                dataFinal: sessionStorage.getItem('dataFinal'),
-                tipoContrato: sessionStorage.getItem('tipoContrato'),
-                modalidade: sessionStorage.getItem('modalidade'),
-                salario: limparValor(sessionStorage.getItem('salario')),
-                teste: sessionStorage.getItem('teste') // <-- Adicione esta linha
+                titulo: document.getElementById('titulo').value,
+                descricao: document.getElementById('descricao').value,
+                beneficios: document.getElementById('beneficios').value,
+                dataFinal: document.getElementById('dataFinal').value,
+                tipoContrato: document.getElementById('tipoContrato').value,
+                modalidade: document.getElementById('modalidade').value,
+                salario: limparValor(document.getElementById('salario').value),
+                teste: sessionStorage.getItem('teste') // sempre pega o valor atual
             };
 
             fetch(`${API_URL}/${id}`, {
@@ -146,7 +147,6 @@
             .then(res => res.json())
             .then(data => {
                 alert("Alterações salvas com sucesso!");
-                console.log("Dados atualizados:", data);
                 window.location.href = "HomeEmpresa.html";
             })
             .catch(err => console.error("Erro ao salvar alterações:", err));

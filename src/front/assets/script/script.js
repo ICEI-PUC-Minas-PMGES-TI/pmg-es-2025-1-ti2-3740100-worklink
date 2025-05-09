@@ -116,6 +116,9 @@ function exibirVagas(vagas) {
     const lista = document.getElementById("lista-vagas");
     lista.innerHTML = ""; // Limpa a lista antes de adicionar novos cards
 
+    const vagasContainer = document.getElementById('vagas-container');
+    if (!vagasContainer) return; // Evita erro se o elemento não existir
+
     // Ordena as vagas pelo maior ID (mais recente primeiro)
     vagas.sort((a, b) => b.id - a.id);
 
@@ -156,13 +159,8 @@ function editarVaga(id) {
 }
 
 function limparValor(valor) {
-    return parseFloat(
-        valor
-        .replace('R$', '')  // tira o símbolo
-        .replace(/\./g, '') // tira os pontos de milhar
-        .replace(',', '.') // troca a vírgula decimal
-        .trim()
-    );
+    if (!valor) return 0;
+    return valor.replace(/[^\d,]/g, '').replace(',', '.');
 }
 
 // Função para contar vagas ativas

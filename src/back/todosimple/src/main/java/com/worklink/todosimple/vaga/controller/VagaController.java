@@ -101,6 +101,7 @@ public class VagaController {
                 vaga.setTipoContrato(vagaAtualizada.getTipoContrato());
                 vaga.setModalidade(vagaAtualizada.getModalidade());
                 vaga.setSalario(vagaAtualizada.getSalario());
+                vaga.setTeste(vagaAtualizada.getTeste());
                 vagaRepository.save(vaga);
                 return ResponseEntity.ok(vaga);
             })
