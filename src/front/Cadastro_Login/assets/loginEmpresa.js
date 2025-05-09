@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (empresa.senha === senha) {
                     alert("Login realizado com sucesso!");
                     localStorage.setItem("empresaCnpj", empresa.cnpj);
+                    localStorage.setItem("empresaNome", empresa.nome);
                     window.location.href = "../Vaga/homeEmpresa.html";
                 } else {
                     alert("Senha incorreta!");

@@ -10,7 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -45,7 +48,39 @@ public class VagaController {
 
     // POST criar vaga
     @PostMapping
-    public ResponseEntity<Vaga> createVaga(@RequestBody Vaga vaga) {
+    public ResponseEntity<Vaga> createVaga(@RequestBody Map<String, Object> vagaMap) {
+        String cnpj = (String) vagaMap.get("cnpj");
+        if (cnpj == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        Empresa empresa = empresaRepository.findByCnpj(cnpj);
+        if (empresa == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        Vaga vaga = new Vaga();
+        vaga.setTitulo((String) vagaMap.get("titulo"));
+        vaga.setDescricao((String) vagaMap.get("descricao"));
+        vaga.setBeneficios((String) vagaMap.get("beneficios"));
+
+        // Conversão da data
+        Date dataFinal = null;
+        try {
+            String dataFinalStr = (String) vagaMap.get("dataFinal");
+            if (dataFinalStr != null && !dataFinalStr.isEmpty()) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                dataFinal = sdf.parse(dataFinalStr);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        vaga.setDataFinal(dataFinal);
+
+        vaga.setTipoContrato((String) vagaMap.get("tipoContrato"));
+        vaga.setModalidade((String) vagaMap.get("modalidade"));
+        vaga.setSalario(vagaMap.get("salario") != null ? Double.parseDouble(vagaMap.get("salario").toString()) : null);
+        vaga.setEmpresa(empresa);
+
         Vaga savedVaga = vagaRepository.save(vaga);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedVaga);
     }

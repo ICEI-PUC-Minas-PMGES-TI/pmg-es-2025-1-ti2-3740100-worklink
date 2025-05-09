@@ -17,7 +17,8 @@ function getVagas() {
 }
 
 //POST
-function postVagas() {
+window.postVagas = function postVagas() {
+    console.log('Função postVagas chamada!');
     const dadosVaga = JSON.parse(sessionStorage.getItem('dadosVaga'));
 
     if (!dadosVaga) {
@@ -25,6 +26,15 @@ function postVagas() {
         window.location.href = "formularioVaga.html";
         return;
     }
+
+    // Adicione o CNPJ da empresa logada ao objeto
+    const cnpj = localStorage.getItem("empresaCnpj");
+    if (!cnpj) {
+        alert("CNPJ da empresa não encontrado. Faça login novamente.");
+        window.location.href = "../Cadastro_Login/Login.html";
+        return;
+    }
+    dadosVaga.cnpj = cnpj;
 
     fetch("http://localhost:8080/vagas", {
         method: "POST",
@@ -40,14 +50,14 @@ function postVagas() {
     .then(data => {
         alert("Vaga criada com sucesso!");
         console.log("Dados enviados ao backend:", data);
-        sessionStorage.removeItem('dadosVaga'); // Limpa os dados locais após o envio
-        window.location.href = "HomeEmpresa.html"; // Redireciona para a página inicial
+        sessionStorage.removeItem('dadosVaga');
+        window.location.href = "HomeEmpresa.html";
     })
     .catch(err => {
         console.error("Erro ao criar a vaga:", err);
         alert("Ocorreu um erro ao criar a vaga. Tente novamente.");
     });
-}
+};
 
 //PUT
 function putVagas(id){

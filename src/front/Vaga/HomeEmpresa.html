@@ -28,9 +28,10 @@
                     <div class="empresa-perfil-logo">
                         <img src="img/empresa-exemplo.png" alt="Logo da Empresa" id="empresa-perfil-logo">
                     </div>
-                    <div class="empresa-perfil-info">
-                        <h2 id="empresa-perfil-nome">Empresa Exemplo Ltda.</h2>
-                        <p class="empresa-perfil-ano">Fundada em: <span id="empresa-perfil-ano-criacao">2010</span></p>
+                    <div class="empresa-perfil-info" style="position: relative;">
+                        <h2 id="empresa-perfil-nome" style="display: inline-block; cursor: pointer;"></h2>
+                        <button id="btn-logout" style="display: none; position: absolute; right: 0; top: 0; background-color: #d9534f; color: white; border: none;" class="btn btn-outline">Logout</button>
+                        <p class="empresa-perfil-ano">Fundada em: <span id="empresa-perfil-ano-criacao"></span></p>
                         <button id="btn-editar-empresa" class="btn btn-outline">Editar Perfil</button>
                         <button id="btn-historia-empresa" class="btn btn-outline">Ver História da Empresa</button>
                     </div>
@@ -166,4 +167,4 @@
     <script src="../assets/script/script.js"></script>
     <script src="assets/script/HomeEmpresa.js"></script>
 </body>
-</html> 
+</html>

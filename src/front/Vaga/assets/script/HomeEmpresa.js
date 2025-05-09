@@ -28,7 +28,28 @@ let empresaInfo = null;
 // Carregar dados ao iniciar a página
 document.addEventListener('DOMContentLoaded', () => {
     carregarEmpresaInfo();
+    carregarVagasDaEmpresa();
     configurarEventListenersHistoria();
+
+    const nomeEmpresa = document.getElementById('empresa-perfil-nome');
+    const btnLogout = document.getElementById('btn-logout');
+    const perfilInfo = document.querySelector('.empresa-perfil-info');
+
+    if (nomeEmpresa && btnLogout && perfilInfo) {
+        perfilInfo.addEventListener('mouseenter', () => {
+            btnLogout.style.display = 'inline-block';
+        });
+        perfilInfo.addEventListener('mouseleave', () => {
+            btnLogout.style.display = 'none';
+        });
+
+        btnLogout.addEventListener('click', () => {
+            localStorage.removeItem('empresaCnpj');
+            localStorage.removeItem('empresaNome');
+            // Adicione outros itens se necessário
+            window.location.href = "../Cadastro_Login/Login.html";
+        });
+    }
 });
 
 // Função para configurar os event listeners do modal de história
@@ -74,16 +95,19 @@ async function carregarEmpresaInfo() {
 
 // Função para atualizar a interface com as informações da empresa
 function atualizarInterfaceEmpresa() {
+    const nomeEmpresa = localStorage.getItem("empresaNome");
+    if (nomeEmpresa) {
+        empresaPerfilNome.textContent = nomeEmpresa;
+        empresaHistoriaNome.textContent = nomeEmpresa;
+    }
     if (empresaInfo) {
         empresaPerfilLogo.src = empresaInfo.logo;
-        empresaPerfilNome.textContent = empresaInfo.nome;
         empresaPerfilAnoCriacao.textContent = empresaInfo.anoCriacao;
         empresaPerfilDescricao.textContent = empresaInfo.descricao;
         empresaPerfilFuncionarios.textContent = empresaInfo.funcionarios;
         empresaPerfilLocais.textContent = empresaInfo.locais;
         
         // Atualizar o modal de história
-        empresaHistoriaNome.textContent = empresaInfo.nome;
         empresaHistoriaAnoCriacao.textContent = empresaInfo.anoCriacao;
         empresaHistoriaDescricao.textContent = empresaInfo.descricao;
         empresaHistoriaTexto.innerHTML = empresaInfo.historia.replace(/\n\n/g, '</p><p>');
@@ -99,6 +123,30 @@ function contarVagasNoDOM() {
     if (contador) {
         contador.textContent = `Total de Vagas: ${quantidade}`;
     }
+}
+
+// Função para buscar vagas da empresa logada
+async function carregarVagasDaEmpresa() {
+    const cnpj = localStorage.getItem("empresaCnpj");
+    if (!cnpj) {
+        alert("CNPJ da empresa não encontrado. Faça login novamente.");
+        return;
+    }
+    try {
+        const resp = await fetch(`http://localhost:8080/vagas/empresa/cnpj/${encodeURIComponent(cnpj)}`);
+        const vagas = await resp.json();
+        exibirVagas(vagas); // sua função para renderizar as vagas
+        atualizarContadorVagas(vagas.length);
+    } catch (err) {
+        alert("Erro ao buscar vagas da empresa!");
+        console.error(err);
+    }
+}
+
+// Atualiza o contador de vagas
+function atualizarContadorVagas(qtd) {
+    const contador = document.getElementById("empresa-perfil-vagas-count");
+    if (contador) contador.textContent = qtd;
 }
 
 //APRESENTAÇÃO DE VAGAS
