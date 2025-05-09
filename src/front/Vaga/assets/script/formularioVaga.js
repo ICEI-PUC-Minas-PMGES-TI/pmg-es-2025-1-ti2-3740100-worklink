@@ -231,9 +231,16 @@ function validarESalvar() {
 }
 
 function enviarPDF() {
-    // Simula o envio do PDF
+    const arquivoInput = document.getElementById('inputGroupFile02');
+    if (arquivoInput && arquivoInput.files.length > 0) {
+        const file = arquivoInput.files[0];
+        // Salva o nome do arquivo no sessionStorage
+        sessionStorage.setItem('teste', file.name);
+    } else {
+        // Se não enviar arquivo, remove o campo teste
+        sessionStorage.removeItem('teste');
+    }
     alert("PDF enviado com sucesso!");
-    // Redireciona para a página de resumo
     window.location.href = "resumoVaga.html";
 }
 

@@ -36,6 +36,12 @@ window.postVagas = function postVagas() {
     }
     dadosVaga.cnpj = cnpj;
 
+    // Adicione o nome do arquivo PDF do teste, se existir
+    const teste = sessionStorage.getItem('teste');
+    if (teste) {
+        dadosVaga.teste = teste;
+    }
+
     fetch("http://localhost:8080/vagas", {
         method: "POST",
         headers: {
@@ -51,6 +57,7 @@ window.postVagas = function postVagas() {
         alert("Vaga criada com sucesso!");
         console.log("Dados enviados ao backend:", data);
         sessionStorage.removeItem('dadosVaga');
+        sessionStorage.removeItem('teste'); // Limpa o nome do arquivo após uso
         window.location.href = "HomeEmpresa.html";
     })
     .catch(err => {

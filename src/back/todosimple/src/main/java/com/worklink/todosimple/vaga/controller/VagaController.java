@@ -79,6 +79,10 @@ public class VagaController {
         vaga.setTipoContrato((String) vagaMap.get("tipoContrato"));
         vaga.setModalidade((String) vagaMap.get("modalidade"));
         vaga.setSalario(vagaMap.get("salario") != null ? Double.parseDouble(vagaMap.get("salario").toString()) : null);
+
+        // Salva o nome/endereço do PDF do teste
+        vaga.setTeste((String) vagaMap.get("teste"));
+
         vaga.setEmpresa(empresa);
 
         Vaga savedVaga = vagaRepository.save(vaga);
