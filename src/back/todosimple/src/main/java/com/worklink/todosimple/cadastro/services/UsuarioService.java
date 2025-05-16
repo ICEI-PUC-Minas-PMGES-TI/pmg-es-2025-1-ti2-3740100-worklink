@@ -85,7 +85,7 @@ public class UsuarioService {
 
     @Transactional
     public Candidato createCandidato(Candidato candidato) {
-        candidato.setId(null);
+        System.out.println("Candidato antes de salvar: " + candidato); // Log para verificar o objeto antes de salvar
         return candidatoRepository.saveAndFlush(candidato);
     }
 

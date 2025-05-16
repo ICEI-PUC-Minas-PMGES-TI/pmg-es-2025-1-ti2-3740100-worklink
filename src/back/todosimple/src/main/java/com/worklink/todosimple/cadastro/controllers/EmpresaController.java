@@ -2,6 +2,7 @@ package com.worklink.todosimple.cadastro.controllers;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.worklink.todosimple.cadastro.models.Empresa;
-import com.worklink.todosimple.cadastro.models.Candidato;
 import com.worklink.todosimple.cadastro.services.UsuarioService;
 import com.worklink.todosimple.cadastro.repositories.EmpresaRepository; // ajuste o caminho se necessário
 
@@ -25,9 +25,26 @@ public class EmpresaController {
     private EmpresaRepository empresaRepository;
 
     @PostMapping
-    public ResponseEntity<Empresa> create(@RequestBody Empresa empresa) {
-        if (empresaJaExiste(empresa)) {
-            return ResponseEntity.status(409).build();
+    public ResponseEntity<Object> create(@RequestBody Empresa empresa) {
+        if (empresaRepository.findByEmail(empresa.getEmail()) != null) {
+            return ResponseEntity.status(409).body(
+                Map.of("campo", "email", "mensagem", "E-mail já cadastrado")
+            );
+        }
+        if (empresaRepository.findByCnpj(empresa.getCnpj()) != null) {
+            return ResponseEntity.status(409).body(
+                Map.of("campo", "cnpj", "mensagem", "CNPJ já cadastrado")
+            );
+        }
+        if (empresaRepository.findByNome(empresa.getNome()) != null) {
+            return ResponseEntity.status(409).body(
+                Map.of("campo", "nome", "mensagem", "Nome já cadastrado")
+            );
+        }
+        if (empresaRepository.findByTelefone(empresa.getTelefone()) != null) {
+            return ResponseEntity.status(409).body(
+                Map.of("campo", "telefone", "mensagem", "Telefone já cadastrado")
+            );
         }
         empresa = usuarioService.createEmpresa(empresa);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

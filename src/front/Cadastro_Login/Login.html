@@ -215,41 +215,40 @@
             const email = document.getElementById('email').value;
             const senha = document.getElementById('senha').value;
 
-            // Define a URL da API baseada no tipo de login
-            const apiUrl = loginType === 'candidato' 
-                ? 'http://localhost:3000/api/candidatos/login'
-                : 'http://localhost:3000/api/empresas/login';
-
-            // Envia os dados para autenticação
-            fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, senha })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Credenciais inválidas');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Salva o token e o tipo de usuário no localStorage
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('userType', loginType);
-                
-                // Redireciona para a página apropriada
-                if (loginType === 'candidato') {
-                    window.location.href = '../Candidato/HomeEmpresa.html';
-                } else {
-                    window.location.href = '../Empresa/HomeEmpresa.html';
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Email ou senha inválidos. Por favor, tente novamente.');
-            });
+            if (loginType === 'empresa') {
+                // Busca todas as empresas e filtra no front
+                fetch('http://localhost:8080/empresas')
+                    .then(response => response.json())
+                    .then(empresas => {
+                        const empresa = empresas.find(emp => emp.email === email && emp.senha === senha);
+                        if (empresa) {
+                            // Simula login
+                            localStorage.setItem('empresaId', empresa.id);
+                            localStorage.setItem('empresaCnpj', empresa.cnpj); // ESSENCIAL para HomeEmpresa.js
+                            localStorage.setItem('userType', 'empresa');
+                            window.location.href = '../Vaga/HomeEmpresa.html';
+                        } else {
+                            alert('Credenciais inválidas');
+                        }
+                    })
+                    .catch(() => alert('Erro ao acessar o servidor.'));
+            } else {
+                // Busca todos os candidatos e filtra no front
+                fetch('http://localhost:8080/candidatos')
+                    .then(response => response.json())
+                    .then(candidatos => {
+                        const candidato = candidatos.find(cand => cand.email === email && cand.senha === senha);
+                        if (candidato) {
+                            // Simula login
+                            localStorage.setItem('candidatoId', candidato.id);
+                            localStorage.setItem('userType', 'candidato');
+                            window.location.href = '../Candidato/homeCandidato.html';
+                        } else {
+                            alert('Credenciais inválidas');
+                        }
+                    })
+                    .catch(() => alert('Erro ao acessar o servidor.'));
+            }
         });
     </script>
 </body>

@@ -1,11 +1,25 @@
-header{
-    background-color: #e48f4f;
-    color: #5c3d2e;
+:root {
+    --primary-color: #e48f4f;
+    --secondary-color: #5c3d2e;
+    --background-color: #dce8db;
+    --text-color: #3c3c3c;
+    --accent-color: #8a9a5b;
+    --highlight-color: #d4772a;
 }
 
-footer{
-    background-color: #e48f4f;
-    color: #5c3d2e;
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 h1 {
@@ -19,21 +33,29 @@ h1 {
     gap: 20px;
 }
 
-#empresa-perfil-nome{
-    color: #5c3d2e;
+#empresa-perfil-nome {
+    color: var(--secondary-color);
 }
 
 .vaga-card {
-    background: white;
+    background: #fff; /* fundo branco */
     padding: 20px;
     border-radius: 10px;
     width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(90, 61, 46, 0.08);
+    border: 2px solid var(--primary-color);
+    color: var(--text-color);
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.vaga-card:hover {
+    box-shadow: 0 8px 16px rgba(212, 119, 42, 0.15);
+    border-color: var(--highlight-color);
 }
 
 .vaga-card h2 {
     margin-top: 0;
-    color: #007bff;
+    color: var(--secondary-color);
 }
 
 .vaga-card p {
@@ -48,50 +70,58 @@ h1 {
     cursor: pointer;
 }
 
-button.editar {
-    background-color: #ffc107;
-    color: white;
+.vaga-card button.editar {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+    border: none;
+    transition: background 0.2s;
+}
+
+.vaga-card button.editar:hover {
+    background-color: #6d7a41 !important; /* tom mais escuro do accent-color */
 }
 
 button.excluir {
-    background-color: #dc3545;
+    background-color: var(--highlight-color);
     color: white;
 }
 
-.btn-primary{
-    background-color: #e48f4f;
-}
-
-.btn-primary:hover{
-    background-color: #d85d0b;
-}
-
-.btn-outline{
-    background-color: #8a9a5b;
+.btn-primary {
+    background-color: var(--primary-color);
     color: white;
-    border-color: #f7f1e8;
 }
 
-.btn-outline:hover{
+.btn-primary:hover {
+    background-color: var(--highlight-color);
+}
+
+.btn-outline {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--background-color);
+}
+
+.btn-outline:hover {
     background-color: #626d41;
 }
 
-.botoes-header{
+.botoes-header {
     text-decoration: none;
 }
 
-#btn-editar-empresa{
-    background-color: #e48f4f;
+#btn-editar-empresa {
+    background-color: var(--primary-color);
 }
 
-#btn-editar-empresa:hover{
+#btn-editar-empresa:hover {
     background-color: #944009;
 }
 
-.stat-value{
-    color: #5c3d2e
+.stat-value {
+    color: var(--secondary-color);
 }
 
-.btn-secondary{
-    background-color: #8a9a5b;
+.btn-secondary {
+    background-color: var(--accent-color);
+    color: white;
 }

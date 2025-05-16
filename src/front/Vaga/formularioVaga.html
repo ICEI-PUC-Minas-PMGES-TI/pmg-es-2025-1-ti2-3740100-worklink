@@ -118,6 +118,10 @@
         .form-control::placeholder {
             color: #999;
         }
+
+        .text-center {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -158,12 +162,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="salario">Faixa Salarial</label>
-                                    <input type="text" class="form-control" id="salario" required>
+                                    <label for="modalidade">Modalidade</label>
+                                    <select class="form-control" id="modalidade" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="Remoto">Remoto</option>
+                                        <option value="Hibrido">Híbrido</option>
+                                        <option value="Presencial">Presencial</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="local">Local de Trabalho</label>
-                                    <input type="text" class="form-control" id="local" required>
+                                    <label for="salario">Faixa Salarial</label>
+                                    <input type="text" class="form-control" id="salario" required>
                                 </div>
                             </div>
                         </div>
@@ -173,10 +182,6 @@
                             <div class="mb-3">
                                 <label for="descricao">Descrição da Vaga</label>
                                 <textarea class="form-control" id="descricao" rows="4" required></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="requisitos">Requisitos</label>
-                                <textarea class="form-control" id="requisitos" rows="3" required></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="beneficios">Benefícios</label>
@@ -191,15 +196,11 @@
                                     <label for="prazo">Prazo de Inscrição</label>
                                     <input type="date" class="form-control" id="prazo" required>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="vagas">Número de Vagas</label>
-                                    <input type="number" class="form-control" id="vagas" min="1" required>
-                                </div>
                             </div>
                         </div>
 
                         <div class="text-center mt-4">
-                            <button type="submit" class="btn btn-primary btn-lg">Publicar Vaga</button>
+                            <button type="button" onclick="validarESalvar()" class="btn btn-primary btn-lg">Publicar Vaga</button>
                         </div>
                     </form>
                 </div>
@@ -207,5 +208,7 @@
             <div class="col-md-2"></div>
         </div>
     </div>
+    <script src="assets/script/formularioVaga.js"></script>
+    <script src="../assets/script/script.js"></script>
 </body>
 </html>

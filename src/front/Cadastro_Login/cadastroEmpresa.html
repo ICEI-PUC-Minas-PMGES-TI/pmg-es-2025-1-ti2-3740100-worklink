@@ -55,6 +55,11 @@
             box-shadow: 0 0 0 0.2rem rgba(228, 143, 79, 0.25);
         }
 
+        .form-control.is-invalid {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
+        }
+
         .btn-primary {
             background-color: var(--primary-color) !important;
             border-color: var(--primary-color) !important;
@@ -144,8 +149,8 @@
                             <h3>Dados da Empresa</h3>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="razaoSocial">Razão Social</label>
-                                    <input type="text" class="form-control" id="razaoSocial" required>
+                                    <label for="nome">Nome da Empresa</label>
+                                    <input type="text" class="form-control" id="nome" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="cnpj">CNPJ</label>
@@ -160,6 +165,12 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="telefone">Telefone</label>
                                     <input type="tel" class="form-control" id="telefone" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="descricao">Descrição</label>
+                                    <textarea class="form-control" id="descricao" rows="3"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -314,7 +325,7 @@
             
             // Coleta todos os dados do formulário
             const dadosEmpresa = {
-                razaoSocial: $('#razaoSocial').val(),
+                nome: $('#nome').val(),
                 cnpj: $('#cnpj').val().replace(/\D/g, ''),
                 email: $('#email').val(),
                 telefone: $('#telefone').val().replace(/\D/g, ''),
@@ -324,11 +335,12 @@
                 numero: $('#numero').val(),
                 nomeResponsavel: $('#nomeResponsavel').val(),
                 cargo: $('#cargo').val(),
-                senha: $('#senha').val()
+                senha: $('#senha').val(),
+                descricao: $('#descricao').val() || "" // <-- envia string vazia se não preencher
             };
 
             // Envia os dados para o backend
-            fetch('http://localhost:3000/api/empresas', {
+            fetch('http://localhost:8080/empresas', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -336,6 +348,26 @@
                 body: JSON.stringify(dadosEmpresa)
             })
             .then(response => {
+                if (response.status === 409) {
+                    return response.json().then(data => {
+                        // Remove bordas vermelhas anteriores
+                        $('#email, #cnpj, #nome, #telefone').removeClass('is-invalid');
+
+                        // Adiciona borda vermelha no campo correspondente
+                        if (data.campo === "email") {
+                            $('#email').addClass('is-invalid');
+                        } else if (data.campo === "cnpj") {
+                            $('#cnpj').addClass('is-invalid');
+                        } else if (data.campo === "nome") {
+                            $('#nome').addClass('is-invalid');
+                        } else if (data.campo === "telefone") {
+                            $('#telefone').addClass('is-invalid');
+                        }
+
+                        alert(data.mensagem || "Dados já utilizados. Por favor, utilize outros dados.");
+                        throw new Error('Dados já utilizados');
+                    });
+                }
                 if (!response.ok) {
                     throw new Error('Erro ao cadastrar empresa');
                 }
@@ -347,7 +379,9 @@
             })
             .catch(error => {
                 console.error('Erro:', error);
-                alert('Erro ao realizar cadastro. Por favor, tente novamente.');
+                if (error.message !== 'Dados já utilizados') {
+                    alert('Erro ao realizar cadastro. Por favor, tente novamente.');
+                }
             });
         });
     </script>

@@ -31,6 +31,21 @@ public abstract class Usuario {
     @Column(name = "enderecousuario", length = 255, nullable = false)
     private String endereco;
 
+    @NotNull
+    @Column(name = "cepusuario", length = 8, nullable = true)
+    private String cep;
+
+    @NotNull
+    @Column(name = "cidadeusuario", length = 100, nullable = false)
+    private String cidade;
+
+    @NotNull
+    @Column(name = "numerousuario", length = 10, nullable = false)
+    private String numero;
+
+    @Column(name = "foto_perfil", length = 255)
+    private String fotoPerfil; // Caminho ou URL da imagem de perfil
+
     public Integer getId() {
         return id;
     }
@@ -77,5 +92,37 @@ public abstract class Usuario {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 }

@@ -165,6 +165,25 @@
                                     <input type="tel" class="form-control" id="telefone" required>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="dataNasc">Data de Nascimento</label>
+                                    <input type="date" class="form-control" id="dataNasc" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="sexo">Sexo</label>
+                                    <select class="form-control" id="sexo" required>
+                                        <option value="">Selecione</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Feminino">Feminino</option>
+                                        <option value="Outro">Outro</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="areaAtuacao">Área de Atuação</label>
+                                <input type="text" class="form-control" id="areaAtuacao" required>
+                            </div>
                         </div>
 
                         <div class="form-section">
@@ -241,175 +260,6 @@
 </body>
 </html>
 
-<script src="assets/script/login.js"></script>
-<script src="assets/script/cadastroCandidato.js"></script>
-<script>
-    function limparMascaraCPF(cpf) {
-        return cpf.replace(/\D/g, '');
-    }
+<script src="assets/login.js"></script>
+<script src="assets/cadastroCandidato.js"></script>
 
-    $(document).ready(function() {
-        // Validação do campo Nome
-        $('#nome').on('input', function() {
-            this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');
-        });
-
-        // Formatação do CPF (XXX.XXX.XXX-XX)
-        $('#cpf').on('input', function() {
-            let cpf = this.value.replace(/\D/g, '');
-            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
-            cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
-            cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-            this.value = cpf.slice(0, 14);
-        });
-
-        // Validação do campo Email
-        $('#email').on('input', function() {
-            if (!this.validity.valid) {
-                this.setCustomValidity('Por favor, insira um email válido.');
-            } else {
-                this.setCustomValidity('');
-            }
-        });
-
-        // Validação dos campos obrigatórios
-        $('#cadUser').on('click', function() {
-            let isValid = true;
-            $('input[required]').each(function() {
-                if ($(this).val().trim() === '') {
-                    isValid = false;
-                    $(this).addClass('is-invalid');
-                } else {
-                    $(this).removeClass('is-invalid');
-                }
-            });
-
-            if (!isValid) {
-                $('#errorMessage').show();
-            } else {
-                $('#errorMessage').hide();
-                // No envio:
-                const cpf = limparMascaraCPF($('#cpf').val());
-                console.log(cpf); // Aqui você pode usar o CPF sem máscara
-                // Aqui você precisa chamar a função que realiza o cadastro
-            }
-        });
-
-        // Remove a classe is-invalid quando o usuário começa a digitar
-        $('input[required]').on('input', function() {
-            $(this).removeClass('is-invalid');
-            if ($('input[required].is-invalid').length === 0) {
-                $('#errorMessage').hide();
-            }
-        });
-
-        // Formatação do telefone ((XX) XXXXX-XXXX)
-        $('#telefone').on('input', function() {
-            let telefone = this.value.replace(/\D/g, '');
-            telefone = telefone.replace(/^(\d{2})(\d)/g, '($1) $2');
-            telefone = telefone.replace(/(\d)(\d{4})$/, '$1-$2');
-            this.value = telefone.slice(0, 15);
-        });
-
-        // Formatação do CEP (XXXXX-XXX) e busca automática do endereço
-        $('#cep').on('blur', function() {
-            let cep = this.value.replace(/\D/g, '');
-            
-            // Verifica se o CEP tem 8 dígitos
-            if (cep.length === 8) {
-                // Mostra um indicador de carregamento
-                $('#cidade').val('Buscando...');
-                $('#endereco').val('Buscando...');
-
-                // Faz a requisição para a API do ViaCEP
-                fetch(`https://viacep.com.br/ws/${cep}/json/`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (!data.erro) {
-                            // Preenche os campos com os dados retornados
-                            $('#cidade').val(data.localidade);
-                            $('#endereco').val(data.logradouro);
-                        } else {
-                            // Se houver erro, limpa os campos
-                            $('#cidade').val('');
-                            $('#endereco').val('');
-                            alert('CEP não encontrado');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erro ao buscar CEP:', error);
-                        $('#cidade').val('');
-                        $('#endereco').val('');
-                        alert('Erro ao buscar CEP');
-                    });
-            }
-        });
-
-        // Formatação do CEP enquanto digita
-        $('#cep').on('input', function() {
-            let cep = this.value.replace(/\D/g, '');
-            cep = cep.replace(/^(\d{5})(\d)/, '$1-$2');
-            this.value = cep.slice(0, 9);
-        });
-
-        // Função para mostrar/ocultar senha
-        function togglePassword(inputId) {
-            const input = document.getElementById(inputId);
-            const icon = input.nextElementSibling;
-            
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            } else {
-                input.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            }
-        }
-
-        // Envio do formulário
-        $('#formCadastroCandidato').on('submit', function(e) {
-            e.preventDefault();
-            
-            // Coleta todos os dados do formulário
-            const dadosCandidato = {
-                nome: $('#nome').val(),
-                cpf: $('#cpf').val().replace(/\D/g, ''),
-                email: $('#email').val(),
-                telefone: $('#telefone').val().replace(/\D/g, ''),
-                cep: $('#cep').val().replace(/\D/g, ''),
-                cidade: $('#cidade').val(),
-                endereco: $('#endereco').val(),
-                numero: $('#numero').val(),
-                formacao: $('#formacao').val(),
-                experiencia: $('#experiencia').val(),
-                habilidades: $('#habilidades').val(),
-                senha: $('#senha').val()
-            };
-
-            // Envia os dados para o backend
-            fetch('http://localhost:3000/api/candidatos', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(dadosCandidato)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro ao cadastrar candidato');
-                }
-                return response.json();
-            })
-            .then(data => {
-                alert('Cadastro realizado com sucesso!');
-                window.location.href = 'login.html';
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Erro ao realizar cadastro. Por favor, tente novamente.');
-            });
-        });
-    });
-</script>

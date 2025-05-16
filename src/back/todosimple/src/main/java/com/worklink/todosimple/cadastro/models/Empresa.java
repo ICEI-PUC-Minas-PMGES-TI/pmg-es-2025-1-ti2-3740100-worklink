@@ -14,6 +14,20 @@ public class Empresa extends Usuario {
     @Column(name = "descricao", length = 500)
     private String descricao;
 
+    // Se quiser salvar nome/cargo do responsável:
+    @Column(name = "nome_responsavel", length = 100)
+    private String nomeResponsavel;
+
+    @Column(name = "cargo_responsavel", length = 50)
+    private String cargo;
+
+    // getters e setters para os novos campos
+    public String getNomeResponsavel() { return nomeResponsavel; }
+    public void setNomeResponsavel(String nomeResponsavel) { this.nomeResponsavel = nomeResponsavel; }
+
+    public String getCargo() { return cargo; }
+    public void setCargo(String cargo) { this.cargo = cargo; }
+
     public String getCnpj() {
         return cnpj;
     }

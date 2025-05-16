@@ -26,8 +26,16 @@ public class Candidato extends Usuario {
     private String sexo;
 
     @NotNull
-    @Column(name = "cep", length = 8, nullable = false)
-    private String cep;
+    @Column(name = "formacao", length = 100, nullable = false)
+    private String formacao;
+
+    @NotNull
+    @Column(name = "experiencia", nullable = false)
+    private Integer experiencia;
+
+    @NotNull
+    @Column(name = "habilidades", length = 500, nullable = false)
+    private String habilidades;
 
     public String getCpf() {
         return cpf;
@@ -61,11 +69,27 @@ public class Candidato extends Usuario {
         this.sexo = sexo;
     }
 
-    public String getCep() {
-        return cep;
+    public String getFormacao() {
+        return formacao;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
+    public void setFormacao(String formacao) {
+        this.formacao = formacao;
+    }
+
+    public Integer getExperiencia() {
+        return experiencia;
+    }
+
+    public void setExperiencia(Integer experiencia) {
+        this.experiencia = experiencia;
+    }
+
+    public String getHabilidades() {
+        return habilidades;
+    }
+
+    public void setHabilidades(String habilidades) {
+        this.habilidades = habilidades;
     }
 }

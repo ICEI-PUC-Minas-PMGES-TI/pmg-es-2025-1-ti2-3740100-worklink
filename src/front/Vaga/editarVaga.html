@@ -154,12 +154,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="salario">Faixa Salarial</label>
-                                    <input type="text" class="form-control" id="salario" required>
+                                    <label for="modalidade">Modalidade</label>
+                                    <select class="form-control" id="modalidade" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="Remoto">Remoto</option>
+                                        <option value="Hibrido">Híbrido</option>
+                                        <option value="Presencial">Presencial</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="local">Local de Trabalho</label>
-                                    <input type="text" class="form-control" id="local" required>
+                                    <label for="salario">Faixa Salarial</label>
+                                    <input type="text" class="form-control" id="salario" required>
                                 </div>
                             </div>
                         </div>
@@ -169,10 +174,6 @@
                             <div class="mb-3">
                                 <label for="descricao">Descrição da Vaga</label>
                                 <textarea class="form-control" id="descricao" rows="4" required></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="requisitos">Requisitos</label>
-                                <textarea class="form-control" id="requisitos" rows="3" required></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="beneficios">Benefícios</label>
@@ -187,12 +188,9 @@
                                     <label for="prazo">Prazo de Inscrição</label>
                                     <input type="date" class="form-control" id="prazo" required>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="vagas">Número de Vagas</label>
-                                    <input type="number" class="form-control" id="vagas" min="1" required>
-                                </div>
                             </div>
                         </div>
+
 
                         <div class="text-center mt-4">
                             <a href="HomeEmpresa.html" class="btn btn-secondary me-2">Cancelar</a>
@@ -204,5 +202,73 @@
             <div class="col-md-2"></div>
         </div>
     </div>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const id = sessionStorage.getItem('idVagaEdicao');
+    if (!id) {
+        alert("Nenhuma vaga selecionada para edição.");
+        window.location.href = "HomeEmpresa.html";
+        return;
+    }
+
+    // Buscar dados da vaga pelo ID
+    fetch(`http://localhost:8080/vagas/${id}`)
+        .then(resp => {
+            if (!resp.ok) throw new Error("Vaga não encontrada");
+            return resp.json();
+        })
+        .then(vaga => {
+            console.log("Data recebida do backend:", vaga.dataFinal);
+            document.getElementById('titulo').value = vaga.titulo || '';
+            document.getElementById('tipo').value = vaga.tipoContrato || '';
+            document.getElementById('modalidade').value = vaga.modalidade || '';
+            document.getElementById('salario').value = vaga.salario || '';
+            document.getElementById('descricao').value = vaga.descricao || '';
+            document.getElementById('beneficios').value = vaga.beneficios || '';
+            if(document.getElementById('prazo')) document.getElementById('prazo').value = vaga.dataFinal ? vaga.dataFinal.substring(0,10) : '';
+        })
+        .catch(err => {
+            alert("Erro ao carregar vaga para edição.");
+            window.location.href = "HomeEmpresa.html";
+        });
+
+    // Ao submeter, faz PUT
+    document.getElementById('formEditarVaga').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const vagaAtualizada = {
+            titulo: document.getElementById('titulo').value,
+            tipoContrato: document.getElementById('tipo').value,
+            modalidade: document.getElementById('modalidade').value,
+            salario: document.getElementById('salario').value,
+            descricao: document.getElementById('descricao').value,
+            beneficios: document.getElementById('beneficios').value,
+            dataFinal: document.getElementById('prazo') ? document.getElementById('prazo').value : '',
+            cnpj: localStorage.getItem('empresaCnpj')
+        };
+
+        fetch(`http://localhost:8080/vagas/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(vagaAtualizada)
+        })
+        .then(resp => {
+            if (!resp.ok) throw new Error("Erro ao atualizar vaga");
+            return resp.json();
+        })
+        .then(() => {
+            alert("Vaga atualizada com sucesso!");
+            sessionStorage.removeItem('idVagaEdicao');
+            window.location.href = "HomeEmpresa.html";
+        })
+        .catch(err => {
+            alert("Erro ao atualizar vaga.");
+            console.error(err);
+        });
+    });
+});
+</script>
 </body>
 </html>

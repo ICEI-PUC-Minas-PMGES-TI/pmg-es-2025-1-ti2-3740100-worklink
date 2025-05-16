@@ -21,6 +21,9 @@ public class CandidatoController {
 
     @PostMapping
     public ResponseEntity<Candidato> create(@RequestBody Candidato candidato) {
+        System.out.println("Candidato recebido: " + candidato); // Log para verificar o objeto recebido
+        System.out.println("CEP recebido: " + candidato.getCep()); // Log específico para o CEP
+
         if (usuarioService.emailJaExiste(candidato.getEmail())) {
             return ResponseEntity.status(409).build(); // 409 Conflict
         }

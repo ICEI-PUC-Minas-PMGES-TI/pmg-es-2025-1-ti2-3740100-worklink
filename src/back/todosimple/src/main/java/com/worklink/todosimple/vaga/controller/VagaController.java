@@ -62,13 +62,14 @@ public class VagaController {
         vaga.setTitulo((String) vagaMap.get("titulo"));
         vaga.setDescricao((String) vagaMap.get("descricao"));
         vaga.setBeneficios((String) vagaMap.get("beneficios"));
+        vaga.setSalario(vagaMap.get("salario") != null ? Double.parseDouble(vagaMap.get("salario").toString()) : 0);
 
         // Conversão da data
         Date dataFinal = null;
         try {
             String dataFinalStr = (String) vagaMap.get("dataFinal");
             if (dataFinalStr != null && !dataFinalStr.isEmpty()) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 dataFinal = sdf.parse(dataFinalStr);
             }
         } catch (Exception e) {
@@ -78,11 +79,6 @@ public class VagaController {
 
         vaga.setTipoContrato((String) vagaMap.get("tipoContrato"));
         vaga.setModalidade((String) vagaMap.get("modalidade"));
-        vaga.setSalario(vagaMap.get("salario") != null ? Double.parseDouble(vagaMap.get("salario").toString()) : null);
-
-        // Salva o nome/endereço do PDF do teste
-        vaga.setTeste((String) vagaMap.get("teste"));
-
         vaga.setEmpresa(empresa);
 
         Vaga savedVaga = vagaRepository.save(vaga);
@@ -91,17 +87,37 @@ public class VagaController {
 
     // PUT atualizar vaga
     @PutMapping("/{id}")
-    public ResponseEntity<Vaga> updateVaga(@PathVariable Long id, @RequestBody Vaga vagaAtualizada) {
+    public ResponseEntity<Vaga> updateVaga(@PathVariable Long id, @RequestBody Map<String, Object> vagaMap) {
         return vagaRepository.findById(id)
             .map(vaga -> {
-                vaga.setTitulo(vagaAtualizada.getTitulo());
-                vaga.setDescricao(vagaAtualizada.getDescricao());
-                vaga.setBeneficios(vagaAtualizada.getBeneficios());
-                vaga.setDataFinal(vagaAtualizada.getDataFinal());
-                vaga.setTipoContrato(vagaAtualizada.getTipoContrato());
-                vaga.setModalidade(vagaAtualizada.getModalidade());
-                vaga.setSalario(vagaAtualizada.getSalario());
-                vaga.setTeste(vagaAtualizada.getTeste());
+                vaga.setTitulo((String) vagaMap.get("titulo"));
+                vaga.setDescricao((String) vagaMap.get("descricao"));
+                vaga.setBeneficios((String) vagaMap.get("beneficios"));
+                vaga.setSalario(vagaMap.get("salario") != null ? Double.parseDouble(vagaMap.get("salario").toString()) : 0);
+
+                // Atualiza dataFinal
+                try {
+                    String dataFinalStr = (String) vagaMap.get("dataFinal");
+                    if (dataFinalStr != null && !dataFinalStr.isEmpty()) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        vaga.setDataFinal(sdf.parse(dataFinalStr));
+                    }
+                } catch (Exception e) {
+                    // Se der erro, mantém a data antiga
+                }
+
+                vaga.setTipoContrato((String) vagaMap.get("tipoContrato"));
+                vaga.setModalidade((String) vagaMap.get("modalidade"));
+
+                // Atualiza empresa se vier no body
+                if (vagaMap.get("empresa") instanceof Map empresaMap) {
+                    String cnpj = (String) empresaMap.get("cnpj");
+                    if (cnpj != null) {
+                        Empresa empresa = empresaRepository.findByCnpj(cnpj);
+                        if (empresa != null) vaga.setEmpresa(empresa);
+                    }
+                }
+
                 vagaRepository.save(vaga);
                 return ResponseEntity.ok(vaga);
             })

@@ -51,11 +51,11 @@ if (valorInput) {
 
 // Salva dados da página formularioVaga.html no local sessionStorage
 function salvarDadosLocalmente() {
-    const faixaSalarialInput = document.querySelector('.dado7');
+    // Pega o valor real do salário
+    const faixaSalarialInput = document.getElementById('salario');
     let faixaSalarialValor = faixaSalarialInput ? faixaSalarialInput.getAttribute('data-valor-real') : '';
 
     if (!faixaSalarialValor && faixaSalarialInput && faixaSalarialInput.value) {
-        // Tenta extrair o valor manualmente do texto, se o atributo não estiver definido
         const valorSemMascara = faixaSalarialInput.value.replace(/\D/g, '');
         if (valorSemMascara) {
             faixaSalarialValor = (parseInt(valorSemMascara, 10) / 100).toFixed(2);
@@ -63,13 +63,14 @@ function salvarDadosLocalmente() {
     }
 
     const dadosVaga = {
-        titulo: document.querySelector('.dado1') ? document.querySelector('.dado1').value : '',
-        descricao: document.querySelector('.dado2') ? document.querySelector('.dado2').value : '',
-        beneficios: document.querySelector('.dado3') ? document.querySelector('.dado3').value : '',
-        dataFinal: document.querySelector('.dado4') ? document.querySelector('.dado4').value : '',
-        tipoContrato: document.querySelector('.dado5') ? document.querySelector('.dado5').value : '',
-        modalidade: document.querySelector('.dado6') ? document.querySelector('.dado6').value : '',
-        salario: faixaSalarialValor
+        titulo: document.getElementById('titulo')?.value || '',
+        tipoContrato: document.getElementById('tipo')?.value || '',
+        modalidade: document.getElementById('modalidade')?.value || '', // <-- Adicione esta linha
+        salario: faixaSalarialValor,
+        descricao: document.getElementById('descricao')?.value || '',
+        beneficios: document.getElementById('beneficios')?.value || '',
+        dataFinal: document.getElementById('prazo')?.value || '',
+        // Não envie local, requisitos, numeroVagas
     };
 
     sessionStorage.setItem("dadosVaga", JSON.stringify(dadosVaga));
@@ -139,31 +140,35 @@ function limparDadosLocalmente() {
 }
 
 function validarFormulario() {
-    let isValid = true;
-
-    // Seleciona os campos obrigatórios
-    const camposObrigatorios = [
-        { campo: document.querySelector('.dado1'), mensagem: "Título é obrigatório" },
-        { campo: document.querySelector('.dado2'), mensagem: "Descrição é obrigatória" },
-        { campo: document.querySelector('.dado4'), mensagem: "Data Final é obrigatória" },
-        { campo: document.querySelector('.dado5'), mensagem: "Tipo de Contrato é obrigatório" },
-        { campo: document.querySelector('.dado6'), mensagem: "Modalidade é obrigatória" }
+    const campos = [
+        { campo: document.getElementById('titulo'), nome: "Título da Vaga" },
+        { campo: document.getElementById('tipo'), nome: "Tipo de Contrato" },
+        { campo: document.getElementById('modalidade'), nome: "Modalidade" },
+        { campo: document.getElementById('salario'), nome: "Faixa Salarial" },
+        { campo: document.getElementById('descricao'), nome: "Descrição da Vaga" },
+        { campo: document.getElementById('beneficios'), nome: "Benefícios" },
+        { campo: document.getElementById('prazo'), nome: "Prazo de Inscrição" }
+        // Removidos: Local de Trabalho, Requisitos, Número de Vagas
     ];
 
-    // Remove classes de erro antes de validar
-    camposObrigatorios.forEach(({ campo }) => {
-        if (campo) campo.classList.remove('erro');
-    });
+    let todosPreenchidos = true;
+    let camposVazios = [];
 
-    // Valida os campos
-    camposObrigatorios.forEach(({ campo, mensagem }) => {
-        if (!campo || !campo.value.trim()) {
-            if (campo) campo.classList.add('erro'); // Adiciona a classe de erro
-            isValid = false;
+    campos.forEach(({ campo, nome }) => {
+        if (!campo || campo.value.trim() === "") {
+            todosPreenchidos = false;
+            camposVazios.push(nome);
+            if (campo) campo.style.border = "2px solid red";
+        } else {
+            campo.style.border = "";
         }
     });
 
-    return isValid; // Retorna true se todos os campos estiverem preenchidos
+    if (!todosPreenchidos) {
+        alert("Por favor, preencha todos os campos obrigatórios:\n" + camposVazios.join(", "));
+    }
+
+    return todosPreenchidos;
 }
 
 // Adiciona eventos para remover a borda vermelha ao preencher os campos
@@ -193,6 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    console.log("Valor do campo prazo:", document.getElementById('prazo')?.value);
 });
 
 // Remova o bloco abaixo, pois não existe botão com id 'seguirButton' e isso gera erro
@@ -223,24 +230,45 @@ function getVagas() {
 function validarESalvar() {
     if (validarFormulario()) {
         salvarDadosLocalmente(); // Salva os dados no sessionStorage
+        alertarDadosVaga();      // Mostra o alert com os dados salvos
         console.log("Dados salvos no sessionStorage com sucesso.");
-        window.location.href = "envioTesteVaga.html"; // Redireciona para a página de envio de PDF
+        window.location.href = "resumoVaga.html"; // Redireciona para a página de resumo
     } else {
         alert("Por favor, preencha todos os campos obrigatórios.");
     }
 }
 
-function enviarPDF() {
-    const arquivoInput = document.getElementById('inputGroupFile02');
-    if (arquivoInput && arquivoInput.files.length > 0) {
-        const file = arquivoInput.files[0];
-        // Salva o nome do arquivo no sessionStorage
-        sessionStorage.setItem('teste', file.name);
-    } else {
-        // Se não enviar arquivo, remove o campo teste
-        sessionStorage.removeItem('teste');
+function alertarDadosVaga() {
+    const dadosVaga = JSON.parse(sessionStorage.getItem('dadosVaga'));
+    if (!dadosVaga) {
+        alert("Nenhum dado de vaga encontrado no sessionStorage.");
+        return;
     }
-    alert("PDF enviado com sucesso!");
-    window.location.href = "resumoVaga.html";
+    let mensagem = "Dados da vaga salvos:\n";
+    for (const chave in dadosVaga) {
+        mensagem += `${chave}: ${dadosVaga[chave]}\n`;
+    }
+    alert(mensagem);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Se não veio do resumo (edição), limpa os dados antigos ao criar nova vaga
+    const url = window.location.href;
+    if (url.includes('formularioVaga.html') && !sessionStorage.getItem('edicaoVaga')) {
+        sessionStorage.removeItem('dadosVaga');
+    }
+
+    // Carregar dados do sessionStorage se existirem (edição/voltar do resumo)
+    const dadosVaga = JSON.parse(sessionStorage.getItem('dadosVaga'));
+    if (dadosVaga) {
+        if (document.getElementById('titulo'))        document.getElementById('titulo').value = dadosVaga.titulo || '';
+        if (document.getElementById('tipo'))          document.getElementById('tipo').value = dadosVaga.tipoContrato || '';
+        if (document.getElementById('modalidade'))    document.getElementById('modalidade').value = dadosVaga.modalidade || '';
+        if (document.getElementById('salario'))       document.getElementById('salario').value = dadosVaga.salario || '';
+        if (document.getElementById('descricao'))     document.getElementById('descricao').value = dadosVaga.descricao || '';
+        if (document.getElementById('beneficios'))    document.getElementById('beneficios').value = dadosVaga.beneficios || '';
+        if (document.getElementById('prazo'))         document.getElementById('prazo').value = dadosVaga.dataFinal ? dadosVaga.dataFinal.substring(0,10) : '';
+        // Adicione outros campos se necessário
+    }
+});
 

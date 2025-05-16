@@ -25,10 +25,15 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(empresa => {
                 if (empresa.senha === senha) {
-                    alert("Login realizado com sucesso!");
-                    localStorage.setItem("empresaCnpj", empresa.cnpj);
-                    localStorage.setItem("empresaNome", empresa.nome);
-                    window.location.href = "../Vaga/homeEmpresa.html";
+                    if (empresa) {
+                        // Salva os dados necessários no localStorage
+                        localStorage.setItem('empresaId', empresa.id);
+                        localStorage.setItem('empresaCnpj', empresa.cnpj); // ESSENCIAL para HomeEmpresa.js
+                        localStorage.setItem('userType', 'empresa');
+                        window.location.href = '../Vaga/HomeEmpresa.html';
+                    } else {
+                        alert('Credenciais inválidas');
+                    }
                 } else {
                     alert("Senha incorreta!");
                 }

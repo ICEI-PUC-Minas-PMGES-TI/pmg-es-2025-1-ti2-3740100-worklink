@@ -129,8 +129,11 @@ function exibirVagas(vagas) {
         // Trata o campo dataFinal
         let dataFinal = "Não especificada";
         if (vaga.dataFinal) {
-            // Usa a data diretamente no formato dd/MM/yyyy
-            dataFinal = vaga.dataFinal;
+            // Converte yyyy-MM-dd ou yyyy-MM-ddTHH:mm:ss para dd/MM/yyyy
+            let data = vaga.dataFinal;
+            if (data.length > 10) data = data.substring(0, 10);
+            const [ano, mes, dia] = data.split("-");
+            dataFinal = `${dia}/${mes}/${ano}`;
         }
 
         const modalidade = vaga.modalidade || 'Não especificada'; // Mapeia a modalidade
@@ -163,15 +166,20 @@ function limparValor(valor) {
     return valor.replace(/[^\d,]/g, '').replace(',', '.');
 }
 
-// Função para contar vagas ativas
+// Função para contar vagas ativas da empresa logada
 function contarVagasAtivas() {
-    fetch("http://localhost:8080/vagas") // Substitua pela URL correta da sua API
+    const cnpj = localStorage.getItem("empresaCnpj");
+    if (!cnpj) {
+        alert("CNPJ da empresa não encontrado. Faça login novamente.");
+        return;
+    }
+    fetch(`http://localhost:8080/vagas/empresa/cnpj/${encodeURIComponent(cnpj)}`)
         .then(response => {
             if (!response.ok) throw new Error("Erro ao buscar vagas");
             return response.json();
         })
         .then(vagas => {
-            const quantidade = vagas.length; // Conta o número total de vagas
+            const quantidade = vagas.length; // Conta o número de vagas da empresa logada
             console.log(`Quantidade de vagas ativas: ${quantidade}`);
             
             // Atualiza o contador no DOM

@@ -7,6 +7,5 @@ import com.worklink.todosimple.cadastro.models.Candidato;
 
 @Repository
 public interface CandidatoRepository extends JpaRepository<Candidato, Integer> {
-    // Adicione métodos personalizados, se necessário
     Candidato findByEmail(String email);
 }
