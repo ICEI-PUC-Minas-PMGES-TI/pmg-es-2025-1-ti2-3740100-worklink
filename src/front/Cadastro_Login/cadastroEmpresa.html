@@ -2,20 +2,23 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Cadastro de Empresa</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <style>
         :root {
-            --primary-color: #e48f4f;
-            --secondary-color: #5c3d2e;
-            --background-color: #dce8db;
-            --text-color: #3c3c3c;
-            --accent-color: #8a9a5b;
-            --highlight-color: #d4772a;
+            --primary-color: #9147ff;
+            --secondary-color: #6d6e7c;
+            --background-color: #f9fafb;
+            --text-color: #ffffff;
+            --accent-color: #4e4f58;
+            --highlight-color: #4F3F86;
         }
 
         body {
@@ -42,7 +45,7 @@
         }
 
         .form-section h3 {
-            color: var(--secondary-color);
+
             margin-bottom: 1.5rem;
         }
 
@@ -57,7 +60,7 @@
 
         .form-control.is-invalid {
             border-color: #dc3545;
-            box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, .25);
         }
 
         .btn-primary {
@@ -112,28 +115,32 @@
             content: " *";
             color: red;
         }
+
         .error-message {
             color: red;
             text-align: center;
             margin-top: 10px;
             display: none;
         }
+
         .container {
             margin-bottom: 5vh;
         }
+
         .password-field {
             position: relative;
         }
     </style>
 </head>
+
 <body>
 
     <nav class="navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="">
-            <i class="fa-solid fa-beer-mug-empty"></i>
-            Worklink
-          </a>
+            <a class="navbar-brand" href="">
+                <i class="fas fa-briefcase"></i>
+                Worklink
+            </a>
         </div>
     </nav>
 
@@ -143,7 +150,7 @@
             <div class="col-md-8">
                 <div class="card shadow" style="padding: 2rem; border-radius: 10px;">
                     <h1 class="text-center mb-4">Cadastro de Empresa</h1>
-                    
+
                     <form id="formCadastroEmpresa">
                         <div class="form-section">
                             <h3>Dados da Empresa</h3>
@@ -227,7 +234,8 @@
                                     <label for="confirmarSenha">Confirmar Senha</label>
                                     <div class="password-field">
                                         <input type="password" class="form-control" id="confirmarSenha" required>
-                                        <i class="fas fa-eye password-toggle" onclick="togglePassword('confirmarSenha')"></i>
+                                        <i class="fas fa-eye password-toggle"
+                                            onclick="togglePassword('confirmarSenha')"></i>
                                     </div>
                                 </div>
                             </div>
@@ -245,7 +253,7 @@
 
     <script>
         // Formatação do CNPJ (XX.XXX.XXX/XXXX-XX)
-        $('#cnpj').on('input', function() {
+        $('#cnpj').on('input', function () {
             let cnpj = this.value.replace(/\D/g, '');
             cnpj = cnpj.replace(/^(\d{2})(\d)/, '$1.$2');
             cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
@@ -255,7 +263,7 @@
         });
 
         // Formatação do telefone ((XX) XXXXX-XXXX)
-        $('#telefone').on('input', function() {
+        $('#telefone').on('input', function () {
             let telefone = this.value.replace(/\D/g, '');
             telefone = telefone.replace(/^(\d{2})(\d)/g, '($1) $2');
             telefone = telefone.replace(/(\d)(\d{4})$/, '$1-$2');
@@ -263,9 +271,9 @@
         });
 
         // Formatação do CEP (XXXXX-XXX) e busca automática do endereço
-        $('#cep').on('blur', function() {
+        $('#cep').on('blur', function () {
             let cep = this.value.replace(/\D/g, '');
-            
+
             // Verifica se o CEP tem 8 dígitos
             if (cep.length === 8) {
                 // Mostra um indicador de carregamento
@@ -297,7 +305,7 @@
         });
 
         // Formatação do CEP enquanto digita
-        $('#cep').on('input', function() {
+        $('#cep').on('input', function () {
             let cep = this.value.replace(/\D/g, '');
             cep = cep.replace(/^(\d{5})(\d)/, '$1-$2');
             this.value = cep.slice(0, 9);
@@ -307,7 +315,7 @@
         function togglePassword(inputId) {
             const input = document.getElementById(inputId);
             const icon = input.nextElementSibling;
-            
+
             if (input.type === 'password') {
                 input.type = 'text';
                 icon.classList.remove('fa-eye');
@@ -320,9 +328,9 @@
         }
 
         // Envio do formulário
-        $('#formCadastroEmpresa').on('submit', function(e) {
+        $('#formCadastroEmpresa').on('submit', function (e) {
             e.preventDefault();
-            
+
             // Coleta todos os dados do formulário
             const dadosEmpresa = {
                 nome: $('#nome').val(),
@@ -347,45 +355,44 @@
                 },
                 body: JSON.stringify(dadosEmpresa)
             })
-            .then(response => {
-                if (response.status === 409) {
-                    return response.json().then(data => {
-                        // Remove bordas vermelhas anteriores
-                        $('#email, #cnpj, #nome, #telefone').removeClass('is-invalid');
+                .then(response => {
+                    if (response.status === 409) {
+                        return response.json().then(data => {
+                            // Remove bordas vermelhas anteriores
+                            $('#email, #cnpj, #nome, #telefone').removeClass('is-invalid');
 
-                        // Adiciona borda vermelha no campo correspondente
-                        if (data.campo === "email") {
-                            $('#email').addClass('is-invalid');
-                        } else if (data.campo === "cnpj") {
-                            $('#cnpj').addClass('is-invalid');
-                        } else if (data.campo === "nome") {
-                            $('#nome').addClass('is-invalid');
-                        } else if (data.campo === "telefone") {
-                            $('#telefone').addClass('is-invalid');
-                        }
+                            // Adiciona borda vermelha no campo correspondente
+                            if (data.campo === "email") {
+                                $('#email').addClass('is-invalid');
+                            } else if (data.campo === "cnpj") {
+                                $('#cnpj').addClass('is-invalid');
+                            } else if (data.campo === "nome") {
+                                $('#nome').addClass('is-invalid');
+                            } else if (data.campo === "telefone") {
+                                $('#telefone').addClass('is-invalid');
+                            }
 
-                        alert(data.mensagem || "Dados já utilizados. Por favor, utilize outros dados.");
-                        throw new Error('Dados já utilizados');
-                    });
-                }
-                if (!response.ok) {
-                    throw new Error('Erro ao cadastrar empresa');
-                }
-                return response.json();
-            })
-            .then(data => {
-                alert('Cadastro realizado com sucesso!');
-                window.location.href = 'login.html';
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                if (error.message !== 'Dados já utilizados') {
-                    alert('Erro ao realizar cadastro. Por favor, tente novamente.');
-                }
-            });
+                            alert(data.mensagem || "Dados já utilizados. Por favor, utilize outros dados.");
+                            throw new Error('Dados já utilizados');
+                        });
+                    }
+                    if (!response.ok) {
+                        throw new Error('Erro ao cadastrar empresa');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Cadastro realizado com sucesso!');
+                    window.location.href = 'login.html';
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    if (error.message !== 'Dados já utilizados') {
+                        alert('Erro ao realizar cadastro. Por favor, tente novamente.');
+                    }
+                });
         });
     </script>
 </body>
+
 </html>
-
-
