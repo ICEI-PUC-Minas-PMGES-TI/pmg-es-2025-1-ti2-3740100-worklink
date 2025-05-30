@@ -1,13 +1,13 @@
 ## 5. Indicadores de desempenho
 
-_Apresente aqui os principais indicadores de desempenho e algumas metas para o processo. Atenção: as informações necessárias para gerar os indicadores devem estar contempladas no modelo relacional. Defina no mínimo 3 indicadores de desempenho._
-
-_Usar o seguinte modelo:_
-
 | **Indicador** | **Objetivos** | **Descrição** | **Fonte de dados** | **Fórmula de cálculo** |
 | ---           | ---           | ---           | ---             | ---             |
-| Percentual de reclamações | Avaliar quantitativamente as reclamações | Percentual de reclamações em relação ao total de atendimentos | Tabela Reclamações | número total de reclamações / número total de atendimentos |
-| Taxa de requisições atendidas | Melhorar a prestação de serviços medindo a porcentagem de requisições atendidas| Mede a % de requisições atendidas na semana | Tabela Solicitações | (número de requisições atendidas / número total de requisições) * 100 |
-| Taxa de entrega de material | Manter controle sobre os materiais que estão sendo entregues | Mede % de material entregue dentro do mês | Tabela Pedidos | (número de pedidos entregues / número total de pedidos) * 100 |
+| Taxa de Candidaturas por Vaga | Medir a atratividade das vagas | Mede o número médio de candidaturas realizadas por vaga ativa | Tabelas: Vagas, Candidaturas | (número total de candidaturas / número total de vagas ativas) |
+| Taxa de Resposta da Empresa | Avaliar o nível de engajamento das empresas com os candidatos| Mede a porcentagem de candidaturas que receberam alguma atualização de status pela empresa | Tabelas: Candidaturas | ((número de candidaturas com status atualizado / número total de candidaturas) * 100 |
+| Tempo médio até resposta da empresa | Monitorar a eficiência do processo de análise de candidaturas pelas empresas | Tempo médio entre a candidatura e a primeira alteração de status | Tabela: Candidaturas | (Média(data de atualização do status - data de candidatura) |
+| Percentual de Vagas Preenchidas | Avaliar a eficácia do preenchimento de vagas | Mede o % de vagas que foram preenchidas (finalizadas com contratação) | Tabelas: Vagas, Candidaturas | (número de vagas com status “preenchida” / número total de vagas ativas ou encerradas) * 100 |
+| Taxa de Retenção de Usuários | Medir o engajamento dos usuários na plataforma | Mede o percentual de usuários que acessaram novamente a plataforma em um intervalo de tempo | Tabela: Usuarios, Acessos | (número de usuários que retornaram no mês / número total de usuários no mês) * 100 |
+| Taxa de Vagas com Candidaturas | Identificar a visibilidade/atratividade geral das vagas | Mede o % de vagas que receberam pelo menos uma candidatura | Tabelas: Vagas, Candidaturas | (número de vagas com pelo menos uma candidatura / número total de vagas) * 100 |
+| Tempo médio para Preenchimento de Vaga | Avaliar a agilidade no processo de contratação | Tempo médio entre a publicação da vaga e a data de preenchimento (encerramento com contratação) | Tabela: Vagas | Média(data de preenchimento - data de publicação) |
+| Índice de Aprovação de Candidatos | Avaliar a qualidade do processo seletivo e adequação dos candidatos | Percentual de candidatos que foram aprovados (status “Aprovado”) em relação ao total de candidatos | Tabela: Candidaturas | (número de candidaturas aprovadas / número total de candidaturas) * 100 |
 
-_Obs.: todas as informações para gerar os indicadores devem estar no modelo relacional._
