@@ -4,7 +4,7 @@
 
 _Apresente o modelo de dados por meio de um modelo relacional que contemple todos os conceitos e atributos apresentados na modelagem dos processos._ 
 
-[![Modelo relacional do projeto](images/Diagrama-De-Dados.png "Modelo Relacional.")](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/new%20diagrama.jpg)
+[[![Modelo relacional do projeto](images/Diagrama-De-Dados.png "Modelo Relacional.")](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/new%20diagrama.jpg)](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3740100-worklink/blob/main/docs/images/new%20diagrama.jpg)
 ---
 
 ### 4.2. Tecnologias
