@@ -122,6 +122,10 @@
                         return;
                     }
 
+                    // Atualiza o título da página com o título da vaga
+                    const tituloVaga = candidaturas[0]?.vaga?.titulo || "Candidaturas da Vaga";
+                    document.querySelector("h1").textContent = `Candidaturas da Vaga: ${tituloVaga}`;
+
                     candidaturas.forEach(candidatura => {
                         const candidato = candidatura.candidato;
 

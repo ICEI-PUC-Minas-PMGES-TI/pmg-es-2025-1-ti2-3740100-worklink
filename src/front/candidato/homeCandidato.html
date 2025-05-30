@@ -192,6 +192,10 @@
             margin-bottom: 1rem;
         }
 
+        .empresa-perfil-logo {
+            margin-bottom: 1rem;
+        }
+
         .footer-links a {
             margin-left: 1rem;
             color: var(--text-color);
@@ -205,31 +209,24 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="">
-                <i class="fa-solid fa-beer-mug-empty"></i>
-                Worklink
-            </a>
-        </div>
-    </nav>
-
+    
     <main class="container mt-4">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-card">
                     <i class="fas fa-cog settings-icon" onclick="toggleSettings(event)"></i>
-                    <div class="settings-menu" id="settingsMenu">
+                     <div class="settings-menu" id="settingsMenu">
                          <a href="editarCandidato.html"><i class="fas fa-user-edit"></i> Editar Perfil</a>
                          <a href="todasCandidaturas.html"><i class="fas fa-briefcase"></i> Minhas Candidaturas</a>
-                        <a href="../Cadastro_Login/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                    </div>
+                         <a href="../Cadastro_Login/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                     </div>
                     <div class="text-center">
                         <img src="../assets/img/img-padrão.png" alt="Foto de Perfil" class="profile-avatar" id="candidato-avatar">
                     </div>
                     <div class="profile-info">
                         <h2 class="text-center" id="candidato-nome">Nome do Candidato</h2>
                         <p><i class="fas fa-graduation-cap"></i> <strong>Formação:</strong> <span id="candidato-formacao">Engenharia de Software</span></p>
+                        <p><i class="fas fa-laptop-code"></i> <strong>Área de atuação:</strong> <span id="candidato-area-atuacao">Desenvolvimento Web</span></p>
                         <p><i class="fas fa-briefcase"></i> <strong>Experiência:</strong> <span id="candidato-experiencia">3 anos</span></p>
                         <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <span id="candidato-email">candidato@email.com</span></p>
                         <p><i class="fas fa-phone"></i> <strong>Telefone:</strong> <span id="candidato-telefone">(00) 00000-0000</span></p>
@@ -245,107 +242,26 @@
                         <div class="vagas-container" id="vagas-recomendadas">
                             <!-- As vagas recomendadas serão carregadas aqui via JavaScript -->
                             
-                            <!-- Exemplo de vaga -->
-                            <div class="vaga-item mb-4">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div>
-                                        <h4 style="color: var(--secondary-color);">Desenvolvedor Full Stack</h4>
-                                        <p class="mb-1"><i class="fas fa-building"></i> Empresa Exemplo Ltda.</p>
-                                        <p class="mb-1"><i class="fas fa-map-marker-alt"></i> São Paulo, SP</p>
-                                        <p class="mb-1"><i class="fas fa-money-bill-wave"></i> R$ 5.000 - R$ 7.000</p>
-                                        <p><i class="fas fa-file-contract"></i> CLT</p>
-                                    </div>
-                                    <span class="badge rounded-pill" style="background-color: var(--accent-color); color: white; padding: 0.5rem 0.75rem;">
-                                        95% compatível
-                                    </span>
-                                </div>
-                                <div class="mt-2">
-                                    <button class="btn btn-primary btn-sm">Ver detalhes</button>
-                                    <button class="btn btn-outline-secondary btn-sm">Candidatar-se</button>
-                                </div>
-                            </div>
                             
-                            <hr>
-                            
-                            <!-- Exemplo de vaga -->
-                            <div class="vaga-item mb-4">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div>
-                                        <h4 style="color: var(--secondary-color);">Analista de Sistemas</h4>
-                                        <p class="mb-1"><i class="fas fa-building"></i> Tech Solutions S.A.</p>
-                                        <p class="mb-1"><i class="fas fa-map-marker-alt"></i> Rio de Janeiro, RJ</p>
-                                        <p class="mb-1"><i class="fas fa-money-bill-wave"></i> R$ 4.500 - R$ 6.500</p>
-                                        <p><i class="fas fa-file-contract"></i> PJ</p>
-                                    </div>
-                                    <span class="badge rounded-pill" style="background-color: var(--accent-color); color: white; padding: 0.5rem 0.75rem;">
-                                        87% compatível
-                                    </span>
-                                </div>
-                                <div class="mt-2">
-                                    <button class="btn btn-primary btn-sm">Ver detalhes</button>
-                                    <button class="btn btn-outline-secondary btn-sm">Candidatar-se</button>
-                                </div>
-                            </div>
-                        </div>
                         
                         <div class="text-center mt-3">
                             <button class="btn btn-primary">Ver mais vagas recomendadas</button>
                         </div>
                     </div>
-                </div>
+                    </div>
                 
                 <div class="card shadow" style="border-radius: 10px; overflow: hidden;">
-                    <div class="card-header" style="background-color: var(--primary-color); color: var(--text-color); padding: 1rem;">
-                        <h3 style="margin: 0;"><i class="fas fa-briefcase"></i> Minhas Candidaturas</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="candidaturas-container" id="minhas-candidaturas">
-                            <!-- As candidaturas serão carregadas aqui via JavaScript -->
-                            
-                            <!-- Exemplo de candidatura -->
-                            <div class="candidatura-item mb-4">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div>
-                                        <h4 style="color: var(--secondary-color);">Desenvolvedor Front-end</h4>
-                                        <p class="mb-1"><i class="fas fa-building"></i> WebDesign Ltda.</p>
-                                        <p class="mb-1"><i class="fas fa-calendar-alt"></i> Candidatura: 15/05/2024</p>
-                                    </div>
-                                    <span class="badge rounded-pill" style="background-color: var(--highlight-color); color: white; padding: 0.5rem 0.75rem;">
-                                        Em análise
-                                    </span>
-                                </div>
-                                <div class="mt-2">
-                                    <button class="btn btn-primary btn-sm">Ver detalhes</button>
-                                </div>
-                            </div>
-                            
-                            <hr>
-                            
-                            <!-- Exemplo de candidatura -->
-                            <div class="candidatura-item mb-4">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div>
-                                        <h4 style="color: var(--secondary-color);">UX/UI Designer</h4>
-                                        <p class="mb-1"><i class="fas fa-building"></i> Inovação Digital S.A.</p>
-                                        <p class="mb-1"><i class="fas fa-calendar-alt"></i> Candidatura: 10/05/2024</p>
-                                    </div>
-                                    <span class="badge rounded-pill" style="background-color: var(--secondary-color); color: white; padding: 0.5rem 0.75rem;">
-                                        Teste enviado
-                                    </span>
-                                </div>
-                                <div class="mt-2">
-                                    <button class="btn btn-primary btn-sm">Ver detalhes</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="text-center mt-3">
-                            <button class="btn btn-primary">Ver todas as candidaturas</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="card-header" style="background-color: var(--primary-color); color: var(--text-color); padding: 1rem;">
+        <h3 style="margin: 0;"><i class="fas fa-briefcase"></i> Minhas Candidaturas</h3>
+    </div>
+    <div class="card-body">
+        <div class="candidaturas-container" id="minhas-candidaturas">
+            <!-- As candidaturas mais recentes serão carregadas aqui via JavaScript -->
         </div>
+    </div>
+</div>
+            </div>
+            </div>
     </main>
 
     <footer class="mt-5">
@@ -377,17 +293,20 @@
         // Usar uma imagem padrão quando a imagem do candidato não estiver disponível
         window.addEventListener('DOMContentLoaded', function() {
             const avatarImg = document.getElementById('candidato-avatar');
-            const currentSrc = avatarImg.src;
-            const fallbackSrc = "../assets/img/img-padrão.png"; // Caminho para a imagem padrão
-            
-            checkImage(currentSrc, fallbackSrc);
-            
-            // Carregar dados do candidato do localStorage ou API
+            const fallbackSrc = "../assets/img/img-padrão.png";
+            checkImage(avatarImg.src, fallbackSrc);
+
             carregarDadosCandidato();
-            
-            // Carregar vagas recomendadas e candidaturas
             carregarVagasRecomendadas();
-            carregarCandidaturas();
+            carregarCandidaturas(); // Chama a função para carregar as candidaturas
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const userType = localStorage.getItem('userType');
+            if (userType !== "candidato") {
+                alert("Apenas candidatos podem acessar esta página.");
+                window.location.href = "../Cadastro_Login/login.html";
+            }
         });
 
         function toggleSettings(event) {
@@ -396,7 +315,6 @@
             menu.classList.toggle('show');
         }
 
-        // Fechar o menu quando clicar fora dele
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('settingsMenu');
             const settingsIcon = document.querySelector('.settings-icon');
@@ -405,44 +323,133 @@
             }
         });
 
-        // Prevenir que o clique no menu feche o menu
         document.getElementById('settingsMenu').addEventListener('click', function(event) {
             event.stopPropagation();
         });
 
-        // Função para carregar dados do candidato
+        // Função para carregar dados reais do candidato
         function carregarDadosCandidato() {
-            // Aqui você pode buscar os dados do candidato da API ou localStorage
-            // Por enquanto, usaremos dados de exemplo
-            const dadosCandidato = {
-                nome: "João Silva",
-                formacao: "Engenharia de Software",
-                experiencia: "3 anos",
-                email: "joao.silva@email.com",
-                telefone: "(11) 98765-4321"
-            };
+            const candidatoId = localStorage.getItem('candidatoId');
+            if (!candidatoId) {
+                alert("Candidato não encontrado. Faça login novamente.");
+                window.location.href = "../Cadastro_Login/login.html";
+                return;
+            }
 
-            // Preencher os campos com os dados
-            document.getElementById('candidato-nome').textContent = dadosCandidato.nome;
-            document.getElementById('candidato-formacao').textContent = dadosCandidato.formacao;
-            document.getElementById('candidato-experiencia').textContent = dadosCandidato.experiencia;
-            document.getElementById('candidato-email').textContent = dadosCandidato.email;
-            document.getElementById('candidato-telefone').textContent = dadosCandidato.telefone;
+            fetch(`http://localhost:8080/candidatos/${candidatoId}`)
+                .then(resp => {
+                    if (!resp.ok) throw new Error("Candidato não encontrado");
+                    return resp.json();
+                })
+                .then(dadosCandidato => {
+                    document.getElementById('candidato-nome').textContent = dadosCandidato.nome;
+                    document.getElementById('candidato-formacao').textContent = dadosCandidato.formacao;
+                    document.getElementById('candidato-area-atuacao').textContent = dadosCandidato.areaAtuacao; // Preenche a área de atuação
+                    document.getElementById('candidato-experiencia').textContent = dadosCandidato.experiencia + " anos";
+                    document.getElementById('candidato-email').textContent = dadosCandidato.email;
+                    document.getElementById('candidato-telefone').textContent = dadosCandidato.telefone;
+                    if (dadosCandidato.fotoPerfil) {
+                        document.getElementById('candidato-avatar').src = `http://localhost:8080${dadosCandidato.fotoPerfil}`;
+                    } else {
+                        document.getElementById('candidato-avatar').src = "../assets/img/img-padrão.png";
+                    }
+                })
+                .catch(error => {
+                    alert("Erro ao carregar dados do candidato.");
+                    console.error(error);
+                });
         }
 
-        // Função para carregar vagas recomendadas
         function carregarVagasRecomendadas() {
-            // Aqui você pode buscar as vagas recomendadas da API
-            // Por enquanto, mantemos os exemplos estáticos
-            console.log("Carregando vagas recomendadas...");
+            // Implemente aqui a busca real das vagas recomendadas se desejar
         }
 
-        // Função para carregar candidaturas
         function carregarCandidaturas() {
-            // Aqui você pode buscar as candidaturas da API
-            // Por enquanto, mantemos os exemplos estáticos
-            console.log("Carregando candidaturas...");
+            const cpfCandidato = localStorage.getItem('cpfUsuario');
+            if (!cpfCandidato) {
+                alert("Candidato não encontrado. Faça login novamente.");
+                window.location.href = "../Cadastro_Login/login.html";
+                return;
+            }
+
+            fetch(`http://localhost:8080/aplicacoes/candidato/${cpfCandidato}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erro ao buscar candidaturas");
+                    }
+                    return response.json();
+                })
+                .then(candidaturas => {
+                    const container = document.getElementById("minhas-candidaturas");
+                    container.innerHTML = ""; // Limpa o container antes de adicionar as candidaturas
+
+                    if (candidaturas.length === 0) {
+                        container.innerHTML = `<p class="text-center">Você ainda não se candidatou a nenhuma vaga.</p>`;
+                        return;
+                    }
+
+                    // Exibe apenas as 3 candidaturas mais recentes
+                    const candidaturasRecentes = candidaturas.slice(0, 3);
+
+                    candidaturasRecentes.forEach(candidatura => {
+                        const vaga = candidatura.vaga;
+                        const empresa = vaga.empresa;
+
+                        const candidaturaItem = document.createElement("div");
+                        candidaturaItem.classList.add("candidatura-item", "mb-4");
+
+                        candidaturaItem.innerHTML = `
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h4 style="color: var(--secondary-color);">${vaga.titulo}</h4>
+                                    <p class="mb-1"><i class="fas fa-building"></i> ${empresa.nome}</p>
+                                    <p class="mb-1"><i class="fas fa-info-circle"></i> ${vaga.descricao}</p>
+                                    <p class="mb-1"><i class="fas fa-map-marker-alt"></i> ${empresa.cidade}, ${empresa.endereco}</p>
+                                </div>
+                                <span class="badge rounded-pill" style="background-color: ${
+                                    candidatura.status === "Aprovado"
+                                        ? "green"
+                                        : candidatura.status === "Reprovado"
+                                        ? "red"
+                                        : "var(--highlight-color)"
+                                }; color: white; padding: 0.5rem 0.75rem;">
+                                    ${candidatura.status}
+                                </span>
+                            </div>
+                            <div class="mt-2">
+                                <button class="btn btn-primary btn-sm" onclick="verDetalhesVaga(${vaga.id})">Ver detalhes</button>
+                            </div>
+                        `;
+
+                        container.appendChild(candidaturaItem);
+                    });
+
+                    // Adiciona um botão para redirecionar para todas as candidaturas
+                    const verTodasBtn = document.createElement("div");
+                    verTodasBtn.classList.add("text-center", "mt-3");
+                    verTodasBtn.innerHTML = `
+                        <a href="todasCandidaturas.html" class="btn btn-primary">Ver todas as candidaturas</a>
+                    `;
+                    container.appendChild(verTodasBtn);
+                })
+                .catch(error => {
+                    console.error("Erro ao carregar candidaturas:", error);
+                    const container = document.getElementById("minhas-candidaturas");
+                    container.innerHTML = `<p class="text-center text-danger">Erro ao carregar candidaturas. Tente novamente mais tarde.</p>`;
+                });
+        }
+
+        // Função para formatar a data no formato brasileiro
+        function formatarData(data) {
+            const [ano, mes, dia] = data.split('-');
+            return `${dia}/${mes}/${ano}`;
+        }
+
+        // Função para redirecionar para os detalhes da vaga
+        function verDetalhesVaga(vagaId) {
+            // Redireciona para a página de detalhes da vaga com o ID na URL
+            window.location.href = `../aplicacao/detalhesVaga.html?vagaId=${vagaId}`;
         }
     </script>
 </body>
-</html> 
+</html>
