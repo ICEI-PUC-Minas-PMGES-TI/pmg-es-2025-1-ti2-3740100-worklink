@@ -1,129 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/formularioVaga.css">
-    <title>Criar Vaga</title>
-</head>
+    <title>Formulário de Vaga</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #e48f4f;
+            --secondary-color: #5c3d2e;
+            --background-color: #dce8db;
+            --text-color: #3c3c3c;
+            --accent-color: #8a9a5b;
+            --highlight-color: #d4772a;
+        }
 
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem;
+        }
+
+        .navbar-brand {
+            color: var(--text-color) !important;
+            font-weight: bold;
+        }
+
+        .form-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            border: 1px solid var(--accent-color);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(228, 143, 79, 0.25);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            color: var(--text-color) !important;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active {
+            background-color: var(--highlight-color) !important;
+            border-color: var(--highlight-color) !important;
+            color: var(--text-color) !important;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color) !important;
+            border-color: var(--secondary-color) !important;
+            color: var(--background-color) !important;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus,
+        .btn-secondary:active {
+            background-color: var(--accent-color) !important;
+            border-color: var(--accent-color) !important;
+            color: var(--background-color) !important;
+        }
+
+        .btn-outline-secondary {
+            color: var(--secondary-color) !important;
+            border-color: var(--secondary-color) !important;
+        }
+
+        .btn-outline-secondary:hover,
+        .btn-outline-secondary:focus,
+        .btn-outline-secondary:active {
+            background-color: var(--secondary-color) !important;
+            color: var(--background-color) !important;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h1 {
+            color: var(--secondary-color);
+        }
+
+        label {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        select.form-control {
+            background-color: white;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+        }
+
+        .form-control::placeholder {
+            color: #999;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
 <body>
-    <!-- NAVBAR -->
-    <nav id="nav-mobile">
-        <div class="menu-mobile">
-            <div class="icone-mobile" onclick="ativaMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="links-menu">
-                <li><a href="" onclick="ativaMenu()">Pag1</a></li>
-                <li><a href="" onclick="ativaMenu()">Pag2</a></li>
-                <li><a href="" onclick="ativaMenu()">Pag3</a></li>
-                <li><a href="" onclick="ativaMenu()">Pag4</a></li>
-            </div>
+    <nav class="navbar">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="">
+            <i class="fa-solid fa-beer-mug-empty"></i>
+            Worklink
+          </a>
         </div>
     </nav>
-    
-    <!-- FORMULÁRIO DE CRIAÇÃO DE VAGA -->
-    <section id="formulario">
-        <h1 id="maintitle">Criar Vaga</h1>
-        
-        <div class="formulario">
-            <div class="col-esq">
-                <div class="caixaTitulo">
-                    <p>TÍTULO DA VAGA</p>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control dado1" id="titulo" placeholder="Digite o título da vaga...">
-                    </div>
-                </div>
-                
-                <div class="descricao">
-                    <p>DESCRIÇÃO</p>
-                    <div class="input-group input mb-3">
-                        <textarea class="form-control no-resize dado2" id="descricao" rows="4" placeholder="Digite a descrição..."></textarea>
-                    </div>
-                </div>
-                
-                <div class="beneficios">
-                    <p>BENEFÍCIOS</p>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control dado3" id="requisitos" placeholder="Digite os benefícios da vaga...">
-                    </div>
+
+    <div class="container">
+        <div class="row" style="margin-top: 5vh;">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card shadow" style="padding: 2rem; border-radius: 10px;">
+                    <h1 class="text-center mb-4">Criar Nova Vaga</h1>
+                    
+                    <form id="formVaga">
+                        <div class="form-section">
+                            <h3>Informações Básicas</h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="titulo">Título da Vaga</label>
+                                    <input type="text" class="form-control" id="titulo" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="tipo">Tipo de Contrato</label>
+                                    <select class="form-control" id="tipo" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="CLT">CLT</option>
+                                        <option value="PJ">PJ</option>
+                                        <option value="Temporário">Temporário</option>
+                                        <option value="Estágio">Estágio</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="modalidade">Modalidade</label>
+                                    <select class="form-control" id="modalidade" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="Remoto">Remoto</option>
+                                        <option value="Hibrido">Híbrido</option>
+                                        <option value="Presencial">Presencial</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="salario">Faixa Salarial</label>
+                                    <input type="text" class="form-control" id="salario" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Requisitos</h3>
+                            <div class="mb-3">
+                                <label for="descricao">Descrição da Vaga</label>
+                                <textarea class="form-control" id="descricao" rows="4" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="beneficios">Benefícios</label>
+                                <textarea class="form-control" id="beneficios" rows="3" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Informações Adicionais</h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="prazo">Prazo de Inscrição</label>
+                                    <input type="date" class="form-control" id="prazo" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="button" onclick="validarESalvar()" class="btn btn-primary btn-lg">Publicar Vaga</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            
-            <div class="col-dir">
-                <div class="data-final">
-                    <p>DATA FINAL PARA INSCRIÇÕES</p>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control dado4" id="data" maxlength="10" placeholder="dd/mm/aaaa">
-                    </div>
-                </div>
-                
-                <div class="tipo-contrato">
-                    <p>TIPO DE CONTRATO</p>
-                    <select class="form-select dado5" aria-label="Tipo de Contrato">
-                        <option value="">Selecione o tipo de contrato</option>
-                        <option value="CLT">CLT</option>
-                        <option value="Estágio">Estágio</option>
-                        <option value="Menor Aprendiz">Menor Aprendiz</option>
-                        <option value="PJ">PJ</option>
-                        <option value="Outro">Outro - (Especificar na descrição)</option>
-                    </select>
-                </div>
-                
-                <div class="modalidade">
-                    <p>MODALIDADE</p>
-                    <select class="form-select dado6" aria-label="Modalidade">
-                        <option value="">Selecione a modalidade</option>
-                        <option value="Presencial">Presencial</option>
-                        <option value="Remoto">Remoto</option>
-                        <option value="Híbrido">Híbrido</option>
-                    </select>
-                </div>
-                
-                <div class="faixa-salarial">
-                    <p>FAIXA SALARIAL</p>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control dado7" id="salario" placeholder="R$ 0,00">
-                    </div>
-                </div>
-            </div>
+            <div class="col-md-2"></div>
         </div>
-        
-        <div class="botoes">
-            <a id="btn-cancelar" href="HomeEmpresa.html">CANCELAR</a>
-            <button id="btn-seguir" onclick="validarESalvar()">SEGUIR</button>
-        </div>
-    </section>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-    <script src="assets/script/formularioVaga.js" defer></script>
+    </div>
+    <script src="assets/script/formularioVaga.js"></script>
     <script src="../assets/script/script.js"></script>
-    
-    <!-- script para verificar a validação dos dados -->
-    <script>
-        const seguirButton = document.getElementById('btn-seguir');
-
-        function botaoTeste() {
-            const dados = {
-                titulo: document.querySelector('.dado1').value,
-                descricao: document.querySelector('.dado2').value,
-                beneficios: document.querySelector('.dado3').value,
-                dataFinal: document.querySelector('.dado4').value,
-                tipoContrato: document.querySelector('.dado5').value,
-                modalidade: document.querySelector('.dado6').value,
-                faixaSalarial: document.querySelector('.dado7').value
-            };
-        
-            console.log('Valores capturados:', dados);
-            alert('Confira os valores no console (F12)');
-        }
-        </script>
-        
 </body>
-
 </html>

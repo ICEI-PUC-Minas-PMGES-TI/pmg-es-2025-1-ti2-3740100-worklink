@@ -7,47 +7,343 @@
     <link rel="stylesheet" href="assets/css/HomeEmpresa.css">
     <link rel="stylesheet" href="assets/css/listaVagas.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e48f4f;
+            --secondary-color: #5c3d2e;
+            --background-color: #dce8db;
+            --text-color: #3c3c3c;
+            --accent-color: #8a9a5b;
+            --highlight-color: #d4772a;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem;
+        }
+
+        .navbar-brand {
+            color: var(--text-color) !important;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            color: var(--text-color) !important;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active {
+            background-color: var(--highlight-color) !important;
+            border-color: var(--highlight-color) !important;
+            color: var(--text-color) !important;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color) !important;
+            border-color: var(--secondary-color) !important;
+            color: var(--background-color) !important;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus,
+        .btn-secondary:active {
+            background-color: var(--accent-color) !important;
+            border-color: var(--accent-color) !important;
+            color: var(--background-color) !important;
+        }
+
+        .btn-outline-secondary {
+            color: var(--secondary-color) !important;
+            border-color: var(--secondary-color) !important;
+        }
+
+        .btn-outline-secondary:hover,
+        .btn-outline-secondary:focus,
+        .btn-outline-secondary:active {
+            background-color: var(--secondary-color) !important;
+            color: var(--background-color) !important;
+        }
+
+        .profile-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .settings-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            color: var(--secondary-color);
+            font-size: 2rem;
+            transition: transform 0.3s ease;
+            z-index: 1001;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        .settings-icon:hover {
+            transform: rotate(45deg);
+            color: var(--highlight-color);
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .settings-menu {
+            position: absolute;
+            top: 3.5rem;
+            right: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem 0;
+            display: none;
+            z-index: 1000;
+            min-width: 220px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .settings-menu.show {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .settings-menu a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .settings-menu a i {
+            margin-right: 0.75rem;
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .settings-menu a:hover {
+            background-color: var(--background-color);
+            color: var(--highlight-color);
+        }
+
+        .settings-menu a:last-child {
+            border-top: 1px solid var(--accent-color);
+            color: #dc3545;
+            margin-top: 0.5rem;
+        }
+
+        .settings-menu a:last-child:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .profile-info {
+            margin-top: 1rem;
+        }
+
+        .profile-info p {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .profile-info h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            margin-left: 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: var(--background-color);
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            color: var(--secondary-color);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--primary-color);
+        }
+
+        .empresa-historia-content {
+            margin-top: 20px;
+        }
+
+        .empresa-historia-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .empresa-historia-logo {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 5px;
+            object-fit: contain;
+        }
+
+        .empresa-historia-header h3 {
+            color: var(--secondary-color);
+            margin: 0;
+        }
+
+        .empresa-historia-ano {
+            color: var(--accent-color);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .empresa-historia-descricao h4 {
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .empresa-historia-descricao p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        /* Estilos para o bloco de perfil da empresa */
+    
+
+       
+        .empresa-perfil-descricao {
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Sistema de Vagas</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="botoes-header">Home</a></li>
-                    <li><a href="formularioVaga.html" class="botoes-header">Nova Vaga</a></li>
-                </ul>
-            </nav>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">
+                <i class="fa-solid fa-beer-mug-empty"></i>
+                Worklink
+            </a>
         </div>
-    </header>
+    </nav>
 
     <main class="container">
         <section class="empresa-perfil">
             <div class="empresa-perfil-container">
                 <div class="empresa-perfil-header">
                     <div class="empresa-perfil-logo">
-                        <img src="img/empresa-exemplo.png" alt="Logo da Empresa" id="empresa-perfil-logo">
+                        <img src="assets/img/empresa-exemplo.png" alt="Logo da Empresa" id="empresa-perfil-logo" class="profile-image">
                     </div>
                     <div class="empresa-perfil-info" style="position: relative;">
+                        <i class="fas fa-cog settings-icon" onclick="toggleSettings(event)"></i>
+                        <div class="settings-menu" id="settingsMenu">
+                            <a href="editarEmpresa.html"><i class="fas fa-user-edit"></i> Editar Perfil</a>
+                            <a href="formularioVaga.html"><i class="fas fa-plus"></i> Nova Vaga</a>
+                            <a href="../Cadastro_Login/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
                         <h2 id="empresa-perfil-nome" style="display: inline-block; cursor: pointer;"></h2>
-                        <button id="btn-logout" style="display: none; position: absolute; right: 0; top: 0; background-color: #d9534f; color: white; border: none;" class="btn btn-outline">Logout</button>
-                        <p class="empresa-perfil-ano">Fundada em: <span id="empresa-perfil-ano-criacao"></span></p>
-                        <button id="btn-editar-empresa" class="btn btn-outline">Editar Perfil</button>
-                        <button id="btn-historia-empresa" class="btn btn-outline">Ver História da Empresa</button>
+                    </div>
+                </div>
+                <div class="profile-info" style="margin-top: 2rem;">
+                    <div class="empresa-historia-descricao">
+                        <h4>Descrição</h4>
+                        <p id="empresa-historia-descricao"></p>
+                        <h4>Endereço</h4>
+                        <p id="empresa-historia-endereco"></p>
                     </div>
                 </div>
                 <div class="empresa-perfil-stats">
                     <div class="stat-item">
                         <span class="stat-value" id="empresa-perfil-vagas-count"></span>
                         <span class="stat-label">Vagas Ativas</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value" id="empresa-perfil-funcionarios"></span>
-                        <span class="stat-label">Funcionários</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value" id="empresa-perfil-locais"></span>
-                        <span class="stat-label">Locais</span>
                     </div>
                 </div>
             </div>
@@ -57,24 +353,16 @@
         <div id="modal-historia" class="modal">
             <div class="modal-content">
                 <span class="close" id="close-historia">&times;</span>
-                <h2>História da Empresa</h2>
+                <h2>Sobre a Empresa</h2>
                 <div class="empresa-historia-content">
                     <div class="empresa-historia-header">
-                        <img src="img/empresa-exemplo.png" alt="Logo da Empresa" class="empresa-historia-logo">
-                        <h3 id="empresa-historia-nome">Empresa Exemplo Ltda.</h3>
+                        <img src="assets/img/empresa-exemplo.png" alt="Logo da Empresa" class="empresa-historia-logo">
+                        <h3 id="empresa-historia-nome"></h3>
                     </div>
                     <div class="empresa-historia-info">
-                        <p class="empresa-historia-ano">Fundada em: <span id="empresa-historia-ano-criacao">2010</span></p>
                         <div class="empresa-historia-descricao">
-                            <h4>Sobre a Empresa</h4>
-                            <p id="empresa-historia-descricao">Empresa líder no setor de tecnologia, especializada em desenvolvimento de software e soluções digitais.</p>
-                            
-                            <h4>Nossa História</h4>
-                            <p id="empresa-historia-texto">A Empresa Exemplo Ltda. foi fundada em 2010 por um grupo de empreendedores visionários com o objetivo de transformar o mercado de tecnologia. Inicialmente, começamos como uma pequena startup com apenas 5 funcionários, focando em desenvolvimento de aplicativos móveis.</p>
-                            
-                            <p>Em 2015, expandimos nossas operações para incluir soluções empresariais e abrimos nosso segundo escritório. Nos anos seguintes, crescemos rapidamente, atingindo a marca de 150 funcionários em 2020.</p>
-                            
-                            <p>Hoje, somos uma das empresas mais respeitadas no setor, com três locais em diferentes cidades e uma carteira diversificada de clientes. Nossa missão continua a mesma: inovar e criar soluções tecnológicas que transformam a vida das pessoas.</p>
+                            <h4>Descrição</h4>
+                            <p id="empresa-historia-descricao"></p>
                         </div>
                     </div>
                 </div>
@@ -83,7 +371,6 @@
 
         <section class="vagas-section">
             <div class="section-header">
-                <a href="formularioVaga.html" class="btn btn-primary">Adicionar Nova Vaga</a>
                 <h2>Vagas Disponíveis</h2>
             </div>
             
@@ -98,7 +385,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Sistema de Vagas. Todos os direitos reservados.</p>
+            <p>&copy; 2024 Worklink. Todos os direitos reservados.</p>
             <div class="footer-links">
                 <a href="#">Sobre</a>
                 <a href="#">Contato</a>
@@ -166,5 +453,92 @@
     
     <script src="../assets/script/script.js"></script>
     <script src="assets/script/HomeEmpresa.js"></script>
+    <script>
+        let vagas = [];
+
+        // Função para verificar se a imagem existe
+        function checkImage(imageSrc, fallbackSrc) {
+            const img = new Image();
+            img.onload = function() {
+                document.getElementById('empresa-perfil-logo').src = imageSrc;
+            };
+            img.onerror = function() {
+                document.getElementById('empresa-perfil-logo').src = fallbackSrc;
+            };
+            img.src = imageSrc;
+        }
+
+        // Usar uma imagem padrão quando a imagem da empresa não estiver disponível
+        window.addEventListener('DOMContentLoaded', function() {
+            const empresaId = localStorage.getItem('empresaId'); // Certifique-se de que o ID da empresa está armazenado
+            if (!empresaId) {
+                alert("Empresa não encontrada. Faça login novamente.");
+                window.location.href = "../Cadastro_Login/login.html";
+                return;
+            }
+
+            fetch(`http://localhost:8080/empresas/${empresaId}`)
+                .then(resp => {
+                    if (!resp.ok) throw new Error("Empresa não encontrada");
+                    return resp.json();
+                })
+                .then(empresa => {
+                    document.getElementById('empresa-perfil-nome').textContent = empresa.nome;
+                    document.getElementById('empresa-historia-descricao').textContent = empresa.descricao;
+                    document.getElementById('empresa-historia-endereco').textContent = empresa.endereco;
+
+                    // Atualiza a imagem de perfil
+                    const logoImg = document.getElementById('empresa-perfil-logo');
+                    const fallbackSrc = "assets/img/img-padrão.png"; // Caminho para a imagem padrão
+                    if (empresa.fotoPerfil) {
+                        logoImg.src = `http://localhost:8080${empresa.fotoPerfil}`;
+                    } else {
+                        logoImg.src = fallbackSrc;
+                    }
+                })
+                .catch(error => {
+                    alert("Erro ao carregar dados da empresa.");
+                    console.error(error);
+                });
+        });
+
+        function toggleSettings(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('settingsMenu');
+            menu.classList.toggle('show');
+        }
+
+        function openHistoryModal() {
+            document.getElementById('modal-historia').style.display = 'block';
+        }
+
+        // Fechar o modal de história quando clicar no X
+        document.getElementById('close-historia').addEventListener('click', function() {
+            document.getElementById('modal-historia').style.display = 'none';
+        });
+
+        // Fechar o modal quando clicar fora dele
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('modal-historia');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Fechar o menu quando clicar fora dele
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('settingsMenu');
+            const settingsIcon = document.querySelector('.settings-icon');
+            if (!menu.contains(event.target) && !settingsIcon.contains(event.target)) {
+                menu.classList.remove('show');
+            }
+        });
+
+        // Prevenir que o clique no menu feche o menu
+        document.getElementById('settingsMenu').addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+
+    </script>
 </body>
 </html>

@@ -1,0 +1,135 @@
+:root {
+    /* Main Colors */
+    --primary-orange: #fd7e14;
+    --primary-orange-dark: #c46215;
+    --primary-teal: #006981;
+    --primary-brown: #794143;
+    --neutral-gray: #89928a;
+    --light-teal: #95cbc4;
+    --light-blue: #dae7e9;
+}
+
+/* Global Styles */
+body {
+    background-color: var(--light-blue);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: var(--primary-teal) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    color: var(--light-blue) !important;
+}
+
+/* Card Styles */
+.card {
+    background-color: var(--light-teal) !important;
+    border: 2px solid var(--primary-brown);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-brown);
+}
+
+label {
+    color: var(--primary-brown);
+}
+
+/* Form Elements */
+.form-control {
+    border: 1px solid var(--neutral-gray);
+    background-color: white;
+}
+
+.form-control:focus {
+    border-color: var(--primary-teal);
+    box-shadow: 0 0 0 0.2rem rgba(0, 105, 129, 0.25);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-orange) !important;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-orange-dark) !important;
+}
+
+.btn-secondary {
+    background-color: var(--primary-teal) !important;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-brown) !important;
+}
+
+/* Links */
+a {
+    color: var(--primary-teal) !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-brown) !important;
+}
+
+/* Tables */
+.table {
+    background-color: white;
+    border: 1px solid var(--neutral-gray);
+}
+
+.table thead {
+    background-color: var(--primary-teal);
+    color: var(--light-blue);
+}
+
+/* Form Sections */
+.form-section {
+    background-color: var(--light-teal);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Status Badges */
+.badge-success {
+    background-color: var(--primary-teal);
+}
+
+.badge-warning {
+    background-color: var(--primary-orange);
+}
+
+/* Custom Components */
+.vaga-card {
+    background-color: white;
+    border-left: 4px solid var(--primary-orange);
+}
+
+.empresa-header {
+    background-color: var(--primary-teal);
+    color: var(--light-blue);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card {
+        margin: 10px;
+    }
+    
+    .form-control {
+        width: 100% !important;
+    }
+} 

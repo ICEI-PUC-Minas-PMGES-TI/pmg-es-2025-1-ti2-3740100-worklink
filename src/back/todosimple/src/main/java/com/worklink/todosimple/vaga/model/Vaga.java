@@ -16,17 +16,17 @@ public class Vaga {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     private long id;
+
     private String titulo;
     private String descricao;
     private String beneficios;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd") // Use o formato do input date do HTML
     private Date dataFinal;
-    private String tipoContrato; //CLT|ESTAGIO|APRENDIZ|PJ|OUTROS|
-    private String modalidade; //PRESENCIAL|REMOTO|HIBRIDO|
-    private String teste; //Arquivo em pdf
+
+    private String tipoContrato;
+    private String modalidade;
 
     @ManyToOne
     @JoinColumn(name = "empresa_id")
@@ -38,7 +38,7 @@ public class Vaga {
     public Vaga() {}
 
     // Construtor completo
-    public Vaga(Long id, String titulo, String descricao, String beneficios, double salario, Date dataFinal, String tipoContrato, String modalidade, String teste ) {
+    public Vaga(Long id, String titulo, String descricao, String beneficios, double salario, Date dataFinal, String tipoContrato, String modalidade ) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -47,7 +47,6 @@ public class Vaga {
         this.dataFinal = dataFinal;
         this.tipoContrato = tipoContrato;
         this.modalidade = modalidade;
-        this.teste = teste;
     }
 
     // Getters e Setters
@@ -113,14 +112,6 @@ public class Vaga {
     
     public void setModalidade(String modalidade) {
         this.modalidade = modalidade;
-    }
-    
-    public String getTeste() {
-        return teste;
-    }
-    
-    public void setTeste(String teste) {
-        this.teste = teste;
     }
     
     public Empresa getEmpresa() {

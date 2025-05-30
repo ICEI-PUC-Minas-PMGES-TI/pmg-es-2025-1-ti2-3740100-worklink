@@ -3,17 +3,133 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Login - Worklink</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-color: #e48f4f;
+            --secondary-color: #5c3d2e;
+            --background-color: #dce8db;
+            --text-color: #3c3c3c;
+            --accent-color: #8a9a5b;
+            --highlight-color: #d4772a;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem;
+        }
+
+        .navbar-brand {
+            color: var(--text-color) !important;
+            font-weight: bold;
+        }
+
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-header {
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+        }
+
+        .form-control {
+            border: 1px solid var(--accent-color);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(228, 143, 79, 0.25);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            color: var(--text-color) !important;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active {
+            background-color: var(--highlight-color) !important;
+            border-color: var(--highlight-color) !important;
+            color: var(--text-color) !important;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color) !important;
+            border-color: var(--secondary-color) !important;
+            color: var(--background-color) !important;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus,
+        .btn-secondary:active {
+            background-color: var(--accent-color) !important;
+            border-color: var(--accent-color) !important;
+            color: var(--background-color) !important;
+        }
+
+        .btn-outline-secondary {
+            color: var(--secondary-color) !important;
+            border-color: var(--secondary-color) !important;
+        }
+
+        .btn-outline-secondary:hover,
+        .btn-outline-secondary:focus,
+        .btn-outline-secondary:active {
+            background-color: var(--secondary-color) !important;
+            color: var(--background-color) !important;
+        }
+
+        .btn {
+            color: black !important;
+        }
+        .container {
+            margin-bottom: 5vh;
+        }
+        .password-toggle {
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .password-field {
+            position: relative;
+        }
+        .login-type {
+            margin-bottom: 1rem;
+        }
+        .login-type .btn {
+            background-color: var(--background-color) !important;
+            color: var(--text-color) !important;
+            border: 1px solid var(--accent-color) !important;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+        .login-type .btn.active {
+            background-color: var(--accent-color) !important;
+            color: white !important;
+        }
+    </style>
 </head>
 <body>
-
-    <nav class="navbar" style="background-color: #e48f4f; z-index: 1; width: 100%;">
+    <nav class="navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="" style="color: #5c3d2e;">
+          <a class="navbar-brand" href="">
             <i class="fa-solid fa-beer-mug-empty"></i>
             Worklink
           </a>
@@ -21,32 +137,119 @@
     </nav>
 
     <div class="container">
-        <div class="row" style="margin-top: 20%;">
-            <div class="col-md-1"></div>
-            <div class="col-md-10" style="text-align: center;">
-
-                <h1 style="color: #5c3d2e;">Login</h1>
-
-                <label for="">Email</label>
-                <div class="textbox" style="display: flex; justify-content: center;">
-                    <input type="text" class="form-control" id="caduser_email" placeholder="Email" name="username" style="margin-bottom: 20px; width: 40%;" required>
-                </div>
-                <label for="">Senha</label>
-                <div class="textbox" style="display: flex; justify-content: center;">
-                    <input type="password" class="form-control" id="caduser_senha" placeholder="Password" style="margin-bottom: 20px; width: 40%;" name="password" required>
-                </div>
+        <div class="row" style="margin-top: 15vh;">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="card shadow" style="padding: 2rem; border-radius: 10px;">
+                    <h1 class="text-center mb-4">Login</h1>
                     
-                <a href="" id="loginUsuario" class="btn btn-success" style="background-color: #e48f4f; width: 40%;">
-                    Entrar
-                </a>
+                    <div class="login-type">
+                        <button class="btn btn-outline-primary active" onclick="setLoginType('candidato')">
+                            <i class="fas fa-user"></i> Candidato
+                        </button>
+                        <button class="btn btn-outline-primary" onclick="setLoginType('empresa')">
+                            <i class="fas fa-building"></i> Empresa
+                        </button>
+                    </div>
 
-                <p>Não tem uma conta? <a href="escolhaCadastro.html">Registre-se</p>
+                    <form id="formLogin">
+                        <input type="hidden" id="loginType" value="candidato">
+                        
+                        <div class="mb-3">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
 
+                        <div class="mb-3">
+                            <label for="senha">Senha</label>
+                            <div class="password-field">
+                                <input type="password" class="form-control" id="senha" required>
+                                <i class="fas fa-eye password-toggle" onclick="togglePassword('senha')"></i>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <a href="escolhaCadastro.html" class="text-decoration-none">Não tem uma conta? Cadastre-se</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="col-md-1"></div>
+            <div class="col-md-4"></div>
         </div>
     </div>
-    <script src="assets/loginEmpresa.js"></script>
 
+    <script>
+        function setLoginType(type) {
+            document.getElementById('loginType').value = type;
+            const buttons = document.querySelectorAll('.login-type .btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(type)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = input.nextElementSibling;
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        $('#formLogin').on('submit', function(e) {
+            e.preventDefault();
+            const loginType = document.getElementById('loginType').value;
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+
+            if (loginType === 'empresa') {
+                // Busca todas as empresas e filtra no front
+                fetch('http://localhost:8080/empresas')
+                    .then(response => response.json())
+                    .then(empresas => {
+                        const empresa = empresas.find(emp => emp.email === email && emp.senha === senha);
+                        if (empresa) {
+                            // Simula login
+                            localStorage.setItem('empresaId', empresa.id);
+                            localStorage.setItem('empresaCnpj', empresa.cnpj); // ESSENCIAL para HomeEmpresa.js
+                            localStorage.setItem('userType', 'empresa');
+                            window.location.href = '../Vaga/HomeEmpresa.html';
+                        } else {
+                            alert('Credenciais inválidas');
+                        }
+                    })
+                    .catch(() => alert('Erro ao acessar o servidor.'));
+            } else {
+                // Busca todos os candidatos e filtra no front
+                fetch('http://localhost:8080/candidatos')
+                    .then(response => response.json())
+                    .then(candidatos => {
+                        const candidato = candidatos.find(cand => cand.email === email && cand.senha === senha);
+                        if (candidato) {
+                            // Simula login
+                            localStorage.setItem('candidatoId', candidato.id);
+                            localStorage.setItem('userType', 'candidato');
+                            window.location.href = '../Candidato/homeCandidato.html';
+                        } else {
+                            alert('Credenciais inválidas');
+                        }
+                    })
+                    .catch(() => alert('Erro ao acessar o servidor.'));
+            }
+        });
+    </script>
 </body>
 </html>
