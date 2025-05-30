@@ -89,20 +89,8 @@ public class UsuarioService {
         return candidatoRepository.saveAndFlush(candidato);
     }
 
-    @Transactional
-    public Candidato updateCandidato(Candidato candidato) {
-        Candidato existing = findCandidatoById(candidato.getId());
-        existing.setNome(candidato.getNome());
-        existing.setEmail(candidato.getEmail());
-        existing.setSenha(candidato.getSenha());
-        existing.setTelefone(candidato.getTelefone());
-        existing.setEndereco(candidato.getEndereco());
-        existing.setCpf(candidato.getCpf());
-        existing.setDataNasc(candidato.getDataNasc());
-        existing.setAreaAtuacao(candidato.getAreaAtuacao());
-        existing.setSexo(candidato.getSexo());
-        existing.setCep(candidato.getCep());
-        return candidatoRepository.save(existing);
+    public void updateCandidato(Candidato candidato) {
+        candidatoRepository.save(candidato);
     }
 
     public void deleteCandidato(Integer id) {

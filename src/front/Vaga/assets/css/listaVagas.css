@@ -125,3 +125,67 @@ button.excluir {
     background-color: var(--accent-color);
     color: white;
 }
+
+/* Estilo para a lista de vagas */
+.vaga-lista {
+    list-style-type: none; /* Remove os marcadores padrão da lista */
+    padding: 0;
+    margin: 0;
+}
+
+.vaga-item {
+    border: 1px solid var(--primary-color); /* Borda com a cor primária */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 15px; /* Espaçamento interno */
+    margin-bottom: 15px; /* Espaçamento entre os itens */
+    background-color: #fff; /* Fundo branco */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.vaga-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra mais intensa no hover */
+    border-color: var(--highlight-color); /* Cor de destaque no hover */
+}
+
+.vaga-item h3 {
+    margin-top: 0;
+    color: var(--secondary-color); /* Cor secundária para o título */
+}
+
+.vaga-item p {
+    margin: 5px 0; /* Espaçamento entre os parágrafos */
+    color: var(--text-color); /* Cor do texto */
+}
+
+.vaga-item button {
+    margin-right: 10px; /* Espaçamento entre os botões */
+    padding: 8px 12px; /* Espaçamento interno dos botões */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.vaga-item button.editar {
+    background-color: var(--accent-color); /* Cor de destaque para o botão "Editar" */
+    color: white;
+}
+
+.vaga-item button.editar:hover {
+    background-color: #6d7a41; /* Tom mais escuro no hover */
+}
+
+.vaga-item button.excluir {
+    background-color: var(--highlight-color); /* Cor de destaque para o botão "Excluir" */
+    color: white;
+}
+
+.vaga-item button.ver-candidaturas {
+    background-color: var(--secondary-color); /* Cor secundária para o botão "Ver candidaturas" */
+    color: white;
+}
+
+.vaga-item button.ver-candidaturas:hover {
+    background-color: #4a2d20; /* Tom mais escuro no hover */
+}

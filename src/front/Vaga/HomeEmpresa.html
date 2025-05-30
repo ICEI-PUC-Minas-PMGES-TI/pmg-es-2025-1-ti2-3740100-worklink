@@ -294,36 +294,15 @@
         }
 
         /* Estilos para o bloco de perfil da empresa */
-        .empresa-perfil {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+    
 
-        .empresa-perfil-logo {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 1rem;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--primary-color);
-        }
-
-        .empresa-perfil-nome {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: var(--secondary-color);
-        }
-
+       
         .empresa-perfil-descricao {
             font-size: 1rem;
             color: var(--text-color);
             margin-bottom: 1rem;
         }
+
     </style>
 </head>
 <body>
@@ -341,12 +320,12 @@
             <div class="empresa-perfil-container">
                 <div class="empresa-perfil-header">
                     <div class="empresa-perfil-logo">
-                        <img src="assets/img/empresa-exemplo.png" alt="Logo da Empresa" id="empresa-perfil-logo">
+                        <img src="assets/img/empresa-exemplo.png" alt="Logo da Empresa" id="empresa-perfil-logo" class="profile-image">
                     </div>
                     <div class="empresa-perfil-info" style="position: relative;">
                         <i class="fas fa-cog settings-icon" onclick="toggleSettings(event)"></i>
                         <div class="settings-menu" id="settingsMenu">
-                            <a href="#"><i class="fas fa-user-edit"></i> Editar Perfil</a>
+                            <a href="editarEmpresa.html"><i class="fas fa-user-edit"></i> Editar Perfil</a>
                             <a href="formularioVaga.html"><i class="fas fa-plus"></i> Nova Vaga</a>
                             <a href="../Cadastro_Login/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
@@ -491,19 +470,36 @@
 
         // Usar uma imagem padrão quando a imagem da empresa não estiver disponível
         window.addEventListener('DOMContentLoaded', function() {
-            const logoImg = document.getElementById('empresa-perfil-logo');
-            const currentSrc = logoImg.src;
-            const fallbackSrc = "../assets/img/img-padrão.png"; // Caminho correto para a imagem padrão existente
-            
-            checkImage(currentSrc, fallbackSrc);
-            
-            // Fazer o mesmo para a imagem no modal de história
-            const historiaLogo = document.querySelector('.empresa-historia-logo');
-            if (historiaLogo) {
-                historiaLogo.onerror = function() {
-                    this.src = fallbackSrc;
-                };
+            const empresaId = localStorage.getItem('empresaId'); // Certifique-se de que o ID da empresa está armazenado
+            if (!empresaId) {
+                alert("Empresa não encontrada. Faça login novamente.");
+                window.location.href = "../Cadastro_Login/login.html";
+                return;
             }
+
+            fetch(`http://localhost:8080/empresas/${empresaId}`)
+                .then(resp => {
+                    if (!resp.ok) throw new Error("Empresa não encontrada");
+                    return resp.json();
+                })
+                .then(empresa => {
+                    document.getElementById('empresa-perfil-nome').textContent = empresa.nome;
+                    document.getElementById('empresa-historia-descricao').textContent = empresa.descricao;
+                    document.getElementById('empresa-historia-endereco').textContent = empresa.endereco;
+
+                    // Atualiza a imagem de perfil
+                    const logoImg = document.getElementById('empresa-perfil-logo');
+                    const fallbackSrc = "assets/img/img-padrão.png"; // Caminho para a imagem padrão
+                    if (empresa.fotoPerfil) {
+                        logoImg.src = `http://localhost:8080${empresa.fotoPerfil}`;
+                    } else {
+                        logoImg.src = fallbackSrc;
+                    }
+                })
+                .catch(error => {
+                    alert("Erro ao carregar dados da empresa.");
+                    console.error(error);
+                });
         });
 
         function toggleSettings(event) {

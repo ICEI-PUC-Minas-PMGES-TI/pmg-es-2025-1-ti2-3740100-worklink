@@ -114,34 +114,39 @@ function deletarVaga(id) {
 //exibirVagas -> Lista
 function exibirVagas(vagas) {
     const lista = document.getElementById("lista-vagas");
-    lista.innerHTML = ""; // Limpa a lista antes de adicionar novos cards
+    lista.innerHTML = ""; // Limpa a lista antes de adicionar novos itens
 
-    const vagasContainer = document.getElementById('vagas-container');
-    if (!vagasContainer) return; // Evita erro se o elemento não existir
+    if (!vagas || vagas.length === 0) {
+        lista.innerHTML = `<p class="text-center">Nenhuma vaga cadastrada.</p>`;
+        return;
+    }
+
+    // Cria o elemento de lista
+    const ul = document.createElement("ul");
+    ul.classList.add("vaga-lista");
 
     // Ordena as vagas pelo maior ID (mais recente primeiro)
     vagas.sort((a, b) => b.id - a.id);
 
     vagas.forEach(vaga => {
-        const card = document.createElement("div");
-        card.classList.add("vaga-card");
+        const li = document.createElement("li");
+        li.classList.add("vaga-item");
 
         // Trata o campo dataFinal
         let dataFinal = "Não especificada";
         if (vaga.dataFinal) {
-            // Converte yyyy-MM-dd ou yyyy-MM-ddTHH:mm:ss para dd/MM/yyyy
             let data = vaga.dataFinal;
             if (data.length > 10) data = data.substring(0, 10);
             const [ano, mes, dia] = data.split("-");
             dataFinal = `${dia}/${mes}/${ano}`;
         }
 
-        const modalidade = vaga.modalidade || 'Não especificada'; // Mapeia a modalidade
-        const tipoContrato = vaga.tipoContrato || 'Não especificado'; // Mapeia o tipo de contrato
+        const modalidade = vaga.modalidade || 'Não especificada';
+        const tipoContrato = vaga.tipoContrato || 'Não especificado';
         const beneficios = vaga.beneficios && vaga.beneficios.trim() !== "" ? vaga.beneficios : 'Não informado';
 
-        card.innerHTML = `
-        <h2>${vaga.titulo}</h2>
+        li.innerHTML = `
+            <h3>${vaga.titulo}</h3>
             <p><strong>Sobre:</strong> ${vaga.descricao}</p>
             <p><strong>Benefícios:</strong> ${beneficios}</p>
             <p><strong>Data Final:</strong> ${dataFinal}</p>
@@ -149,11 +154,14 @@ function exibirVagas(vagas) {
             <p><strong>Tipo de Contrato:</strong> ${tipoContrato}</p>
             <p><strong>Salário:</strong> R$ ${vaga.salario.toFixed(2)}</p>
             <button class="editar" onclick="editarVaga(${vaga.id})">Editar</button>
+            <button class="ver-candidaturas" onclick="verCandidaturas(${vaga.id})">Ver candidaturas</button>
             <button class="excluir" onclick="deletarVaga(${vaga.id})">Excluir</button>
         `;
 
-        lista.appendChild(card);
+        ul.appendChild(li);
     });
+
+    lista.appendChild(ul);
 }
 
 function editarVaga(id) {
@@ -197,3 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 getVagas();
+
+function verCandidaturas(vagaId) {
+    // Redireciona para a página de candidaturas da vaga com o ID na URL
+    window.location.href = `candidaturasVaga.html?vagaId=${vagaId}`;
+}

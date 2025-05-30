@@ -2,6 +2,7 @@ package com.worklink.todosimple.aplicacoes.service;
 
 import com.worklink.todosimple.aplicacoes.model.Aplicacao;
 import com.worklink.todosimple.aplicacoes.repositories.AplicacaoRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class AplicacaoService {
     }
 
     // Atualizar o status de uma aplicação existente
-    public Aplicacao atualizarStatus(Integer id, String novoStatus) {
+    public Aplicacao atualizarStatus(Long id, String novoStatus) {
         Aplicacao aplicacao = aplicacaoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Aplicação não encontrada com o ID: " + id));
         aplicacao.setStatus(novoStatus);

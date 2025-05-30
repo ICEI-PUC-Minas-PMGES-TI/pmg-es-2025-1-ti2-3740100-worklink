@@ -2,6 +2,7 @@ package com.worklink.todosimple.aplicacoes.controller;
 
 import com.worklink.todosimple.aplicacoes.model.Aplicacao;
 import com.worklink.todosimple.aplicacoes.service.AplicacaoService;
+import com.worklink.todosimple.aplicacoes.repositories.AplicacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +11,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/aplicacoes")
+@CrossOrigin(origins = "*")
 public class AplicacaoController {
 
     @Autowired
     private AplicacaoService aplicacaoService;
+
+    @Autowired
+    private AplicacaoRepository aplicacaoRepository;
 
     // 1. Criar uma nova aplicação (inscrição do candidato em uma vaga)
     @PostMapping
@@ -26,7 +31,7 @@ public class AplicacaoController {
     // 2. Atualizar o status de uma aplicação
     @PutMapping("/{id}/status")
     public ResponseEntity<Aplicacao> atualizarStatus(
-            @PathVariable Integer id,
+            @PathVariable Long id,
             @RequestParam String status) {
         Aplicacao aplicacaoAtualizada = aplicacaoService.atualizarStatus(id, status);
         return ResponseEntity.ok(aplicacaoAtualizada);
@@ -51,5 +56,12 @@ public class AplicacaoController {
     public ResponseEntity<List<Aplicacao>> listarPorVaga(@PathVariable Integer idVaga) {
         List<Aplicacao> aplicacoes = aplicacaoService.listarPorVaga(idVaga);
         return ResponseEntity.ok(aplicacoes);
+    }
+
+    // Verificar se o CPF do candidato já está inscrito na vaga
+    @GetMapping("/verificar-inscricao")
+    public ResponseEntity<Boolean> verificarInscricao(@RequestParam Long vagaId, @RequestParam String cpf) {
+        boolean inscrito = aplicacaoRepository.existsByVagaIdAndCandidatoCpf(vagaId, cpf);
+        return ResponseEntity.ok(inscrito);
     }
 }

@@ -150,12 +150,19 @@
         </div>
     </footer>
 
+    <script src="assets/js/script.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const vagasContainer = document.getElementById("vagas-container");
 
             // URL do endpoint para buscar todas as vagas
             const apiUrl = "http://localhost:8080/vagas";
+
+            // Função para formatar a data no formato brasileiro
+            function formatarData(data) {
+                const [ano, mes, dia] = data.split('-');
+                return `${dia}/${mes}/${ano}`;
+            }
 
             // Função para carregar as vagas
             function carregarVagas() {
@@ -175,20 +182,32 @@
                             const vagaCard = document.createElement("div");
                             vagaCard.classList.add("vaga-card");
 
+                            const buttonId = `inscreverBtn-${vaga.id}`;
+
                             vagaCard.innerHTML = `
                                 <div class="vaga-info">
                                     <h3>${vaga.titulo}</h3>
                                     <p><strong>Empresa:</strong> ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}</p>
                                     <p><strong>Descrição:</strong> ${vaga.descricao}</p>
                                     <p><strong>Tipo de Contrato:</strong> ${vaga.tipoContrato}</p>
+                                    <p><strong>Data de Publicação:</strong> ${vaga.dataFinal ? formatarData(vaga.dataFinal) : "Data não informada"}</p>
                                 </div>
                                 <div class="vaga-actions">
-                                    <button class="btn-inscrever">Inscrever-se</button>
-                                    <button class="btn-detalhes">Ver Detalhes</button>
+                                    <button class="btn-inscrever" id="${buttonId}" onclick="inscreverVaga(${vaga.id}, '${vaga.dataFinal}', '${buttonId}')">Inscrever-se</button>
+                                    <button class="btn-detalhes" onclick="verDetalhes(${vaga.id})">Ver Detalhes</button>
                                 </div>
                             `;
 
                             vagasContainer.appendChild(vagaCard);
+
+                            // Verifica se o candidato já está inscrito
+                            verificarInscricao(vaga.id, inscrito => {
+                                if (inscrito) {
+                                    const inscreverBtn = document.getElementById(buttonId);
+                                    inscreverBtn.disabled = true;
+                                    inscreverBtn.textContent = "Já inscrito";
+                                }
+                            });
                         });
                     })
                     .catch(error => {
@@ -202,6 +221,11 @@
             // Chama a função para carregar as vagas ao carregar a página
             carregarVagas();
         });
+
+        function verDetalhes(vagaId) {
+            // Redireciona para a página de detalhes com o ID da vaga na URL
+            window.location.href = `detalhesVaga.html?vagaId=${vagaId}`;
+        }
     </script>
 </body>
 </html>
