@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Candidatos - Worklink</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #9147ff;
+            --secondary-color: #6d6e7c;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --accent-color: #4e4f58;
+            --highlight-color: #4F3F86;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        /* Header */
+        .navbar {
+            background: var(--white);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Search and Filters */
+        .search-filters {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            border: 2px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(145, 71, 255, 0.1);
+            outline: none;
+        }
+
+        .search-btn {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            color: var(--white);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
+        }
+
+        .filter-select {
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(145, 71, 255, 0.1);
+            outline: none;
+        }
+
+        /* Candidate Cards */
+        .candidates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .candidate-card {
+            background: var(--white);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .candidate-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-color);
+        }
+
+        .candidate-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .candidate-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .candidate-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .availability-indicator {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 3px solid var(--white);
+        }
+
+        .available {
+            background: var(--success-color);
+        }
+
+        .busy {
+            background: var(--error-color);
+        }
+
+        .candidate-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-color);
+        }
+
+        .candidate-title {
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .candidate-location {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .candidate-summary {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .candidate-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(145, 71, 255, 0.1);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .candidate-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.75rem;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-value {
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .meta-label {
+            color: var(--text-light);
+            font-size: 0.7rem;
+            margin-top: 0.25rem;
+        }
+
+        .candidate-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .view-profile-btn {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            color: var(--white);
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .view-profile-btn:hover {
+            transform: translateY(-2px);
+            color: var(--white);
+        }
+
+        .contact-btn {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .contact-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .save-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .save-indicator:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        .save-indicator.saved {
+            background: var(--success-color);
+            color: var(--white);
+        }
+
+        /* Results Info */
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+        }
+
+        .results-count {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .sort-select {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--white);
+        }
+
+        /* Filters Panel */
+        .filters-panel {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-option input[type="checkbox"] {
+            margin-right: 0.5rem;
+            accent-color: var(--primary-color);
+        }
+
+        .filter-option label {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .salary-range {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .salary-input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-light);
+        }
+
+        .no-results i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .spinner {
+            width: 3rem;
+            height: 3rem;
+            border: 3px solid #e2e8f0;
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .candidates-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+            
+            .candidate-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters-panel {
+                position: static;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-link"></i> Worklink
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="candidatos.html">Candidatos</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex gap-2">
+                    <a href="HomeEmpresa.html" class="btn btn-primary-custom">Painel Empresa</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>Buscar Candidatos</h1>
+                    <p>Encontre os melhores talentos para sua empresa. Conecte-se com profissionais qualificados e acelere seu processo de recrutamento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Search Section -->
+        <div class="search-filters">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control search-input" placeholder="Buscar por cargo, habilidade ou nome..." id="search-input">
+                        <button class="btn search-btn" type="button" id="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select class="form-select filter-select" id="location-filter">
+                                <option value="">Localização</option>
+                                <option value="sao-paulo">São Paulo, SP</option>
+                                <option value="rio-janeiro">Rio de Janeiro, RJ</option>
+                                <option value="belo-horizonte">Belo Horizonte, MG</option>
+                                <option value="remote">Remoto</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-select filter-select" id="experience-filter">
+                                <option value="">Experiência</option>
+                                <option value="junior">Júnior (0-2 anos)</option>
+                                <option value="pleno">Pleno (3-5 anos)</option>
+                                <option value="senior">Sênior (5+ anos)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Filters Sidebar -->
+            <div class="col-lg-3">
+                <div class="filters-panel">
+                    <div class="filter-group">
+                        <div class="filter-title">Área de Atuação</div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="tech" value="technology">
+                            <label for="tech">Tecnologia</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="design" value="design">
+                            <label for="design">Design</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="marketing" value="marketing">
+                            <label for="marketing">Marketing</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="sales" value="sales">
+                            <label for="sales">Vendas</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="finance" value="finance">
+                            <label for="finance">Financeiro</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="filter-title">Disponibilidade</div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="available" value="available">
+                            <label for="available">Disponível</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="open-to-offers" value="open">
+                            <label for="open-to-offers">Aberto a propostas</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="filter-title">Modalidade</div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="remote" value="remote">
+                            <label for="remote">Remoto</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="hybrid" value="hybrid">
+                            <label for="hybrid">Híbrido</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="onsite" value="onsite">
+                            <label for="onsite">Presencial</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="filter-title">Pretensão Salarial</div>
+                        <div class="salary-range">
+                            <input type="number" class="salary-input" placeholder="Salário mínimo (R$)" id="salary-min">
+                            <input type="number" class="salary-input" placeholder="Salário máximo (R$)" id="salary-max">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline-primary w-100" onclick="clearFilters()">
+                        <i class="fas fa-times"></i> Limpar Filtros
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="col-lg-9">
+                <!-- Results Info -->
+                <div class="results-info">
+                    <div class="results-count" id="results-count">
+                        Mostrando 1-12 de 248 candidatos
+                    </div>
+                    <div>
+                        <select class="sort-select" id="sort-select">
+                            <option value="relevance">Mais relevantes</option>
+                            <option value="experience">Mais experientes</option>
+                            <option value="recent">Cadastros recentes</option>
+                            <option value="availability">Disponibilidade</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Loading -->
+                <div class="loading" id="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Buscando candidatos...</p>
+                </div>
+
+                <!-- Candidates Grid -->
+                <div class="candidates-grid" id="candidates-grid">
+                    <!-- Example candidate cards -->
+                    <div class="candidate-card">
+                        <div class="save-indicator" title="Salvar candidato">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                        
+                        <div class="candidate-header">
+                            <div class="candidate-avatar">
+                                <i class="fas fa-user"></i>
+                                <div class="availability-indicator available"></div>
+                            </div>
+                            <div class="candidate-info">
+                                <h3>João Silva</h3>
+                                <div class="candidate-title">Desenvolvedor Full Stack Sênior</div>
+                                <div class="candidate-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    São Paulo, SP
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="candidate-summary">
+                            Desenvolvedor experiente com foco em React e Node.js. Apaixonado por criar soluções escaláveis e trabalhar com metodologias ágeis.
+                        </p>
+                        
+                        <div class="candidate-skills">
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                        </div>
+                        
+                        <div class="candidate-meta">
+                            <div class="meta-item">
+                                <div class="meta-value">5+ anos</div>
+                                <div class="meta-label">Experiência</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value">R$ 8-12k</div>
+                                <div class="meta-label">Pretensão</div>
+                            </div>
+                        </div>
+                        
+                        <div class="candidate-actions">
+                            <a href="../Candidato/perfilCandidato.html" class="view-profile-btn">
+                                <i class="fas fa-eye"></i> Ver Perfil
+                            </a>
+                            <button class="btn contact-btn">
+                                <i class="fas fa-envelope"></i> Contatar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- More example cards -->
+                    <div class="candidate-card">
+                        <div class="save-indicator" title="Salvar candidato">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                        
+                        <div class="candidate-header">
+                            <div class="candidate-avatar">
+                                <i class="fas fa-user"></i>
+                                <div class="availability-indicator available"></div>
+                            </div>
+                            <div class="candidate-info">
+                                <h3>Ana Costa</h3>
+                                <div class="candidate-title">UX/UI Designer</div>
+                                <div class="candidate-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Rio de Janeiro, RJ
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="candidate-summary">
+                            Designer criativa com expertise em pesquisa de usuário e prototipagem. Focada em criar experiências digitais excepcionais.
+                        </p>
+                        
+                        <div class="candidate-skills">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Adobe XD</span>
+                            <span class="skill-tag">Sketch</span>
+                            <span class="skill-tag">Prototyping</span>
+                        </div>
+                        
+                        <div class="candidate-meta">
+                            <div class="meta-item">
+                                <div class="meta-value">4 anos</div>
+                                <div class="meta-label">Experiência</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value">R$ 6-9k</div>
+                                <div class="meta-label">Pretensão</div>
+                            </div>
+                        </div>
+                        
+                        <div class="candidate-actions">
+                            <a href="../Candidato/perfilCandidato.html" class="view-profile-btn">
+                                <i class="fas fa-eye"></i> Ver Perfil
+                            </a>
+                            <button class="btn contact-btn">
+                                <i class="fas fa-envelope"></i> Contatar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="candidate-card">
+                        <div class="save-indicator" title="Salvar candidato">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                        
+                        <div class="candidate-header">
+                            <div class="candidate-avatar">
+                                <i class="fas fa-user"></i>
+                                <div class="availability-indicator busy"></div>
+                            </div>
+                            <div class="candidate-info">
+                                <h3>Carlos Santos</h3>
+                                <div class="candidate-title">Product Manager</div>
+                                <div class="candidate-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Belo Horizonte, MG
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="candidate-summary">
+                            Gestor de produtos com forte background em análise de dados e estratégia. Experiência em escalar produtos digitais.
+                        </p>
+                        
+                        <div class="candidate-skills">
+                            <span class="skill-tag">Product Strategy</span>
+                            <span class="skill-tag">Analytics</span>
+                            <span class="skill-tag">Agile</span>
+                            <span class="skill-tag">SQL</span>
+                        </div>
+                        
+                        <div class="candidate-meta">
+                            <div class="meta-item">
+                                <div class="meta-value">7 anos</div>
+                                <div class="meta-label">Experiência</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value">R$ 12-18k</div>
+                                <div class="meta-label">Pretensão</div>
+                            </div>
+                        </div>
+                        
+                        <div class="candidate-actions">
+                            <a href="../Candidato/perfilCandidato.html" class="view-profile-btn">
+                                <i class="fas fa-eye"></i> Ver Perfil
+                            </a>
+                            <button class="btn contact-btn">
+                                <i class="fas fa-envelope"></i> Contatar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- No Results -->
+                <div class="no-results" id="no-results" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <h4>Nenhum candidato encontrado</h4>
+                    <p>Tente ajustar seus filtros ou critérios de busca para encontrar mais candidatos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Search and filter functionality
+        let currentFilters = {
+            search: '',
+            location: '',
+            experience: '',
+            areas: [],
+            availability: [],
+            modality: [],
+            salaryMin: '',
+            salaryMax: '',
+            sort: 'relevance'
+        };
+
+        // Search functionality
+        document.getElementById('search-btn').addEventListener('click', performSearch);
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Filter change handlers
+        document.getElementById('location-filter').addEventListener('change', function() {
+            currentFilters.location = this.value;
+            applyFilters();
+        });
+
+        document.getElementById('experience-filter').addEventListener('change', function() {
+            currentFilters.experience = this.value;
+            applyFilters();
+        });
+
+        document.getElementById('sort-select').addEventListener('change', function() {
+            currentFilters.sort = this.value;
+            applyFilters();
+        });
+
+        // Checkbox filters
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const filterType = getFilterType(this.value);
+                const filterArray = currentFilters[filterType];
+                
+                if (this.checked) {
+                    if (!filterArray.includes(this.value)) {
+                        filterArray.push(this.value);
+                    }
+                } else {
+                    const index = filterArray.indexOf(this.value);
+                    if (index > -1) {
+                        filterArray.splice(index, 1);
+                    }
+                }
+                
+                applyFilters();
+            });
+        });
+
+        // Salary filters
+        document.getElementById('salary-min').addEventListener('change', function() {
+            currentFilters.salaryMin = this.value;
+            applyFilters();
+        });
+
+        document.getElementById('salary-max').addEventListener('change', function() {
+            currentFilters.salaryMax = this.value;
+            applyFilters();
+        });
+
+        function getFilterType(value) {
+            const areaValues = ['technology', 'design', 'marketing', 'sales', 'finance'];
+            const availabilityValues = ['available', 'open'];
+            const modalityValues = ['remote', 'hybrid', 'onsite'];
+            
+            if (areaValues.includes(value)) return 'areas';
+            if (availabilityValues.includes(value)) return 'availability';
+            if (modalityValues.includes(value)) return 'modality';
+            
+            return 'other';
+        }
+
+        function performSearch() {
+            currentFilters.search = document.getElementById('search-input').value.toLowerCase();
+            applyFilters();
+        }
+
+        function applyFilters() {
+            showLoading();
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                filterCandidates();
+                hideLoading();
+            }, 800);
+        }
+
+        function filterCandidates() {
+            const candidates = document.querySelectorAll('.candidate-card');
+            let visibleCount = 0;
+            
+            candidates.forEach(candidate => {
+                let shouldShow = true;
+                
+                // Search filter
+                if (currentFilters.search) {
+                    const candidateName = candidate.querySelector('.candidate-info h3').textContent.toLowerCase();
+                    const candidateTitle = candidate.querySelector('.candidate-title').textContent.toLowerCase();
+                    if (!candidateName.includes(currentFilters.search) && !candidateTitle.includes(currentFilters.search)) {
+                        shouldShow = false;
+                    }
+                }
+                
+                // Location filter
+                if (currentFilters.location) {
+                    const locationText = candidate.querySelector('.candidate-location').textContent.toLowerCase();
+                    const locationMatch = {
+                        'sao-paulo': 'são paulo',
+                        'rio-janeiro': 'rio de janeiro',
+                        'belo-horizonte': 'belo horizonte',
+                        'remote': 'remoto'
+                    };
+                    
+                    if (!locationText.includes(locationMatch[currentFilters.location] || currentFilters.location)) {
+                        shouldShow = false;
+                    }
+                }
+                
+                if (shouldShow) {
+                    candidate.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    candidate.style.display = 'none';
+                }
+            });
+            
+            // Update results count
+            updateResultsCount(visibleCount);
+            
+            // Show/hide no results message
+            const noResults = document.getElementById('no-results');
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+                document.getElementById('candidates-grid').style.display = 'none';
+            } else {
+                noResults.style.display = 'none';
+                document.getElementById('candidates-grid').style.display = 'grid';
+            }
+        }
+
+        function updateResultsCount(count) {
+            const resultsCount = document.getElementById('results-count');
+            if (count === 0) {
+                resultsCount.textContent = 'Nenhum candidato encontrado';
+            } else {
+                resultsCount.textContent = `Mostrando ${count} candidato${count !== 1 ? 's' : ''} encontrado${count !== 1 ? 's' : ''}`;
+            }
+        }
+
+        function clearFilters() {
+            // Reset all filters
+            currentFilters = {
+                search: '',
+                location: '',
+                experience: '',
+                areas: [],
+                availability: [],
+                modality: [],
+                salaryMin: '',
+                salaryMax: '',
+                sort: 'relevance'
+            };
+            
+            // Reset form elements
+            document.getElementById('search-input').value = '';
+            document.getElementById('location-filter').value = '';
+            document.getElementById('experience-filter').value = '';
+            document.getElementById('salary-min').value = '';
+            document.getElementById('salary-max').value = '';
+            document.getElementById('sort-select').value = 'relevance';
+            
+            // Reset checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            // Apply filters
+            applyFilters();
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('candidates-grid').style.display = 'none';
+            document.getElementById('no-results').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('candidates-grid').style.display = 'grid';
+        }
+
+        // Save/Unsave functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('save-indicator') || e.target.closest('.save-indicator')) {
+                const indicator = e.target.closest('.save-indicator') || e.target;
+                indicator.classList.toggle('saved');
+                
+                if (indicator.classList.contains('saved')) {
+                    indicator.innerHTML = '<i class="fas fa-bookmark"></i>';
+                    indicator.title = 'Candidato salvo';
+                } else {
+                    indicator.innerHTML = '<i class="fas fa-bookmark"></i>';
+                    indicator.title = 'Salvar candidato';
+                }
+            }
+        });
+
+        // Contact functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('contact-btn') || e.target.closest('.contact-btn')) {
+                e.preventDefault();
+                alert('Funcionalidade de contato será implementada em breve!');
+            }
+        });
+
+        // Load real candidate data from API
+        function loadCandidatesFromAPI() {
+            showLoading();
+            
+            fetch('http://localhost:8080/candidatos')
+                .then(response => response.json())
+                .then(candidatos => {
+                    hideLoading();
+                    renderCandidates(candidatos);
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar candidatos:', error);
+                    hideLoading();
+                    showNoResultsAPI();
+                });
+        }
+
+        function renderCandidates(candidatos) {
+            const candidatesGrid = document.getElementById('candidates-grid');
+            
+            if (candidatos.length === 0) {
+                showNoResultsAPI();
+                return;
+            }
+            
+            // Clear existing mock data
+            candidatesGrid.innerHTML = '';
+            
+            candidatos.forEach(candidato => {
+                const candidateCard = createCandidateCard(candidato);
+                candidatesGrid.appendChild(candidateCard);
+            });
+            
+            updateResultsCount(candidatos.length);
+        }
+
+        function createCandidateCard(candidato) {
+            const card = document.createElement('div');
+            card.className = 'candidate-card';
+            
+            // Map database fields to display values
+            const experienciaTexto = candidato.experiencia ? `${candidato.experiencia}+ anos` : 'Experiência não informada';
+            const habilidadesArray = candidato.habilidades ? candidato.habilidades.split(',').slice(0, 4) : ['JavaScript', 'React', 'Node.js'];
+            
+            card.innerHTML = `
+                <div class="save-indicator" title="Salvar candidato">
+                    <i class="fas fa-bookmark"></i>
+                </div>
+                
+                <div class="candidate-header">
+                    <div class="candidate-avatar">
+                        <i class="fas fa-user"></i>
+                        <div class="availability-indicator available"></div>
+                    </div>
+                    <div class="candidate-info">
+                        <h3>${candidato.nome || 'Nome não informado'}</h3>
+                        <div class="candidate-title">${candidato.areaAtuacao || 'Área não informada'}</div>
+                        <div class="candidate-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            ${candidato.cidade || 'Localização não informada'}
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="candidate-summary">
+                    ${candidato.formacao || 'Profissional em busca de novas oportunidades na área de ' + (candidato.areaAtuacao || 'tecnologia') + '.'}
+                </p>
+                
+                <div class="candidate-skills">
+                    ${habilidadesArray.map(skill => `<span class="skill-tag">${skill.trim()}</span>`).join('')}
+                </div>
+                
+                <div class="candidate-meta">
+                    <div class="meta-item">
+                        <div class="meta-value">${experienciaTexto}</div>
+                        <div class="meta-label">Experiência</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-value">A combinar</div>
+                        <div class="meta-label">Pretensão</div>
+                    </div>
+                </div>
+                
+                <div class="candidate-actions">
+                    <a href="../Candidato/perfilCandidato.html?id=${candidato.id}" class="view-profile-btn">
+                        <i class="fas fa-eye"></i> Ver Perfil
+                    </a>
+                    <button class="btn contact-btn" onclick="contactCandidate(${candidato.id})">
+                        <i class="fas fa-envelope"></i> Contatar
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        function contactCandidate(candidateId) {
+            alert(`Entrando em contato com candidato ID: ${candidateId}\nFuncionalidade de contato será implementada em breve!`);
+        }
+
+        function showNoResultsAPI() {
+            document.getElementById('no-results').style.display = 'block';
+            document.getElementById('candidates-grid').style.display = 'none';
+            updateResultsCount(0);
+        }
+
+        // Initialize with API data
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCandidatesFromAPI();
+        });
+    </script>
+</body>
+</html> 

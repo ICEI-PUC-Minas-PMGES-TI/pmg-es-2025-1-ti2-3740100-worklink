@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Teste de Login - Debug</h1>
+    
+    <h2>1. Teste de Candidato</h2>
+    <button onclick="testCandidateLogin()">Testar Login João (joao@email.com / 123456)</button>
+    <div id="candidate-result"></div>
+    
+    <h2>2. Teste de Empresa</h2>
+    <button onclick="testCompanyLogin()">Testar Login Empresa (contato@techcorp.com / 123456)</button>
+    <div id="company-result"></div>
+    
+    <h2>3. Log de Debug</h2>
+    <div id="debug-log" style="background: #f0f0f0; padding: 10px; margin: 10px 0; height: 200px; overflow-y: auto;"></div>
+
+    <script>
+        function log(message) {
+            const debugLog = document.getElementById('debug-log');
+            debugLog.innerHTML += new Date().toLocaleTimeString() + ': ' + message + '<br>';
+            debugLog.scrollTop = debugLog.scrollHeight;
+            console.log(message);
+        }
+
+        function testCandidateLogin() {
+            log('🔍 Iniciando teste de login de candidato...');
+            document.getElementById('candidate-result').innerHTML = 'Testando...';
+            
+            fetch('http://localhost:8080/candidatos')
+                .then(response => {
+                    log('✅ Response Status: ' + response.status);
+                    return response.json();
+                })
+                .then(candidatos => {
+                    log('✅ Candidatos carregados: ' + candidatos.length);
+                    
+                    const candidato = candidatos.find(cand => 
+                        cand.email === 'joao@email.com' && cand.senha === '123456'
+                    );
+                    
+                    if (candidato) {
+                        log('✅ Login SUCESSO! Candidato encontrado: ' + candidato.nome);
+                        document.getElementById('candidate-result').innerHTML = 
+                            '✅ SUCESSO: ' + candidato.nome + ' (ID: ' + candidato.id + ')';
+                    } else {
+                        log('❌ Login FALHOU! Credenciais não encontradas');
+                        document.getElementById('candidate-result').innerHTML = '❌ FALHOU';
+                        
+                        // Vamos listar os emails disponíveis
+                        log('📋 Emails disponíveis:');
+                        candidatos.forEach(c => {
+                            log('  - ' + c.email + ' / ' + c.senha);
+                        });
+                    }
+                })
+                .catch(error => {
+                    log('❌ ERRO na requisição: ' + error);
+                    document.getElementById('candidate-result').innerHTML = '❌ ERRO: ' + error;
+                });
+        }
+
+        function testCompanyLogin() {
+            log('🔍 Iniciando teste de login de empresa...');
+            document.getElementById('company-result').innerHTML = 'Testando...';
+            
+            fetch('http://localhost:8080/empresas')
+                .then(response => {
+                    log('✅ Response Status: ' + response.status);
+                    return response.json();
+                })
+                .then(empresas => {
+                    log('✅ Empresas carregadas: ' + empresas.length);
+                    
+                    const empresa = empresas.find(emp => 
+                        emp.email === 'contato@techcorp.com' && emp.senha === '123456'
+                    );
+                    
+                    if (empresa) {
+                        log('✅ Login SUCESSO! Empresa encontrada: ' + empresa.nome);
+                        document.getElementById('company-result').innerHTML = 
+                            '✅ SUCESSO: ' + empresa.nome + ' (ID: ' + empresa.id + ')';
+                    } else {
+                        log('❌ Login FALHOU! Credenciais não encontradas');
+                        document.getElementById('company-result').innerHTML = '❌ FALHOU';
+                        
+                        // Vamos listar os emails disponíveis
+                        log('📋 Emails disponíveis:');
+                        empresas.forEach(e => {
+                            log('  - ' + e.email + ' / ' + e.senha);
+                        });
+                    }
+                })
+                .catch(error => {
+                    log('❌ ERRO na requisição: ' + error);
+                    document.getElementById('company-result').innerHTML = '❌ ERRO: ' + error;
+                });
+        }
+
+        // Auto-teste na inicialização
+        window.addEventListener('load', function() {
+            log('🚀 Página carregada. Pronto para testes!');
+        });
+    </script>
+</body>
+</html> 

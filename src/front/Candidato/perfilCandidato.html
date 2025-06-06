@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Candidato - Worklink</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #9147ff;
+            --secondary-color: #6d6e7c;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --accent-color: #4e4f58;
+            --highlight-color: #4F3F86;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        /* Header */
+        .navbar {
+            background: var(--white);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
+        }
+
+        /* Profile Header */
+        .profile-header {
+            background: var(--white);
+            padding: 2rem 0;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-avatar i {
+            font-size: 4rem;
+            color: var(--white);
+        }
+
+        .availability-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid var(--white);
+        }
+
+        .available {
+            background: var(--success-color);
+        }
+
+        .busy {
+            background: var(--error-color);
+        }
+
+        .profile-info h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .profile-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .profile-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .meta-item i {
+            color: var(--primary-color);
+        }
+
+        .contact-btn {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 0.75rem;
+            color: var(--white);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
+        }
+
+        .save-btn {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            padding: 0.75rem 2rem;
+            border-radius: 0.75rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Content Cards */
+        .content-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title i {
+            color: var(--primary-color);
+        }
+
+        /* Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: rgba(145, 71, 255, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(145, 71, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.75rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-company {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-period {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-description {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Education */
+        .education-item {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .education-degree {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .education-school {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .education-year {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Projects */
+        .project-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .project-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .project-link:hover {
+            color: var(--highlight-color);
+        }
+
+        /* Languages */
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .language-item:last-child {
+            border-bottom: none;
+        }
+
+        .language-level {
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .native {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+        }
+
+        .fluent {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+        }
+
+        .intermediate {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .contact-btn, .save-btn {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-link"></i> Worklink
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/candidatos.html">Candidatos</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex gap-2">
+                    <a href="../Vaga/HomeEmpresa.html" class="btn btn-primary-custom">Painel Empresa</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Header -->
+    <section class="profile-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="profile-avatar" id="profile-avatar">
+                            <i class="fas fa-user"></i>
+                            <div class="availability-badge available" title="Disponível para oportunidades"></div>
+                        </div>
+                        <div class="profile-info">
+                            <h1 id="candidate-name">João Silva</h1>
+                            <p class="profile-subtitle" id="candidate-title">Desenvolvedor Full Stack Sênior</p>
+                            
+                            <div class="profile-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span id="candidate-location">São Paulo, SP</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-briefcase"></i>
+                                    <span id="candidate-experience">5+ anos de experiência</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span id="candidate-salary">R$ 8.000 - R$ 12.000</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Disponível imediatamente</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-end">
+                    <button class="btn contact-btn" id="contact-btn">
+                        <i class="fas fa-envelope"></i> Entrar em Contato
+                    </button>
+                    <button class="btn save-btn" id="save-btn">
+                        <i class="fas fa-bookmark"></i> Salvar Candidato
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- About -->
+                <div class="content-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-user"></i>
+                        Sobre
+                    </h3>
+                    <p id="candidate-about">
+                        Desenvolvedor Full Stack com mais de 5 anos de experiência em criar soluções web robustas e escaláveis. Especialista em JavaScript, React, Node.js e bancos de dados relacionais e não relacionais. Apaixonado por tecnologia e sempre em busca de novos desafios que permitam aplicar conhecimentos técnicos para resolver problemas complexos.
+                    </p>
+                    <p>
+                        Tenho experiência em metodologias ágeis, trabalho em equipe e liderança técnica. Busco constantemente me atualizar com as últimas tecnologias e melhores práticas do mercado.
+                    </p>
+                </div>
+
+                <!-- Skills -->
+                <div class="content-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-code"></i>
+                        Habilidades Técnicas
+                    </h3>
+                    <div class="skills-container" id="skills-container">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Jest</span>
+                        <span class="skill-tag">Redux</span>
+                        <span class="skill-tag">Express.js</span>
+                        <span class="skill-tag">GraphQL</span>
+                        <span class="skill-tag">REST APIs</span>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="content-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-briefcase"></i>
+                        Experiência Profissional
+                    </h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-title">Desenvolvedor Full Stack Sênior</div>
+                            <div class="timeline-company">TechCorp Inovação</div>
+                            <div class="timeline-period">Jan 2022 - Presente</div>
+                            <div class="timeline-description">
+                                Desenvolvimento de aplicações web complexas usando React e Node.js. Liderança técnica de uma equipe de 4 desenvolvedores. Responsável pela arquitetura de sistemas e integração com APIs externas. Implementação de práticas DevOps e CI/CD.
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-title">Desenvolvedor Full Stack Pleno</div>
+                            <div class="timeline-company">Startup Digital</div>
+                            <div class="timeline-period">Mar 2020 - Dez 2021</div>
+                            <div class="timeline-description">
+                                Desenvolvimento de plataforma e-commerce usando React, Node.js e PostgreSQL. Colaboração direta com equipes de design e produto. Implementação de testes automatizados e otimização de performance.
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-title">Desenvolvedor Frontend Júnior</div>
+                            <div class="timeline-company">Agência Web Plus</div>
+                            <div class="timeline-period">Jun 2019 - Fev 2020</div>
+                            <div class="timeline-description">
+                                Desenvolvimento de interfaces responsivas e interativas. Trabalho com HTML5, CSS3, JavaScript vanilla e React. Colaboração com designers para implementação pixel-perfect de layouts.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="content-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-project-diagram"></i>
+                        Projetos em Destaque
+                    </h3>
+                    
+                    <div class="project-card">
+                        <div class="project-title">E-commerce Platform</div>
+                        <p class="text-muted">Plataforma completa de e-commerce com painel administrativo, sistema de pagamentos e gestão de estoque.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Stripe API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i> Código
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-title">Task Management App</div>
+                        <p class="text-muted">Aplicativo de gerenciamento de tarefas com funcionalidades colaborativas e notificações em tempo real.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Socket.io</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i> Código
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-mobile-alt"></i> App Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <!-- Contact Info -->
+                <div class="content-card">
+                    <h4 class="card-title">
+                        <i class="fas fa-address-card"></i>
+                        Informações de Contato
+                    </h4>
+                    
+                    <div class="mb-3">
+                        <i class="fas fa-envelope text-primary me-2"></i>
+                        <a href="mailto:" id="candidate-email">email@exemplo.com</a>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <i class="fas fa-phone text-primary me-2"></i>
+                        <span id="candidate-phone">Telefone não informado</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                        <span id="candidate-address">Endereço não informado</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <i class="fas fa-id-card text-primary me-2"></i>
+                        <span id="candidate-cpf">CPF não informado</span>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="content-card">
+                    <h4 class="card-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Formação Acadêmica
+                    </h4>
+                    
+                    <div class="education-item" id="education-container">
+                        <div class="education-degree" id="candidate-education">Formação não informada</div>
+                        <div class="education-school">Informações adicionais serão adicionadas pelo candidato</div>
+                        <div class="education-year">-</div>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="content-card">
+                    <h4 class="card-title">
+                        <i class="fas fa-language"></i>
+                        Idiomas
+                    </h4>
+                    
+                    <div class="language-item">
+                        <span>Português</span>
+                        <span class="language-level native">Nativo</span>
+                    </div>
+                    
+                    <div class="language-item">
+                        <span>Inglês</span>
+                        <span class="language-level fluent">Fluente</span>
+                    </div>
+                    
+                    <div class="language-item">
+                        <span>Espanhol</span>
+                        <span class="language-level intermediate">Intermediário</span>
+                    </div>
+                </div>
+
+                <!-- Availability -->
+                <div class="content-card">
+                    <h4 class="card-title">
+                        <i class="fas fa-calendar-check"></i>
+                        Disponibilidade
+                    </h4>
+                    
+                    <div class="mb-3">
+                        <strong>Status:</strong> <span class="text-success">Disponível</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <strong>Tipo de contrato:</strong><br>
+                        <span>CLT, Freelance, Consultoria</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <strong>Modalidade:</strong><br>
+                        <span>Remoto, Híbrido, Presencial</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <strong>Início:</strong><br>
+                        <span>Imediato</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Contact and Save functionality
+        document.getElementById('contact-btn').addEventListener('click', function() {
+            // Simulate opening contact modal or sending message
+            alert('Funcionalidade de contato será implementada em breve!');
+        });
+
+        document.getElementById('save-btn').addEventListener('click', function() {
+            const btn = this;
+            const isSaved = btn.innerHTML.includes('Salvo');
+            
+            if (isSaved) {
+                btn.innerHTML = '<i class="fas fa-bookmark"></i> Salvar Candidato';
+                btn.classList.remove('btn-success');
+                btn.classList.add('save-btn');
+            } else {
+                btn.innerHTML = '<i class="fas fa-check"></i> Salvo';
+                btn.classList.remove('save-btn');
+                btn.classList.add('btn-success');
+            }
+        });
+
+        // Load candidate data from API
+        function loadCandidateData() {
+            // Get candidate ID from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const candidateId = urlParams.get('id') || 1;
+            
+            fetch(`http://localhost:8080/candidatos/${candidateId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Candidato não encontrado');
+                    }
+                    return response.json();
+                })
+                .then(candidato => {
+                    populateCandidateData(candidato);
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar dados do candidato:', error);
+                    // Keep mock data if API fails or candidate not found
+                    showMockData();
+                });
+        }
+
+        function populateCandidateData(candidato) {
+            // Update page content with real data
+            document.getElementById('candidate-name').textContent = candidato.nome || 'Nome não informado';
+            document.getElementById('candidate-title').textContent = candidato.areaAtuacao || 'Área não informada';
+            document.getElementById('candidate-location').textContent = candidato.cidade || 'Localização não informada';
+            document.getElementById('candidate-experience').textContent = candidato.experiencia ? `${candidato.experiencia}+ anos de experiência` : 'Experiência não informada';
+            document.getElementById('candidate-salary').textContent = 'A combinar';
+            document.getElementById('candidate-about').textContent = `Profissional da área de ${candidato.areaAtuacao || 'tecnologia'} com formação em ${candidato.formacao || 'área relacionada'}. Busca novas oportunidades profissionais.`;
+            
+            // Update contact information
+            const emailElement = document.getElementById('candidate-email');
+            emailElement.textContent = candidato.email || 'Email não informado';
+            emailElement.href = `mailto:${candidato.email || ''}`;
+            
+            document.getElementById('candidate-phone').textContent = candidato.telefone || 'Telefone não informado';
+            document.getElementById('candidate-address').textContent = candidato.endereco ? `${candidato.endereco}, ${candidato.numero || 'S/N'} - ${candidato.cidade}` : 'Endereço não informado';
+            document.getElementById('candidate-cpf').textContent = candidato.cpf || 'CPF não informado';
+            
+            // Update education
+            document.getElementById('candidate-education').textContent = candidato.formacao || 'Formação não informada';
+            
+            // Update skills if available
+            if (candidato.habilidades) {
+                const skillsContainer = document.getElementById('skills-container');
+                const skills = candidato.habilidades.split(',');
+                skillsContainer.innerHTML = skills.map(skill => 
+                    `<span class="skill-tag">${skill.trim()}</span>`
+                ).join('');
+            }
+        }
+
+        function showMockData() {
+            // Fallback to mock data
+            const candidateData = {
+                name: "João Silva",
+                title: "Desenvolvedor Full Stack Sênior",
+                location: "São Paulo, SP",
+                experience: "5+ anos de experiência",
+                salary: "R$ 8.000 - R$ 12.000",
+                about: "Desenvolvedor Full Stack com mais de 5 anos de experiência em criar soluções web robustas e escaláveis."
+            };
+            
+            document.getElementById('candidate-name').textContent = candidateData.name;
+            document.getElementById('candidate-title').textContent = candidateData.title;
+            document.getElementById('candidate-location').textContent = candidateData.location;
+            document.getElementById('candidate-experience').textContent = candidateData.experience;
+            document.getElementById('candidate-salary').textContent = candidateData.salary;
+            document.getElementById('candidate-about').textContent = candidateData.about;
+        }
+
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', loadCandidateData);
+    </script>
+</body>
+</html> 

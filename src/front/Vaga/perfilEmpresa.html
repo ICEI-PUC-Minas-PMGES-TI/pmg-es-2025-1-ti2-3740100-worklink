@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil da Empresa - Worklink</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #9147ff;
+            --secondary-color: #6d6e7c;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --accent-color: #4e4f58;
+            --highlight-color: #4F3F86;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        /* Header */
+        .navbar {
+            background: var(--white);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
+        }
+
+        /* Company Header */
+        .company-header {
+            background: var(--white);
+            padding: 2rem 0;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .company-logo {
+            width: 120px;
+            height: 120px;
+            background: var(--gradient-primary);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .company-logo i {
+            font-size: 3rem;
+            color: var(--white);
+        }
+
+        .company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+
+        .company-info h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .company-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .company-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .meta-item i {
+            color: var(--primary-color);
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stars {
+            color: var(--warning-color);
+        }
+
+        .rating-value {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .follow-btn {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 0.75rem;
+            color: var(--white);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .follow-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
+        }
+
+        /* Content Cards */
+        .content-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title i {
+            color: var(--primary-color);
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-icon {
+            width: 3rem;
+            height: 3rem;
+            background: var(--gradient-primary);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .stat-icon i {
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Job Cards */
+        .job-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .job-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .job-tag {
+            background: rgba(145, 71, 255, 0.1);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .job-salary {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+
+        .apply-btn {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            color: var(--white);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-2px);
+            color: var(--white);
+        }
+
+        /* Reviews */
+        .review-card {
+            border-left: 4px solid var(--primary-color);
+            background: #f8fafc;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0 1rem 1rem 0;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .review-rating {
+            color: var(--warning-color);
+        }
+
+        .review-text {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .company-info h1 {
+                font-size: 2rem;
+            }
+            
+            .company-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .job-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-link"></i> Worklink
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex gap-2">
+                    <a href="../Candidato/homeCandidato.html" class="btn btn-primary-custom">Meu Perfil</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Company Header -->
+    <section class="company-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="company-logo" id="company-logo">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="company-info">
+                            <h1 id="company-name">TechCorp Inovação</h1>
+                            <p class="company-subtitle" id="company-industry">Tecnologia da Informação</p>
+                            
+                            <div class="company-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span id="company-location">São Paulo, SP</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i>
+                                    <span id="company-size">500-1000 funcionários</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span id="company-founded">Fundada em 2010</span>
+                                </div>
+                                <div class="rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span class="rating-value">4.5</span>
+                                    <span class="text-muted">(127 avaliações)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-end">
+                    <button class="btn follow-btn" id="follow-btn">
+                        <i class="fas fa-plus"></i> Seguir Empresa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- About Company -->
+                <div class="content-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-info-circle"></i>
+                        Sobre a Empresa
+                    </h3>
+                    <p id="company-description">
+                        A TechCorp Inovação é uma empresa líder em soluções tecnológicas, especializada no desenvolvimento de software empresarial e consultoria em transformação digital. Com mais de 13 anos no mercado, atendemos clientes de diversos segmentos, sempre buscando a excelência e inovação em nossos projetos.
+                    </p>
+                    <p>
+                        Nossa missão é transformar ideias em soluções tecnológicas que impactem positivamente a vida das pessoas e o crescimento dos negócios. Valorizamos a diversidade, criatividade e o desenvolvimento contínuo de nossos colaboradores.
+                    </p>
+                </div>
+
+                <!-- Company Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="stat-number">45</div>
+                        <div class="stat-label">Vagas Ativas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number">750</div>
+                        <div class="stat-label">Funcionários</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Prêmios</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-number">13</div>
+                        <div class="stat-label">Anos de Mercado</div>
+                    </div>
+                </div>
+
+                <!-- Current Jobs -->
+                <div class="content-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-briefcase"></i>
+                        Vagas Disponíveis
+                    </h3>
+                    
+                    <div id="jobs-container">
+                        <!-- Jobs will be loaded dynamically -->
+                        <div class="job-card">
+                            <div class="job-title">Desenvolvedor Full Stack Senior</div>
+                            <div class="job-meta">
+                                <span class="job-tag">Remoto</span>
+                                <span class="job-tag">CLT</span>
+                                <span class="job-salary">R$ 8.000 - R$ 12.000</span>
+                            </div>
+                            <p class="text-muted mb-3">Buscamos um desenvolvedor experiente em React e Node.js para liderar projetos inovadores...</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">Publicada há 2 dias</small>
+                                <button class="btn apply-btn">Candidatar-se</button>
+                            </div>
+                        </div>
+                        
+                        <div class="job-card">
+                            <div class="job-title">UX/UI Designer</div>
+                            <div class="job-meta">
+                                <span class="job-tag">Híbrido</span>
+                                <span class="job-tag">CLT</span>
+                                <span class="job-salary">R$ 6.000 - R$ 9.000</span>
+                            </div>
+                            <p class="text-muted mb-3">Procuramos um designer criativo para criar experiências digitais incríveis...</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">Publicada há 1 semana</small>
+                                <button class="btn apply-btn">Candidatar-se</button>
+                            </div>
+                        </div>
+                        
+                        <div class="job-card">
+                            <div class="job-title">Product Manager</div>
+                            <div class="job-meta">
+                                <span class="job-tag">Presencial</span>
+                                <span class="job-tag">CLT</span>
+                                <span class="job-salary">R$ 10.000 - R$ 15.000</span>
+                            </div>
+                            <p class="text-muted mb-3">Oportunidade para gerenciar produtos digitais em uma empresa em crescimento...</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">Publicada há 3 dias</small>
+                                <button class="btn apply-btn">Candidatar-se</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <a href="../aplicacao/ExibirVagas.html" class="btn btn-outline-primary">Ver Todas as Vagas</a>
+                    </div>
+                </div>
+
+                <!-- Reviews -->
+                <div class="content-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-star"></i>
+                        Avaliações dos Funcionários
+                    </h3>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">M</div>
+                                <div>
+                                    <strong>Desenvolvedor Sênior</strong>
+                                    <div class="review-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <small class="text-muted">há 2 meses</small>
+                        </div>
+                        <p class="review-text">
+                            "Excelente ambiente de trabalho, muitas oportunidades de crescimento e projetos desafiadores. A empresa realmente investe no desenvolvimento dos funcionários."
+                        </p>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">A</div>
+                                <div>
+                                    <strong>Designer UX</strong>
+                                    <div class="review-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <small class="text-muted">há 1 mês</small>
+                        </div>
+                        <p class="review-text">
+                            "Cultura muito colaborativa e equipe talentosa. Os benefícios são bons e há flexibilidade no trabalho remoto."
+                        </p>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <a href="../aplicacao/avaliarEmpresas.html" class="btn btn-outline-primary">Ver Todas as Avaliações</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <!-- Company Details Sidebar -->
+                <div class="content-card">
+                    <h4 class="card-title">
+                        <i class="fas fa-building"></i>
+                        Detalhes da Empresa
+                    </h4>
+                    
+                    <div class="mb-3">
+                        <strong>CNPJ:</strong><br>
+                        <span id="company-cnpj">CNPJ não informado</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <strong>Setor:</strong><br>
+                        <span id="company-sector">Setor não informado</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <strong>Descrição:</strong><br>
+                        <span id="company-details">Descrição não informada</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <strong>Informações Adicionais:</strong><br>
+                        <ul class="list-unstyled mt-2">
+                            <li><i class="fas fa-info-circle text-primary me-2"></i>Dados adicionais podem ser editados pelo responsável</li>
+                            <li><i class="fas fa-building text-primary me-2"></i>Empresa cadastrada na plataforma</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="content-card">
+                    <h4 class="card-title">
+                        <i class="fas fa-envelope"></i>
+                        Contato
+                    </h4>
+                    
+                    <div class="mb-3">
+                        <i class="fas fa-envelope text-primary me-2"></i>
+                        <a href="mailto:" id="company-email">email@exemplo.com</a>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <i class="fas fa-phone text-primary me-2"></i>
+                        <span id="company-phone">Telefone não informado</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                        <span id="company-address">Endereço não informado</span>
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-outline-primary btn-sm">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-primary btn-sm">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-primary btn-sm">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Follow/Unfollow functionality
+        document.getElementById('follow-btn').addEventListener('click', function() {
+            const btn = this;
+            const isFollowing = btn.textContent.includes('Seguindo');
+            
+            if (isFollowing) {
+                btn.innerHTML = '<i class="fas fa-plus"></i> Seguir Empresa';
+                btn.classList.remove('btn-secondary');
+                btn.classList.add('btn-primary');
+            } else {
+                btn.innerHTML = '<i class="fas fa-check"></i> Seguindo';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-secondary');
+            }
+        });
+
+        // Load company data from API
+        function loadCompanyData() {
+            // Get company ID from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const companyId = urlParams.get('id') || 1;
+            
+            fetch(`http://localhost:8080/empresas/${companyId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Empresa não encontrada');
+                    }
+                    return response.json();
+                })
+                .then(empresa => {
+                    populateCompanyData(empresa);
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar dados da empresa:', error);
+                    // Keep mock data if API fails or company not found
+                    showMockCompanyData();
+                });
+        }
+
+        function populateCompanyData(empresa) {
+            // Update page content with real data
+            document.getElementById('company-name').textContent = empresa.nome || 'Nome não informado';
+            document.getElementById('company-industry').textContent = 'Empresa';
+            document.getElementById('company-location').textContent = empresa.cidade || 'Localização não informada';
+            document.getElementById('company-size').textContent = 'Tamanho não informado';
+            document.getElementById('company-founded').textContent = 'Fundação não informada';
+            document.getElementById('company-description').textContent = empresa.descricao || 'Empresa focada em inovação e excelência no atendimento.';
+            
+            // Update company details
+            document.getElementById('company-cnpj').textContent = empresa.cnpj || 'CNPJ não informado';
+            document.getElementById('company-sector').textContent = 'Empresa';
+            document.getElementById('company-details').textContent = empresa.descricao || 'Descrição não informada';
+            
+            // Update contact information
+            const emailElement = document.getElementById('company-email');
+            emailElement.textContent = empresa.email || 'Email não informado';
+            emailElement.href = `mailto:${empresa.email || ''}`;
+            
+            document.getElementById('company-phone').textContent = empresa.telefone || 'Telefone não informado';
+            document.getElementById('company-address').textContent = empresa.endereco ? `${empresa.endereco}, ${empresa.numero || 'S/N'} - ${empresa.cidade}` : 'Endereço não informado';
+        }
+
+        function showMockCompanyData() {
+            // Fallback to mock data
+            const companyData = {
+                name: "TechCorp Inovação",
+                industry: "Tecnologia da Informação",
+                location: "São Paulo, SP",
+                size: "500-1000 funcionários",
+                founded: "Fundada em 2010",
+                description: "A TechCorp Inovação é uma empresa líder em soluções tecnológicas, especializada no desenvolvimento de software empresarial e consultoria em transformação digital."
+            };
+            
+            document.getElementById('company-name').textContent = companyData.name;
+            document.getElementById('company-industry').textContent = companyData.industry;
+            document.getElementById('company-location').textContent = companyData.location;
+            document.getElementById('company-size').textContent = companyData.size;
+            document.getElementById('company-founded').textContent = companyData.founded;
+            document.getElementById('company-description').textContent = companyData.description;
+        }
+
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', loadCompanyData);
+    </script>
+</body>
+</html> 

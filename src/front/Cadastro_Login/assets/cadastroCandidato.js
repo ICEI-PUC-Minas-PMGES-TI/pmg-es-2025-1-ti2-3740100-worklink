@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 if (res.ok) {
                     alert("Candidato cadastrado com sucesso!");
-                    window.location.href = "login.html";
+                    window.location.href = "Login.html";
                 } else {
                     res.text().then(text => {
                         alert("Erro ao cadastrar candidato: " + text);
