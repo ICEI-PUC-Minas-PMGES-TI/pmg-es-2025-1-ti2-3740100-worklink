@@ -8,12 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.UUID;
+import java.io.IOException;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -65,17 +71,16 @@ public class VagaController {
         vaga.setSalario(vagaMap.get("salario") != null ? Double.parseDouble(vagaMap.get("salario").toString()) : 0);
 
         // Conversão da data
-        Date dataFinal = null;
         try {
             String dataFinalStr = (String) vagaMap.get("dataFinal");
             if (dataFinalStr != null && !dataFinalStr.isEmpty()) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                dataFinal = sdf.parse(dataFinalStr);
+                Date dataFinal = sdf.parse(dataFinalStr);
+                vaga.setDataFinal(dataFinal);
             }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        vaga.setDataFinal(dataFinal);
 
         vaga.setTipoContrato((String) vagaMap.get("tipoContrato"));
         vaga.setModalidade((String) vagaMap.get("modalidade"));
@@ -132,5 +137,33 @@ public class VagaController {
         }
         vagaRepository.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // POST enviar teste técnico
+    @PostMapping("/{id}/teste")
+    public ResponseEntity<?> enviarTeste(@PathVariable Long id, @RequestParam(value = "arquivoTeste", required = false) MultipartFile arquivoTeste) {
+        try {
+            // Busca a vaga pelo ID
+            Vaga vaga = vagaRepository.findById(id).orElseThrow(() -> new RuntimeException("Vaga não encontrada"));
+
+            // Verifica se o arquivo foi enviado
+            if (arquivoTeste != null && !arquivoTeste.isEmpty()) {
+                String diretorio = "src/back/todosimple/src/main/resources/static/uploads/testes/";
+                String nomeArquivo = UUID.randomUUID() + "_" + arquivoTeste.getOriginalFilename();
+                Path caminho = Paths.get(diretorio + nomeArquivo);
+                Files.createDirectories(caminho.getParent());
+                Files.write(caminho, arquivoTeste.getBytes());
+
+                // Atualiza o caminho do teste na vaga
+                vaga.setTeste("/uploads/testes/" + nomeArquivo);
+            } else {
+                vaga.setTeste(null); // Caso nenhum arquivo seja enviado
+            }
+
+            vagaRepository.save(vaga);
+            return ResponseEntity.ok("Teste atualizado com sucesso!");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao salvar o arquivo de teste: " + e.getMessage());
+        }
     }
 }

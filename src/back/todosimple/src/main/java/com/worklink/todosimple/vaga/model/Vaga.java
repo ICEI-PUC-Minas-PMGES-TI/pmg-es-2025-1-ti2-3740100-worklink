@@ -1,5 +1,6 @@
 package com.worklink.todosimple.vaga.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -34,11 +35,14 @@ public class Vaga {
 
     private double salario;
 
+    @Column(name = "teste", length = 255)
+    private String teste; // Caminho ou URL do pdf do teste
+
     // Construtor padrão
     public Vaga() {}
 
     // Construtor completo
-    public Vaga(Long id, String titulo, String descricao, String beneficios, double salario, Date dataFinal, String tipoContrato, String modalidade ) {
+    public Vaga(Long id, String titulo, String descricao, String beneficios, double salario, Date dataFinal, String tipoContrato, String modalidade, String teste) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -47,6 +51,7 @@ public class Vaga {
         this.dataFinal = dataFinal;
         this.tipoContrato = tipoContrato;
         this.modalidade = modalidade;
+        this.teste = teste;
     }
 
     // Getters e Setters
@@ -121,4 +126,13 @@ public class Vaga {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
+
+     public String getTeste() {
+        return teste;
+    }
+
+    public void setTeste(String teste) {
+        this.teste = teste;
+    }
+
 }

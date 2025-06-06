@@ -230,9 +230,9 @@ function getVagas() {
 function validarESalvar() {
     if (validarFormulario()) {
         salvarDadosLocalmente(); // Salva os dados no sessionStorage
-        alertarDadosVaga();      // Mostra o alert com os dados salvos
+        //alertarDadosVaga();      // Mostra o alert com os dados salvos
         console.log("Dados salvos no sessionStorage com sucesso.");
-        window.location.href = "resumoVaga.html"; // Redireciona para a página de resumo
+        window.location.href = "envioTesteVaga.html"; // Redireciona para a página de resumo
     } else {
         alert("Por favor, preencha todos os campos obrigatórios.");
     }
@@ -270,5 +270,76 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.getElementById('prazo'))         document.getElementById('prazo').value = dadosVaga.dataFinal ? dadosVaga.dataFinal.substring(0,10) : '';
         // Adicione outros campos se necessário
     }
+
+    const btnEditar = document.getElementById('btn-editar');
+    if (btnEditar) {
+        btnEditar.addEventListener('click', function (e) {
+            e.preventDefault();
+            sessionStorage.setItem('edicaoVaga', 'true'); // Marca que é uma edição
+            window.location.href = "formularioVaga.html"; // Redireciona para o formulário
+        });
+    }
 });
+
+function enviarTeste() {
+    const arquivoInput = document.getElementById('arquivoTeste');
+    const arquivo = arquivoInput.files[0];
+
+    // Verifica se o arquivo foi selecionado
+    if (!arquivo) {
+        alert("Nenhum teste foi enviado. Continuando sem teste.");
+        return; // Não envia nada ao backend
+    }
+
+    const formData = new FormData();
+    formData.append("arquivoTeste", arquivo);
+
+    const vagaId = sessionStorage.getItem('vagaId'); // Certifique-se de salvar o ID da vaga no sessionStorage
+    if (!vagaId) {
+        alert("ID da vaga não encontrado.");
+        return;
+    }
+
+    fetch(`http://localhost:8080/vagas/${vagaId}/teste`, {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => {
+            if (response.ok) {
+                alert("Teste enviado com sucesso!");
+            } else {
+                response.text().then(text => alert("Erro ao enviar teste: " + text));
+            }
+        })
+        .catch(error => {
+            alert("Erro ao conectar com o servidor.");
+            console.error(error);
+        });
+}
+
+function salvarTesteLocalmente() {
+    const arquivoInput = document.getElementById('arquivoTeste');
+    const arquivo = arquivoInput.files[0];
+
+    if (!arquivo) {
+        console.log("Nenhum teste foi selecionado.");
+        sessionStorage.removeItem('testeBase64'); // Remove o teste caso não tenha sido selecionado
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function () {
+        const testeBase64 = reader.result; // Converte o arquivo para base64
+        sessionStorage.setItem('testeBase64', testeBase64); // Salva no sessionStorage
+        console.log("Teste técnico salvo localmente:", testeBase64);
+    };
+    reader.readAsDataURL(arquivo); // Lê o arquivo como base64
+}
+
+function publicarVaga() {
+    salvarTesteLocalmente(); // Salva o teste técnico no sessionStorage
+
+    // Redireciona para o resumo da vaga
+    window.location.href = "resumoVaga.html";
+}
 

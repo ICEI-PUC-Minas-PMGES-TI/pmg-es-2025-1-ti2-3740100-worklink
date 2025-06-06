@@ -166,6 +166,12 @@
                         </div>
                     </div>
 
+                    <div class="form-section">
+                        <h3>Teste Técnico</h3>
+                        <p>Faça o download do teste técnico:</p>
+                        <a id="linkTeste" href="#" target="_blank">Baixar Teste</a>
+                    </div>
+
                     <div class="text-center mt-4">
                         <button id="btn-editar" class="btn btn-secondary me-2">Editar</button>
                         <button class="btn btn-primary" onclick="finalizarVaga()">Publicar</button>
@@ -179,72 +185,119 @@
     <script src="../assets/script/script.js"></script>
     <script>
         window.onload = function () {
-            let dadosVaga = sessionStorage.getItem('dadosVaga');
+            const dadosVaga = JSON.parse(sessionStorage.getItem('dadosVaga'));
+            const testeBase64 = sessionStorage.getItem('testeBase64');
+
             if (!dadosVaga) {
-                dadosVaga = localStorage.getItem('dadosVaga');
-            }
-            if (dadosVaga) {
-                const vaga = JSON.parse(dadosVaga);
-                if (vaga.titulo) document.getElementById('titulo').textContent = vaga.titulo;
-                if (vaga.tipoContrato) document.getElementById('tipo').textContent = vaga.tipoContrato;
-                if (vaga.salario) document.getElementById('salario').textContent = vaga.salario;
-                if (vaga.local) document.getElementById('local').textContent = vaga.local;
-                if (vaga.descricao) document.getElementById('descricao').textContent = vaga.descricao;
-                if (vaga.requisitos) document.getElementById('requisitos').textContent = vaga.requisitos;
-                if (vaga.beneficios) document.getElementById('beneficios').textContent = vaga.beneficios;
-                // Ajuste aqui para dataFinal
-                if (vaga.dataFinal) {
-                    let data = vaga.dataFinal;
-                    if (data.length > 10) data = data.substring(0, 10);
-                    const [ano, mes, dia] = data.split("-");
-                    document.getElementById('prazo').textContent = `${dia}/${mes}/${ano}`;
-                }
-                if (vaga.numeroVagas) document.getElementById('vagas').textContent = vaga.numeroVagas;
+                alert("Nenhum dado encontrado. Por favor, volte e preencha o formulário.");
+                window.location.href = "formularioVaga.html"; // Redireciona para o formulário
+                return;
             }
 
-            // Adiciona o evento ao botão Editar
-            const btnEditar = document.getElementById('btn-editar');
-            if (btnEditar) {
-                btnEditar.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    sessionStorage.setItem('edicaoVaga', 'true');
-                    window.location.href = "formularioVaga.html";
-                });
+            // Preenche os campos do resumo
+            if (dadosVaga.titulo) document.getElementById('titulo').textContent = dadosVaga.titulo;
+            if (dadosVaga.tipoContrato) document.getElementById('tipo').textContent = dadosVaga.tipoContrato;
+            if (dadosVaga.salario) document.getElementById('salario').textContent = dadosVaga.salario;
+            if (dadosVaga.descricao) document.getElementById('descricao').textContent = dadosVaga.descricao;
+            if (dadosVaga.beneficios) document.getElementById('beneficios').textContent = dadosVaga.beneficios;
+            if (dadosVaga.dataFinal) {
+                let data = dadosVaga.dataFinal;
+                if (data.length > 10) data = data.substring(0, 10);
+                const [ano, mes, dia] = data.split("-");
+                document.getElementById('prazo').textContent = `${dia}/${mes}/${ano}`;
+            }
+
+            // Exibe o link do teste técnico
+            const linkTeste = document.getElementById('linkTeste');
+            if (testeBase64) {
+                linkTeste.href = testeBase64;
+
+                // Detecta extensão pelo MIME type
+                let extension = "file";
+                if (testeBase64.startsWith("data:application/pdf")) extension = "pdf";
+                else if (testeBase64.startsWith("data:application/msword")) extension = "doc";
+                else if (testeBase64.startsWith("data:application/vnd.openxmlformats-officedocument.wordprocessingml.document")) extension = "docx";
+
+                linkTeste.download = "teste_tecnico." + extension;
+                linkTeste.textContent = "Baixar Teste";
+                linkTeste.style.pointerEvents = "auto";
+            } else {
+                linkTeste.removeAttribute('href');
+                linkTeste.removeAttribute('download');
+                linkTeste.textContent = "Nenhum teste enviado.";
+                linkTeste.style.pointerEvents = "none";
             }
         };
 
         function finalizarVaga() {
-            let dadosVaga = JSON.parse(sessionStorage.getItem('dadosVaga'));
+            const dadosVaga = JSON.parse(sessionStorage.getItem('dadosVaga'));
+            const testeBase64 = sessionStorage.getItem('testeBase64');
+
             if (!dadosVaga) {
-                alert("Nenhum dado de vaga encontrado.");
+                alert("Dados da vaga não encontrados.");
                 return;
             }
 
-            // Ajuste os campos para o backend
-            dadosVaga.cnpj = localStorage.getItem('empresaCnpj'); // O backend espera "cnpj"
+            // Adicione o CNPJ da empresa logada ao objeto (igual ao postVagas do script.js)
+            const cnpj = localStorage.getItem("empresaCnpj");
+            if (!cnpj) {
+                alert("CNPJ da empresa não encontrado. Faça login novamente.");
+                window.location.href = "../Cadastro_Login/Login.html";
+                return;
+            }
+            dadosVaga.cnpj = cnpj;
 
-            // Envie para o backend
-            fetch('http://localhost:8080/vagas', {
+            // 1. Cria a vaga (sem o teste)
+            fetch(`http://localhost:8080/vagas`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(dadosVaga)
             })
-                .then(response => {
-                    if (response.ok) {
-                        alert("Vaga publicada com sucesso!");
-                        sessionStorage.removeItem('dadosVaga');
-                        sessionStorage.removeItem('edicaoVaga'); // Limpa a flag de edição ao publicar
-                        window.location.href = "HomeEmpresa.html";
-                    } else {
-                        response.text().then(text => alert("Erro ao publicar vaga: " + text));
-                    }
-                })
-                .catch(error => {
-                    alert("Erro ao conectar com o servidor.");
-                    console.error(error);
-                });
+            .then(async response => {
+                if (!response.ok) {
+                    const text = await response.text();
+                    throw new Error(text || "Erro ao criar vaga.");
+                }
+                return response.json();
+            })
+            .then(vagaCriada => {
+                // 2. Se houver teste, envie o arquivo para o endpoint correto
+                if (testeBase64) {
+                    // Converter base64 para Blob
+                    const arr = testeBase64.split(',');
+                    const mime = arr[0].match(/:(.*?);/)[1];
+                    const bstr = atob(arr[1]);
+                    let n = bstr.length;
+                    const u8arr = new Uint8Array(n);
+                    while(n--) u8arr[n] = bstr.charCodeAt(n);
+                    const arquivo = new Blob([u8arr], {type: mime});
+
+                    const formData = new FormData();
+                    formData.append("arquivoTeste", arquivo, "teste_tecnico." + mime.split('/')[1]);
+
+                    fetch(`http://localhost:8080/vagas/${vagaCriada.id}/teste`, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(resp => {
+                        if (resp.ok) {
+                            alert("Vaga e teste publicados!");
+                            sessionStorage.clear();
+                            window.location.href = "HomeEmpresa.html";
+                        } else {
+                            alert("Vaga publicada, mas erro ao enviar teste.");
+                        }
+                    });
+                } else {
+                    alert("Vaga publicada sem teste técnico.");
+                    sessionStorage.clear();
+                    window.location.href = "HomeEmpresa.html";
+                }
+            })
+            .catch(error => {
+                alert("Erro ao publicar vaga: " + error.message);
+                console.error(error);
+            });
         }
     </script>
 </body>

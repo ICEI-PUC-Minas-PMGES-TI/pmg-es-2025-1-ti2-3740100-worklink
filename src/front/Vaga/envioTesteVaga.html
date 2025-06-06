@@ -118,41 +118,53 @@
 
                     <div class="form-section">
                         <h3>Teste Técnico</h3>
-                        <div class="mb-3">
-                            <label for="teste">Arquivo do Teste</label>
-                            <input type="file" class="form-control" id="teste" accept=".pdf,.doc,.docx">
-                            <small class="text-muted">Formatos aceitos: PDF, DOC, DOCX</small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="instrucoes">Instruções do Teste</label>
-                            <textarea class="form-control" id="instrucoes" rows="4"
-                                placeholder="Digite as instruções para os candidatos..."></textarea>
-                        </div>
-                    </div>
+                        <form id="formTeste" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="arquivoTeste">Arquivo do Teste</label>
+                                <input type="file" class="form-control" id="arquivoTeste" name="arquivoTeste"
+                                    accept=".pdf,.doc,.docx" required>
+                                <small class="text-muted">Formatos aceitos: PDF, DOC, DOCX</small>
+                            </div>
 
-                    <div class="form-section">
-                        <h3>Configurações</h3>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="tempo">Tempo Limite (minutos)</label>
-                                <input type="number" class="form-control" id="tempo" min="1" value="60">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="notaMinima">Nota Mínima</label>
-                                <input type="number" class="form-control" id="notaMinima" min="0" max="100" value="70">
-                            </div>
-                        </div>
+                        </form>
                     </div>
 
                     <div class="text-center mt-4">
-                        <a href="resumoVaga.html" class="btn btn-secondary me-2">Voltar</a>
-                        <button type="submit" class="btn btn-primary">Publicar Vaga</button>
+                        <button id="btn-editar" class="btn btn-secondary me-2">Voltar</button>
+                        <button class="btn btn-primary" onclick="publicarVaga()">Publicar Vaga</button>
                     </div>
+
+                    <script>
+                        function publicarVaga() {
+                            const arquivoInput = document.getElementById('arquivoTeste');
+                            const arquivo = arquivoInput.files[0];
+
+                            if (arquivo) {
+                                const reader = new FileReader();
+                                reader.onload = function () {
+                                    const testeBase64 = reader.result; // Converte o arquivo para base64
+                                    sessionStorage.setItem('testeBase64', testeBase64); // Salva no sessionStorage
+                                    console.log("Teste técnico salvo localmente:", testeBase64);
+
+                                    // Redireciona para o resumo da vaga após salvar
+                                    window.location.href = "resumoVaga.html";
+                                };
+                                reader.readAsDataURL(arquivo); // Lê o arquivo como base64
+                            } else {
+                                console.log("Nenhum teste foi selecionado.");
+                                sessionStorage.removeItem('testeBase64'); // Remove o teste caso não tenha sido selecionado
+                                window.location.href = "resumoVaga.html"; // Redireciona mesmo sem teste
+                            }
+                        }
+                    </script>
                 </div>
             </div>
             <div class="col-md-2"></div>
         </div>
     </div>
+
+    <!-- Carregar o script -->
+    <script src="assets/script/formularioVaga.js"></script>
 </body>
 
 </html>

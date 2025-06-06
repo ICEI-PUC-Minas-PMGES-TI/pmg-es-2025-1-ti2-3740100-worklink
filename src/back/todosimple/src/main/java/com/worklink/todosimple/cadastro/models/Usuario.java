@@ -44,8 +44,8 @@ public abstract class Usuario {
     private String numero;
 
     @Column(name = "foto_perfil", length = 255)
-    private String fotoPerfil; // Caminho ou URL da imagem de perfil
-
+    private String fotoPerfil;
+     // Caminho ou URL da imagem de perfil
     public Integer getId() {
         return id;
     }

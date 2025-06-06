@@ -1,0 +1,51 @@
+/*
+================================================================================
+🔧 CONFIGURAÇÕES DE AMBIENTE (AZURE E LOCAL)
+================================================================================
+
+⚠️ Este projeto usa perfis diferentes para rodar localmente e em produção (Azure).
+Certifique-se de rodar com o perfil correto e atualizar os endpoints conforme o ambiente.
+
+--------------------------------------------------------------------------------
+🌐 ENDPOINTS DA API:
+- LOCAL:  http://localhost:8080/empresas
+- AZURE:  https://svdpedrovieiradb.azurewebsites.net/empresas
+
+❗ Se o sistema estiver em produção, atualize os `fetch()` do frontend
+para apontarem para o domínio da Azure.
+
+--------------------------------------------------------------------------------
+📁 CONFIGURAÇÕES DE PERFIL:
+
+1. application-local.properties (desenvolvimento local)
+   - Banco: MySQL local
+   - URL: jdbc:mysql://localhost:3306/worklink?createDatabaseIfNotExist=true
+
+2. application-azure.properties (produção na Azure)
+   - Banco: MySQL do Azure
+   - URL: jdbc:mysql://svdpedrovieiradb.mysql.database.azure.com:3306/worklink
+   - Use variáveis de ambiente:
+     $Env:AZURE_DB_USERNAME = "SeuUsuario"
+     $Env:AZURE_DB_PASSWORD = "SuaSenha"
+
+--------------------------------------------------------------------------------
+🚀 PARA RODAR O PROJETO:
+
+👉 LOCAL:
+    mvn spring-boot:run -Dspring-boot.run.profiles=local
+
+👉 AZURE:
+    # Primeiro defina as variáveis de ambiente no terminal:
+    $Env:AZURE_DB_USERNAME = "SeuUsuario"
+    $Env:AZURE_DB_PASSWORD = "SuaSenha"
+
+    mvn spring-boot:run -Dspring-boot.run.profiles=azure
+
+--------------------------------------------------------------------------------
+🔐 SEGURANÇA:
+- Não comite usuários e senhas no GitHub.
+- Use `.gitignore` para proteger arquivos sensíveis.
+- Prefira sempre variáveis de ambiente.
+
+================================================================================
+*/
