@@ -12,7 +12,7 @@
             --primary-color: #9147ff;
             --secondary-color: #6d6e7c;
             --background-color: #f9fafb;
-            --text-color: #ffffff;
+            --text-color: #000000;
             --text-color2: #3c3c3c;
             --accent-color: #4e4f58;
             --highlight-color: #4F3F86;
@@ -142,13 +142,20 @@
                         candidaturaItem.innerHTML = `
                             <div class="d-flex justify-content-between align-items-start">
                                 <div>
-                                    <h4>${candidato.nome}</h4>
+                                    <h4>
+                                        <a href="../Candidato/perfilCandidato.html?id=${candidato.id}" style="text-decoration:none;color:inherit;">
+                                            ${candidato.nome}
+                                        </a>
+                                    </h4>
                                     <p class="mb-1"><i class="fas fa-envelope"></i> ${candidato.email}</p>
                                     <p class="mb-1"><i class="fas fa-phone"></i> ${candidato.telefone}</p>
                                     <p class="mb-1"><i class="fas fa-briefcase"></i> Área de Atuação: ${candidato.areaAtuacao}</p>
                                     <p class="mb-1"><i class="fas fa-graduation-cap"></i> Formação: ${candidato.formacao}</p>
                                     <p class="mb-1"><i class="fas fa-tools"></i> Experiência: ${candidato.experiencia} anos</p>
                                     <p class="mb-1"><i class="fas fa-lightbulb"></i> Habilidades: ${candidato.habilidades}</p>
+                                    <a href="../Candidato/perfilCandidato.html?id=${candidato.id}" class="btn btn-sm btn-outline-primary mt-2">
+                                        Ver Perfil
+                                    </a>
                                 </div>
                                 <div>
                                     <div class="dropdown">
@@ -197,7 +204,7 @@
                     statusBadge.textContent = candidaturaAtualizada.status;
                     statusBadge.style.backgroundColor =
                         candidaturaAtualizada.status === "Aprovado"
-                            ? "blue"
+                            ? "green"
                             : candidaturaAtualizada.status === "Reprovado"
                                 ? "red"
                                 : candidaturaAtualizada.status === "Em Análise"

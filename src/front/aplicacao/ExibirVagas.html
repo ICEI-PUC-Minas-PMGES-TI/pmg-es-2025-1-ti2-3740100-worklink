@@ -6,148 +6,229 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vagas Disponíveis</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../Vaga/assets/css/HomeEmpresa.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #9147ff;
             --secondary-color: #6d6e7c;
-            --background-color: #f9fafb;
-            --text-color: #ffffff;
-            --text-color2: #3c3c3c;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --text-light: #64748b;
             --accent-color: #4e4f58;
             --highlight-color: #4F3F86;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            padding-top: 80px;
         }
 
         .navbar {
-            background-color: var(--primary-color);
-            padding: 1rem;
-            text-align: center;
+            background: var(--white);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
         }
 
-        .navbar h1 {
-            color: var(--text-color);
+        .navbar-brand {
+            font-weight: 700;
             font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
         }
 
         .vagas-section {
-            margin-top: 20px;
+            margin-top: 2rem;
         }
 
         h2 {
-            color: var(--text-color2) !important;
+            color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        #vagas-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
         .vaga-card {
+            background: var(--white);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-            background-color: #fff;
-            /* Card com fundo branco */
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            /* Sombra para destacar o card */
-            transition: transform 0.3s, box-shadow 0.3s;
-            /* Animação ao passar o mouse */
+            min-height: 320px;
         }
 
         .vaga-card:hover {
-            transform: translateY(-5px);
-            /* Eleva o card ao passar o mouse */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            /* Aumenta a sombra no hover */
-        }
-
-        .vaga-info {
-            flex: 1;
-            margin-right: 20px;
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-color);
         }
 
         .vaga-info h3 {
-            margin: 0;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
             color: var(--secondary-color);
-            /* Título com cor secundária */
         }
 
         .vaga-info p {
-            margin: 5px 0;
+            margin: 0.25rem 0;
             font-size: 1rem;
             color: var(--text-color);
-            /* Texto com cor padrão */
         }
 
         .vaga-actions {
             display: flex;
-            gap: 10px;
-            /* Espaçamento entre os botões */
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .btn-inscrever,
+        .btn-detalhes {
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
         }
 
         .btn-inscrever {
-            background-color: var(--highlight-color);
-            /* Botão Inscrever-se com cor de destaque */
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s;
+            background: var(--gradient-primary);
+            color: var(--white);
         }
 
         .btn-inscrever:hover {
-            background-color: var(--secondary-color);
-            /* Cor secundária no hover */
+            background: var(--primary-color);
+            color: var(--white);
         }
 
         .btn-detalhes {
-            background-color: var(--accent-color);
-            /* Botão Ver Detalhes com cor accent */
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s;
+            background: var(--accent-color);
+            color: var(--white);
         }
 
         .btn-detalhes:hover {
-            background-color: var(--secondary-color);
-            /* Cor secundária no hover */
+            background: var(--secondary-color);
+            color: var(--white);
         }
 
         footer {
-            background-color: var(--primary-color);
+            background: var(--primary-color);
             color: #fff;
             text-align: center;
             padding: 20px 0;
             margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            #vagas-container {
+                grid-template-columns: 1fr;
+            }
+
+            .vaga-card {
+                padding: 1rem;
+            }
+
+            .vaga-actions {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
         }
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
-        <h1>WorkLink</h1>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-link"></i> Worklink
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                           <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
+                </li>
+            </ul>
+                <div class="d-flex gap-2">
+                    <a href="../Candidato/homeCandidato.html" class="btn btn-primary-custom">Meu Perfil</a>
+                </div>
+            </div>
+        </div>
     </nav>
 
     <!-- Main Content -->
@@ -245,6 +326,34 @@
             // Redireciona para a página de detalhes com o ID da vaga na URL
             window.location.href = `detalhesVaga.html?vagaId=${vagaId}`;
         }
+
+        // Adicione este script ao final do <body> das páginas que possuem o botão de perfil
+        document.addEventListener('DOMContentLoaded', function() {
+            const perfilBtn = document.querySelector('.btn.btn-primary-custom, #meuPerfilBtn');
+            if (perfilBtn) {
+                // Lógica para alterar o texto do botão conforme o tipo de usuário
+                const userType = localStorage.getItem('userType');
+                if (userType === 'empresa') {
+                    perfilBtn.textContent = 'Painel Empresa';
+                } else if (userType === 'candidato') {
+                    perfilBtn.textContent = 'Meu Perfil';
+                } else {
+                    perfilBtn.textContent = 'Entrar';
+                }
+
+                // Lógica de redirecionamento ao clicar
+                perfilBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (userType === 'empresa') {
+                        window.location.href = "../Vaga/HomeEmpresa.html";
+                    } else if (userType === 'candidato') {
+                        window.location.href = "../Candidato/homeCandidato.html";
+                    } else {
+                        window.location.href = "../Cadastro_Login/login.html";
+                    }
+                });
+            }
+        });
     </script>
 </body>
 

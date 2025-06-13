@@ -395,7 +395,7 @@
             </button>
             
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
                     </li>
@@ -405,8 +405,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
+                    </li>
                 </ul>
-                
                 <div class="d-flex gap-2">
                     <a href="../Candidato/homeCandidato.html" class="btn btn-primary-custom">Meu Perfil</a>
                 </div>
@@ -782,6 +784,34 @@
 
         // Load data when page loads
         document.addEventListener('DOMContentLoaded', loadCompanyData);
+
+        // Adicione este script ao final do <body> das páginas que possuem o botão de perfil
+        document.addEventListener('DOMContentLoaded', function() {
+            const perfilBtn = document.querySelector('.btn.btn-primary-custom, #meuPerfilBtn');
+            if (perfilBtn) {
+                // Lógica para alterar o texto do botão conforme o tipo de usuário
+                const userType = localStorage.getItem('userType');
+                if (userType === 'empresa') {
+                    perfilBtn.textContent = 'Painel Empresa';
+                } else if (userType === 'candidato') {
+                    perfilBtn.textContent = 'Meu Perfil';
+                } else {
+                    perfilBtn.textContent = 'Entrar';
+                }
+
+                // Lógica de redirecionamento ao clicar
+                perfilBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (userType === 'empresa') {
+                        window.location.href = "../Vaga/HomeEmpresa.html";
+                    } else if (userType === 'candidato') {
+                        window.location.href = "../Candidato/homeCandidato.html";
+                    } else {
+                        window.location.href = "../Cadastro_Login/login.html";
+                    }
+                });
+            }
+        });
     </script>
 </body>
-</html> 
+</html>

@@ -1,11 +1,4 @@
-:root {
-    --primary-color: #e48f4f;
-    --secondary-color: #5c3d2e;
-    --background-color: #dce8db;
-    --text-color: #3c3c3c;
-    --accent-color: #8a9a5b;
-    --highlight-color: #d4772a;
-}
+
 
 body {
     background-color: var(--background-color);

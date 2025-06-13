@@ -15,7 +15,14 @@ const cancelBtn = document.getElementById('btn-cancelar');
 // Elementos do perfil da empresa
 const empresaPerfilLogo = document.getElementById('empresa-perfil-logo');
 const empresaPerfilNome = document.getElementById('empresa-perfil-nome');
-const empresaPerfilDescricao = document.getElementById('empresa-perfil-descricao');
+
+// Novos elementos dinâmicos
+const empresaResponsavel = document.getElementById('empresa-responsavel');
+const empresaCargo = document.getElementById('empresa-cargo');
+const empresaTelefone = document.getElementById('empresa-telefone');
+const empresaAvaliacao = document.getElementById('avaliacao');
+const empresaDescricao = document.getElementById('empresa-historia-descricao');
+const empresaEndereco = document.getElementById('empresa-historia-endereco');
 
 // Estado da aplicação
 let empresaInfo = null;
@@ -57,15 +64,17 @@ async function carregarEmpresaInfo() {
 
         // Atualiza os elementos do perfil
         if (empresaPerfilNome) empresaPerfilNome.textContent = empresa.nome || "Nome não informado";
-        if (empresaPerfilLogo) empresaPerfilLogo.src = empresa.fotoPerfil || "assets/img/empresa-exemplo.png";
-        if (document.getElementById('empresa-historia-logo')) document.getElementById('empresa-historia-logo').src = empresa.fotoPerfil || "assets/img/empresa-exemplo.png";
-        if (document.getElementById('empresa-historia-nome')) document.getElementById('empresa-historia-nome').textContent = empresa.nome || "";
-        if (document.getElementById('empresa-historia-descricao')) document.getElementById('empresa-historia-descricao').textContent = empresa.descricao || "Sem descrição.";
-        if (document.getElementById('empresa-historia-endereco')) {
+        if (empresaPerfilLogo) empresaPerfilLogo.src = empresa.fotoPerfil ? `http://localhost:8080${empresa.fotoPerfil}` : "assets/img/empresa-exemplo.png";
+        if (empresaResponsavel) empresaResponsavel.textContent = empresa.nomeResponsavel || "";
+        if (empresaCargo) empresaCargo.textContent = empresa.cargo || "";
+        if (empresaTelefone) empresaTelefone.textContent = empresa.telefone || "";
+        if (empresaAvaliacao) empresaAvaliacao.textContent = empresa.avaliacao !== null && empresa.avaliacao !== undefined ? empresa.avaliacao : "N/A";
+        if (empresaDescricao) empresaDescricao.textContent = empresa.descricao || "Sem descrição.";
+        if (empresaEndereco) {
             const rua = empresa.endereco || "";
             const cidade = empresa.cidade || "";
             const enderecoCompleto = rua && cidade ? `${rua}, ${cidade}` : rua || cidade || "Não informado";
-            document.getElementById('empresa-historia-endereco').textContent = enderecoCompleto;
+            empresaEndereco.textContent = enderecoCompleto;
         }
     } catch (error) {
         console.error('Erro ao carregar informações da empresa:', error);

@@ -1,661 +1,397 @@
-/* Estilos Globais */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Navbar igual ao empresas.html */
+
+:root {
+    --primary-color: #9147ff;
+    --secondary-color: #6d6e7c;
+    --background-color: #f8fafc;
+    --text-color: #1e293b;
+    --text-light: #64748b;
+    --accent-color: #4e4f58;
+    --highlight-color: #4F3F86;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --white: #ffffff;
+    --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
     line-height: 1.6;
-    color: #333;
-    background-color: #f5f6fa;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    padding-top: 80px;
 }
 
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-ul {
-    list-style: none;
-}
-
-/* Header */
-header {
-    background-color: #2c3e50;
-    color: white;
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header h1 {
-    font-size: 1.5rem;
-}
-
-header nav ul {
-    display: flex;
-}
-
-header nav ul li {
-    margin-left: 1.5rem;
-}
-
-header nav ul li a {
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-header nav ul li a:hover,
-header nav ul li a.active {
-    color: #3498db;
-}
-
-/* Main Content */
-main {
-    flex: 1;
-    padding: 2rem 0;
-}
-
-/* Vagas Section */
-.vagas-section {
-    margin-bottom: 2rem;
-}
-
-/* Centraliza o texto "Vagas Disponíveis" e adiciona espaço abaixo */
-.section-header {
-    display: flex;
-    flex-direction: column; /* Alinha os itens verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
-    text-align: center; /* Centraliza o texto */
-    margin-bottom: 3rem; /* Adiciona mais espaço entre o título e o conteúdo */
-}
-
-.section-header h2 {
-    color: #2c3e50;
-    margin-top: 3rem; /* Espaçamento entre o título e o botão (se houver) */
-}
-
-.vagas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-/* Contêiner das vagas */
-#vagas-container {
-    display: flex;
-    flex-direction: column; /* Alinha os itens verticalmente */
-    gap: 10px; /* Espaçamento entre os itens */
-    width: 100%; /* Garante que o contêiner ocupe toda a largura */
-    margin-top: 20px; /* Espaçamento superior */
-    padding: 0 20px; /* Adiciona espaçamento interno nas laterais */
-}
-
-/* Cards de vagas */
-.vaga-card {
-    display: flex;
-    flex-direction: column; /* Alinha o conteúdo verticalmente */
-    justify-content: space-between; /* Garante que os botões fiquem na parte inferior */
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma leve sombra */
-    border-left: 4px solid #3498db; /* Adiciona um destaque na lateral */
-    width: 100%; /* Ocupa toda a largura do contêiner */
-    height: auto; /* Permite que o card se ajuste ao conteúdo */
-    min-height: 300px; /* Define uma altura mínima para os cards */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Adiciona transição suave */
-}
-
-.vaga-card:hover {
-    background-color: #e9e7e7; /* Muda o fundo ao passar o mouse */
-    box-shadow: 0 6px 10px rgba(10, 10, 10, 0.25); /* Aumenta a sombra ao passar o mouse */
-    border-left: 4px solid #0565b9; /* Altera a cor da borda ao passar o mouse */
-}
-
-/* Títulos e textos */
-.vaga-card h3 {
-    margin: 0 0 10px 0;
-    color: #2c3e50;
-    font-size: 1.2rem;
-}
-
-.vaga-card p {
-    margin: 5px 0;
-    color: #7f8c8d;
-    font-size: 0.95rem;
-    flex-grow: 1; /* Faz o texto ocupar o espaço disponível */
-}
-
-/* Botões de ação */
-.vaga-card .editar,
-.vaga-card .excluir {
-    margin-top: 10px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-.vaga-card .editar {
-    background-color: #3498db;
-    color: white;
-}
-
-.vaga-card .editar:hover {
-    background-color: #2980b9;
-}
-
-.vaga-card .excluir {
-    background-color: #e74c3c;
-    color: white;
-}
-
-.vaga-card .excluir:hover {
-    background-color: #c0392b;
-}
-
-/* Contêiner dos botões */
-.vaga-card .botoes {
-    display: flex;
-    justify-content: flex-start; /* Alinha os botões à esquerda */
-    gap: 10px; /* Espaçamento entre os botões */
-    margin-top: auto; /* Garante que os botões fiquem na parte inferior */
-}
-
-/* Formulário */
-.form-section {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.form-section h2 {
-    color: #2c3e50;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.form-vaga {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #34495e;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.3s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: #3498db;
-}
-
-.form-group textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-.form-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-/* Botões */
-.btn {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-align: center;
-}
-
-.btn-primary {
-    background-color: #27ae60;
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: #219a52;
-}
-
-.btn-secondary {
-    background-color: #95a5a6;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background-color: #7f8c8d;
-}
-
-.btn-editar {
-    background-color: #3498db;
-    color: white;
-    flex: 1;
-}
-
-.btn-editar:hover {
-    background-color: #2980b9;
-}
-
-.btn-deletar {
-    background-color: #e74c3c;
-    color: white;
-    flex: 1;
-}
-
-.btn-deletar:hover {
-    background-color: #c0392b;
-}
-
-/* Estilos para o botão de história da empresa */
-.btn-outline {
-    background-color: transparent;
-    border: 1px solid #3498db;
-    color: #3498db;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-    transition: all 0.3s;
-}
-
-.btn-outline:hover {
-    background-color: #3498db;
-    color: white;
-}
-
-/* Botões fixos */
-.botoes {
-    position: fixed; /* Torna o contêiner fixo na tela */
-    bottom: 20px; /* Posiciona os botões a 20px do fundo da tela */
-    right: 20px; /* Posiciona os botões a 20px do lado direito da tela */
-    display: flex;
-    gap: 10px; /* Espaçamento entre os botões */
-    z-index: 1000; /* Garante que os botões fiquem acima de outros elementos */
-}
-
-.botoes a,
-.botoes button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s;
-}
-
-.botoes .btn-cancelar {
-    background-color: #e74c3c;
-    color: white;
-}
-
-.botoes .btn-cancelar:hover {
-    background-color: #c0392b;
-}
-
-.botoes .btn-seguir {
-    background-color: #3498db;
-    color: white;
-}
-
-.botoes .btn-seguir:hover {
-    background-color: #2980b9;
-}
-
-/* Footer */
-footer {
-    background-color: #2c3e50;
-    color: white;
-    padding: 2rem 0;
-    margin-top: auto;
-}
-
-footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.footer-links {
-    display: flex;
-    gap: 2rem;
-}
-
-.footer-links a {
-    transition: color 0.3s;
-}
-
-.footer-links a:hover {
-    color: #3498db;
-}
-
-/* Modal */
-.modal {
-    display: none;
+/* Navbar */
+.navbar {
+    background: var(--white);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e2e8f0;
     position: fixed;
-    z-index: 1000;
-    left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    overflow: auto;
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+    padding: 0;
 }
 
-.modal-content {
-    background-color: white;
-    margin: 5% auto;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 800px;
-    position: relative;
-}
-
-.close {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
+.navbar-brand {
+    font-weight: 700;
     font-size: 1.5rem;
-    cursor: pointer;
-    color: #7f8c8d;
-}
-
-.close:hover {
-    color: #2c3e50;
-}
-
-/* Loading e Error */
-.loading {
-    text-align: center;
-    padding: 2rem;
-    color: #7f8c8d;
-    font-size: 1.2rem;
-}
-
-.error {
-    background-color: #fde8e8;
-    color: #e74c3c;
-    padding: 1rem;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    header .container {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    header nav ul {
-        margin-top: 1rem;
-    }
-    
-    header nav ul li {
-        margin: 0 0.75rem;
-    }
-    
-    .section-header {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-    
-    .vagas-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    footer .container {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-    }
-    
-    .footer-links {
-        justify-content: center;
-    }
-    
-    .modal-content {
-        width: 95%;
-        margin: 10% auto;
-    }
-}
-
-.empresa-info {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent !important;
     display: flex;
     align-items: center;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    background-color: #f8f9fa;
-    border-radius: 8px;
+    gap: 0.5rem;
+    padding-left: 0.5rem;
 }
 
-.empresa-logo {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    border-radius: 8px;
+.navbar-nav .nav-link {
+    color: var(--text-color) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
     margin-right: 1rem;
-    background-color: white;
-    padding: 0.5rem;
 }
 
-.empresa-detalhes {
-    flex: 1;
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-link:hover {
+    color: var(--primary-color) !important;
 }
 
-.empresa-nome {
-    margin: 0;
-    color: #2c3e50;
-    font-size: 1.1rem;
+.btn-primary-custom {
+    background: var(--gradient-primary);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
     font-weight: 600;
+    color: var(--white);
+    transition: all 0.3s ease;
 }
 
-.empresa-setor {
-    margin: 0.25rem 0 0;
-    color: #666;
-    font-size: 0.9rem;
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--white);
 }
 
-/* Estilos para o perfil da empresa */
-.empresa-perfil {
+/* Ajuste para o container do nav */
+.navbar .container,
+.navbar .container-fluid {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Page Header */
+.page-header {
+    background: var(--gradient-primary);
+    color: var(--white);
+    padding: 3rem 0;
     margin-bottom: 2rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    overflow: hidden;
 }
 
+.page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Perfil da Empresa (adaptado para HomeEmpresa) */
 .empresa-perfil-container {
-    padding: 2rem;
+    background: var(--white);
+    border-radius: 1.5rem;
+    padding: 2rem 2.5rem;
+    box-shadow: var(--shadow-md);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .empresa-perfil-header {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    gap: 2rem;
     margin-bottom: 2rem;
 }
 
 .empresa-perfil-logo {
-    width: 150px;
-    height: 150px;
-    margin-right: 2rem;
+    width: 100px;
+    height: 100px;
+    background: var(--gradient-primary);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 2.5rem;
     flex-shrink: 0;
+    overflow: hidden;
 }
 
 .empresa-perfil-logo img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    border-radius: 8px;
-    background-color: #f8f9fa;
-    padding: 1rem;
+    object-fit: cover;
+    border-radius: 1rem;
 }
 
 .empresa-perfil-info {
     flex: 1;
+    position: relative;
 }
 
-.empresa-perfil-info h2 {
-    margin: 0 0 0.5rem 0;
-    color: #2c3e50;
-    font-size: 1.8rem;
+.settings-icon {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    cursor: pointer;
+    color: var(--secondary-color);
+    font-size: 2rem;
+    transition: transform 0.3s ease;
+    z-index: 1001;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: block;
 }
 
-.empresa-perfil-ano {
-    color: #7f8c8d;
+.settings-icon:hover {
+    transform: rotate(45deg);
+    color: var(--highlight-color);
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.settings-menu {
+    position: absolute;
+    top: 3.5rem;
+    right: 0.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 0.5rem 0;
+    display: none;
+    z-index: 1000;
+    min-width: 220px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.settings-menu.show {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+.settings-menu a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+}
+.settings-menu a i {
+    margin-right: 0.75rem;
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+.settings-menu a:hover {
+    background-color: var(--background-color);
+    color: var(--highlight-color);
+}
+.settings-menu a:last-child {
+    border-top: 1px solid var(--accent-color);
+    color: #dc3545;
+    margin-top: 0.5rem;
+}
+.settings-menu a:last-child:hover {
+    background-color: #dc3545;
+    color: white;
+}
+.profile-info {
+    margin-top: 1rem;
+}
+.profile-info p {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+.profile-info h2 {
+    color: var(--secondary-color);
     margin-bottom: 1rem;
-    font-size: 1rem;
 }
-
-.empresa-perfil-descricao {
-    color: #34495e;
-    line-height: 1.6;
-    margin-bottom: 0;
-}
-
 .empresa-perfil-stats {
     display: flex;
-    justify-content: space-around;
-    padding-top: 1.5rem;
-    border-top: 1px solid #ecf0f1;
+    gap: 2rem;
+    margin-top: 2rem;
 }
-
 .stat-item {
     text-align: center;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 0.75rem;
+    min-width: 120px;
 }
-
 .stat-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
     display: block;
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #2c3e50;
-    margin-bottom: 0.25rem;
 }
-
 .stat-label {
-    color: #7f8c8d;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin-top: 0.25rem;
+}
+.footer-links a {
+    margin-left: 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+footer {
+    background: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
 }
 
-/* Responsividade para o perfil da empresa */
+/* Company Card Adaptado para Cards de Vagas/Empresa */
+.company-card, .empresa-card, .vaga-card {
+    background: var(--white);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+.company-card::before, .empresa-card::before, .vaga-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+.company-card:hover, .empresa-card:hover, .vaga-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
+}
+.company-card:hover::before, .empresa-card:hover::before, .vaga-card:hover::before {
+    transform: scaleX(1);
+}
+.company-card h3, .empresa-card h3, .vaga-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+.company-card p, .empresa-card p, .vaga-card p {
+    margin: 0.25rem 0;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+.company-actions, .empresa-actions, .vaga-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+.view-btn, .btn-inscrever {
+    background: var(--gradient-primary);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--white);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+.view-btn:hover, .btn-inscrever:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+.follow-btn, .btn-detalhes {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+.follow-btn:hover, .btn-detalhes:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+/* Tags */
+.company-tags, .empresa-tags, .vaga-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+.company-tag, .empresa-tag, .vaga-tag {
+    background: rgba(145, 71, 255, 0.1);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+/* Responsivo */
 @media (max-width: 768px) {
     .empresa-perfil-header {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        gap: 1rem;
     }
-
-    .empresa-perfil-logo {
-        width: 120px;
-        height: 120px;
-        margin: 0 0 1.5rem 0;
+    .empresa-perfil-container {
+        padding: 1rem 0.5rem;
     }
-
     .empresa-perfil-stats {
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1rem;
     }
-}
-
-/* Estilos para o modal de história da empresa */
-.empresa-historia-content {
-    margin-top: 1.5rem;
-}
-
-.empresa-historia-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.empresa-historia-logo {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    border-radius: 8px;
-    margin-right: 1rem;
-    background-color: #f8f9fa;
-    padding: 0.5rem;
-}
-
-.empresa-historia-header h3 {
-    margin: 0;
-    color: #2c3e50;
-    font-size: 1.5rem;
-}
-
-.empresa-historia-ano {
-    color: #7f8c8d;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-}
-
-.empresa-historia-descricao h4 {
-    color: #2c3e50;
-    margin: 1.5rem 0 0.5rem 0;
-    font-size: 1.2rem;
-}
-
-.empresa-historia-descricao p {
-    color: #34495e;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-}
-
-/* Responsividade para o modal de história */
-@media (max-width: 768px) {
-    .empresa-historia-header {
+    .company-card, .empresa-card, .vaga-card {
+        padding: 1rem;
+    }
+    .company-actions, .empresa-actions, .vaga-actions {
         flex-direction: column;
-        text-align: center;
-    }
-    
-    .empresa-historia-logo {
-        margin: 0 0 1rem 0;
+        gap: 0.5rem;
     }
 }

@@ -14,7 +14,7 @@
             --primary-color: #9147ff;
             --secondary-color: #6d6e7c;
             --background-color: #f9fafb;
-            --text-color: #ffffff;
+            --text-color: #000000;
             --text-color2: #3c3c3c;
             --accent-color: #4e4f58;
             --highlight-color: #4F3F86;
@@ -310,19 +310,20 @@
 
 <body>
     <nav class="navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="">
-                <i class="fas fa-briefcase"></i>
-                Worklink
-            </a>
-        </div>
-    </nav>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="../Vaga/candidatos.html">
+            <i class="fas fa-briefcase"></i>
+            Worklink
+        </a>
+    </div>
+</nav>
 
     <main class="container">
         <section class="empresa-perfil">
             <div class="empresa-perfil-container">
-                <div class="empresa-perfil-header">
-                    <div class="empresa-perfil-logo">
+                <div class="empresa-perfil-header"
+                    style="display: flex; align-items: center; justify-content: center;">
+                    <div class="empresa-perfil-logo" style="margin-right: 2rem;">
                         <img src="assets/img/empresa-exemplo.png" alt="Logo da Empresa" id="empresa-perfil-logo"
                             class="profile-image">
                     </div>
@@ -336,16 +337,23 @@
                         <h2 id="empresa-perfil-nome" style="display: inline-block; cursor: pointer;"></h2>
                     </div>
                 </div>
-                <div class="profile-info" style="margin-top: 2rem;">
-                    <div class="empresa-historia-descricao">
+                <div class="row" style="margin-top: 2rem; display: flex; justify-content: center;">
+                    <div class="col-md-6" style="text-align: left;">
+                        <p><strong>Responsável:</strong> <span id="empresa-responsavel"></span></p>
+                        <p><strong>Cargo:</strong> <span id="empresa-cargo"></span></p>
+                        <p><strong>Telefone:</strong> <span id="empresa-telefone"></span></p>
+                        <p><strong>Avaliação:</strong> <span id="avaliacao">N/A</span></p>
+                    </div>
+                    <div class="col-md-6" style="text-align: left;">
                         <h4>Descrição</h4>
                         <p id="empresa-historia-descricao"></p>
                         <h4>Endereço</h4>
                         <p id="empresa-historia-endereco"></p>
                     </div>
                 </div>
-                <div class="empresa-perfil-stats">
-                    <div class="stat-item">
+                <div class="empresa-perfil-stats"
+                    style="display: flex; justify-content: center; margin-top: 2rem;">
+                    <div class="stat-item" style="text-align: center;">
                         <span class="stat-value" id="empresa-perfil-vagas-count"></span>
                         <span class="stat-label">Vagas Ativas</span>
                     </div>

@@ -524,15 +524,18 @@
             </button>
             
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="ExibirVagas.html">Vagas</a>
+                        <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="empresas.html">Empresas</a>
+                        <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="avaliarEmpresas.html">Avaliar</a>
+                        <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
                     </li>
                 </ul>
                 
@@ -1039,6 +1042,22 @@
                 submitBtn.disabled = false;
             }, 2000);
         }
+
+        // Lógica do botão Meu Perfil
+        const perfilBtn = document.querySelector('.btn.btn-primary-custom, #meuPerfilBtn');
+        if (perfilBtn) {
+            perfilBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const userType = localStorage.getItem('userType');
+                if (userType === 'empresa') {
+                    window.location.href = "../Vaga/HomeEmpresa.html";
+                } else if (userType === 'candidato') {
+                    window.location.href = "../Candidato/homeCandidato.html";
+                } else {
+                    window.location.href = "../Cadastro_Login/login.html";
+                }
+            });
+        }
     </script>
 </body>
-</html> 
+</html>

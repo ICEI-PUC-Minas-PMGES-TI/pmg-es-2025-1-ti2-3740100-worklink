@@ -262,6 +262,7 @@
                         if (candidato) {
                             // Simula login
                             localStorage.setItem('candidatoId', candidato.id);
+                            localStorage.setItem('cpfUsuario', candidato.cpf); // <-- Adicione esta linha!
                             localStorage.setItem('userType', 'candidato');
                             window.location.href = '../Candidato/homeCandidato.html';
                         } else {
