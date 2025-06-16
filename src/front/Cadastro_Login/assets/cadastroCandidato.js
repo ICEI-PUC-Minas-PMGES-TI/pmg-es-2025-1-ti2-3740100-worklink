@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 confirmarSenha: document.getElementById("confirmarSenha").value,
                 telefone: document.getElementById("telefone").value.replace(/\D/g, ''),
                 endereco: document.getElementById("endereco").value,
-                cep: document.getElementById("cep").value.replace(/\D/g, ''),
+                cepusuario: document.getElementById("cep").value.replace(/\D/g, ''), // <-- ALTERE AQUI
                 cidade: document.getElementById("cidade").value,
                 numero: document.getElementById("numero").value,
                 fotoPerfil: "",
@@ -162,6 +162,17 @@ document.addEventListener("DOMContentLoaded", function() {
             cep = cep.replace(/^(\d{5})(\d)/, '$1-$2');
             this.value = cep.slice(0, 9);
         });
+    }
+
+    // Limitar data de nascimento para no máximo 16 anos atrás
+    const dataNascInput = document.getElementById('dataNasc');
+    if (dataNascInput) {
+        const hoje = new Date();
+        const anoLimite = hoje.getFullYear() - 16;
+        // Formata para yyyy-mm-dd
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+        const dia = String(hoje.getDate()).padStart(2, '0');
+        dataNascInput.max = `${anoLimite}-${mes}-${dia}`;
     }
 
     // Função para mostrar/ocultar senha

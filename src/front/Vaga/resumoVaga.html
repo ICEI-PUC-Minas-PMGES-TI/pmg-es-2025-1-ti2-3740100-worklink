@@ -138,6 +138,12 @@
                                 <p class="form-control-static" id="local"></p>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label>Data de Lançamento</label>
+                                <p class="form-control-static" id="dataCriacao"></p>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-section">
@@ -205,6 +211,16 @@
                 if (data.length > 10) data = data.substring(0, 10);
                 const [ano, mes, dia] = data.split("-");
                 document.getElementById('prazo').textContent = `${dia}/${mes}/${ano}`;
+            }
+
+            // Exibe a data de criação (se já existir, por exemplo, ao editar)
+            if (dadosVaga.dataCriacao) {
+                const data = dadosVaga.dataCriacao.length > 10 ? dadosVaga.dataCriacao.substring(0, 10) : dadosVaga.dataCriacao;
+                const [ano, mes, dia] = data.split("-");
+                document.getElementById('dataCriacao').textContent = `${dia}/${mes}/${ano}`;
+            } else {
+                // Se for nova vaga, mostra mensagem padrão
+                document.getElementById('dataCriacao').textContent = "Será definida ao publicar";
             }
 
             // Exibe o link do teste técnico

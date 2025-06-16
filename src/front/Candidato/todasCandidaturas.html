@@ -58,6 +58,19 @@
             padding: 1rem 0;
             margin-top: 2rem;
         }
+
+         .badge-teste-enviado {
+    font-size: 1.1rem;
+    padding: 0.6em 1.2em;
+    font-weight: 600;
+    background-color: #10b981; /* verde sucesso */
+    color: #fff;               /* texto branco */
+    border-radius: 0.75rem;
+    display: inline-block;
+    box-shadow: 0 2px 8px 0 rgba(16,185,129,0.08);
+    letter-spacing: 0.02em;
+}
+
     </style>
 </head>
 <body>
@@ -84,72 +97,134 @@
     </footer>
 
     <script>
-        // Função para carregar todas as candidaturas do candidato
-        function carregarCandidaturas() {
-            const cpfCandidato = localStorage.getItem('cpfUsuario');
-            if (!cpfCandidato) {
-                alert("Candidato não encontrado. Faça login novamente.");
-                window.location.href = "../Cadastro_Login/login.html";
-                return;
-            }
+    // Verifica se o usuário está autenticado antes de carregar a página
+    const cpfCandidato = localStorage.getItem('cpfUsuario');
+    if (!cpfCandidato) {
+        alert("Candidato não encontrado. Faça login novamente.");
+        window.location.href = "../Cadastro_Login/login.html";
+    }
 
-            fetch(`http://localhost:8080/aplicacoes/candidato/${cpfCandidato}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Erro ao buscar candidaturas");
-                    }
-                    return response.json();
-                })
-                .then(candidaturas => {
-                    const container = document.getElementById("candidaturas-container");
-                    container.innerHTML = ""; // Limpa o container antes de adicionar as candidaturas
+    // Função para carregar todas as candidaturas do candidato
+    function carregarCandidaturas() {
+        fetch(`http://localhost:8080/aplicacoes/candidato/${cpfCandidato}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar candidaturas");
+                }
+                return response.json();
+            })
+            .then(candidaturas => {
+                const container = document.getElementById("candidaturas-container");
+                container.innerHTML = ""; // Limpa o container antes de adicionar as candidaturas
 
-                    if (candidaturas.length === 0) {
-                        container.innerHTML = `<p class="text-center">Você ainda não se candidatou a nenhuma vaga.</p>`;
-                        return;
-                    }
+                if (candidaturas.length === 0) {
+                    container.innerHTML = `<p class="text-center">Você ainda não se candidatou a nenhuma vaga.</p>`;
+                    return;
+                }
 
-                    candidaturas.forEach(candidatura => {
-                        const vaga = candidatura.vaga;
-                        const empresa = vaga.empresa;
+                candidaturas.forEach(candidatura => {
+                    const vaga = candidatura.vaga;
+                    const empresa = vaga.empresa;
 
-                        const candidaturaItem = document.createElement("div");
-                        candidaturaItem.classList.add("candidatura-item");
+                    const candidaturaItem = document.createElement("div");
+                    candidaturaItem.classList.add("candidatura-item");
 
-                        candidaturaItem.innerHTML = `
-                            <div class="d-flex justify-content-between align-items-start">
-                                <div>
-                                    <h4>${vaga.titulo}</h4>
-                                    <p class="mb-1"><i class="fas fa-building"></i> ${empresa.nome}</p>
-                                    <p class="mb-1"><i class="fas fa-info-circle"></i> ${vaga.descricao}</p>
-                                    <p class="mb-1"><i class="fas fa-map-marker-alt"></i> ${empresa.cidade}, ${empresa.endereco}</p>
-                                </div>
-                                <span class="badge rounded-pill" style="background-color: var(--highlight-color); color: white; padding: 0.5rem 0.75rem;">
-                                    ${candidatura.status}
-                                </span>
-                            </div>
-                            <div class="mt-2">
-                                <button class="btn btn-primary btn-sm" onclick="verDetalhesVaga(${vaga.id})">Ver detalhes</button>
-                            </div>
+                    let testeDownloadBtn = "";
+                    let enviarTesteBtn = "";
+
+                    // Adiciona o botão de baixar teste técnico se a vaga exigir teste
+                    if (vaga.teste) {
+                        testeDownloadBtn = `
+                            <a href="http://localhost:8080${vaga.teste}" target="_blank" class="btn btn-outline-primary btn-sm me-2">
+                                <i class="fas fa-download"></i> Baixar Teste Técnico
+                            </a>
                         `;
+                    }
 
-                        container.appendChild(candidaturaItem);
-                    });
-                })
-                .catch(error => {
-                    console.error("Erro ao carregar candidaturas:", error);
-                    const container = document.getElementById("candidaturas-container");
-                    container.innerHTML = `<p class="text-center text-danger">Erro ao carregar candidaturas. Tente novamente mais tarde.</p>`;
+                    // Adiciona o botão "Teste ainda não enviado" ou "Teste enviado"
+                    if (vaga.teste) {
+                        if (!candidatura.testeResposta) {
+                            enviarTesteBtn = `
+                                <button class="btn btn-outline-secondary btn-sm ms-auto" onclick="abrirUploadTeste(${candidatura.id}, '${vaga.titulo}')">
+                                    <i class="fas fa-upload"></i> Teste ainda não enviado
+                                </button>
+                            `;
+                        } else {
+                            enviarTesteBtn = `
+                                <span class="badge ms-auto badge-teste-enviado">
+                                    Teste enviado
+                                </span>
+                            `;
+                        }
+                    }
+
+                    candidaturaItem.innerHTML = `
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h4>${vaga.titulo}</h4>
+                                <p class="mb-1"><i class="fas fa-building"></i> ${empresa.nome}</p>
+                                <p class="mb-1"><i class="fas fa-info-circle"></i> ${vaga.descricao}</p>
+                                <p class="mb-1"><i class="fas fa-map-marker-alt"></i> ${empresa.cidade}, ${empresa.endereco}</p>
+                            </div>
+                            <span class="badge rounded-pill" style="background-color: var(--highlight-color); color: white; padding: 0.5rem 0.75rem;">
+                                ${candidatura.status}
+                            </span>
+                        </div>
+                        <div class="mt-2 d-flex align-items-center">
+                            <button class="btn btn-primary btn-sm me-2" onclick="verDetalhesVaga(${vaga.id})">
+                                <i class="fas fa-info-circle"></i> Ver detalhes
+                            </button>
+                            ${testeDownloadBtn}
+                            ${enviarTesteBtn}
+                        </div>
+                    `;
+
+                    container.appendChild(candidaturaItem);
                 });
-        }
+            })
+            .catch(error => {
+                console.error("Erro ao carregar candidaturas:", error);
+                const container = document.getElementById("candidaturas-container");
+                container.innerHTML = `<p class="text-center text-danger">Erro ao carregar candidaturas. Tente novamente mais tarde.</p>`;
+            });
+    }
 
-        // Função para redirecionar para os detalhes da vaga
-        function verDetalhesVaga(vagaId) {
-            window.location.href = `detalhesVaga.html?vagaId=${vagaId}`;
-        }
+    // Função para abrir o seletor de arquivo e enviar o teste
+    function abrirUploadTeste(candidaturaId, vagaTitulo) {
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = ".pdf,.zip,.rar"; // Ajuste os formatos permitidos
+        input.addEventListener("change", () => {
+            if (input.files.length === 0) return;
+            if (confirm(`Você está prestes a enviar o teste da vaga "${vagaTitulo}". Essa ação é irreversível. Tem certeza?`)) {
+                enviarArquivoTeste(candidaturaId, input.files[0])
+                    .catch(e => alert(e.message));
+            }
+        });
+        input.click();
+    }
 
-        // Chama a função ao carregar a página
-        document.addEventListener("DOMContentLoaded", carregarCandidaturas);
-    </script>
+    // Função para enviar o arquivo para o backend
+    async function enviarArquivoTeste(candidaturaId, file) {
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const resp = await fetch(`http://localhost:8080/aplicacoes/${candidaturaId}/teste-resposta`, {
+            method: "POST",
+            body: formData
+        });
+        if (!resp.ok) throw new Error("Erro ao enviar teste");
+        alert("Teste enviado com sucesso!");
+        carregarCandidaturas(); // Recarrega as candidaturas para atualizar o status
+    }
+
+    // Função para redirecionar para os detalhes da vaga
+    function verDetalhesVaga(vagaId) {
+        window.location.href = `detalhesVaga.html?vagaId=${vagaId}`;
+    }
+
+    // Chama a função ao carregar a página
+    document.addEventListener("DOMContentLoaded", carregarCandidaturas);
+</script>
 </body>
 </html>

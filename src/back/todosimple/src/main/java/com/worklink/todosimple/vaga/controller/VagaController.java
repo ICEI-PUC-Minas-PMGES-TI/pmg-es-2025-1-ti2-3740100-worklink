@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.data.domain.Sort;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,7 +36,7 @@ public class VagaController {
     // GET todas as vagas
     @GetMapping
     public List<Vaga> getAllVagas() {
-        return vagaRepository.findAll();
+        return vagaRepository.findAll(Sort.by(Sort.Direction.DESC, "dataCriacao"));
     }
 
     // GET vaga por ID
@@ -85,6 +86,9 @@ public class VagaController {
         vaga.setTipoContrato((String) vagaMap.get("tipoContrato"));
         vaga.setModalidade((String) vagaMap.get("modalidade"));
         vaga.setEmpresa(empresa);
+
+        // Definir data de criação
+        vaga.setDataCriacao(new Date());
 
         Vaga savedVaga = vagaRepository.save(vaga);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedVaga);

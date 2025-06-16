@@ -21,12 +21,6 @@ window.postVagas = function postVagas() {
     console.log('Função postVagas chamada!');
     const dadosVaga = JSON.parse(sessionStorage.getItem('dadosVaga'));
 
-    if (!dadosVaga) {
-        alert("Nenhum dado encontrado para enviar. Por favor, volte e preencha o formulário.");
-        window.location.href = "formularioVaga.html";
-        return;
-    }
-
     // Adicione o CNPJ da empresa logada ao objeto
     const cnpj = localStorage.getItem("empresaCnpj");
     if (!cnpj) {
@@ -111,6 +105,14 @@ function deletarVaga(id) {
     }
 }
 
+// Função utilitária para formatar a data no padrão brasileiro
+function formatarDataBR(dataISO) {
+    if (!dataISO) return "Data não informada";
+    const data = dataISO.length > 10 ? dataISO.substring(0, 10) : dataISO;
+    const [ano, mes, dia] = data.split("-");
+    return `${dia}/${mes}/${ano}`;
+}
+
 //exibirVagas -> Lista
 function exibirVagas(vagas) {
     const lista = document.getElementById("lista-vagas");
@@ -141,6 +143,12 @@ function exibirVagas(vagas) {
             dataFinal = `${dia}/${mes}/${ano}`;
         }
 
+        // Trata o campo dataCriacao (lançamento)
+        let dataCriacao = "Data não informada";
+        if (vaga.dataCriacao) {
+            dataCriacao = formatarDataBR(vaga.dataCriacao);
+        }
+
         const modalidade = vaga.modalidade || 'Não especificada';
         const tipoContrato = vaga.tipoContrato || 'Não especificado';
         const beneficios = vaga.beneficios && vaga.beneficios.trim() !== "" ? vaga.beneficios : 'Não informado';
@@ -149,6 +157,7 @@ function exibirVagas(vagas) {
             <h3>${vaga.titulo}</h3>
             <p><strong>Sobre:</strong> ${vaga.descricao}</p>
             <p><strong>Benefícios:</strong> ${beneficios}</p>
+            <p><strong>Data de Lançamento:</strong> ${dataCriacao}</p>
             <p><strong>Data Final:</strong> ${dataFinal}</p>
             <p><strong>Modalidade:</strong> ${modalidade}</p>
             <p><strong>Tipo de Contrato:</strong> ${tipoContrato}</p>

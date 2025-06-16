@@ -7,7 +7,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
-import java.util.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import com.worklink.todosimple.cadastro.models.Empresa;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -23,7 +25,7 @@ public class Vaga {
     private String descricao;
     private String beneficios;
 
-    @JsonFormat(pattern = "yyyy-MM-dd") // Use o formato do input date do HTML
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dataFinal;
 
     private String tipoContrato;
@@ -36,13 +38,20 @@ public class Vaga {
     private double salario;
 
     @Column(name = "teste", length = 255)
-    private String teste; // Caminho ou URL do pdf do teste
+    private String teste;
+
+    @Column(name = "data_criacao", nullable = false, updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date dataCriacao;
 
     // Construtor padrão
-    public Vaga() {}
+    public Vaga() {
+        // Ao criar uma nova vaga, define a data de criação como hoje (sem hora)
+        this.dataCriacao = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+    }
 
     // Construtor completo
-    public Vaga(Long id, String titulo, String descricao, String beneficios, double salario, Date dataFinal, String tipoContrato, String modalidade, String teste) {
+    public Vaga(Long id, String titulo, String descricao, String beneficios, double salario, Date dataFinal, String tipoContrato, String modalidade, String teste, Date dataCriacao) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -52,6 +61,7 @@ public class Vaga {
         this.tipoContrato = tipoContrato;
         this.modalidade = modalidade;
         this.teste = teste;
+        this.dataCriacao = dataCriacao != null ? dataCriacao : Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 
     // Getters e Setters
@@ -127,12 +137,20 @@ public class Vaga {
         this.empresa = empresa;
     }
 
-     public String getTeste() {
+    public String getTeste() {
         return teste;
     }
 
     public void setTeste(String teste) {
         this.teste = teste;
+    }
+
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
 }

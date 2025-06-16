@@ -93,16 +93,22 @@
             margin-bottom: 0.5rem;
             font-size: 1.1rem;
         }
+        .vaga-detalhe-card .vaga-beneficios {
+            background: none !important;
+            border-radius: 0 !important;
+            padding: 0 !important;
+            margin-bottom: 0 !important;
+            color: inherit !important;
+        }
+        .vaga-detalhe-card ul.list-unstyled li {
+            margin-bottom: 0.5rem;
+            font-size: 1.08rem;
+        }
         .vaga-detalhe-card .vaga-label {
             font-weight: 600;
             color: var(--secondary-color);
-        }
-        .vaga-detalhe-card .vaga-beneficios {
-            background: #f3f0fa;
-            border-radius: 0.75rem;
-            padding: 0.75rem 1rem;
-            margin-bottom: 1rem;
-            color: var(--highlight-color);
+            min-width: 140px;
+            display: inline-block;
         }
         .vaga-detalhe-card .vaga-salario {
             font-size: 1.2rem;
@@ -133,6 +139,17 @@
             background: var(--primary-color);
             color: var(--white);
         }
+        .badge-teste-enviado {
+    font-size: 1.1rem;
+    padding: 0.6em 1.2em;
+    font-weight: 600;
+    background-color: #10b981; /* verde sucesso */
+    color: #fff;               /* texto branco */
+    border-radius: 0.75rem;
+    display: inline-block;
+    box-shadow: 0 2px 8px 0 rgba(16,185,129,0.08);
+    letter-spacing: 0.02em;
+}
         @media (max-width: 768px) {
             .vaga-detalhe-card {
                 padding: 1.2rem 0.5rem;
@@ -161,6 +178,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="avaliarEmpresas.html">Avaliar</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
+                    </li>
                 </ul>
                 <div class="d-flex gap-2">
                     <a href="../Candidato/homeCandidato.html" class="btn btn-primary-custom">Meu Perfil</a>
@@ -169,67 +189,158 @@
         </div>
     </nav>
     <div class="container mt-5">
-        <h1 class="text-center mb-4" style="color: var(--primary-color); font-weight: 700;">Detalhes da Vaga</h1>
+        <h1 id="titulo-vaga-header" class="text-center mb-4" style="color: var(--primary-color); font-weight: 700;"></h1>
         <div id="detalhesVaga" class="mt-4"></div>
     </div>
 
     <script src="assets/js/script.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const params = new URLSearchParams(window.location.search);
-            const vagaId = params.get("vagaId");
+/* ------------------------------------------------------------------
+   FUNÇÕES QUE JÁ EXISTIAM NO SEU CÓDIGO
+   ------------------------------------------------------------------ */
+function formatarData(dataISO) {
+  if (!dataISO) return "Data não informada";
+  const data = dataISO.length > 10 ? dataISO.substring(0, 10) : dataISO;
+  const [ano, mes, dia] = data.split("-");
+  return `${dia}/${mes}/${ano}`;
+}
 
-            // URL do endpoint para buscar os detalhes da vaga
-            const apiUrl = `http://localhost:8080/vagas/${vagaId}`;
+/* ------------------------------------------------------------------
+   BLOCO NOVO → UTILITÁRIOS DE TESTE TÉCNICO
+   ------------------------------------------------------------------ */
+async function obterCandidaturaPorVaga(vagaId) {   // --- NOVO
+  const cpf = localStorage.getItem("cpfUsuario");
+  if (!cpf) return null;
 
-            // Função para carregar os detalhes da vaga
-            function carregarDetalhes() {
-                fetch(apiUrl)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Erro ao buscar detalhes da vaga");
-                        }
-                        return response.json();
-                    })
-                    .then(vaga => {
-                        const detalhesVaga = document.getElementById("detalhesVaga");
-                        const buttonId = `inscreverBtn-${vaga.id}`;
+  const resp = await fetch(`http://localhost:8080/aplicacoes/candidato/${cpf}`);
+  if (!resp.ok) throw new Error("Erro ao buscar candidaturas");
+  const todas = await resp.json();
+  return todas.find(c => c.vaga.id === vagaId) || null;
+}
 
-                        detalhesVaga.innerHTML = `
-                            <div class="vaga-detalhe-card">
-                                <h2>${vaga.titulo}</h2>
-                                <p><span class="vaga-label">Empresa:</span> ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}</p>
-                                <p><span class="vaga-label">Data de Publicação:</span> ${vaga.dataFinal}</p>
-                                <p><span class="vaga-label">Tipo de Contrato:</span> ${vaga.tipoContrato}</p>
-                                <p><span class="vaga-label">Modalidade:</span> ${vaga.modalidade}</p>
-                                <div class="vaga-beneficios"><span class="vaga-label">Benefícios:</span> ${vaga.beneficios}</div>
-                                <p><span class="vaga-label">Descrição:</span> ${vaga.descricao}</p>
-                                <div class="vaga-salario"><span class="vaga-label">Salário:</span> ${vaga.salario}</div>
-                                <div class="vaga-actions">
-                                    <button class="btn btn-lg" id="${buttonId}" onclick="inscreverVaga(${vaga.id}, '${vaga.dataFinal}', '${buttonId}')">Inscrever-se</button>
-                                </div>
-                            </div>
-                        `;
+async function enviarArquivoTeste(candidaturaId, file) {  // --- NOVO
+  const fd = new FormData();
+  fd.append("file", file);
 
-                        // Verifica se o candidato já está inscrito
-                        verificarInscricao(vaga.id, inscrito => {
-                            if (inscrito) {
-                                const inscreverBtn = document.getElementById(buttonId);
-                                inscreverBtn.disabled = true;
-                                inscreverBtn.textContent = "Já inscrito";
-                            }
-                        });
-                    })
-                    .catch(error => {
-                        console.error("Erro ao carregar detalhes da vaga:", error);
-                        document.getElementById("detalhesVaga").innerHTML = `
-                            <div style="text-align: center; color: red;">Erro ao carregar detalhes da vaga. Tente novamente mais tarde.</div>
-                        `;
-                    });
-            }
+  const resp = await fetch(
+    `http://localhost:8080/aplicacoes/${candidaturaId}/teste-resposta`,
+    { method: "POST", body: fd }
+  );
+  if (!resp.ok) throw new Error("Erro ao enviar teste");
+  alert("Teste enviado com sucesso!");
+  // Recarrega para atualizar badge/botões
+  carregarDetalhes();
+}
 
-            carregarDetalhes();
-        });
-    </script>
+function abrirUploadTeste(candidaturaId, vagaTitulo) {     // --- NOVO
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = ".pdf,.zip,.rar";        // ajuste se precisar
+  input.addEventListener("change", () => {
+    if (input.files.length === 0) return;
+    if (confirm(`Enviar teste da vaga "${vagaTitulo}"? Essa ação é irreversível.`)) {
+      enviarArquivoTeste(candidaturaId, input.files[0])
+        .catch(e => alert(e.message));
+    }
+  });
+  input.click();
+}
+
+/* ------------------------------------------------------------------
+   CARREGAR DETALHES DA VAGA
+   ------------------------------------------------------------------ */
+document.addEventListener("DOMContentLoaded", () => carregarDetalhes());
+
+function carregarDetalhes() {
+  const params = new URLSearchParams(window.location.search);
+  const vagaId  = params.get("vagaId");
+  if (!vagaId) return;
+
+  const apiUrl = `http://localhost:8080/vagas/${vagaId}`;
+
+  fetch(apiUrl)
+    .then(resp => {
+      if (!resp.ok) throw new Error("Erro ao buscar detalhes da vaga");
+      return resp.json();
+    })
+    .then(vaga => {
+      /* ---------- monta o card ---------- */
+      document.getElementById("titulo-vaga-header").textContent = vaga.titulo;
+      const detalhesVaga = document.getElementById("detalhesVaga");
+      const buttonId     = `inscreverBtn-${vaga.id}`;
+
+      const testeAlerta = vaga.teste ? `
+        <div class="alert alert-warning mt-3" role="alert">
+          <i class="fas fa-file-alt"></i> Vaga exige teste técnico
+        </div>` : "";
+
+      detalhesVaga.innerHTML = `
+        <div class="vaga-detalhe-card">
+          <ul class="list-unstyled mb-4">
+            <li><span class="vaga-label">Empresa:</span> ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}</li>
+            <li><span class="vaga-label">Lançamento:</span> ${vaga.dataCriacao ? formatarData(vaga.dataCriacao) : "Data não informada"}</li>
+            <li><span class="vaga-label">Data de Publicação:</span> ${vaga.dataFinal ? formatarData(vaga.dataFinal) : "Data não informada"}</li>
+            <li><span class="vaga-label">Tipo de Contrato:</span> ${vaga.tipoContrato}</li>
+            <li><span class="vaga-label">Modalidade:</span> ${vaga.modalidade}</li>
+            <li><span class="vaga-label">Benefícios:</span> ${vaga.beneficios}</li>
+            <li><span class="vaga-label">Descrição:</span> ${vaga.descricao}</li>
+            <li><span class="vaga-label">Salário:</span> <span class="vaga-salario">R$ ${vaga.salario}</span></li>
+          </ul>
+          ${testeAlerta}
+          <div id="testeDownload" class="d-flex justify-content-center mb-3"></div>
+          <div class="vaga-actions">
+            <button class="btn btn-lg" id="${buttonId}"
+                    onclick="inscreverVaga(${vaga.id}, '${vaga.dataFinal}', '${buttonId}')">
+              Inscrever-se
+            </button>
+          </div>
+        </div>`;
+
+      /* ---------- verifica inscrição ---------- */
+      verificarInscricao(vaga.id, async inscrito => {
+        const inscreverBtn = document.getElementById(buttonId);
+        if (!inscrito) return;              // ainda não inscrito → nada além do botão padrão
+
+        inscreverBtn.disabled = true;
+        inscreverBtn.textContent = "Já inscrito";
+
+        if (!vaga.teste) return;            // vaga não tem teste técnico
+
+        const testeDiv = document.getElementById("testeDownload");
+        // link de download do enunciado
+        testeDiv.innerHTML = `
+          <a href="http://localhost:8080${vaga.teste}" target="_blank"
+             class="btn btn-outline-primary me-3">
+            <i class="fas fa-download"></i> Baixar Teste Técnico
+          </a>`;
+
+        try {
+          const cand = await obterCandidaturaPorVaga(vaga.id);
+          if (cand && cand.testeResposta) {
+            // teste já enviado
+            testeDiv.innerHTML += `
+        <span class="badge-teste-enviado">
+            Teste enviado
+        </span>`;
+          } else {
+            // teste ainda não enviado
+            testeDiv.innerHTML += `
+              <button class="btn btn-outline-secondary"
+                      onclick="abrirUploadTeste(${cand ? cand.id : 0}, '${vaga.titulo}')">
+                <i class="fas fa-upload"></i> Teste ainda não enviado
+              </button>`;
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      });
+    })
+    .catch(err => {
+      console.error("Erro ao carregar detalhes da vaga:", err);
+      document.getElementById("detalhesVaga").innerHTML =
+        `<div class="text-danger text-center">Erro ao carregar detalhes da vaga. Tente novamente mais tarde.</div>`;
+    });
+}
+</script>
 </body>
 </html>

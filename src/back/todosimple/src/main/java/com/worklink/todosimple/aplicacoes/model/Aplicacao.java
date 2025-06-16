@@ -25,6 +25,9 @@ public class Aplicacao implements Serializable {
     @JoinColumn(name = "cpf_usuario", referencedColumnName = "cpf", nullable = false)
     private Candidato candidato;
 
+    @Column(name = "teste_resposta")
+    private String testeResposta; // Caminho ou URL do arquivo enviado
+
     // Getters e Setters
     public Integer getId() {
         return id;
@@ -56,5 +59,13 @@ public class Aplicacao implements Serializable {
 
     public void setCandidato(Candidato candidato) {
         this.candidato = candidato;
+    }
+
+    public String getTesteResposta() {
+        return testeResposta;
+    }
+
+    public void setTesteResposta(String testeResposta) {
+        this.testeResposta = testeResposta;
     }
 }

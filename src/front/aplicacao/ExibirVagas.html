@@ -260,7 +260,9 @@
 
             // Função para formatar a data no formato brasileiro
             function formatarData(data) {
-                const [ano, mes, dia] = data.split('-');
+                if (!data) return "";
+                // Aceita tanto "2025-06-16T12:34:56" quanto "2025-06-16"
+                const [ano, mes, dia] = data.split('T')[0].split('-');
                 return `${dia}/${mes}/${ano}`;
             }
 
@@ -284,15 +286,24 @@
 
                             const buttonId = `inscreverBtn-${vaga.id}`;
 
+                            // Se a vaga exige teste, mostra aviso, mas não mostra botão de download
+                            const testeInfo = vaga.teste
+                                ? `<div class="alert alert-warning mt-2" role="alert">
+                                        <i class="fas fa-file-alt"></i> Vaga exige teste
+                                   </div>`
+                                : '';
+
                             vagaCard.innerHTML = `
                                 <div class="vaga-info">
                                     <h3>${vaga.titulo}</h3>
                                     <p><strong>Empresa:</strong> ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}</p>
+                                    <p><strong>Lançamento:</strong> ${vaga.dataCriacao ? formatarData(vaga.dataCriacao) : "Data não informada"}</p>
                                     <p><strong>Descrição:</strong> ${vaga.descricao}</p>
                                     <p><strong>Tipo de Contrato:</strong> ${vaga.tipoContrato}</p>
                                     <p><strong>Data de Publicação:</strong> ${vaga.dataFinal ? formatarData(vaga.dataFinal) : "Data não informada"}</p>
                                 </div>
-                                <div class="vaga-actions">
+                                ${testeInfo}
+                                <div class="vaga-actions mt-2">
                                     <button class="btn-inscrever" id="${buttonId}" onclick="inscreverVaga(${vaga.id}, '${vaga.dataFinal}', '${buttonId}')">Inscrever-se</button>
                                     <button class="btn-detalhes" onclick="verDetalhes(${vaga.id})">Ver Detalhes</button>
                                 </div>

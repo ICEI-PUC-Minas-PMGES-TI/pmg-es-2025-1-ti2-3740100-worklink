@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AplicacaoService {
@@ -40,5 +41,10 @@ public class AplicacaoService {
     // Listar aplicações por ID da vaga
     public List<Aplicacao> listarPorVaga(Integer idVaga) {
         return aplicacaoRepository.findByVagaId(idVaga);
+    }
+
+    public Aplicacao buscarPorId(Long id) {
+        Optional<Aplicacao> aplicacao = aplicacaoRepository.findById(id);
+        return aplicacao.orElseThrow(() -> new RuntimeException("Aplicação não encontrada com id: " + id));
     }
 }
