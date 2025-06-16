@@ -5,6 +5,7 @@ import com.worklink.todosimple.aplicacoes.service.AplicacaoService;
 import com.worklink.todosimple.aplicacoes.repositories.AplicacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.StringUtils;
@@ -12,6 +13,7 @@ import org.springframework.util.StringUtils;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @RestController
@@ -35,11 +37,20 @@ public class AplicacaoController {
 
     // 2. Atualizar o status de uma aplicação
     @PutMapping("/{id}/status")
-    public ResponseEntity<Aplicacao> atualizarStatus(
-            @PathVariable Long id,
-            @RequestParam String status) {
-        Aplicacao aplicacaoAtualizada = aplicacaoService.atualizarStatus(id, status);
-        return ResponseEntity.ok(aplicacaoAtualizada);
+    public ResponseEntity<?> atualizarStatus(@PathVariable Long id, @RequestParam String status) {
+        try {
+            Aplicacao aplicacao = aplicacaoService.buscarPorId(id);
+            if (aplicacao == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aplicação não encontrada.");
+            }
+
+            aplicacao.setStatus(status);
+            aplicacaoService.salvar(aplicacao);
+
+            return ResponseEntity.ok(aplicacao);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar status: " + e.getMessage());
+        }
     }
 
     // 3. Listar todas as aplicações
@@ -76,25 +87,60 @@ public class AplicacaoController {
             @PathVariable Long id,
             @RequestParam("file") MultipartFile file) {
         try {
-            // Caminho onde os arquivos serão salvos (ajuste conforme sua estrutura)
-            String pastaUpload = "uploads/testes_resposta";
-            Files.createDirectories(Paths.get(pastaUpload));
+            // Busca a candidatura pelo ID
+            Aplicacao aplicacao = aplicacaoService.buscarPorId(id);
+            if (aplicacao == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Candidatura não encontrada.");
+            }
 
-            // Gera um nome único para o arquivo
-            String nomeArquivo = id + "_" + StringUtils.cleanPath(file.getOriginalFilename());
+            // Define o nome do arquivo com o padrão "Teste{Candidato}-{Vaga}"
+            String candidatoNome = aplicacao.getCandidato().getNome().replaceAll("\\s+", "");
+            String vagaTitulo = aplicacao.getVaga().getTitulo().replaceAll("\\s+", "");
+            String nomeArquivo = String.format("Teste%s-%s.pdf", candidatoNome, vagaTitulo);
+
+            // Define o caminho para salvar o arquivo
+            String pastaUpload = "src/back/todosimple/src/main/resources/static/uploads/testes_resposta";
+            Files.createDirectories(Paths.get(pastaUpload));
             Path caminhoArquivo = Paths.get(pastaUpload).resolve(nomeArquivo);
 
             // Salva o arquivo no disco
-            Files.copy(file.getInputStream(), caminhoArquivo);
+            Files.copy(file.getInputStream(), caminhoArquivo, StandardCopyOption.REPLACE_EXISTING);
 
             // Atualiza o campo testeResposta da aplicação
-            Aplicacao aplicacao = aplicacaoService.buscarPorId(id);
-            aplicacao.setTesteResposta("/" + pastaUpload + "/" + nomeArquivo);
+            aplicacao.setTesteResposta("/uploads/testes_resposta/" + nomeArquivo);
             aplicacaoService.salvar(aplicacao);
 
             return ResponseEntity.ok("Arquivo enviado com sucesso!");
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Erro ao enviar arquivo: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao enviar arquivo: " + e.getMessage());
         }
+    }
+
+    // 7. Atualizar feedback da aplicação
+    @PutMapping("/{id}/feedback")
+    public ResponseEntity<?> atualizarFeedback(@PathVariable Long id, @RequestBody String feedback) {
+        try {
+            Aplicacao aplicacao = aplicacaoService.buscarPorId(id);
+            if (aplicacao == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aplicação não encontrada.");
+            }
+
+            aplicacao.setFeedback(feedback);
+            aplicacaoService.salvar(aplicacao);
+
+            return ResponseEntity.ok("Feedback atualizado com sucesso!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar feedback: " + e.getMessage());
+        }
+    }
+
+    // Buscar uma aplicação por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Aplicacao> buscarPorId(@PathVariable Long id) {
+        Aplicacao aplicacao = aplicacaoService.buscarPorId(id);
+        if (aplicacao == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.ok(aplicacao);
     }
 }

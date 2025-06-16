@@ -28,6 +28,9 @@ public class Aplicacao implements Serializable {
     @Column(name = "teste_resposta")
     private String testeResposta; // Caminho ou URL do arquivo enviado
 
+    @Column(name = "feedback", columnDefinition = "TEXT")
+    private String feedback;
+
     // Getters e Setters
     public Integer getId() {
         return id;
@@ -67,5 +70,13 @@ public class Aplicacao implements Serializable {
 
     public void setTesteResposta(String testeResposta) {
         this.testeResposta = testeResposta;
+    }
+
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
     }
 }

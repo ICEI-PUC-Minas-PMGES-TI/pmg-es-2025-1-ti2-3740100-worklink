@@ -41,11 +41,12 @@
         }
 
         .candidatura-item {
-            background-color: white;
-            border-radius: 10px;
-            padding: 1.5rem;
+            border: 1px solid #afafaf;
+            border-radius: 8px;
+            padding: 1rem;
             margin-bottom: 1rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
         }
 
         .candidatura-item h4 {
@@ -75,6 +76,30 @@
             padding: 1rem 0;
             margin-top: 2rem;
         }
+
+        /* Estilo para fundo opaco */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1040;
+        }
+
+        .modal {
+            display: block;
+            z-index: 1050;
+        }
+
+        /* Estilo para aplicar blur ao fundo */
+        .blur {
+            filter: blur(5px);
+            /* Aplica o efeito de desfoque */
+            pointer-events: none;
+            /* Impede interação com o fundo enquanto o modal está aberto */
+        }
     </style>
 </head>
 
@@ -95,6 +120,26 @@
             <!-- As candidaturas serão carregadas aqui via JavaScript -->
         </div>
     </main>
+
+    <!-- Modal de Feedback -->
+    <div id="feedback-modal" class="modal" tabindex="-1" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Enviar Feedback</h5>
+                    <button type="button" class="btn-close" onclick="fecharModalFeedback()"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="feedback" class="form-label">Feedback:</label>
+                    <textarea id="feedback" class="form-control" rows="4" placeholder="Digite o feedback para o candidato"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" onclick="enviarFeedback()">Enviar</button>
+                    <button class="btn btn-secondary" onclick="fecharModalFeedback()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -139,6 +184,19 @@
                         const candidaturaItem = document.createElement("div");
                         candidaturaItem.classList.add("candidatura-item");
 
+                        let testeEnviadoBtn = "";
+                        if (candidatura.testeResposta) {
+                            testeEnviadoBtn = `
+                                <a href="http://localhost:8080${candidatura.testeResposta}" target="_blank" class="btn btn-sm btn-outline-success mt-2">
+                                    <i class="fas fa-file-alt"></i> Ver Teste Enviado
+                                </a>
+                            `;
+                        } else {
+                            testeEnviadoBtn = `
+                                <p class="text-danger mt-2"><i class="fas fa-exclamation-circle"></i> Teste não enviado</p>
+                            `;
+                        }
+
                         candidaturaItem.innerHTML = `
                             <div class="d-flex justify-content-between align-items-start">
                                 <div>
@@ -156,17 +214,18 @@
                                     <a href="../Candidato/perfilCandidato.html?id=${candidato.id}" class="btn btn-sm btn-outline-primary mt-2">
                                         Ver Perfil
                                     </a>
+                                    ${testeEnviadoBtn}
                                 </div>
                                 <div>
                                     <div class="dropdown">
                                         <button class="btn btn-sm dropdown-toggle status-badge" type="button" id="status-${candidatura.id}" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: ${candidatura.status === "Aprovado"
-                                ? "green"
-                                : candidatura.status === "Reprovado"
-                                    ? "red"
-                                    : candidatura.status === "Em Análise"
-                                        ? "orange"
-                                        : "gray"
-                            }; color: white;">
+                            ? "green"
+                            : candidatura.status === "Reprovado"
+                                ? "red"
+                                : candidatura.status === "Em Análise"
+                                    ? "orange"
+                                    : "gray"
+                        }; color: white;">
                                             ${candidatura.status}
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="status-${candidatura.id}">
@@ -210,11 +269,139 @@
                                 : candidaturaAtualizada.status === "Em Análise"
                                     ? "orange"
                                     : "gray";
+
+                    // Abre o modal de feedback apenas se o status for "Reprovado"
+                    if (novoStatus === "Reprovado") {
+                        abrirModalFeedback(candidaturaId);
+                    }
                 })
                 .catch(error => {
                     console.error("Erro ao atualizar status:", error);
                     alert("Erro ao atualizar status. Tente novamente.");
                 });
+        }
+
+        function enviarFeedback() {
+            const feedbackTextarea = document.getElementById("feedback");
+            const feedback = feedbackTextarea.value.trim();
+
+            if (!feedback) {
+                alert("Por favor, digite o feedback antes de enviar.");
+                return;
+            }
+
+            const candidaturaId = document.getElementById("feedback-modal").dataset.candidaturaId;
+
+            // Envia o feedback ao backend
+            fetch(`http://localhost:8080/aplicacoes/${candidaturaId}/feedback`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(feedback),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erro ao enviar feedback");
+                    }
+                    return response.text();
+                })
+                .then(msg => {
+                    alert(msg);
+
+                    // Após enviar o feedback, altera o status para "Reprovado"
+                    return fetch(`http://localhost:8080/aplicacoes/${candidaturaId}/status?status=Reprovado`, {
+                        method: "PUT",
+                    });
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erro ao alterar status para Reprovado");
+                    }
+                    return response.json();
+                })
+                .then(() => {
+                    const statusBadge = document.getElementById(`status-${candidaturaId}`);
+                    statusBadge.textContent = "Reprovado";
+                    statusBadge.style.backgroundColor = "red";
+
+                    fecharModalFeedback(); // Fecha o modal após o envio
+                })
+                .catch(error => {
+                    console.error("Erro ao enviar feedback ou alterar status:", error);
+                    alert("Erro ao enviar feedback ou alterar status. Tente novamente.");
+                });
+        }
+
+        function fecharModalFeedback() {
+            const modal = document.getElementById("feedback-modal");
+            const candidaturaId = modal.dataset.candidaturaId;
+
+            // Verifica se o feedback foi enviado
+            const feedbackTextarea = document.getElementById("feedback");
+            const feedback = feedbackTextarea.value.trim();
+
+            if (!feedback) {
+                // Reverte o status para "Em Análise" caso o feedback seja cancelado
+                fetch(`http://localhost:8080/aplicacoes/${candidaturaId}/status?status=Em Análise`, {
+                    method: "PUT",
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Erro ao reverter status");
+                        }
+                        return response.json();
+                    })
+                    .then(() => {
+                        const statusBadge = document.getElementById(`status-${candidaturaId}`);
+                        statusBadge.textContent = "Em Análise";
+                        statusBadge.style.backgroundColor = "orange";
+                    })
+                    .catch(error => {
+                        console.error("Erro ao reverter status:", error);
+                        alert("Erro ao reverter status. Tente novamente.");
+                    });
+            }
+
+            modal.style.display = "none";
+
+            const backdrop = document.getElementById("modal-backdrop");
+            if (backdrop) {
+                backdrop.remove(); // Remove o fundo opaco
+            }
+
+            // Remove o efeito de blur do fundo
+            document.querySelector("main").classList.remove("blur");
+
+            feedbackTextarea.value = ""; // Limpa o textarea ao fechar o modal
+        }
+
+        function abrirModalFeedback(candidaturaId) {
+            const modal = document.getElementById("feedback-modal");
+            const backdrop = document.createElement("div");
+            backdrop.className = "modal-backdrop";
+            backdrop.id = "modal-backdrop";
+
+            // Busca os dados da candidatura para exibir o nome do candidato no modal
+            fetch(`http://localhost:8080/aplicacoes/${candidaturaId}`)
+                .then(response => response.json())
+                .then(candidatura => {
+                    const candidatoNome = candidatura.candidato.nome;
+
+                    // Atualiza o título do modal com o nome do candidato
+                    document.querySelector(".modal-title").textContent = `Enviar Feedback para ${candidatoNome}`;
+                })
+                .catch(error => {
+                    console.error("Erro ao buscar dados da candidatura:", error);
+                    alert("Erro ao carregar informações do candidato.");
+                });
+
+            document.body.appendChild(backdrop); // Adiciona o fundo opaco
+            modal.style.display = "block";
+            modal.dataset.candidaturaId = candidaturaId; // Armazena o ID da candidatura
+
+            // Adiciona o efeito de blur ao fundo
+            document.querySelector("main").classList.add("blur");
         }
 
         // Chama a função ao carregar a página
