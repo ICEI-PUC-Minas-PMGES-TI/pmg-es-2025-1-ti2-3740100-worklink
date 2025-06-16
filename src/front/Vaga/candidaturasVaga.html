@@ -132,6 +132,18 @@
                 <div class="modal-body">
                     <label for="feedback" class="form-label">Feedback:</label>
                     <textarea id="feedback" class="form-control" rows="4" placeholder="Digite o feedback para o candidato"></textarea>
+                    <div class="mt-3">
+                        <p>Escolha uma sugestestão:</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button class="btn btn-outline-secondary btn-sm" onclick="preencherFeedback('Agradecemos sua participação no processo seletivo. Após análise do teste realizado, infelizmente você não foi selecionado para esta vaga. Desejamos sucesso em sua trajetória!')">Não passou no teste</button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="preencherFeedback('Obrigado por se candidatar. Após avaliarmos seu perfil, identificamos que ele não atende aos requisitos necessários para esta vaga. Continue acompanhando nossas oportunidades futuras!')">Não atende aos requisitos</button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="preencherFeedback('Agradecemos seu interesse em nossa vaga. Após uma análise cuidadosa, decidimos seguir com outros candidatos que estão mais alinhados ao perfil que buscamos neste momento. Boa sorte em seus próximos desafios!')">Perfil não alinhado</button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="preencherFeedback('Agradecemos sua candidatura. Informamos que esta vaga já foi preenchida e o processo seletivo foi encerrado. Esperamos contar com seu interesse em futuras oportunidades.')">Processo encerrado</button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="preencherFeedback('Obrigado pelo seu interesse. Apesar do seu perfil ser promissor, buscamos candidatos com experiência específica na área para esta vaga. Desejamos sucesso em sua carreira!')">Falta de experiência</button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="preencherFeedback('Recebemos muitas candidaturas qualificadas para esta vaga. Embora seu perfil seja interessante, optamos por seguir com outros candidatos mais alinhados às demandas da posição. Obrigado por participar.')">Alta concorrência</button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="preencherFeedback('Seu perfil demonstra potencial, mas estamos buscando alguém com um pouco mais de experiência ou maturidade profissional para esta vaga. Continue se desenvolvendo e não hesite em se candidatar futuramente!')">Perfil em desenvolvimento</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" onclick="enviarFeedback()">Enviar</button>
@@ -402,6 +414,11 @@
 
             // Adiciona o efeito de blur ao fundo
             document.querySelector("main").classList.add("blur");
+        }
+
+        function preencherFeedback(texto) {
+            const feedbackTextarea = document.getElementById("feedback");
+            feedbackTextarea.value = texto;
         }
 
         // Chama a função ao carregar a página
