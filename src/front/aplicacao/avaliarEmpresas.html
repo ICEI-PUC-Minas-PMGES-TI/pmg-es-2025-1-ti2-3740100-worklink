@@ -571,7 +571,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 text-end">
-                    <button class="btn rate-company-btn" data-bs-toggle="modal" data-bs-target="#ratingModal">
+                    <button class="btn rate-company-btn btn-de-avaliacao" data-bs-toggle="modal" data-bs-target="#ratingModal">
                         <i class="fas fa-plus"></i> Avaliar Empresa
                     </button>
                 </div>
@@ -876,7 +876,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn submit-rating-btn" onclick="submitRating()">Enviar Avaliação</button>
+                    <button type="button" class="btn submit-rating-btn" onclick="enviarAvaliacao()">Enviar Avaliação</button>
                 </div>
             </div>
         </div>
@@ -892,6 +892,178 @@
             growth: 0,
             leadership: 0
         };
+
+        async function enviarAvaliacao(){
+            const nomeEmpresa = document.querySelector('#ratingModal input[placeholder = "Digite o nome da empresa..."]').value.trim();
+
+            if(!nomeEmpresa){
+                alert("Digite o nome da empresa.");
+                return;
+            }
+
+            const cpfCandidato = localStorage.getItem('cpfUsuario');
+            
+            if(!cpfCandidato){
+                alert("Candidato não autenticado.");
+                return;
+            }
+
+            const resp = await fetch(`http://localhost:8080/aplicacoes/candidato/${cpfCandidato}`);
+
+            if(!resp.ok){
+                alert("Erro ao buscar candidaturas.");
+                return;
+            }
+
+            const candidaturas = await resp.json();
+
+            const candidatura = candidaturas.find(c => c.vaga.empresa.nome.toLowerCase() === nomeEmpresa.toLowerCase());
+
+            if(!candidatura){
+                alert("Você não participou do processo seletivo desta empresa. Não é possivel enviar a avaliação.");
+                return;
+            }
+
+            alert("Avaliação enviada com sucesso!");
+            submitRating();
+        }
+        
+
+        //AQUI É ONDE EU TENTEI APARECER TODAS AS EMPRESAS DO BANCO DE DADOS E APARECER (SE AVALIADAS APARECE ELAS E A AVALIAÇÃO, SE NÃO APARECE ELAS COM 0 ESTRELAS)
+        document.addEventListener('DOMContentLoaded', function(){
+            carregarEmpresas();
+        });
+
+        async function carregarEmpresas(){
+            const container = document.getElementById('companies-container');
+            container.innerHTML = '<div style="text-align:center">Carregando empresas...</div>';
+
+            try{
+                // CORRIGIDO: fetch (não fecth)
+                const resp = await fetch(`http://localhost:8080/empresas`);
+                if(!resp.ok) throw new Error('Erro ao buscar empresas');
+
+                const empresas = await resp.json();
+
+                container.innerHTML = '';
+
+                if(empresas.length === 0){
+                    container.innerHTML = '<div style="text-align:center">Nenhuma empresa encontrada.</div>';
+                    return;
+                }
+
+                empresas.forEach(empresa => {
+                    // Pegue a média e quantidade de avaliações, se existirem
+                    const avaliacao = empresa.avaliacao || 0;
+                    const qtdAvaliacoes = empresa.qtdAvaliacoes || 0;
+
+                    // Monta as estrelas
+                    let starsHtml = '';
+                    for (let i = 1; i <= 5; i++) {
+                        if (avaliacao >= i) {
+                            starsHtml += '<i class="fas fa-star"></i>';
+                        } else if (avaliacao > i - 1) {
+                            starsHtml += '<i class="fas fa-star-half-alt"></i>';
+                        } else {
+                            starsHtml += '<i class="far fa-star"></i>';
+                        }
+                    }
+
+                    container.innerHTML += `
+                        <div class="company-card">
+                            <div class="company-header">
+                                <div class="company-logo">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <div class="company-info">
+                                    <h3>${empresa.nome || 'Nome não informado'}</h3>
+                                    <div class="company-industry">${empresa.setor || 'Setor não informado'}</div>
+                                    <div class="company-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        ${empresa.cidade || 'Cidade não informada'}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="company-rating">
+                                <div class="stars">
+                                    ${starsHtml}
+                                </div>
+                                <span class="rating-value">${avaliacao > 0 ? avaliacao.toFixed(1) : ''}</span>
+                                <span class="review-count">(${qtdAvaliacoes} avaliação${qtdAvaliacoes === 1 ? '' : 'es'})</span>
+                            </div>
+                            <p class="company-description">
+                                ${empresa.descricao || 'Empresa focada em inovação e excelência no atendimento.'}
+                            </p>
+                        </div>
+                    `;
+                });
+            }catch(err){
+                container.innerHTML = '<div style="text-align:center;color:red">Erro ao carregar empresas.</div>';
+                console.error(err);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            let empresas = [];
+
+            try{
+                const resp = await fetch('http://localhost:8080/empresas');
+
+                if(!resp.ok){
+                    empresas = await resp.json();
+                }
+            }catch(e){
+                console.error('Erro ao buscar empresas para autocompete', e);
+            }
+
+            const inputEmpresa = document.querySelector('#ratingModal input[placeholder="Digite o nome da empresa..."]');
+
+            const listaSugestoes = document.creatElement('div');
+            listaSugestoes.className = 'autocomplete-list';
+            listaSugestoes.style.position = 'absolute';
+            listaSugestoes.style.zIndex = '9999';
+            listaSugestoes.style.background = '#fff';
+            listaSugestoes.style.border = '1px solid #ccc';
+            listaSugestoes.style.width = '100%';
+            listaSugestoes.style.maxHeight = '200px';
+            listaSugestoes.style.overflowY = 'auto';
+            listaSugestoes.style.display = 'none';
+
+            inputEmpresa.parentNode.appendChild(listaSugestoes);
+
+            inputEmpresa.addEventListener('input', function(){
+                const valor = this.value.trim().toLowerCase();
+                listaSugestoes.innerHTML = '';
+                if (!valor) {
+                    listaSugestoes.style.display = 'none';
+                    return;
+                }
+                // Filtra empresas pelo nome
+                const filtradas = empresas.filter(emp => emp.nome && emp.nome.toLowerCase().includes(valor));
+                if (filtradas.length === 0) {
+                    listaSugestoes.style.display = 'none';
+                    return;
+                }
+                filtradas.forEach(emp => {
+                    const item = document.createElement('div');
+                    item.textContent = emp.nome;
+                    item.style.padding = '8px 12px';
+                    item.style.cursor = 'pointer';
+                    item.addEventListener('mousedown', function(e) {
+                        e.preventDefault();
+                        inputEmpresa.value = emp.nome;
+                        listaSugestoes.style.display = 'none';
+                    });
+                listaSugestoes.appendChild(item);
+            });
+            listaSugestoes.style.display = 'block';
+            document.addEventListener('mousedown', function(e) {
+                if (!inputEmpresa.contains(e.target) && !listaSugestoes.contains(e.target)) {
+                    listaSugestoes.style.display = 'none';
+                }
+            });
+        });
+    });
 
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize star ratings

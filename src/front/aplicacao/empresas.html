@@ -1016,6 +1016,22 @@ document.addEventListener('DOMContentLoaded', function() {
             // Cria um id único para o campo de vagas deste card
             const vagasId = `vagas-empresa-${empresa.id}`;
 
+            // Pega a média de avaliação da empresa (ajuste o nome conforme seu backend)
+            const avaliacao = empresa.avaliacao || empresa.mediaAvaliacoes || 0;
+            const qtdAvaliacoes = empresa.qtdAvaliacoes || 0;
+
+            // Monta as estrelas de acordo com a média
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                if (avaliacao >= i) {
+                    starsHtml += '<i class="fas fa-star"></i>';
+                } else if (avaliacao > i - 1) {
+                    starsHtml += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    starsHtml += '<i class="far fa-star"></i>';
+                }
+            }
+
             card.innerHTML = `
                 <div class="company-header">
                     <div class="company-logo">
@@ -1033,14 +1049,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 <div class="company-rating">
                     <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
+                        ${starsHtml}
                     </div>
-                    <span class="rating-value">4.0</span>
-                    <span class="review-count">(0 avaliações)</span>
+                    <span class="rating-value">${avaliacao > 0 ? avaliacao.toFixed(1) : ''}</span>
+                    <span class="review-count">(${qtdAvaliacoes} avaliação${qtdAvaliacoes === 1 ? '' : 'es'})</span>
                 </div>
                 
                 <p class="company-description">
