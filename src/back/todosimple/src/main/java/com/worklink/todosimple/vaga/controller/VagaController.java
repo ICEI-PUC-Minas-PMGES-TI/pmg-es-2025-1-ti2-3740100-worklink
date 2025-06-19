@@ -215,4 +215,13 @@ public class VagaController {
         CandidaturasPorVagaDTO dto = new CandidaturasPorVagaDTO(totalVagas, totalCandidaturas);
         return ResponseEntity.ok(dto);
     }
+
+    @GetMapping("/indicadores/media-vagas-por-empresa")
+    public ResponseEntity<Double> getMediaVagasPorEmpresa() {
+    long totalVagas = vagaRepository.count();
+    long totalEmpresas = empresaRepository.count();
+
+    double media = totalEmpresas > 0 ? (double) totalVagas / totalEmpresas : 0.0;
+    return ResponseEntity.ok(media);
+    }
 }

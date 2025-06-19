@@ -40,6 +40,17 @@
       color: #1e88e5;
       text-align: center;
     }
+    #cardMediaVagasPorEmpresa {
+      max-width: 700px;
+      margin: 40px auto 0 auto;
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-size: 18px;
+      color: #d84315;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -52,6 +63,10 @@
 
   <div id="cardCandidaturasPorVaga">
     Carregando indicador Candidaturas por Vaga...
+  </div>
+
+  <div id="cardMediaVagasPorEmpresa">
+    Carregando Média de Vagas por Empresa...
   </div>
 
   <script>
@@ -107,8 +122,6 @@
         if (!cnpj) {
           throw new Error("CNPJ da empresa não encontrado.");
         }
-
-        // Corrigido para passar CNPJ como path variable na URL
         const resposta = await fetch(`http://localhost:8080/vagas/indicadores/candidaturas-por-vaga/${cnpj}`);
         const dto = await resposta.json();
 
@@ -125,8 +138,20 @@
       }
     }
 
+    async function carregarMediaVagasPorEmpresa() {
+      try {
+        const resposta = await fetch('http://localhost:8080/vagas/indicadores/media-vagas-por-empresa');
+        const media = await resposta.json();
+        document.getElementById('cardMediaVagasPorEmpresa').innerText = `Média de Vagas por Empresa: ${media.toFixed(2)}`;
+      } catch (erro) {
+        console.error('Erro ao carregar média de vagas por empresa:', erro);
+        document.getElementById('cardMediaVagasPorEmpresa').innerText = 'Erro ao carregar Média de Vagas por Empresa.';
+      }
+    }
+
     carregarDadosVagasPorEmpresa();
     carregarIndicadorCandidaturasPorVaga();
+    carregarMediaVagasPorEmpresa();
   </script>
 
 </body>
