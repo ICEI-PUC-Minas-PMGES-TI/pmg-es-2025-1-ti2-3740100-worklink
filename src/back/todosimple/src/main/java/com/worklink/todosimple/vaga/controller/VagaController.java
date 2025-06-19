@@ -1,10 +1,10 @@
 package com.worklink.todosimple.vaga.controller;
 
 import com.worklink.todosimple.vaga.DTO.VagasPorEmpresaDTO;
-import com.worklink.todosimple.vaga.DTO.CandidaturasPorVagaDTO; // IMPORTA O DTO NOVO
+import com.worklink.todosimple.vaga.DTO.CandidaturasPorVagaDTO;
 import com.worklink.todosimple.vaga.model.Vaga;
 import com.worklink.todosimple.vaga.repository.VagaRepository;
-import com.worklink.todosimple.aplicacoes.repositories.AplicacaoRepository; // IMPORTA O REPOSITÓRIO DE APLICAÇÕES
+import com.worklink.todosimple.aplicacoes.repositories.AplicacaoRepository;
 import com.worklink.todosimple.cadastro.models.Empresa;
 import com.worklink.todosimple.cadastro.repositories.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class VagaController {
     private EmpresaRepository empresaRepository;
 
     @Autowired
-    private AplicacaoRepository aplicacaoRepository; // INJEÇÃO DO REPOSITÓRIO
+    private AplicacaoRepository aplicacaoRepository;
 
     // GET todas as vagas
     @GetMapping
@@ -78,7 +78,6 @@ public class VagaController {
         vaga.setBeneficios((String) vagaMap.get("beneficios"));
         vaga.setSalario(vagaMap.get("salario") != null ? Double.parseDouble(vagaMap.get("salario").toString()) : 0);
 
-        // Conversão da data
         try {
             String dataFinalStr = (String) vagaMap.get("dataFinal");
             if (dataFinalStr != null && !dataFinalStr.isEmpty()) {
@@ -94,7 +93,6 @@ public class VagaController {
         vaga.setModalidade((String) vagaMap.get("modalidade"));
         vaga.setEmpresa(empresa);
 
-        // Definir data de criação
         vaga.setDataCriacao(new Date());
 
         Vaga savedVaga = vagaRepository.save(vaga);
@@ -111,7 +109,6 @@ public class VagaController {
                 vaga.setBeneficios((String) vagaMap.get("beneficios"));
                 vaga.setSalario(vagaMap.get("salario") != null ? Double.parseDouble(vagaMap.get("salario").toString()) : 0);
 
-                // Atualiza dataFinal
                 try {
                     String dataFinalStr = (String) vagaMap.get("dataFinal");
                     if (dataFinalStr != null && !dataFinalStr.isEmpty()) {
@@ -119,13 +116,12 @@ public class VagaController {
                         vaga.setDataFinal(sdf.parse(dataFinalStr));
                     }
                 } catch (Exception e) {
-                    // Se der erro, mantém a data antiga
+                    // mantém data antiga se erro
                 }
 
                 vaga.setTipoContrato((String) vagaMap.get("tipoContrato"));
                 vaga.setModalidade((String) vagaMap.get("modalidade"));
 
-                // Atualiza empresa se vier no body
                 if (vagaMap.get("empresa") instanceof Map empresaMap) {
                     String cnpj = (String) empresaMap.get("cnpj");
                     if (cnpj != null) {
@@ -154,10 +150,8 @@ public class VagaController {
     @PostMapping("/{id}/teste")
     public ResponseEntity<?> enviarTeste(@PathVariable Long id, @RequestParam(value = "arquivoTeste", required = false) MultipartFile arquivoTeste) {
         try {
-            // Busca a vaga pelo ID
             Vaga vaga = vagaRepository.findById(id).orElseThrow(() -> new RuntimeException("Vaga não encontrada"));
 
-            // Verifica se o arquivo foi enviado
             if (arquivoTeste != null && !arquivoTeste.isEmpty()) {
                 String diretorio = "src/back/todosimple/src/main/resources/static/uploads/testes/";
                 String nomeArquivo = UUID.randomUUID() + "_" + arquivoTeste.getOriginalFilename();
@@ -165,10 +159,9 @@ public class VagaController {
                 Files.createDirectories(caminho.getParent());
                 Files.write(caminho, arquivoTeste.getBytes());
 
-                // Atualiza o caminho do teste na vaga
                 vaga.setTeste("/uploads/testes/" + nomeArquivo);
             } else {
-                vaga.setTeste(null); // Caso nenhum arquivo seja enviado
+                vaga.setTeste(null);
             }
 
             vagaRepository.save(vaga);
@@ -178,7 +171,7 @@ public class VagaController {
         }
     }
 
-    // NOVO: GET vagas agrupadas por empresa
+    // GET vagas agrupadas por empresa
     @GetMapping("/indicadores/vagas-por-empresa")
     public ResponseEntity<List<VagasPorEmpresaDTO>> obterVagasPorEmpresa() {
         List<Vaga> todasVagas = vagaRepository.findAll();
@@ -194,13 +187,32 @@ public class VagaController {
         return ResponseEntity.ok(resultado);
     }
 
-    // NOVO: GET indicador Candidaturas por Vaga
+    // GET indicador Candidaturas por Vaga - total geral
     @GetMapping("/indicadores/candidaturas-por-vaga")
     public ResponseEntity<CandidaturasPorVagaDTO> getCandidaturasPorVaga() {
-        long totalCandidaturas = aplicacaoRepository.count();
         long totalVagas = vagaRepository.count();
-        CandidaturasPorVagaDTO dto = new CandidaturasPorVagaDTO(totalCandidaturas, totalVagas);
+        long totalCandidaturas = aplicacaoRepository.count();
+        CandidaturasPorVagaDTO dto = new CandidaturasPorVagaDTO(totalVagas, totalCandidaturas);
         return ResponseEntity.ok(dto);
     }
 
+    // GET indicador Candidaturas por Vaga para empresa específica via CNPJ
+    @GetMapping("/indicadores/candidaturas-por-vaga/{cnpj}")
+    public ResponseEntity<CandidaturasPorVagaDTO> getCandidaturasPorVagaPorEmpresa(@PathVariable String cnpj) {
+        List<Vaga> vagasDaEmpresa = vagaRepository.findByEmpresa_Cnpj(cnpj);
+        long totalVagas = vagasDaEmpresa.size();
+
+        if (totalVagas == 0) {
+            return ResponseEntity.ok(new CandidaturasPorVagaDTO(0, 0)); // evita divisão por zero
+        }
+
+        List<Long> idsDasVagas = vagasDaEmpresa.stream()
+                .map(Vaga::getId)
+                .collect(Collectors.toList());
+
+        long totalCandidaturas = aplicacaoRepository.countByVagaIdIn(idsDasVagas);
+
+        CandidaturasPorVagaDTO dto = new CandidaturasPorVagaDTO(totalVagas, totalCandidaturas);
+        return ResponseEntity.ok(dto);
+    }
 }
