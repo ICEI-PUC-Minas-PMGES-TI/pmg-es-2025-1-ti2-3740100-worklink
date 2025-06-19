@@ -159,7 +159,8 @@
         .rate-company-btn:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
-            color: var(--white);
+            color: var(--white); /* Mantém o texto branco no hover */
+            background: #0a9d6a; /* Adiciona uma cor de fundo mais escura no hover */
         }
 
         /* Company Cards */
@@ -508,6 +509,8 @@
                 gap: 1rem;
             }
         }
+
+        
     </style>
 </head>
 
@@ -571,9 +574,6 @@
                     </div>
                 </div>
                 <div class="col-lg-6 text-end">
-                    <button class="btn rate-company-btn btn-de-avaliacao" data-bs-toggle="modal" data-bs-target="#ratingModal">
-                        <i class="fas fa-plus"></i> Avaliar Empresa
-                    </button>
                 </div>
             </div>
         </div>
@@ -788,21 +788,6 @@
                             <label class="form-label">Nome da Empresa</label>
                             <input type="text" class="form-control" placeholder="Digite o nome da empresa..." required>
                         </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Seu Cargo</label>
-                            <input type="text" class="form-control" placeholder="Ex: Desenvolvedor, Designer, Analista..." required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Status</label>
-                            <select class="form-select" required>
-                                <option value="">Selecione...</option>
-                                <option value="current">Funcionário atual</option>
-                                <option value="former">Ex-funcionário</option>
-                            </select>
-                        </div>
-                        
                         <div class="form-group">
                             <label class="form-label">Avaliação Geral</label>
                             <div class="star-rating" data-rating="overall">
@@ -861,16 +846,6 @@
                         <div class="form-group">
                             <label class="form-label">Comentário</label>
                             <textarea class="form-control" rows="4" placeholder="Conte sobre sua experiência na empresa..."></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Prós</label>
-                            <textarea class="form-control" rows="2" placeholder="O que você mais gostou na empresa?"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Contras</label>
-                            <textarea class="form-control" rows="2" placeholder="O que poderia ser melhorado?"></textarea>
                         </div>
                     </form>
                 </div>
@@ -953,49 +928,48 @@
                 }
 
                 empresas.forEach(empresa => {
-                    // Pegue a média e quantidade de avaliações, se existirem
-                    const avaliacao = empresa.avaliacao || 0;
-                    const qtdAvaliacoes = empresa.qtdAvaliacoes || 0;
+    const avaliacao = empresa.avaliacao || 0;
+    const qtdAvaliacoes = empresa.qtdAvaliacoes || 0;
 
-                    // Monta as estrelas
-                    let starsHtml = '';
-                    for (let i = 1; i <= 5; i++) {
-                        if (avaliacao >= i) {
-                            starsHtml += '<i class="fas fa-star"></i>';
-                        } else if (avaliacao > i - 1) {
-                            starsHtml += '<i class="fas fa-star-half-alt"></i>';
-                        } else {
-                            starsHtml += '<i class="far fa-star"></i>';
-                        }
-                    }
+    let starsHtml = '';
+    for (let i = 1; i <= 5; i++) {
+        if (avaliacao >= i) {
+            starsHtml += '<i class="fas fa-star"></i>';
+        } else if (avaliacao > i - 1) {
+            starsHtml += '<i class="fas fa-star-half-alt"></i>';
+        } else {
+            starsHtml += '<i class="far fa-star"></i>';
+        }
+    }
 
-                    container.innerHTML += `
-                        <div class="company-card">
-                            <div class="company-header">
-                                <div class="company-logo">
-                                    <i class="fas fa-building"></i>
-                                </div>
-                                <div class="company-info">
-                                    <h3>${empresa.nome || 'Nome não informado'}</h3>
-                                    <div class="company-industry">${empresa.setor || 'Setor não informado'}</div>
-                                    <div class="company-location">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        ${empresa.cidade || 'Cidade não informada'}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="company-rating">
-                                <div class="stars">
-                                    ${starsHtml}
-                                </div>
-                                <span class="rating-value">${avaliacao > 0 ? avaliacao.toFixed(1) : ''}</span>
-                                <span class="review-count">(${qtdAvaliacoes} avaliação${qtdAvaliacoes === 1 ? '' : 'es'})</span>
-                            </div>
-                            <p class="company-description">
-                                ${empresa.descricao || 'Empresa focada em inovação e excelência no atendimento.'}
-                            </p>
+    container.innerHTML += `
+        <div class="company-card d-flex align-items-center justify-content-between">
+            <div class="company-info">
+                <div class="company-header">
+                    <div class="company-logo">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div>
+                        <h3>${empresa.nome || 'Nome não informado'}</h3>
+                        <div class="company-industry">${empresa.setor || 'Setor não informado'}</div>
+                        <div class="company-location">
+                            <i class="fas fa-map-marker-alt"></i> ${empresa.cidade || 'Cidade não informada'}
                         </div>
-                    `;
+                    </div>
+                </div>
+                <div class="company-rating">
+                    <div class="stars">${starsHtml}</div>
+                    <span class="rating-value">${avaliacao > 0 ? avaliacao.toFixed(1) : ''}</span>
+                    <span class="review-count">(${qtdAvaliacoes} avaliação${qtdAvaliacoes === 1 ? '' : 'es'})</span>
+                </div>
+            </div>
+            <div class="text-end">
+                <button class="btn rate-company-btn btn-de-avaliacao" data-bs-toggle="modal" data-bs-target="#ratingModal" data-empresa="${empresa.nome}">
+                    <i class="fas fa-plus"></i> Avaliar Empresa
+                </button>
+            </div>
+        </div>
+    `;
                 });
             }catch(err){
                 container.innerHTML = '<div style="text-align:center;color:red">Erro ao carregar empresas.</div>';
@@ -1230,6 +1204,15 @@
                 }
             });
         }
+
+        document.addEventListener('click', function (e) {
+            const btn = e.target.closest('.btn-de-avaliacao');
+            if (btn) {
+                const nomeEmpresa = btn.getAttribute('data-empresa');
+                const inputEmpresa = document.querySelector('#ratingModal input[placeholder="Digite o nome da empresa..."]');
+                inputEmpresa.value = nomeEmpresa || '';
+            }
+        });
     </script>
 </body>
 </html>

@@ -508,10 +508,6 @@
                                     <span id="candidate-experience">5+ anos de experiência</span>
                                 </div>
                                 <div class="meta-item">
-                                    <i class="fas fa-dollar-sign"></i>
-                                    <span id="candidate-salary">R$ 8.000 - R$ 12.000</span>
-                                </div>
-                                <div class="meta-item">
                                     <i class="fas fa-clock"></i>
                                     <span>Disponível imediatamente</span>
                                 </div>
@@ -541,10 +537,6 @@
                         Sobre
                     </h3>
                     <p id="candidate-about">
-                        Desenvolvedor Full Stack com mais de 5 anos de experiência em criar soluções web robustas e escaláveis. Especialista em JavaScript, React, Node.js e bancos de dados relacionais e não relacionais. Apaixonado por tecnologia e sempre em busca de novos desafios que permitam aplicar conhecimentos técnicos para resolver problemas complexos.
-                    </p>
-                    <p>
-                        Tenho experiência em metodologias ágeis, trabalho em equipe e liderança técnica. Busco constantemente me atualizar com as últimas tecnologias e melhores práticas do mercado.
                     </p>
                 </div>
 
@@ -555,21 +547,6 @@
                         Habilidades Técnicas
                     </h3>
                     <div class="skills-container" id="skills-container">
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Jest</span>
-                        <span class="skill-tag">Redux</span>
-                        <span class="skill-tag">Express.js</span>
-                        <span class="skill-tag">GraphQL</span>
-                        <span class="skill-tag">REST APIs</span>
                     </div>
                 </div>
 
@@ -677,11 +654,9 @@
                         <i class="fas fa-map-marker-alt text-primary me-2"></i>
                         <span id="candidate-address">Endereço não informado</span>
                     </div>
-                    
                     <div class="mb-3">
-                        <i class="fas fa-id-card text-primary me-2"></i>
-                        <span id="candidate-cpf">CPF não informado</span>
-                    </div>
+                        <i class="fas fa-link text-primary me-2"></i>
+                        <a href="#" id="candidate-linkedin">Link não informados</a>
                 </div>
 
                 <!-- Education -->
@@ -803,7 +778,6 @@
             document.getElementById('candidate-title').textContent = candidato.areaAtuacao || 'Área não informada';
             document.getElementById('candidate-location').textContent = candidato.cidade || 'Localização não informada';
             document.getElementById('candidate-experience').textContent = candidato.experiencia ? `${candidato.experiencia}+ anos de experiência` : 'Experiência não informada';
-            document.getElementById('candidate-salary').textContent = 'A combinar';
             document.getElementById('candidate-about').textContent = `Profissional da área de ${candidato.areaAtuacao || 'tecnologia'} com formação em ${candidato.formacao || 'área relacionada'}. Busca novas oportunidades profissionais.`;
             
             // Update contact information
@@ -830,15 +804,7 @@
 
         function showMockData() {
             // Fallback to mock data
-            const candidateData = {
-                name: "João Silva",
-                title: "Desenvolvedor Full Stack Sênior",
-                location: "São Paulo, SP",
-                experience: "5+ anos de experiência",
-                salary: "R$ 8.000 - R$ 12.000",
-                about: "Desenvolvedor Full Stack com mais de 5 anos de experiência em criar soluções web robustas e escaláveis."
-            };
-            
+        
             document.getElementById('candidate-name').textContent = candidateData.name;
             document.getElementById('candidate-title').textContent = candidateData.title;
             document.getElementById('candidate-location').textContent = candidateData.location;

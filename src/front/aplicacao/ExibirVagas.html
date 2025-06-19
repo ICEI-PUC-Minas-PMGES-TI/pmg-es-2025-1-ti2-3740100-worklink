@@ -194,6 +194,18 @@
             margin-top: 20px;
         }
 
+        .alert-custom {
+            background-color: white;
+            color:#5717b8;
+            border: none;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            font-size: 0.9rem;
+            border : 1px solid #5717b8;
+            border-color: #5717b8;
+        }
+
         @media (max-width: 768px) {
             #vagas-container {
                 grid-template-columns: 1fr;
@@ -222,22 +234,27 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                           <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
-                </li>
-            </ul>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
+                    </li>
+                </ul>
                 <div class="d-flex gap-2">
                     <a href="../Candidato/homeCandidato.html" class="btn btn-primary-custom">Meu Perfil</a>
+                    <button class="btn btn-light position-relative" id="notificacaoBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                            id="notificacaoBadge" style="display: none;">0</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -263,6 +280,7 @@
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/notificacoes.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const vagasContainer = document.getElementById("vagas-container");
@@ -300,7 +318,7 @@
 
                             // Se a vaga exige teste, mostra aviso, mas não mostra botão de download
                             const testeInfo = vaga.teste
-                                ? `<div class="alert alert-warning mt-2" role="alert">
+                                ? `<div class="alert alert-custom mt-2" role="alert">
                                         <i class="fas fa-file-alt"></i> Vaga exige teste
                                    </div>`
                                 : '';

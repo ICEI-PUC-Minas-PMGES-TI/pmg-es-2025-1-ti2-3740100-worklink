@@ -150,6 +150,22 @@
     box-shadow: 0 2px 8px 0 rgba(16,185,129,0.08);
     letter-spacing: 0.02em;
 }
+
+
+        .alert-custom {
+            background-color: white;
+            color:#5717b8;
+            border: none;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            font-size: 0.9rem;
+            border : 1px solid #5717b8;
+            border-color: #5717b8;
+        }
+
+
+
         @media (max-width: 768px) {
             .vaga-detalhe-card {
                 padding: 1.2rem 0.5rem;
@@ -269,10 +285,11 @@ function carregarDetalhes() {
       const detalhesVaga = document.getElementById("detalhesVaga");
       const buttonId     = `inscreverBtn-${vaga.id}`;
 
-      const testeAlerta = vaga.teste ? `
-        <div class="alert alert-warning mt-3" role="alert">
-          <i class="fas fa-file-alt"></i> Vaga exige teste técnico
-        </div>` : "";
+      const testeInfo = vaga.teste
+    ? `<div class="alert alert-custom mt-2" role="alert">
+            <i class="fas fa-file-alt"></i> Vaga exige teste
+       </div>`
+    : '';
 
       detalhesVaga.innerHTML = `
         <div class="vaga-detalhe-card">
@@ -286,7 +303,7 @@ function carregarDetalhes() {
             <li><span class="vaga-label">Descrição:</span> ${vaga.descricao}</li>
             <li><span class="vaga-label">Salário:</span> <span class="vaga-salario">R$ ${vaga.salario}</span></li>
           </ul>
-          ${testeAlerta}
+          ${testeInfo}
           <div id="testeDownload" class="d-flex justify-content-center mb-3"></div>
           <div class="vaga-actions">
             <button class="btn btn-lg" id="${buttonId}"
@@ -310,8 +327,8 @@ function carregarDetalhes() {
         // link de download do enunciado
         testeDiv.innerHTML = `
           <a href="http://localhost:8080${vaga.teste}" target="_blank"
-             class="btn btn-outline-primary me-3">
-            <i class="fas fa-download"></i> Baixar Teste Técnico
+             class="btn btn-outline-primary me-3 d-flex align-items-center justify-content-center">
+              <i class="fas fa-download"></i> Baixar Teste Técnico
           </a>`;
 
         try {
