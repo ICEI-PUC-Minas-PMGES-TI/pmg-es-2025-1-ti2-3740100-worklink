@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Indicador - Vagas por Empresa</title>
+  <meta charset="UTF-8" />
+  <title>Indicadores WorkLink</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
@@ -33,8 +33,17 @@
       color: #2e7d32;
     }
 
-    canvas {
-      margin-top: 20px;
+    /* Novo card para candidaturas por vaga */
+    #cardCandidaturasPorVaga {
+      max-width: 700px;
+      margin: 40px auto 0 auto;
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-size: 18px;
+      color: #1e88e5;
+      text-align: center;
     }
   </style>
 </head>
@@ -46,8 +55,13 @@
     <p id="indicadorTexto">Carregando indicador...</p>
   </div>
 
+  <!-- Novo card para o indicador Candidaturas por Vaga -->
+  <div id="cardCandidaturasPorVaga">
+    Carregando indicador Candidaturas por Vaga...
+  </div>
+
   <script>
-    async function carregarDados() {
+    async function carregarDadosVagasPorEmpresa() {
       try {
         const resposta = await fetch('http://localhost:8080/vagas/indicadores/vagas-por-empresa');
         const dados = await resposta.json();
@@ -55,12 +69,12 @@
         const nomesEmpresas = dados.map(item => item.nomeEmpresa);
         const qtdVagas = dados.map(item => item.quantidadeVagas);
 
-        // 👉 Cálculo do indicador (média de vagas por empresa)
+        // Cálculo do indicador (média de vagas por empresa)
         const totalVagas = qtdVagas.reduce((acc, cur) => acc + cur, 0);
         const totalEmpresas = nomesEmpresas.length;
         const media = totalEmpresas > 0 ? (totalVagas / totalEmpresas).toFixed(2) : 0;
 
-        // 👉 Mostra a média no texto abaixo do gráfico
+        // Mostra a média no texto abaixo do gráfico
         document.getElementById('indicadorTexto').innerText = `Média de Vagas por Empresa: ${media}`;
 
         const ctx = document.getElementById('graficoVagas').getContext('2d');
@@ -95,7 +109,26 @@
       }
     }
 
-    carregarDados();
+    async function carregarIndicadorCandidaturasPorVaga() {
+      try {
+        const resposta = await fetch('http://localhost:8080/vagas/indicadores/candidaturas-por-vaga');
+        const dto = await resposta.json();
+
+        const texto = `
+          Total de Candidaturas: <strong>${dto.totalCandidaturas}</strong><br/>
+          Total de Vagas: <strong>${dto.totalVagas}</strong><br/>
+          Média de Candidaturas por Vaga: <strong>${dto.mediaCandidaturasPorVaga.toFixed(2)}</strong>
+        `;
+
+        document.getElementById('cardCandidaturasPorVaga').innerHTML = texto;
+      } catch (erro) {
+        console.error('Erro ao carregar indicador candidaturas por vaga:', erro);
+        document.getElementById('cardCandidaturasPorVaga').innerText = 'Erro ao carregar indicador Candidaturas por Vaga.';
+      }
+    }
+
+    carregarDadosVagasPorEmpresa();
+    carregarIndicadorCandidaturasPorVaga();
   </script>
 
 </body>
