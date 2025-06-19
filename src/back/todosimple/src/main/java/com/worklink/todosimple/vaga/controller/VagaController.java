@@ -1,7 +1,10 @@
 package com.worklink.todosimple.vaga.controller;
 
+import com.worklink.todosimple.vaga.DTO.VagasPorEmpresaDTO;
+import com.worklink.todosimple.vaga.DTO.CandidaturasPorVagaDTO; // IMPORTA O DTO NOVO
 import com.worklink.todosimple.vaga.model.Vaga;
 import com.worklink.todosimple.vaga.repository.VagaRepository;
+import com.worklink.todosimple.aplicacoes.repositories.AplicacaoRepository; // IMPORTA O REPOSITÓRIO DE APLICAÇÕES
 import com.worklink.todosimple.cadastro.models.Empresa;
 import com.worklink.todosimple.cadastro.repositories.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import java.io.IOException;
 
 @RestController
@@ -32,6 +36,9 @@ public class VagaController {
 
     @Autowired
     private EmpresaRepository empresaRepository;
+
+    @Autowired
+    private AplicacaoRepository aplicacaoRepository; // INJEÇÃO DO REPOSITÓRIO
 
     // GET todas as vagas
     @GetMapping
@@ -170,4 +177,30 @@ public class VagaController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao salvar o arquivo de teste: " + e.getMessage());
         }
     }
+
+    // NOVO: GET vagas agrupadas por empresa
+    @GetMapping("/indicadores/vagas-por-empresa")
+    public ResponseEntity<List<VagasPorEmpresaDTO>> obterVagasPorEmpresa() {
+        List<Vaga> todasVagas = vagaRepository.findAll();
+
+        Map<String, Long> vagasPorEmpresa = todasVagas.stream()
+            .filter(v -> v.getEmpresa() != null && v.getEmpresa().getNome() != null)
+            .collect(Collectors.groupingBy(v -> v.getEmpresa().getNome(), Collectors.counting()));
+
+        List<VagasPorEmpresaDTO> resultado = vagasPorEmpresa.entrySet().stream()
+            .map(entry -> new VagasPorEmpresaDTO(entry.getKey(), entry.getValue()))
+            .collect(Collectors.toList());
+
+        return ResponseEntity.ok(resultado);
+    }
+
+    // NOVO: GET indicador Candidaturas por Vaga
+    @GetMapping("/indicadores/candidaturas-por-vaga")
+    public ResponseEntity<CandidaturasPorVagaDTO> getCandidaturasPorVaga() {
+        long totalCandidaturas = aplicacaoRepository.count();
+        long totalVagas = vagaRepository.count();
+        CandidaturasPorVagaDTO dto = new CandidaturasPorVagaDTO(totalCandidaturas, totalVagas);
+        return ResponseEntity.ok(dto);
+    }
+
 }

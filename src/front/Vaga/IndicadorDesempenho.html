@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Indicador - Vagas por Empresa</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f5f5f5;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #graficoContainer {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    #indicadorTexto {
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 25px;
+      color: #2e7d32;
+    }
+
+    canvas {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="graficoContainer">
+    <h2>Vagas por Empresa</h2>
+    <canvas id="graficoVagas"></canvas>
+    <p id="indicadorTexto">Carregando indicador...</p>
+  </div>
+
+  <script>
+    async function carregarDados() {
+      try {
+        const resposta = await fetch('http://localhost:8080/vagas/indicadores/vagas-por-empresa');
+        const dados = await resposta.json();
+
+        const nomesEmpresas = dados.map(item => item.nomeEmpresa);
+        const qtdVagas = dados.map(item => item.quantidadeVagas);
+
+        // 👉 Cálculo do indicador (média de vagas por empresa)
+        const totalVagas = qtdVagas.reduce((acc, cur) => acc + cur, 0);
+        const totalEmpresas = nomesEmpresas.length;
+        const media = totalEmpresas > 0 ? (totalVagas / totalEmpresas).toFixed(2) : 0;
+
+        // 👉 Mostra a média no texto abaixo do gráfico
+        document.getElementById('indicadorTexto').innerText = `Média de Vagas por Empresa: ${media}`;
+
+        const ctx = document.getElementById('graficoVagas').getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nomesEmpresas,
+            datasets: [{
+              label: 'Quantidade de Vagas',
+              data: qtdVagas,
+              backgroundColor: '#4e73df',
+              borderColor: '#2e59d9',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  precision: 0
+                }
+              }
+            }
+          }
+        });
+
+      } catch (erro) {
+        console.error('Erro ao carregar dados:', erro);
+        document.getElementById('indicadorTexto').innerText = 'Erro ao carregar indicador.';
+      }
+    }
+
+    carregarDados();
+  </script>
+
+</body>
+</html>
