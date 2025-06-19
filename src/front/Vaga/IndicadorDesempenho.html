@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Indicadores WorkLink</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f5f5f5;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #graficoContainer {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    #indicadorTexto {
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 25px;
+      color: #2e7d32;
+    }
+    #cardCandidaturasPorVaga {
+      max-width: 700px;
+      margin: 40px auto 0 auto;
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-size: 18px;
+      color: #1e88e5;
+      text-align: center;
+    }
+    #cardMediaVagasPorEmpresa {
+      max-width: 700px;
+      margin: 40px auto 0 auto;
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-size: 18px;
+      color: #d84315;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="graficoContainer">
+    <h2>Vagas por Empresa</h2>
+    <canvas id="graficoVagas"></canvas>
+    <p id="indicadorTexto">Carregando indicador...</p>
+  </div>
+
+  <div id="cardCandidaturasPorVaga">
+    Carregando indicador Candidaturas por Vaga...
+  </div>
+
+  <div id="cardMediaVagasPorEmpresa">
+    Carregando Média de Vagas por Empresa...
+  </div>
+
+  <script>
+    async function carregarDadosVagasPorEmpresa() {
+      try {
+        const resposta = await fetch('http://localhost:8080/vagas/indicadores/vagas-por-empresa');
+        const dados = await resposta.json();
+
+        const nomesEmpresas = dados.map(item => item.nomeEmpresa);
+        const qtdVagas = dados.map(item => item.quantidadeVagas);
+
+        const totalVagas = qtdVagas.reduce((acc, cur) => acc + cur, 0);
+        const totalEmpresas = nomesEmpresas.length;
+        const media = totalEmpresas > 0 ? (totalVagas / totalEmpresas).toFixed(2) : 0;
+
+        document.getElementById('indicadorTexto').innerText = `Média de Vagas por Empresa: ${media}`;
+
+        const ctx = document.getElementById('graficoVagas').getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nomesEmpresas,
+            datasets: [{
+              label: 'Quantidade de Vagas',
+              data: qtdVagas,
+              backgroundColor: '#4e73df',
+              borderColor: '#2e59d9',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  precision: 0
+                }
+              }
+            }
+          }
+        });
+
+      } catch (erro) {
+        console.error('Erro ao carregar dados:', erro);
+        document.getElementById('indicadorTexto').innerText = 'Erro ao carregar indicador.';
+      }
+    }
+
+    async function carregarIndicadorCandidaturasPorVaga() {
+      try {
+        const cnpj = localStorage.getItem('empresaCnpj');
+        if (!cnpj) {
+          throw new Error("CNPJ da empresa não encontrado.");
+        }
+        const resposta = await fetch(`http://localhost:8080/vagas/indicadores/candidaturas-por-vaga/${cnpj}`);
+        const dto = await resposta.json();
+
+        const texto = `
+          Total de Candidaturas: <strong>${dto.totalCandidaturas}</strong><br/>
+          Total de Vagas: <strong>${dto.totalVagas}</strong><br/>
+          Média de Candidaturas por Vaga: <strong>${dto.mediaCandidaturasPorVaga.toFixed(2)}</strong>
+        `;
+
+        document.getElementById('cardCandidaturasPorVaga').innerHTML = texto;
+      } catch (erro) {
+        console.error('Erro ao carregar indicador candidaturas por vaga:', erro);
+        document.getElementById('cardCandidaturasPorVaga').innerText = 'Erro ao carregar indicador Candidaturas por Vaga.';
+      }
+    }
+
+    async function carregarMediaVagasPorEmpresa() {
+      try {
+        const resposta = await fetch('http://localhost:8080/vagas/indicadores/media-vagas-por-empresa');
+        const media = await resposta.json();
+        document.getElementById('cardMediaVagasPorEmpresa').innerText = `Média de Vagas por Empresa: ${media.toFixed(2)}`;
+      } catch (erro) {
+        console.error('Erro ao carregar média de vagas por empresa:', erro);
+        document.getElementById('cardMediaVagasPorEmpresa').innerText = 'Erro ao carregar Média de Vagas por Empresa.';
+      }
+    }
+
+    carregarDadosVagasPorEmpresa();
+    carregarIndicadorCandidaturasPorVaga();
+    carregarMediaVagasPorEmpresa();
+  </script>
+
+</body>
+</html>
