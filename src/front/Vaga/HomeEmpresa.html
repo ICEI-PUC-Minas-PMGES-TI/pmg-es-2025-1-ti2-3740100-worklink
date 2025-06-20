@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Vagas</title>
+    <link rel="stylesheet" href="assets/css/HomeEmpresa.css">
+    <link rel="stylesheet" href="assets/css/listaVagas.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -411,9 +413,8 @@
 
         /* Footer */
         footer {
-            background: var(--gradient-primary);
-            color: var(--white);
-            text-align: center;
+            background: var(--white);
+            border-top: 1px solid #e2e8f0;
             padding: 2rem 0;
             margin-top: 4rem;
         }
@@ -427,15 +428,127 @@
             padding: 0 1rem;
         }
 
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
         .footer-links a {
-            color: var(--white);
+            color: var(--text-light);
             text-decoration: none;
-            margin-left: 2rem;
             transition: opacity 0.3s ease;
         }
 
         .footer-links a:hover {
             opacity: 0.8;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: var(--background-color);
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            color: var(--secondary-color);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--primary-color);
+        }
+
+        .empresa-historia-content {
+            margin-top: 20px;
+        }
+
+        .empresa-historia-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .empresa-historia-logo {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 5px;
+            object-fit: contain;
+        }
+
+        .empresa-historia-header h3 {
+            color: var(--secondary-color);
+            margin: 0;
+        }
+
+        .empresa-historia-ano {
+            color: var(--accent-color);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .empresa-historia-descricao h4 {
+            color: var(--text-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .empresa-historia-descricao p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        /* Estilos para o bloco de perfil da empresa */
+        .empresa-perfil-descricao {
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
         }
 
         /* Responsive */
@@ -511,18 +624,19 @@
                     </li>
                 </ul>
                 <div class="d-flex align-items-center">
-                    <div class="dropdown">
-                        <button class="btn btn-outline-custom dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown">
-                            <i class="fas fa-user"></i> Perfil
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Configurações</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
-                        </ul>
-                    </div>
                     <div class="notification-bell">
                         <i class="fas fa-bell"></i>
                         <span class="notification-badge">3</span>
+                    </div>
+                    <div class="empresa-perfil-info" style="position: relative;">
+                        <i class="fas fa-cog settings-icon" onclick="toggleSettings(event)"></i>
+                        <div class="settings-menu" id="settingsMenu">
+                            <a href="editarEmpresa.html"><i class="fas fa-user-edit"></i> Editar Perfil</a>
+                            <a href="formularioVaga.html"><i class="fas fa-plus"></i> Nova Vaga</a>
+                            <a href="IndicadorDesempenho.html"><i class="fa-solid fa-chart-simple"></i> Indicador de Desempenho</a>
+                            <a href="../Cadastro_Login/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                        <h2 id="empresa-perfil-nome" style="display: inline-block; cursor: pointer;"></h2>
                     </div>
                 </div>
             </div>
@@ -608,7 +722,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function toggleSettings() {
+        function toggleSettings(event) {
+            if (event) {
+                event.stopPropagation();
+            }
             const menu = document.getElementById('settingsMenu');
             menu.classList.toggle('show');
         }
