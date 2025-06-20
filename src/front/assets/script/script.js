@@ -113,6 +113,20 @@ function formatarDataBR(dataISO) {
     return `${dia}/${mes}/${ano}`;
 }
 
+// Função para retornar o ícone Font Awesome conforme o título da vaga
+function getIconeVaga(titulo) {
+    if (!titulo) return '<i class="fa-solid fa-briefcase"></i>';
+    const t = titulo.toLowerCase();
+    if (t.includes("dev") || t.includes("programador") || t.includes("software")) return '<i class="fa-solid fa-laptop-code"></i>';
+    if (t.includes("design")) return '<i class="fa-solid fa-palette"></i>';
+    if (t.includes("analista") || t.includes("dados") || t.includes("bi")) return '<i class="fa-solid fa-chart-line"></i>';
+    if (t.includes("vendas") || t.includes("comercial")) return '<i class="fa-solid fa-cart-shopping"></i>';
+    if (t.includes("rh") || t.includes("recursos humanos")) return '<i class="fa-solid fa-user-tie"></i>';
+    if (t.includes("engenheiro") || t.includes("engenharia")) return '<i class="fa-solid fa-gears"></i>';
+    if (t.includes("administrativo") || t.includes("administração")) return '<i class="fa-solid fa-building"></i>';
+    return '<i class="fa-solid fa-briefcase"></i>';
+}
+
 //exibirVagas -> Lista
 function exibirVagas(vagas) {
     const lista = document.getElementById("lista-vagas");
@@ -123,18 +137,14 @@ function exibirVagas(vagas) {
         return;
     }
 
-    // Cria o elemento de lista
-    const ul = document.createElement("ul");
-    ul.classList.add("vaga-lista");
-
     // Ordena as vagas pelo maior ID (mais recente primeiro)
     vagas.sort((a, b) => b.id - a.id);
 
     vagas.forEach(vaga => {
-        const li = document.createElement("li");
-        li.classList.add("vaga-item");
+        const card = document.createElement("div");
+        card.classList.add("vaga-card");
 
-        // Trata o campo dataFinal
+        // Trata datas
         let dataFinal = "Não especificada";
         if (vaga.dataFinal) {
             let data = vaga.dataFinal;
@@ -142,8 +152,6 @@ function exibirVagas(vagas) {
             const [ano, mes, dia] = data.split("-");
             dataFinal = `${dia}/${mes}/${ano}`;
         }
-
-        // Trata o campo dataCriacao (lançamento)
         let dataCriacao = "Data não informada";
         if (vaga.dataCriacao) {
             dataCriacao = formatarDataBR(vaga.dataCriacao);
@@ -153,24 +161,39 @@ function exibirVagas(vagas) {
         const tipoContrato = vaga.tipoContrato || 'Não especificado';
         const beneficios = vaga.beneficios && vaga.beneficios.trim() !== "" ? vaga.beneficios : 'Não informado';
 
-        li.innerHTML = `
-            <h3>${vaga.titulo}</h3>
-            <p><strong>Sobre:</strong> ${vaga.descricao}</p>
-            <p><strong>Benefícios:</strong> ${beneficios}</p>
-            <p><strong>Data de Lançamento:</strong> ${dataCriacao}</p>
-            <p><strong>Data Final:</strong> ${dataFinal}</p>
-            <p><strong>Modalidade:</strong> ${modalidade}</p>
-            <p><strong>Tipo de Contrato:</strong> ${tipoContrato}</p>
-            <p><strong>Salário:</strong> R$ ${vaga.salario.toFixed(2)}</p>
-            <button class="editar" onclick="editarVaga(${vaga.id})">Editar</button>
-            <button class="ver-candidaturas" onclick="verCandidaturas(${vaga.id})">Ver candidaturas</button>
-            <button class="excluir" onclick="deletarVaga(${vaga.id})">Excluir</button>
+        // Select de status
+        const statusAtual = vaga.status ? vaga.status.toLowerCase() : "aberta";
+        const selectStatus = `
+            <select class="vaga-status-select${statusAtual === "fechada" ? " fechada" : ""}" style="float:right; min-width:110px; border-radius:0.7rem; margin-left:1rem;"
+                onchange="alterarStatusVaga(${vaga.id}, this.value)">
+                <option value="aberta" ${statusAtual === "aberta" ? "selected" : ""}>Aberta</option>
+                <option value="fechada" ${statusAtual === "fechada" ? "selected" : ""}>Fechada</option>
+            </select>
         `;
 
-        ul.appendChild(li);
-    });
+        card.innerHTML = `
+            <div class="vaga-info">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                    <h2>${getIconeVaga(vaga.titulo)} ${vaga.titulo}</h2>
+                    ${selectStatus}
+                </div>
+                <p><i class="fas fa-align-left"></i> <strong>Descrição:</strong> ${vaga.descricao}</p>
+                <p><i class="fas fa-gift"></i> <strong>Benefícios:</strong> ${beneficios}</p>
+                <p><i class="fas fa-file-contract"></i> <strong>Tipo de Contrato:</strong> ${tipoContrato}</p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Modalidade:</strong> ${modalidade}</p>
+                <p><i class="fas fa-calendar"></i> <strong>Data de publicação:</strong> ${dataCriacao}</p>
+                <p><i class="fas fa-calendar-check"></i> <strong>Fim das inscrições:</strong> ${dataFinal}</p>
+                <p><i class="fas fa-money-bill-wave"></i> <strong>Salário:</strong> R$ ${vaga.salario ? vaga.salario.toFixed(2) : "A combinar"}</p>
+            </div>
+            <div class="vaga-actions">
+                <button class="btn-editar" onclick="editarVaga(${vaga.id})"><i class="fas fa-edit"></i> Editar</button>
+                <button class="btn-candidatos" onclick="verCandidaturas(${vaga.id})"><i class="fas fa-users"></i> Ver candidaturas</button>
+                <button class="btn-excluir" onclick="deletarVaga(${vaga.id})"><i class="fas fa-trash"></i> Excluir</button>
+            </div>
+        `;
 
-    lista.appendChild(ul);
+        lista.appendChild(card);
+    });
 }
 
 function editarVaga(id) {
@@ -208,14 +231,37 @@ function contarVagasAtivas() {
         .catch(error => console.error("Erro ao contar vagas ativas:", error));
 }
 
-// Chamar a função ao carregar a página
-document.addEventListener("DOMContentLoaded", () => {
-    contarVagasAtivas();
-});
+// Função para carregar e exibir vagas no perfil da empresa
 
-getVagas();
+
 
 function verCandidaturas(vagaId) {
     // Redireciona para a página de candidaturas da vaga com o ID na URL
     window.location.href = `candidaturasVaga.html?vagaId=${vagaId}`;
+}
+
+// Função para alterar status da vaga (implemente a chamada à API conforme seu backend)
+function alterarStatusVaga(id, novoStatus) {
+    // Primeiro, busca a vaga atual
+    fetch(`http://localhost:8080/vagas/${id}`)
+        .then(resp => resp.json())
+        .then(vaga => {
+            // Atualiza só o status
+            vaga.status = novoStatus;
+
+            // Remove campos que não devem ser enviados (caso existam)
+            delete vaga.empresa; // Se o backend não espera o objeto empresa, remova esta linha
+
+            // Envia todos os dados da vaga no PUT
+            return fetch(`http://localhost:8080/vagas/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(vaga)
+            });
+        })
+        .then(resp => {
+            if (!resp.ok) throw new Error('Erro ao atualizar status');
+            getVagas();
+        })
+        .catch(() => alert('Erro ao atualizar status da vaga!'));
 }

@@ -429,6 +429,37 @@
             color: #3b82f6;
         }
 
+        /* Experiência Profissional - Nova Estilização */
+        .experiencias-timeline {
+            margin-left: 0.5rem;
+            border-left: 5px solid #9147ff; /* Roxo Worklink */
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experiencia-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .experiencia-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            bottom: 0;
+            width: calc(100% + 1.5rem);
+            height: 0;
+            border-bottom: 2px solid #9147ff;
+            border-radius: 2px;
+            opacity: 0.7;
+        }
+
+        .experiencia-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .profile-info h1 {
@@ -509,7 +540,7 @@
                                 </div>
                                 <div class="meta-item">
                                     <i class="fas fa-clock"></i>
-                                    <span>Disponível imediatamente</span>
+                                    <span id="candidate-disponibilidade-meta">Disponibilidade não informada</span>
                                 </div>
                             </div>
                         </div>
@@ -536,8 +567,7 @@
                         <i class="fas fa-user"></i>
                         Sobre
                     </h3>
-                    <p id="candidate-about">
-                    </p>
+                    <p id="candidate-about"></p>
                 </div>
 
                 <!-- Skills -->
@@ -556,34 +586,7 @@
                         <i class="fas fa-briefcase"></i>
                         Experiência Profissional
                     </h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-title">Desenvolvedor Full Stack Sênior</div>
-                            <div class="timeline-company">TechCorp Inovação</div>
-                            <div class="timeline-period">Jan 2022 - Presente</div>
-                            <div class="timeline-description">
-                                Desenvolvimento de aplicações web complexas usando React e Node.js. Liderança técnica de uma equipe de 4 desenvolvedores. Responsável pela arquitetura de sistemas e integração com APIs externas. Implementação de práticas DevOps e CI/CD.
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-title">Desenvolvedor Full Stack Pleno</div>
-                            <div class="timeline-company">Startup Digital</div>
-                            <div class="timeline-period">Mar 2020 - Dez 2021</div>
-                            <div class="timeline-description">
-                                Desenvolvimento de plataforma e-commerce usando React, Node.js e PostgreSQL. Colaboração direta com equipes de design e produto. Implementação de testes automatizados e otimização de performance.
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-title">Desenvolvedor Frontend Júnior</div>
-                            <div class="timeline-company">Agência Web Plus</div>
-                            <div class="timeline-period">Jun 2019 - Fev 2020</div>
-                            <div class="timeline-description">
-                                Desenvolvimento de interfaces responsivas e interativas. Trabalho com HTML5, CSS3, JavaScript vanilla e React. Colaboração com designers para implementação pixel-perfect de layouts.
-                            </div>
-                        </div>
-                    </div>
+                    <div id="candidato-experiencias" class="experiencias-timeline"></div>
                 </div>
 
                 <!-- Projects -->
@@ -673,54 +676,31 @@
                     </div>
                 </div>
 
-                <!-- Languages -->
+                <!-- Links -->
                 <div class="content-card">
-                    <h4 class="card-title">
-                        <i class="fas fa-language"></i>
-                        Idiomas
-                    </h4>
-                    
-                    <div class="language-item">
-                        <span>Português</span>
-                        <span class="language-level native">Nativo</span>
-                    </div>
-                    
-                    <div class="language-item">
-                        <span>Inglês</span>
-                        <span class="language-level fluent">Fluente</span>
-                    </div>
-                    
-                    <div class="language-item">
-                        <span>Espanhol</span>
-                        <span class="language-level intermediate">Intermediário</span>
-                    </div>
+                    <h3 class="card-title">
+                        <i class="fas fa-link"></i>
+                        Links
+                    </h3>
+                    <div id="candidate-links"></div>
                 </div>
 
-                <!-- Availability -->
+                <!-- Idiomas -->
                 <div class="content-card">
-                    <h4 class="card-title">
+                    <h3 class="card-title">
+                        <i class="fas fa-language"></i>
+                        Idiomas
+                    </h3>
+                    <div id="candidate-idiomas"></div>
+                </div>
+
+                <!-- Disponibilidade -->
+                <div class="content-card">
+                    <h3 class="card-title">
                         <i class="fas fa-calendar-check"></i>
                         Disponibilidade
-                    </h4>
-                    
-                    <div class="mb-3">
-                        <strong>Status:</strong> <span class="text-success">Disponível</span>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <strong>Tipo de contrato:</strong><br>
-                        <span>CLT, Freelance, Consultoria</span>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <strong>Modalidade:</strong><br>
-                        <span>Remoto, Híbrido, Presencial</span>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <strong>Início:</strong><br>
-                        <span>Imediato</span>
-                    </div>
+                    </h3>
+                    <div id="candidate-disponibilidade"></div>
                 </div>
             </div>
         </div>
@@ -778,8 +758,26 @@
             document.getElementById('candidate-title').textContent = candidato.areaAtuacao || 'Área não informada';
             document.getElementById('candidate-location').textContent = candidato.cidade || 'Localização não informada';
             document.getElementById('candidate-experience').textContent = candidato.experiencia ? `${candidato.experiencia}+ anos de experiência` : 'Experiência não informada';
-            document.getElementById('candidate-about').textContent = `Profissional da área de ${candidato.areaAtuacao || 'tecnologia'} com formação em ${candidato.formacao || 'área relacionada'}. Busca novas oportunidades profissionais.`;
-            
+            document.getElementById('candidate-about').textContent = candidato.sobre || 'Não informado';
+
+            // Atualiza disponibilidade no topo
+            const disponibilidadeMeta = document.getElementById('candidate-disponibilidade-meta');
+            if (candidato.disponibilidade) {
+                let disp = candidato.disponibilidade;
+                if (typeof disp === 'string') {
+                    disponibilidadeMeta.textContent = disp;
+                } else if (typeof disp === 'object') {
+                    let texto = '';
+                    if (disp.status) texto += disp.status;
+                    if (disp.inicio) texto += (texto ? ' - ' : '') + 'Início: ' + disp.inicio;
+                    if (disp.contrato) texto += (texto ? ' - ' : '') + 'Contrato: ' + (Array.isArray(disp.contrato) ? disp.contrato.join(', ') : disp.contrato);
+                    if (disp.modalidade) texto += (texto ? ' - ' : '') + 'Modalidade: ' + (Array.isArray(disp.modalidade) ? disp.modalidade.join(', ') : disp.modalidade);
+                    disponibilidadeMeta.textContent = texto || 'Disponibilidade não informada';
+                }
+            } else {
+                disponibilidadeMeta.textContent = 'Disponibilidade não informada';
+            }
+
             // Update contact information
             const emailElement = document.getElementById('candidate-email');
             emailElement.textContent = candidato.email || 'Email não informado';
@@ -799,6 +797,126 @@
                 skillsContainer.innerHTML = skills.map(skill => 
                     `<span class="skill-tag">${skill.trim()}</span>`
                 ).join('');
+            }
+
+            // Update links
+            const linksContainer = document.getElementById('candidate-links');
+            linksContainer.innerHTML = '';
+            if (candidato.links && candidato.links.trim().length > 0) {
+                // Divide por vírgula e remove espaços extras
+                const linksArray = candidato.links.split(',').map(link => link.trim()).filter(link => link.length > 0);
+                if (linksArray.length > 0) {
+                    linksContainer.innerHTML = linksArray.map(link =>
+                        `<a href="${link}" target="_blank" class="d-block text-primary"><i class="fas fa-link"></i> ${link}</a>`
+                    ).join('');
+                } else {
+                    linksContainer.innerHTML = '<span class="text-muted">Nenhum link informado</span>';
+                }
+            } else {
+                linksContainer.innerHTML = '<span class="text-muted">Nenhum link informado</span>';
+            }
+
+            // Update languages
+            const idiomasContainer = document.getElementById('candidate-idiomas');
+            idiomasContainer.innerHTML = '';
+            let idiomasArray = [];
+            if (candidato.idiomas && candidato.idiomas.length > 0) {
+                try {
+                    // Tenta fazer o parse como JSON
+                    idiomasArray = typeof candidato.idiomas === 'string'
+                        ? JSON.parse(candidato.idiomas)
+                        : candidato.idiomas;
+                } catch {
+                    // Se não for JSON, tenta separar por vírgula (formato antigo)
+                    idiomasArray = candidato.idiomas.split(',').map(i => ({ nome: i.trim(), nivel: '' }));
+                }
+                if (Array.isArray(idiomasArray) && idiomasArray.length > 0) {
+                    idiomasArray.forEach(idioma => {
+                        const idiomaElement = document.createElement('div');
+                        idiomaElement.className = 'language-item';
+                        idiomaElement.innerHTML = `
+                            <span>${idioma.nome || idioma}</span>
+                            <span class="language-level ${getLanguageLevelClass(idioma.nivel || '')}">${idioma.nivel || ''}</span>
+                        `;
+                        idiomasContainer.appendChild(idiomaElement);
+                    });
+                } else {
+                    idiomasContainer.innerHTML = '<span class="text-muted">Nenhum idioma informado</span>';
+                }
+            } else {
+                idiomasContainer.innerHTML = '<span class="text-muted">Nenhum idioma informado</span>';
+            }
+
+            // Update availability (lateral)
+            const disponibilidadeContainer = document.getElementById('candidate-disponibilidade');
+            disponibilidadeContainer.innerHTML = '';
+            if (candidato.disponibilidade) {
+                let disp = candidato.disponibilidade;
+                if (typeof disp === 'string') {
+                    disponibilidadeContainer.innerHTML = `<span>${disp}</span>`;
+                } else if (typeof disp === 'object') {
+                    disponibilidadeContainer.innerHTML = `
+                        <div class="mb-3">
+                            <strong>Status:</strong> <span class="text-success">${disp.status || ''}</span>
+                        </div>
+                        <div class="mb-3">
+                            <strong>Tipo de contrato:</strong><br>
+                            <span>${Array.isArray(disp.contrato) ? disp.contrato.join(', ') : (disp.contrato || '')}</span>
+                        </div>
+                        <div class="mb-3">
+                            <strong>Modalidade:</strong><br>
+                            <span>${Array.isArray(disp.modalidade) ? disp.modalidade.join(', ') : (disp.modalidade || '')}</span>
+                        </div>
+                        <div class="mb-3">
+                            <strong>Início:</strong><br>
+                            <span>${disp.inicio || 'Imediato'}</span>
+                        </div>
+                    `;
+                }
+            } else {
+                disponibilidadeContainer.innerHTML = '<span class="text-muted">Nenhuma informação de disponibilidade</span>';
+            }
+
+            // Atualiza a seção de experiências
+            const expDiv = document.getElementById('candidato-experiencias');
+            expDiv.innerHTML = '';
+            if (candidato.experiencias) {
+                let exps = [];
+                try {
+                    exps = typeof candidato.experiencias === 'string' ? JSON.parse(candidato.experiencias) : candidato.experiencias;
+                } catch {
+                    exps = [];
+                }
+                // Ordena pela experiência mais recente (assumindo que periodo é tipo "2023-2024" ou "2024")
+                exps.sort((a, b) => {
+                    const getAno = s => parseInt((s.periodo || '').split('-').pop()) || 0;
+                    return getAno(b) - getAno(a);
+                });
+                expDiv.innerHTML = exps.length
+                    ? exps.map(e => `
+                        <div class="experiencia-item">
+                            <div class="mb-2">
+                                <strong>${e.empresa}</strong> - ${e.cargo} <span class="text-muted">(${e.periodo})</span>
+                            </div>
+                            <div class="text-muted">${e.descricao || ''}</div>
+                        </div>
+                    `).join('')
+                    : '<span class="text-muted">Nenhuma experiência informada</span>';
+            } else {
+                expDiv.innerHTML = '<span class="text-muted">Nenhuma experiência informada</span>';
+            }
+        }
+
+        function getLanguageLevelClass(level) {
+            switch (level.toLowerCase()) {
+                case 'nativo':
+                    return 'native';
+                case 'fluente':
+                    return 'fluent';
+                case 'intermediário':
+                    return 'intermediate';
+                default:
+                    return '';
             }
         }
 

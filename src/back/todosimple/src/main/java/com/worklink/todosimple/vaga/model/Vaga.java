@@ -44,6 +44,9 @@ public class Vaga {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dataCriacao;
 
+    @Column(name = "status", length = 20, nullable = false)
+    private String status = "Aberta"; // Novo atributo, padrão "Aberta"
+
     // Construtor padrão
     public Vaga() {
         // Ao criar uma nova vaga, define a data de criação como hoje (sem hora)
@@ -151,6 +154,14 @@ public class Vaga {
 
     public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

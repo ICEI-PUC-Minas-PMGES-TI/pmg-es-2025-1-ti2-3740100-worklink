@@ -5,16 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Vagas</title>
-    <link rel="stylesheet" href="assets/css/HomeEmpresa.css">
     <link rel="stylesheet" href="assets/css/listaVagas.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #9147ff;
             --secondary-color: #6d6e7c;
-            --background-color: #f8fafc;
+            --background-color: #f9fafb;
             --text-color: #1e293b;
             --text-light: #64748b;
             --accent-color: #4e4f58;
@@ -24,37 +23,30 @@
             --error-color: #ef4444;
             --white: #ffffff;
             --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
-            --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
             --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--background-color);
+            background: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
             padding-top: 80px;
         }
 
-        /* Header */
+        /* Navbar */
         .navbar {
             background: var(--white);
-            backdrop-filter: blur(10px);
             border-bottom: 1px solid #e2e8f0;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            padding: 0;
         }
 
         .navbar-brand {
@@ -64,108 +56,62 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: transparent !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding-left: 0.5rem;
         }
 
-        .nav-link {
-            color: var(--text-color) !important;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color) !important;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 50%;
-            background: var(--gradient-primary);
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-            left: 0;
-        }
-
-        .btn-primary-custom {
-            background: var(--gradient-primary);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            color: var(--white);
-            transition: all 0.3s ease;
+        /* Perfil da Empresa */
+        .empresa-perfil-container {
+            background: var(--white);
+            border-radius: 1.5rem;
+            padding: 2.5rem 2rem 2rem 2rem;
             box-shadow: var(--shadow-md);
-        }
-
-        .btn-primary-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            color: var(--white);
-        }
-
-        .btn-outline-custom {
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline-custom:hover {
-            background: var(--primary-color);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        /* Notification Bell */
-        .notification-bell {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
             position: relative;
-            margin-right: 1rem;
-            color: var(--text-color);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
         }
 
-        .notification-bell:hover {
-            color: var(--primary-color);
-            transform: scale(1.1);
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--error-color);
-            color: var(--white);
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 0.7rem;
+        .empresa-perfil-header {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 600;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
         }
 
-        /* Profile Card */
-        .profile-card {
-            background: var(--white);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
+        .empresa-perfil-logo {
+            width: 120px;
+            height: 120px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2.5rem;
+            flex-shrink: 0;
+            overflow: hidden;
             box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
+            border: 4px solid var(--white);
+        }
+
+        .empresa-perfil-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            background: var(--background-color);
+        }
+
+        .empresa-perfil-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             position: relative;
         }
 
@@ -176,8 +122,8 @@
 
         .settings-icon {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 0;
+            right: 0;
             cursor: pointer;
             color: var(--text-light);
             font-size: 1.5rem;
@@ -185,24 +131,24 @@
             z-index: 1001;
             padding: 0.5rem;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.9);
+            background: var(--white);
             box-shadow: var(--shadow-sm);
+            display: block;
         }
 
         .settings-icon:hover {
             transform: rotate(45deg);
-            color: var(--primary-color);
-            background-color: var(--white);
-            box-shadow: var(--shadow-md);
+            color: var(--highlight-color);
+            background: var(--background-color);
         }
 
         .settings-menu {
             position: absolute;
-            top: 3.5rem;
-            right: 1rem;
+            top: 2.8rem;
+            right: 0;
             background: var(--white);
-            border-radius: 1rem;
-            box-shadow: var(--shadow-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
             padding: 0.5rem 0;
             display: none;
             z-index: 1000;
@@ -214,18 +160,10 @@
             display: block;
             animation: fadeIn 0.2s ease;
         }
-
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-10px);}
+            to { opacity: 1; transform: translateY(0);}
         }
-
         .settings-menu a {
             display: flex;
             align-items: center;
@@ -235,320 +173,158 @@
             transition: all 0.2s;
             font-size: 0.95rem;
         }
-
         .settings-menu a i {
             margin-right: 0.75rem;
             width: 20px;
             text-align: center;
             font-size: 1.1rem;
         }
-
         .settings-menu a:hover {
-            background-color: var(--background-color);
-            color: var(--primary-color);
+            background: var(--background-color);
+            color: var(--highlight-color);
         }
-
         .settings-menu a:last-child {
             border-top: 1px solid #e2e8f0;
             color: var(--error-color);
             margin-top: 0.5rem;
         }
-
         .settings-menu a:last-child:hover {
-            background-color: var(--error-color);
+            background: #dc3545;
             color: var(--white);
         }
 
-        /* Sidebar Ads */
-        .sidebar-ads {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 100;
+        .empresa-perfil-header h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        .empresa-perfil-stats {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
         }
 
-        .ad-card {
-            background: var(--white);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: var(--shadow-md);
-            border: 1px solid #e2e8f0;
-            width: 200px;
+        .stat-item {
             text-align: center;
-            transition: all 0.3s ease;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.75rem;
+            min-width: 120px;
         }
 
-        .ad-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .ad-card h4 {
-            color: var(--primary-color);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .ad-card p {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
-        .ad-card .btn {
-            background: var(--gradient-primary);
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            color: var(--white);
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .ad-card .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            color: var(--white);
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-right: 240px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .section-title {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .stat-card {
-            background: var(--white);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
-            text-align: center;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
+        .stat-value {
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            display: block;
         }
 
         .stat-label {
+            font-size: 0.7rem;
             color: var(--text-light);
-            font-weight: 500;
+            margin-top: 0.25rem;
         }
 
-        .action-buttons {
+        /* Vagas - lista vertical moderna */
+        .vagas-section {
+            margin-top: 2rem;
+        }
+        .section-header h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .vagas-scroll {
             display: flex;
+            flex-direction: column;
             gap: 1rem;
-            flex-wrap: wrap;
+            overflow-y: auto;
+            max-height: 650px;
+            padding: 2rem 20px 1rem 0;
+            scroll-behavior: smooth;
+            width: 100%;
+            margin-top: 2.5rem;
         }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            font-weight: 600;
+        .job-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--white);
             transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: var(--gradient-primary);
-            border: none;
-            color: var(--white);
             box-shadow: var(--shadow-md);
         }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
+        .job-card:hover {
+            border-color: var(--primary-color);
             box-shadow: var(--shadow-lg);
-            color: var(--white);
+            transform: translateY(-2px);
         }
-
-        .btn-outline-primary {
-            border: 2px solid var(--primary-color);
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+        .job-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .job-tag {
+            background: rgba(145, 71, 255, 0.1);
             color: var(--primary-color);
-            background: transparent;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
-
-        .btn-outline-primary:hover {
+        .job-salary {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+        .job-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .job-actions .btn {
+            font-size: 1rem;
+            padding: 0.35rem 1.1rem;
+            border-radius: 1rem;
+            border: none;
+            font-weight: 600;
             background: var(--primary-color);
             color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--white);
-            border-top: 1px solid #e2e8f0;
-            padding: 2rem 0;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            opacity: 0.8;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: var(--background-color);
-            margin: 5% auto;
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 800px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .close {
-            color: var(--secondary-color);
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
             cursor: pointer;
+            transition: background 0.2s, box-shadow 0.18s;
+            box-shadow: 0 2px 8px 0 rgb(145 71 255 / 0.07);
         }
+        .job-actions .btn.editar { background: var(--primary-color);}
+        .job-actions .btn.editar:hover { background: var(--highlight-color);}
+        .job-actions .btn.candidatos { background: var(--secondary-color);}
+        .job-actions .btn.candidatos:hover { background: var(--accent-color);}
+        .job-actions .btn.excluir { background: var(--error-color);}
+        .job-actions .btn.excluir:hover { background: #b91c1c;}
 
-        .close:hover {
-            color: var(--primary-color);
-        }
-
-        .empresa-historia-content {
-            margin-top: 20px;
-        }
-
-        .empresa-historia-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .empresa-historia-logo {
-            width: 60px;
-            height: 60px;
-            margin-right: 15px;
-            border-radius: 5px;
-            object-fit: contain;
-        }
-
-        .empresa-historia-header h3 {
-            color: var(--secondary-color);
-            margin: 0;
-        }
-
-        .empresa-historia-ano {
-            color: var(--accent-color);
-            font-style: italic;
-            margin-bottom: 15px;
-        }
-
-        .empresa-historia-descricao h4 {
-            color: var(--text-color);
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
-        .empresa-historia-descricao p {
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--secondary-color);
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.5rem;
+        .vaga-status-select {
+            min-width: 110px;
+            border-radius: 0.7rem;
             border: 1px solid var(--accent-color);
-            border-radius: 4px;
-        }
-
-        .form-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 1rem;
-        }
-
-        /* Estilos para o bloco de perfil da empresa */
-        .empresa-perfil-descricao {
-            font-size: 1rem;
+            font-size: 0.95rem;
+            background: var(--background-color);
             color: var(--text-color);
-            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 991px) {
+            .empresa-perfil-container { padding: 1.2rem 0.5rem; }
+            .empresa-perfil-header { gap: 1rem; }
+            .vagas-scroll { padding: 1rem 0.5rem 1rem 0; }
+        }
+        @media (max-width: 767px) {
+            .empresa-perfil-header { flex-direction: column; align-items: flex-start; }
+            .empresa-perfil-logo { margin-bottom: 1rem; }
+            .job-card { padding: 1rem 0.5rem; }
         }
 
         /* Responsive */
@@ -582,53 +358,25 @@
 </head>
 
 <body>
-    <!-- Sidebar Ads -->
-    <div class="sidebar-ads">
-        <div class="ad-card">
-            <h4>🚀 Boost sua vaga</h4>
-            <p>Destaque sua vaga e receba mais candidatos qualificados</p>
-            <button class="btn">Saiba mais</button>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../Vaga/candidatos.html">
+                <i class="fas fa-briefcase"></i>
+                Worklink
+            </a>
         </div>
-        <div class="ad-card">
-            <h4>📊 Analytics</h4>
-            <p>Acompanhe o desempenho das suas vagas em tempo real</p>
-            <button class="btn">Ver relatórios</button>
-        </div>
-        <div class="ad-card">
-            <h4>💼 Recrutamento</h4>
-            <p>Ferramentas avançadas para encontrar os melhores talentos</p>
-            <button class="btn">Explorar</button>
-        </div>
-    </div>
+    </nav>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="#">Worklink</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Vagas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Candidatos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Relatórios</a>
-                    </li>
-                </ul>
-                <div class="d-flex align-items-center">
-                    <div class="notification-bell">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
+    <main class="container">
+        <section class="empresa-perfil">
+            <div class="empresa-perfil-container">
+                <div class="empresa-perfil-header">
+                    <div class="empresa-perfil-logo" style="margin-right: 2rem;">
+                        <img src="assets/img/empresa-exemplo.png" alt="Logo da Empresa" id="empresa-perfil-logo"
+                            class="profile-image">
                     </div>
                     <div class="empresa-perfil-info" style="position: relative;">
+                        <!-- Engrenagem de editar perfil -->
                         <i class="fas fa-cog settings-icon" onclick="toggleSettings(event)"></i>
                         <div class="settings-menu" id="settingsMenu">
                             <a href="editarEmpresa.html"><i class="fas fa-user-edit"></i> Editar Perfil</a>
@@ -654,58 +402,28 @@
                     <div class="stat-number">12</div>
                     <div class="stat-label">Vagas Ativas</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">156</div>
-                    <div class="stat-label">Candidatos</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">89%</div>
-                    <div class="stat-label">Taxa de Conversão</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">24</div>
-                    <div class="stat-label">Contratados</div>
-                </div>
-            </div>
-
-            <!-- Profile Card -->
-            <div class="profile-card">
-                <div class="settings-icon" onclick="toggleSettings()">
-                    <i class="fas fa-cog"></i>
-                </div>
-                <div class="settings-menu" id="settingsMenu">
-                    <a href="#"><i class="fas fa-user"></i> Editar Perfil</a>
-                    <a href="#"><i class="fas fa-bell"></i> Notificações</a>
-                    <a href="#"><i class="fas fa-shield-alt"></i> Segurança</a>
-                    <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-8">
-                        <h2>Bem-vindo, Empresa TechCorp!</h2>
-                        <div class="profile-info">
-                            <p><strong>Email:</strong> contato@techcorp.com</p>
-                            <p><strong>Setor:</strong> Tecnologia</p>
-                            <p><strong>Funcionários:</strong> 150-500</p>
-                            <p><strong>Localização:</strong> São Paulo, SP</p>
-                        </div>
+                <div class="empresa-perfil-stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="empresa-perfil-vagas-count"></span>
+                        <span class="stat-label">Vagas Abertas</span>
                     </div>
-                    <div class="col-md-4">
-                        <div class="action-buttons">
-                            <a href="#" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> Nova Vaga
-                            </a>
-                            <a href="#" class="btn btn-outline-primary">
-                                <i class="fas fa-edit"></i> Editar Perfil
-                            </a>
-                        </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="empresa-perfil-vagas-count"></span>
+                        <span class="stat-label">Vagas Criadas</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- Footer -->
+        <section class="vagas-section">
+            <div class="section-header">
+                <h2>Vagas Disponíveis</h2>
+            </div>
+            <!-- Cards de vagas modernos -->
+            <div id="lista-vagas" class="vagas-scroll"></div>
+        </section>
+    </main>
+
     <footer>
         <div class="footer-content">
             <div>
@@ -722,6 +440,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Engrenagem/menu
         function toggleSettings(event) {
             if (event) {
                 event.stopPropagation();
@@ -729,9 +448,8 @@
             const menu = document.getElementById('settingsMenu');
             menu.classList.toggle('show');
         }
-
-        // Close settings menu when clicking outside
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
+            const menu = document.getElementById('settingsMenu');
             const settingsIcon = document.querySelector('.settings-icon');
             const settingsMenu = document.getElementById('settingsMenu');
             
@@ -739,7 +457,60 @@
                 settingsMenu.classList.remove('show');
             }
         });
+        document.getElementById('settingsMenu').addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+
+        // Função para contar vagas abertas e totais (adaptada do perfilEmpresa.html)
+        function contarVagasEmpresa() {
+            const cnpj = localStorage.getItem("empresaCnpj");
+            if (!cnpj) {
+                document.querySelectorAll('.stat-value').forEach(el => el.textContent = '0');
+                return;
+            }
+
+            const apiUrl = `http://localhost:8080/vagas/empresa/cnpj/${encodeURIComponent(cnpj)}`;
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error("Erro ao buscar vagas");
+                    return response.json();
+                })
+                .then(vagas => {
+                    const total = vagas.length;
+                    const abertas = vagas.filter(v => v.status && v.status.toLowerCase() === "aberta").length;
+
+                    // O primeiro .stat-value é "Vagas Ativas", o segundo é "Vagas Criadas"
+                    const statValues = document.querySelectorAll('.stat-value');
+                    if (statValues.length > 0) statValues[0].textContent = abertas;
+                    if (statValues.length > 1) statValues[1].textContent = total;
+                })
+                .catch(() => {
+                    document.querySelectorAll('.stat-value').forEach(el => el.textContent = '0');
+                });
+        }
+
+        // Função para renderizar as vagas na tela
+        function renderizarVagas(vagas) {
+            const listaVagas = document.getElementById('lista-vagas');
+            listaVagas.innerHTML = '';
+            if (!vagas || vagas.length === 0) {
+                listaVagas.innerHTML = `<div style="text-align:center; color:var(--text-light);">Nenhuma vaga cadastrada.</div>`;
+                return;
+            }
+
+            // Ordena por data de lançamento/ criação (mais recente primeiro)
+            vagas.sort((a, b) => {
+                const dataA = new Date(a.dataLancamento || a.dataCriacao || a.createdAt || 0);
+                const dataB = new Date(b.dataLancamento || b.dataCriacao || b.createdAt || 0);
+                return dataB - dataA;
+            });
+        }
+
+        // Chame a função ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            contarVagasEmpresa();
+        });
     </script>
 </body>
-
 </html>

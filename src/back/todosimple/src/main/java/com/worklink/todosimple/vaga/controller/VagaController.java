@@ -38,8 +38,9 @@ public class VagaController {
     private EmpresaRepository empresaRepository;
 
     @Autowired
-    private AplicacaoRepository aplicacaoRepository;
+    private com.worklink.todosimple.aplicacoes.repositories.AplicacaoRepository aplicacaoRepository;
 
+    @Autowired
     // GET todas as vagas
     @GetMapping
     public List<Vaga> getAllVagas() {
@@ -57,6 +58,13 @@ public class VagaController {
     @GetMapping("/empresa/cnpj/{cnpj}")
     public ResponseEntity<List<Vaga>> listarVagasPorCnpj(@PathVariable String cnpj) {
         List<Vaga> vagas = vagaRepository.findByEmpresa_Cnpj(cnpj);
+        return ResponseEntity.ok(vagas);
+    }
+
+    // GET vagas por status
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<Vaga>> listarVagasPorStatus(@PathVariable String status) {
+        List<Vaga> vagas = vagaRepository.findByStatus(status);
         return ResponseEntity.ok(vagas);
     }
 
@@ -95,6 +103,10 @@ public class VagaController {
 
         vaga.setDataCriacao(new Date());
 
+        // Definir status (opcional, padrão "Aberta")
+        String status = (String) vagaMap.get("status");
+        vaga.setStatus("Aberta"); // Sempre começa como "Aberta"
+
         Vaga savedVaga = vagaRepository.save(vaga);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedVaga);
     }
@@ -130,6 +142,11 @@ public class VagaController {
                     }
                 }
 
+                // Atualiza status SEM checar vazio/nulo
+                if (vagaMap.containsKey("status")) {
+                    vaga.setStatus((String) vagaMap.get("status"));
+                }
+
                 vagaRepository.save(vaga);
                 return ResponseEntity.ok(vaga);
             })
@@ -139,14 +156,15 @@ public class VagaController {
     // DELETE vaga
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteVaga(@PathVariable Long id) {
-        if (!vagaRepository.existsById(id)) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        // Deleta todas as candidaturas associadas à vaga
+        aplicacaoRepository.deleteByVaga_Id(id);
+
+        // Agora deleta a vaga
         vagaRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
-    // POST enviar teste técnico
+    // POST enviar teste
     @PostMapping("/{id}/teste")
     public ResponseEntity<?> enviarTeste(@PathVariable Long id, @RequestParam(value = "arquivoTeste", required = false) MultipartFile arquivoTeste) {
         try {

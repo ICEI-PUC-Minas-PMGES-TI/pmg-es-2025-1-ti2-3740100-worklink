@@ -16,25 +16,44 @@ public class Empresa extends Usuario {
     @Column(name = "descricao", length = 500)
     private String descricao;
 
-    // Se quiser salvar nome/cargo do responsável:
     @Column(name = "nome_responsavel", length = 100)
     private String nomeResponsavel;
 
     @Column(name = "cargo_responsavel", length = 50)
     private String cargo;
 
-    // Nova variável para avaliação em estrelas
-    @Min(0) // Valor mínimo permitido
-    @Max(5) // Valor máximo permitido
+    @Min(0)
+    @Max(5)
     @Column(name = "avaliacao", nullable = true)
-    private Double avaliacao; // Avaliação em estrelas (0 a 5, incluindo valores como 0.5)
+    private Double avaliacao;
 
-    // getters e setters para os novos campos
-    public String getNomeResponsavel() { return nomeResponsavel; }
-    public void setNomeResponsavel(String nomeResponsavel) { this.nomeResponsavel = nomeResponsavel; }
+    @Column(name = "setor", length = 100)
+    private String setor; // Novo campo para o setor da empresa
 
-    public String getCargo() { return cargo; }
-    public void setCargo(String cargo) { this.cargo = cargo; }
+    // Getters e Setters
+    public String getSetor() {
+        return setor;
+    }
+
+    public void setSetor(String setor) {
+        this.setor = setor;
+    }
+
+    public String getNomeResponsavel() {
+        return nomeResponsavel;
+    }
+
+    public void setNomeResponsavel(String nomeResponsavel) {
+        this.nomeResponsavel = nomeResponsavel;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
 
     public String getCnpj() {
         return cnpj;
@@ -58,10 +77,9 @@ public class Empresa extends Usuario {
 
     public void setAvaliacao(Double avaliacao) {
         if (avaliacao != null) {
-            this.avaliacao = Math.max(0, Math.min(avaliacao, 5)); // Garante que a avaliação esteja entre 0 e 5
+            this.avaliacao = Math.max(0, Math.min(avaliacao, 5));
         } else {
-            this.avaliacao = null; // Permite que a avaliação seja nula
+            this.avaliacao = null;
         }
     }
-
 }

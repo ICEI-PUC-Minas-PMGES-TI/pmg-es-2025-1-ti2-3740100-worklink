@@ -1,7 +1,9 @@
 package com.worklink.todosimple.aplicacoes.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.worklink.todosimple.aplicacoes.model.Aplicacao;
 
@@ -23,4 +25,8 @@ public interface AplicacaoRepository extends JpaRepository<Aplicacao, Long> {
     boolean existsByVagaIdAndCandidatoId(Long vagaId, Long candidatoId);
 
     boolean existsByVagaIdAndCandidatoCpf(Long vagaId, String cpf);
+
+    @Transactional
+    @Modifying
+    void deleteByVaga_Id(Long vagaId);
 }
