@@ -5,83 +5,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Vagas</title>
-    <link rel="stylesheet" href="assets/css/HomeEmpresa.css">
-    <link rel="stylesheet" href="assets/css/listaVagas.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #9147ff;
             --secondary-color: #6d6e7c;
-            --background-color: #f9fafb;
-            --text-color: #000000;
-            --text-color2: #3c3c3c;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --text-light: #64748b;
             --accent-color: #4e4f58;
             --highlight-color: #4F3F86;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
+            --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 80px;
         }
 
+        /* Header */
         .navbar {
-            background-color: var(--primary-color);
-            padding: 1rem;
+            background: var(--white);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
             color: var(--text-color) !important;
-            font-weight: bold;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
         }
 
-        .btn-primary {
-            background-color: var(--primary-color) !important;
-            border-color: var(--primary-color) !important;
-            color: var(--text-color) !important;
+        .nav-link:hover {
+            color: var(--primary-color) !important;
         }
 
-        .btn-primary:hover,
-        .btn-primary:focus,
-        .btn-primary:active {
-            background-color: var(--highlight-color) !important;
-            border-color: var(--highlight-color) !important;
-            color: var(--text-color) !important;
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--gradient-primary);
+            transition: all 0.3s ease;
         }
 
-        .btn-secondary {
-            background-color: var(--secondary-color) !important;
-            border-color: var(--secondary-color) !important;
-            color: var(--background-color) !important;
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
         }
 
-        .btn-secondary:hover,
-        .btn-secondary:focus,
-        .btn-secondary:active {
-            background-color: var(--accent-color) !important;
-            border-color: var(--accent-color) !important;
-            color: var(--background-color) !important;
+        .btn-primary-custom {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            color: var(--white);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
         }
 
-        .btn-outline-secondary {
-            color: var(--secondary-color) !important;
-            border-color: var(--secondary-color) !important;
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
         }
 
-        .btn-outline-secondary:hover,
-        .btn-outline-secondary:focus,
-        .btn-outline-secondary:active {
-            background-color: var(--secondary-color) !important;
-            color: var(--background-color) !important;
+        .btn-outline-custom {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            background: transparent;
+            transition: all 0.3s ease;
         }
 
+        .btn-outline-custom:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Notification Bell */
+        .notification-bell {
+            position: relative;
+            margin-right: 1rem;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notification-bell:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--error-color);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Profile Card */
         .profile-card {
-            background-color: white;
-            border-radius: 10px;
+            background: var(--white);
+            border-radius: 1.5rem;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
             position: relative;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
         }
 
         .settings-icon {
@@ -89,36 +177,35 @@
             top: 1rem;
             right: 1rem;
             cursor: pointer;
-            color: var(--secondary-color);
-            font-size: 2rem;
-            transition: transform 0.3s ease;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
             z-index: 1001;
             padding: 0.5rem;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: block;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: var(--shadow-sm);
         }
 
         .settings-icon:hover {
             transform: rotate(45deg);
-            color: var(--highlight-color);
-            background-color: rgba(255, 255, 255, 1);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            color: var(--primary-color);
+            background-color: var(--white);
+            box-shadow: var(--shadow-md);
         }
 
         .settings-menu {
             position: absolute;
             top: 3.5rem;
             right: 1rem;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: var(--white);
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
             padding: 0.5rem 0;
             display: none;
             z-index: 1000;
             min-width: 220px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
         }
 
         .settings-menu.show {
@@ -131,7 +218,6 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -157,400 +243,385 @@
 
         .settings-menu a:hover {
             background-color: var(--background-color);
-            color: var(--highlight-color);
+            color: var(--primary-color);
         }
 
         .settings-menu a:last-child {
-            border-top: 1px solid var(--accent-color);
-            color: #dc3545;
+            border-top: 1px solid #e2e8f0;
+            color: var(--error-color);
             margin-top: 0.5rem;
         }
 
         .settings-menu a:last-child:hover {
-            background-color: #dc3545;
-            color: white;
+            background-color: var(--error-color);
+            color: var(--white);
         }
 
-        .profile-info {
-            margin-top: 1rem;
+        /* Sidebar Ads */
+        .sidebar-ads {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        .profile-info p {
+        .ad-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid #e2e8f0;
+            width: 200px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .ad-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .ad-card h4 {
+            color: var(--primary-color);
+            font-size: 1rem;
             margin-bottom: 0.5rem;
-            color: var(--text-color);
+            font-weight: 600;
         }
 
-        .profile-info h2 {
-            color: var(--secondary-color);
+        .ad-card p {
+            color: var(--text-light);
+            font-size: 0.85rem;
             margin-bottom: 1rem;
+        }
+
+        .ad-card .btn {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .ad-card .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            color: var(--white);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-right: 240px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
+        }
+
+        .btn-outline-primary {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gradient-primary);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
 
         .footer-links a {
-            margin-left: 1rem;
-            color: var(--text-color);
+            color: var(--white);
             text-decoration: none;
-            transition: color 0.2s;
+            margin-left: 2rem;
+            transition: opacity 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: var(--primary-color);
+            opacity: 0.8;
         }
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: var(--background-color);
-            margin: 5% auto;
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 800px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .close {
-            color: var(--secondary-color);
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover {
-            color: var(--primary-color);
-        }
-
-        .empresa-historia-content {
-            margin-top: 20px;
-        }
-
-        .empresa-historia-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .empresa-historia-logo {
-            width: 60px;
-            height: 60px;
-            margin-right: 15px;
-            border-radius: 5px;
-            object-fit: contain;
-        }
-
-        .empresa-historia-header h3 {
-            color: var(--secondary-color);
-            margin: 0;
-        }
-
-        .empresa-historia-ano {
-            color: var(--accent-color);
-            font-style: italic;
-            margin-bottom: 15px;
-        }
-
-        .empresa-historia-descricao h4 {
-            color: var(--text-color2);
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
-        .empresa-historia-descricao p {
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--secondary-color);
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid var(--accent-color);
-            border-radius: 4px;
-        }
-
-        .form-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 1rem;
-        }
-
-        /* Estilos para o bloco de perfil da empresa */
-
-
-
-        .empresa-perfil-descricao {
-            font-size: 1rem;
-            color: var(--text-color);
-            margin-bottom: 1rem;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar-ads {
+                display: none;
+            }
+            
+            .main-content {
+                margin-right: 0;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .footer-links a {
+                margin: 0 1rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="../Vaga/candidatos.html">
-            <i class="fas fa-briefcase"></i>
-            Worklink
-        </a>
+    <!-- Sidebar Ads -->
+    <div class="sidebar-ads">
+        <div class="ad-card">
+            <h4>🚀 Boost sua vaga</h4>
+            <p>Destaque sua vaga e receba mais candidatos qualificados</p>
+            <button class="btn">Saiba mais</button>
+        </div>
+        <div class="ad-card">
+            <h4>📊 Analytics</h4>
+            <p>Acompanhe o desempenho das suas vagas em tempo real</p>
+            <button class="btn">Ver relatórios</button>
+        </div>
+        <div class="ad-card">
+            <h4>💼 Recrutamento</h4>
+            <p>Ferramentas avançadas para encontrar os melhores talentos</p>
+            <button class="btn">Explorar</button>
+        </div>
     </div>
-</nav>
 
-    <main class="container">
-        <section class="empresa-perfil">
-            <div class="empresa-perfil-container">
-                <div class="empresa-perfil-header"
-                    style="display: flex; align-items: center; justify-content: center;">
-                    <div class="empresa-perfil-logo" style="margin-right: 2rem;">
-                        <img src="assets/img/empresa-exemplo.png" alt="Logo da Empresa" id="empresa-perfil-logo"
-                            class="profile-image">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Worklink</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Vagas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Candidatos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Relatórios</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-custom dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown">
+                            <i class="fas fa-user"></i> Perfil
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Configurações</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                        </ul>
                     </div>
-                    <div class="empresa-perfil-info" style="position: relative;">
-                        <i class="fas fa-cog settings-icon" onclick="toggleSettings(event)"></i>
-                        <div class="settings-menu" id="settingsMenu">
-                            <a href="editarEmpresa.html"><i class="fas fa-user-edit"></i> Editar Perfil</a>
-                            <a href="formularioVaga.html"><i class="fas fa-plus"></i> Nova Vaga</a>
-                            <a href="../Cadastro_Login/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                        </div>
-                        <h2 id="empresa-perfil-nome" style="display: inline-block; cursor: pointer;"></h2>
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 2rem; display: flex; justify-content: center;">
-                    <div class="col-md-6" style="text-align: left;">
-                        <p><strong>Responsável:</strong> <span id="empresa-responsavel"></span></p>
-                        <p><strong>Cargo:</strong> <span id="empresa-cargo"></span></p>
-                        <p><strong>Telefone:</strong> <span id="empresa-telefone"></span></p>
-                        <p><strong>Avaliação:</strong> <span id="avaliacao">N/A</span></p>
-                    </div>
-                    <div class="col-md-6" style="text-align: left;">
-                        <h4>Descrição</h4>
-                        <p id="empresa-historia-descricao"></p>
-                        <h4>Endereço</h4>
-                        <p id="empresa-historia-endereco"></p>
-                    </div>
-                </div>
-                <div class="empresa-perfil-stats"
-                    style="display: flex; justify-content: center; margin-top: 2rem;">
-                    <div class="stat-item" style="text-align: center;">
-                        <span class="stat-value" id="empresa-perfil-vagas-count"></span>
-                        <span class="stat-label">Vagas Ativas</span>
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <!-- Modal para a história da empresa -->
-        <div id="modal-historia" class="modal">
-            <div class="modal-content">
-                <span class="close" id="close-historia">&times;</span>
-                <h2>Sobre a Empresa</h2>
-                <div class="empresa-historia-content">
-                    <div class="empresa-historia-header">
-                        <img src="assets/img/empresa-exemplo.png" alt="Logo da Empresa" class="empresa-historia-logo">
-                        <h3 id="empresa-historia-nome"></h3>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <h1 class="section-title">Dashboard da Empresa</h1>
+            
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Vagas Ativas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">156</div>
+                    <div class="stat-label">Candidatos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">89%</div>
+                    <div class="stat-label">Taxa de Conversão</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24</div>
+                    <div class="stat-label">Contratados</div>
+                </div>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="profile-card">
+                <div class="settings-icon" onclick="toggleSettings()">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <div class="settings-menu" id="settingsMenu">
+                    <a href="#"><i class="fas fa-user"></i> Editar Perfil</a>
+                    <a href="#"><i class="fas fa-bell"></i> Notificações</a>
+                    <a href="#"><i class="fas fa-shield-alt"></i> Segurança</a>
+                    <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>Bem-vindo, Empresa TechCorp!</h2>
+                        <div class="profile-info">
+                            <p><strong>Email:</strong> contato@techcorp.com</p>
+                            <p><strong>Setor:</strong> Tecnologia</p>
+                            <p><strong>Funcionários:</strong> 150-500</p>
+                            <p><strong>Localização:</strong> São Paulo, SP</p>
+                        </div>
                     </div>
-                    <div class="empresa-historia-info">
-                        <div class="empresa-historia-descricao">
-                            <h4>Descrição</h4>
-                            <p id="empresa-historia-descricao"></p>
+                    <div class="col-md-4">
+                        <div class="action-buttons">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Nova Vaga
+                            </a>
+                            <a href="#" class="btn btn-outline-primary">
+                                <i class="fas fa-edit"></i> Editar Perfil
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <section class="vagas-section">
-            <div class="section-header">
-                <h2>Vagas Disponíveis</h2>
-            </div>
-
-            <div id="vagas-container" class="vagas-grid">
-                <!-- As vagas serão carregadas aqui via JavaScript -->
-                <div class="lista-vagas-container">
-                    <div id="lista-vagas" class="container-cards"></div>
-                </div>
-            </div>
-        </section>
-    </main>
-
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2024 Worklink. Todos os direitos reservados.</p>
+        <div class="footer-content">
+            <div>
+                <p>&copy; 2024 Worklink. Todos os direitos reservados.</p>
+            </div>
             <div class="footer-links">
                 <a href="#">Sobre</a>
-                <a href="#">Contato</a>
                 <a href="#">Privacidade</a>
+                <a href="#">Termos</a>
+                <a href="#">Contato</a>
             </div>
         </div>
     </footer>
 
-    <!-- Modal para edição de vaga -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Editar Vaga</h2>
-            <form id="form-vaga">
-                <input type="hidden" id="vaga-id">
-                <div class="form-group">
-                    <label for="empresa-nome">Nome da Empresa</label>
-                    <input type="text" id="empresa-nome" required>
-                </div>
-                <div class="form-group">
-                    <label for="empresa-setor">Setor da Empresa</label>
-                    <input type="text" id="empresa-setor" required>
-                </div>
-                <div class="form-group">
-                    <label for="empresa-logo">URL do Logo da Empresa</label>
-                    <input type="url" id="empresa-logo" placeholder="https://exemplo.com/logo.png">
-                </div>
-                <div class="form-group">
-                    <label for="titulo">Título</label>
-                    <input type="text" id="titulo" name="titulo" required>
-                </div>
-                <div class="form-group">
-                    <label for="descricao">Descrição</label>
-                    <textarea id="descricao" name="descricao" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="requisitos">Requisitos</label>
-                    <textarea id="requisitos" name="requisitos" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="salario">Salário</label>
-                    <input type="text" id="salario" name="salario" required>
-                </div>
-                <div class="form-group">
-                    <label for="local">Local</label>
-                    <input type="text" id="local" name="local" required>
-                </div>
-                <div class="form-group">
-                    <label for="tipo">Tipo</label>
-                    <select id="tipo" name="tipo" required>
-                        <option value="">Selecione um tipo</option>
-                        <option value="CLT">CLT</option>
-                        <option value="PJ">PJ</option>
-                        <option value="Estágio">Estágio</option>
-                        <option value="Temporário">Temporário</option>
-                    </select>
-                </div>
-                <div class="form-actions">
-                    <button type="button" class="btn btn-secondary" id="btn-cancelar">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script src="../assets/script/script.js"></script>
-    <script src="assets/script/HomeEmpresa.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        let vagas = [];
-
-        // Função para verificar se a imagem existe
-        function checkImage(imageSrc, fallbackSrc) {
-            const img = new Image();
-            img.onload = function () {
-                document.getElementById('empresa-perfil-logo').src = imageSrc;
-            };
-            img.onerror = function () {
-                document.getElementById('empresa-perfil-logo').src = fallbackSrc;
-            };
-            img.src = imageSrc;
-        }
-
-        // Usar uma imagem padrão quando a imagem da empresa não estiver disponível
-        window.addEventListener('DOMContentLoaded', function () {
-            const empresaId = localStorage.getItem('empresaId'); // Certifique-se de que o ID da empresa está armazenado
-            if (!empresaId) {
-                alert("Empresa não encontrada. Faça login novamente.");
-                window.location.href = "../Cadastro_Login/login.html";
-                return;
-            }
-
-            fetch(`http://localhost:8080/empresas/${empresaId}`)
-                .then(resp => {
-                    if (!resp.ok) throw new Error("Empresa não encontrada");
-                    return resp.json();
-                })
-                .then(empresa => {
-                    document.getElementById('empresa-perfil-nome').textContent = empresa.nome;
-                    document.getElementById('empresa-historia-descricao').textContent = empresa.descricao;
-                    document.getElementById('empresa-historia-endereco').textContent = empresa.endereco;
-
-                    // Atualiza a imagem de perfil
-                    const logoImg = document.getElementById('empresa-perfil-logo');
-                    const fallbackSrc = "assets/img/img-padrão.png"; // Caminho para a imagem padrão
-                    if (empresa.fotoPerfil) {
-                        logoImg.src = `http://localhost:8080${empresa.fotoPerfil}`;
-                    } else {
-                        logoImg.src = fallbackSrc;
-                    }
-                })
-                .catch(error => {
-                    alert("Erro ao carregar dados da empresa.");
-                    console.error(error);
-                });
-        });
-
-        function toggleSettings(event) {
-            event.stopPropagation();
+        function toggleSettings() {
             const menu = document.getElementById('settingsMenu');
             menu.classList.toggle('show');
         }
 
-        function openHistoryModal() {
-            document.getElementById('modal-historia').style.display = 'block';
-        }
-
-        // Fechar o modal de história quando clicar no X
-        document.getElementById('close-historia').addEventListener('click', function () {
-            document.getElementById('modal-historia').style.display = 'none';
-        });
-
-        // Fechar o modal quando clicar fora dele
-        window.addEventListener('click', function (event) {
-            const modal = document.getElementById('modal-historia');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        });
-
-        // Fechar o menu quando clicar fora dele
-        document.addEventListener('click', function (event) {
-            const menu = document.getElementById('settingsMenu');
+        // Close settings menu when clicking outside
+        document.addEventListener('click', function(event) {
             const settingsIcon = document.querySelector('.settings-icon');
-            if (!menu.contains(event.target) && !settingsIcon.contains(event.target)) {
-                menu.classList.remove('show');
+            const settingsMenu = document.getElementById('settingsMenu');
+            
+            if (!settingsIcon.contains(event.target) && !settingsMenu.contains(event.target)) {
+                settingsMenu.classList.remove('show');
             }
         });
-
-        // Prevenir que o clique no menu feche o menu
-        document.getElementById('settingsMenu').addEventListener('click', function (event) {
-            event.stopPropagation();
-        });
-
     </script>
 </body>
 

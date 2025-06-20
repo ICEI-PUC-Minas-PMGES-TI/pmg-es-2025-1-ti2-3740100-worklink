@@ -1,218 +1,763 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
-    <title>Formulário de Vaga</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Vaga - Worklink</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #9147ff;
             --secondary-color: #6d6e7c;
-            --background-color: #f9fafb;
-            --text-color: #ffffff;
-            --text-color2: #3c3c3c;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --text-light: #64748b;
             --accent-color: #4e4f58;
             --highlight-color: #4F3F86;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
+            --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 80px;
         }
 
+        /* Header */
         .navbar {
-            background-color: var(--primary-color);
-            padding: 1rem;
+            background: var(--white);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
             color: var(--text-color) !important;
-            font-weight: bold;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--gradient-primary);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            color: var(--white);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Notification Bell */
+        .notification-bell {
+            position: relative;
+            margin-right: 1rem;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notification-bell:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--error-color);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Sidebar Ads */
+        .sidebar-ads {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .ad-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid #e2e8f0;
+            width: 200px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .ad-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .ad-card h4 {
+            color: var(--primary-color);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .ad-card p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .ad-card .btn {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .ad-card .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            color: var(--white);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-right: 240px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .form-container {
+            background: var(--white);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 3rem;
         }
 
         .form-section {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
         .form-section h3 {
-            color: var(--text-color2) !important;
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .form-group {
             margin-bottom: 1.5rem;
         }
 
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
         .form-control {
-            border: 1px solid var(--accent-color);
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--white);
         }
 
         .form-control:focus {
+            outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(228, 143, 79, 0.25);
+            box-shadow: 0 0 0 3px rgba(145, 71, 255, 0.1);
+        }
+
+        .form-control.error {
+            border-color: var(--error-color);
+        }
+
+        .form-text {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+
+        .form-text.error {
+            color: var(--error-color);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-primary {
-            background-color: var(--primary-color) !important;
-            border-color: var(--primary-color) !important;
-            color: var(--text-color) !important;
+            background: var(--gradient-primary);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
         }
 
-        .btn-primary:hover,
-        .btn-primary:focus,
-        .btn-primary:active {
-            background-color: var(--highlight-color) !important;
-            border-color: var(--highlight-color) !important;
-            color: var(--text-color) !important;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
         }
 
         .btn-secondary {
-            background-color: var(--secondary-color) !important;
-            border-color: var(--secondary-color) !important;
-            color: var(--background-color) !important;
+            background: var(--accent-color);
+            color: var(--white);
         }
 
-        .btn-secondary:hover,
-        .btn-secondary:focus,
-        .btn-secondary:active {
-            background-color: var(--accent-color) !important;
-            border-color: var(--accent-color) !important;
-            color: var(--background-color) !important;
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
-        .btn-outline-secondary {
-            color: var(--secondary-color) !important;
-            border-color: var(--secondary-color) !important;
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
         }
 
-        .btn-outline-secondary:hover,
-        .btn-outline-secondary:focus,
-        .btn-outline-secondary:active {
-            background-color: var(--secondary-color) !important;
-            color: var(--background-color) !important;
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
         }
 
-        .card {
-            border: none;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        .progress-bar {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
         }
 
-        .card h1 {
-            color: var(--text-color2) !important;
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
         }
 
-        label {
-            color: var(--text-color2) !important;
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
             font-weight: 500;
         }
 
-        select.form-control {
-            background-color: white;
+        .step.active {
+            color: var(--primary-color);
+            font-weight: 600;
         }
 
-        textarea.form-control {
-            resize: vertical;
+        .step.completed {
+            color: var(--success-color);
         }
 
-        .form-control::placeholder {
-            color: #999;
+        .step-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: var(--text-light);
+            color: var(--white);
         }
 
-        .text-center {
+        .step.active .step-number {
+            background: var(--primary-color);
+        }
+
+        .step.completed .step-number {
+            background: var(--success-color);
+        }
+
+        .progress-line {
+            height: 2px;
+            background: #e2e8f0;
+            flex: 1;
+            margin: 0 1rem;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 1px;
+            transition: width 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gradient-primary);
+            color: var(--white);
             text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar-ads {
+                display: none;
+            }
+            
+            .main-content {
+                margin-right: 0;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .progress-steps {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .progress-line {
+                display: none;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .footer-links a {
+                margin: 0 1rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="">
-                <i class="fas fa-briefcase"></i>
-                Worklink
-            </a>
+    <!-- Sidebar Ads -->
+    <div class="sidebar-ads">
+        <div class="ad-card">
+            <h4>📝 Dicas de Vaga</h4>
+            <p>Aprenda a criar vagas que atraem os melhores candidatos</p>
+            <button class="btn">Ver guia</button>
+        </div>
+        <div class="ad-card">
+            <h4>🚀 Boost de Vaga</h4>
+            <p>Destaque sua vaga e receba mais candidatos qualificados</p>
+            <button class="btn">Ativar</button>
+        </div>
+        <div class="ad-card">
+            <h4>📊 Analytics</h4>
+            <p>Acompanhe o desempenho das suas vagas em tempo real</p>
+            <button class="btn">Ver relatórios</button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Worklink</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Vagas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Candidatos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Relatórios</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-custom dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown">
+                            <i class="fas fa-user"></i> Perfil
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Configurações</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                        </ul>
+                    </div>
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">1</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row" style="margin-top: 5vh;">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="card shadow" style="padding: 2rem; border-radius: 10px;">
-                    <h1 class="text-center mb-4">Criar Nova Vaga</h1>
-
-                    <form id="formVaga">
-                        <div class="form-section">
-                            <h3>Informações Básicas</h3>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="titulo">Título da Vaga</label>
-                                    <input type="text" class="form-control" id="titulo" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="tipo">Tipo de Contrato</label>
-                                    <select class="form-control" id="tipo" required>
-                                        <option value="">Selecione...</option>
-                                        <option value="CLT">CLT</option>
-                                        <option value="PJ">PJ</option>
-                                        <option value="Temporário">Temporário</option>
-                                        <option value="Estágio">Estágio</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="modalidade">Modalidade</label>
-                                    <select class="form-control" id="modalidade" required>
-                                        <option value="">Selecione...</option>
-                                        <option value="Remoto">Remoto</option>
-                                        <option value="Hibrido">Híbrido</option>
-                                        <option value="Presencial">Presencial</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="salario">Faixa Salarial</label>
-                                    <input type="text" class="form-control" id="salario" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-section">
-                            <h3>Requisitos</h3>
-                            <div class="mb-3">
-                                <label for="descricao">Descrição da Vaga</label>
-                                <textarea class="form-control" id="descricao" rows="4" required></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="beneficios">Benefícios</label>
-                                <textarea class="form-control" id="beneficios" rows="3" required></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-section">
-                            <h3>Informações Adicionais</h3>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="prazo">Prazo de Inscrição</label>
-                                    <input type="date" class="form-control" id="prazo" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="text-center mt-4">
-                            <button type="button" onclick="validarESalvar()" class="btn btn-primary btn-lg">Publicar Vaga</button>
-                        </div>
-                    </form>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <h1 class="section-title">Criar Nova Vaga</h1>
+            
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-steps">
+                    <div class="step active">
+                        <div class="step-number">1</div>
+                        <span>Informações Básicas</span>
+                    </div>
+                    <div class="progress-line">
+                        <div class="progress-fill" style="width: 33%;"></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <span>Requisitos</span>
+                    </div>
+                    <div class="progress-line">
+                        <div class="progress-fill" style="width: 0%;"></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <span>Revisão</span>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-2"></div>
+
+            <!-- Form Container -->
+            <div class="form-container">
+                <form id="vagaForm">
+                    <!-- Informações Básicas -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-info-circle"></i> Informações Básicas</h3>
+                        
+                        <div class="form-group">
+                            <label for="titulo" class="form-label">Título da Vaga *</label>
+                            <input type="text" id="titulo" name="titulo" class="form-control" required>
+                            <div class="form-text">Ex: Desenvolvedor Full Stack, Analista de Marketing, etc.</div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="tipo" class="form-label">Tipo de Contrato *</label>
+                                <select id="tipo" name="tipo" class="form-control" required>
+                                    <option value="">Selecione o tipo</option>
+                                    <option value="CLT">CLT</option>
+                                    <option value="PJ">PJ</option>
+                                    <option value="Estágio">Estágio</option>
+                                    <option value="Temporário">Temporário</option>
+                                    <option value="Freelance">Freelance</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="modalidade" class="form-label">Modalidade *</label>
+                                <select id="modalidade" name="modalidade" class="form-control" required>
+                                    <option value="">Selecione a modalidade</option>
+                                    <option value="Presencial">Presencial</option>
+                                    <option value="Remoto">Remoto</option>
+                                    <option value="Híbrido">Híbrido</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="salario" class="form-label">Faixa Salarial</label>
+                                <input type="text" id="salario" name="salario" class="form-control" placeholder="Ex: R$ 3.000 - 5.000">
+                            </div>
+                            <div class="form-group">
+                                <label for="local" class="form-label">Localização *</label>
+                                <input type="text" id="local" name="local" class="form-control" required placeholder="Ex: São Paulo, SP">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descricao" class="form-label">Descrição da Vaga *</label>
+                            <textarea id="descricao" name="descricao" class="form-control" rows="4" required placeholder="Descreva as responsabilidades e atividades da vaga..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Requisitos -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-list-check"></i> Requisitos</h3>
+                        
+                        <div class="form-group">
+                            <label for="requisitos" class="form-label">Requisitos Obrigatórios *</label>
+                            <textarea id="requisitos" name="requisitos" class="form-control" rows="4" required placeholder="Liste os requisitos obrigatórios para a vaga..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="diferenciais" class="form-label">Diferenciais</label>
+                            <textarea id="diferenciais" name="diferenciais" class="form-control" rows="3" placeholder="Liste os diferenciais que seriam um plus..."></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="experiencia" class="form-label">Experiência Mínima</label>
+                                <select id="experiencia" name="experiencia" class="form-control">
+                                    <option value="">Selecione</option>
+                                    <option value="Sem experiência">Sem experiência</option>
+                                    <option value="1-2 anos">1-2 anos</option>
+                                    <option value="3-5 anos">3-5 anos</option>
+                                    <option value="5+ anos">5+ anos</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="escolaridade" class="form-label">Escolaridade</label>
+                                <select id="escolaridade" name="escolaridade" class="form-control">
+                                    <option value="">Selecione</option>
+                                    <option value="Ensino Médio">Ensino Médio</option>
+                                    <option value="Técnico">Técnico</option>
+                                    <option value="Superior Incompleto">Superior Incompleto</option>
+                                    <option value="Superior Completo">Superior Completo</option>
+                                    <option value="Pós-graduação">Pós-graduação</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Benefícios -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-gift"></i> Benefícios</h3>
+                        
+                        <div class="form-group">
+                            <label for="beneficios" class="form-label">Benefícios Oferecidos</label>
+                            <textarea id="beneficios" name="beneficios" class="form-control" rows="3" placeholder="Liste os benefícios oferecidos pela empresa..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary">
+                            <i class="fas fa-save"></i> Salvar Rascunho
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Publicar Vaga
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    <script src="assets/script/formularioVaga.js"></script>
-    <script src="../assets/script/script.js"></script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <p>&copy; 2024 Worklink. Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Sobre</a>
+                <a href="#">Privacidade</a>
+                <a href="#">Termos</a>
+                <a href="#">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Form validation and submission
+        document.getElementById('vagaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const requiredFields = ['titulo', 'tipo', 'modalidade', 'local', 'descricao', 'requisitos'];
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                const element = document.getElementById(field);
+                if (!element.value.trim()) {
+                    element.classList.add('error');
+                    isValid = false;
+                } else {
+                    element.classList.remove('error');
+                }
+            });
+            
+            if (isValid) {
+                // Simulate form submission
+                alert('Vaga criada com sucesso!');
+                // Here you would typically send the data to your backend
+            } else {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+            }
+        });
+
+        // Real-time validation
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.classList.add('error');
+                } else {
+                    this.classList.remove('error');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -22,6 +22,7 @@
             --error-color: #ef4444;
             --white: #ffffff;
             --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
+            --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
@@ -42,6 +43,7 @@
             padding-top: 80px;
         }
 
+        /* Header */
         .navbar {
             background: var(--white);
             backdrop-filter: blur(10px);
@@ -50,7 +52,7 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
         }
 
         .navbar-brand {
@@ -66,20 +68,38 @@
             color: var(--text-color) !important;
             font-weight: 500;
             transition: color 0.3s ease;
+            position: relative;
         }
 
         .nav-link:hover {
             color: var(--primary-color) !important;
         }
 
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--gradient-primary);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
         .btn-primary-custom {
             background: var(--gradient-primary);
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
             font-weight: 600;
             color: var(--white);
             transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
         }
 
         .btn-primary-custom:hover {
@@ -88,13 +108,131 @@
             color: var(--white);
         }
 
-        .vagas-section {
-            margin-top: 2rem;
+        .btn-outline-custom {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            background: transparent;
+            transition: all 0.3s ease;
         }
 
-        h2 {
-            color: var(--primary-color) !important;
+        .btn-outline-custom:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Notification Bell */
+        .notification-bell {
+            position: relative;
+            margin-right: 1rem;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notification-bell:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--error-color);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Sidebar Ads */
+        .sidebar-ads {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .ad-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid #e2e8f0;
+            width: 200px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .ad-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .ad-card h4 {
+            color: var(--primary-color);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .ad-card p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .ad-card .btn {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .ad-card .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            color: var(--white);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-right: 240px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            color: var(--primary-color);
             font-weight: 700;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .vagas-section {
+            margin-top: 2rem;
         }
 
         #vagas-container {
@@ -162,6 +300,8 @@
         .btn-inscrever:hover {
             background: var(--primary-color);
             color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .btn-detalhes {
@@ -172,6 +312,8 @@
         .btn-detalhes:hover {
             background: var(--secondary-color);
             color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .btn-inscrito {
@@ -186,217 +328,236 @@
             opacity: 0.8;
         }
 
+        /* Footer */
         footer {
-            background: var(--primary-color);
-            color: #fff;
+            background: var(--gradient-primary);
+            color: var(--white);
             text-align: center;
-            padding: 20px 0;
-            margin-top: 20px;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
         }
 
         .alert-custom {
-            background-color: white;
-            color:#5717b8;
+            background-color: var(--white);
+            color: var(--primary-color);
             border: none;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            box-shadow: var(--shadow-sm);
-            font-size: 0.9rem;
-            border : 1px solid #5717b8;
-            border-color: #5717b8;
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
+            .sidebar-ads {
+                display: none;
+            }
+            
+            .main-content {
+                margin-right: 0;
+            }
+            
             #vagas-container {
                 grid-template-columns: 1fr;
             }
-
-            .vaga-card {
-                padding: 1rem;
-            }
-
-            .vaga-actions {
+            
+            .footer-content {
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 1rem;
+            }
+            
+            .footer-links a {
+                margin: 0 1rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- Navbar -->
+    <!-- Sidebar Ads -->
+    <div class="sidebar-ads">
+        <div class="ad-card">
+            <h4>🎯 Vagas em Destaque</h4>
+            <p>Encontre as melhores oportunidades para sua carreira</p>
+            <button class="btn">Ver mais</button>
+        </div>
+        <div class="ad-card">
+            <h4>📈 Salários Altos</h4>
+            <p>Vagas com os melhores salários do mercado</p>
+            <button class="btn">Explorar</button>
+        </div>
+        <div class="ad-card">
+            <h4>🚀 Startups</h4>
+            <p>Oportunidades em empresas inovadoras</p>
+            <button class="btn">Descobrir</button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="../index.html">
-                <i class="fas fa-link"></i> Worklink
-            </a>
+            <a class="navbar-brand" href="#">Worklink</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
+                        <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
+                        <a class="nav-link" href="#">Vagas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
+                        <a class="nav-link" href="#">Empresas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
+                        <a class="nav-link" href="#">Perfil</a>
                     </li>
                 </ul>
-                <div class="d-flex gap-2">
-                    <a href="../Candidato/homeCandidato.html" class="btn btn-primary-custom">Meu Perfil</a>
-                    <button class="btn btn-light position-relative" id="notificacaoBtn">
+                <div class="d-flex align-items-center">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-custom dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown">
+                            <i class="fas fa-user"></i> Perfil
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Configurações</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                        </ul>
+                    </div>
+                    <div class="notification-bell">
                         <i class="fas fa-bell"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                            id="notificacaoBadge" style="display: none;">0</span>
-                    </button>
+                        <span class="notification-badge">5</span>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main>
+    <div class="main-content">
         <div class="container">
-            <section class="vagas-section">
-                <h2>Vagas Disponíveis</h2>
+            <h1 class="section-title">Vagas Disponíveis</h1>
+            
+            <div class="alert alert-custom" role="alert">
+                <i class="fas fa-info-circle"></i>
+                Encontramos <strong>24 vagas</strong> que combinam com seu perfil!
+            </div>
+
+            <div class="vagas-section">
                 <div id="vagas-container">
-                    <!-- As vagas serão carregadas dinamicamente aqui -->
+                    <!-- As vagas serão carregadas aqui via JavaScript -->
                 </div>
-            </section>
+            </div>
         </div>
-    </main>
+    </div>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2025 WorkLink. Todos os direitos reservados.</p>
+        <div class="footer-content">
+            <div>
+                <p>&copy; 2024 Worklink. Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Sobre</a>
+                <a href="#">Privacidade</a>
+                <a href="#">Termos</a>
+                <a href="#">Contato</a>
+            </div>
         </div>
     </footer>
 
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/notificacoes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const vagasContainer = document.getElementById("vagas-container");
-
-            // URL do endpoint para buscar todas as vagas
-            const apiUrl = "http://localhost:8080/vagas";
-
-            // Função para formatar a data no formato brasileiro
-            function formatarData(data) {
-                if (!data) return "";
-                // Aceita tanto "2025-06-16T12:34:56" quanto "2025-06-16"
-                const [ano, mes, dia] = data.split('T')[0].split('-');
-                return `${dia}/${mes}/${ano}`;
+        // Dados de exemplo das vagas
+        const vagas = [
+            {
+                id: 1,
+                titulo: "Desenvolvedor Full Stack",
+                empresa: "TechCorp",
+                local: "São Paulo, SP",
+                salario: "R$ 8.000 - 12.000",
+                tipo: "CLT",
+                descricao: "Desenvolvimento de aplicações web modernas usando React, Node.js e PostgreSQL."
+            },
+            {
+                id: 2,
+                titulo: "UX/UI Designer",
+                empresa: "DesignStudio",
+                local: "Remoto",
+                salario: "R$ 6.000 - 9.000",
+                tipo: "PJ",
+                descricao: "Criação de interfaces intuitivas e experiências de usuário excepcionais."
+            },
+            {
+                id: 3,
+                titulo: "Analista de Dados",
+                empresa: "DataTech",
+                local: "Rio de Janeiro, RJ",
+                salario: "R$ 7.000 - 10.000",
+                tipo: "CLT",
+                descricao: "Análise de dados e criação de relatórios para tomada de decisões estratégicas."
             }
+        ];
 
-            // Função para carregar as vagas
-            function carregarVagas() {
-                fetch(apiUrl)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Erro ao buscar vagas");
-                        }
-                        return response.json();
-                    })
-                    .then(vagas => {
-                        // Limpa o container antes de adicionar novas vagas
-                        vagasContainer.innerHTML = "";
-
-                        // Itera sobre as vagas e cria os cards
-                        vagas.forEach(vaga => {
-                            const vagaCard = document.createElement("div");
-                            vagaCard.classList.add("vaga-card");
-
-                            const buttonId = `inscreverBtn-${vaga.id}`;
-
-                            // Se a vaga exige teste, mostra aviso, mas não mostra botão de download
-                            const testeInfo = vaga.teste
-                                ? `<div class="alert alert-custom mt-2" role="alert">
-                                        <i class="fas fa-file-alt"></i> Vaga exige teste
-                                   </div>`
-                                : '';
-
-                            vagaCard.innerHTML = `
-                                <div class="vaga-info">
-                                    <h3>${vaga.titulo}</h3>
-                                    <p><strong>Empresa:</strong> ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}</p>
-                                    <p><strong>Lançamento:</strong> ${vaga.dataCriacao ? formatarData(vaga.dataCriacao) : "Data não informada"}</p>
-                                    <p><strong>Descrição:</strong> ${vaga.descricao}</p>
-                                    <p><strong>Tipo de Contrato:</strong> ${vaga.tipoContrato}</p>
-                                    <p><strong>Data de Publicação:</strong> ${vaga.dataFinal ? formatarData(vaga.dataFinal) : "Data não informada"}</p>
-                                </div>
-                                ${testeInfo}
-                                <div class="vaga-actions mt-2">
-                                    <button class="btn-inscrever" id="${buttonId}" onclick="inscreverVaga(${vaga.id}, '${vaga.dataFinal}', '${buttonId}')">Inscrever-se</button>
-                                    <button class="btn-detalhes" onclick="verDetalhes(${vaga.id})">Ver Detalhes</button>
-                                </div>
-                            `;
-
-                            vagasContainer.appendChild(vagaCard);
-
-                            // Verifica se o candidato já está inscrito
-                            verificarInscricao(vaga.id, inscrito => {
-                                if (inscrito) {
-                                    const inscreverBtn = document.getElementById(buttonId);
-                                    inscreverBtn.disabled = true;
-                                    inscreverBtn.textContent = "Já inscrito";
-                                    inscreverBtn.classList.remove("btn-inscrever");
-                                    inscreverBtn.classList.add("btn-inscrito");
-                                }
-                            });
-                        });
-                    })
-                    .catch(error => {
-                        console.error("Erro ao carregar vagas:", error);
-                        vagasContainer.innerHTML = `
-                            <div style="text-align: center; color: red;">Erro ao carregar vagas. Tente novamente mais tarde.</div>
-                        `;
-                    });
-            }
-
-            // Chama a função para carregar as vagas ao carregar a página
-            carregarVagas();
-        });
-
-        function verDetalhes(vagaId) {
-            // Redireciona para a página de detalhes com o ID da vaga na URL
-            window.location.href = `detalhesVaga.html?vagaId=${vagaId}`;
+        function carregarVagas() {
+            const container = document.getElementById('vagas-container');
+            
+            vagas.forEach(vaga => {
+                const vagaCard = document.createElement('div');
+                vagaCard.className = 'vaga-card';
+                vagaCard.innerHTML = `
+                    <div class="vaga-info">
+                        <h3>${vaga.titulo}</h3>
+                        <p><i class="fas fa-building"></i> ${vaga.empresa}</p>
+                        <p><i class="fas fa-map-marker-alt"></i> ${vaga.local}</p>
+                        <p><i class="fas fa-money-bill-wave"></i> ${vaga.salario}</p>
+                        <p><i class="fas fa-briefcase"></i> ${vaga.tipo}</p>
+                        <p>${vaga.descricao}</p>
+                    </div>
+                    <div class="vaga-actions">
+                        <button class="btn-inscrever" onclick="inscreverVaga(${vaga.id})">
+                            <i class="fas fa-paper-plane"></i> Inscrever-se
+                        </button>
+                        <button class="btn-detalhes" onclick="verDetalhes(${vaga.id})">
+                            <i class="fas fa-eye"></i> Ver Detalhes
+                        </button>
+                    </div>
+                `;
+                container.appendChild(vagaCard);
+            });
         }
 
-        // Adicione este script ao final do <body> das páginas que possuem o botão de perfil
-        document.addEventListener('DOMContentLoaded', function() {
-            const perfilBtn = document.querySelector('.btn.btn-primary-custom, #meuPerfilBtn');
-            if (perfilBtn) {
-                // Lógica para alterar o texto do botão conforme o tipo de usuário
-                const userType = localStorage.getItem('userType');
-                if (userType === 'empresa') {
-                    perfilBtn.textContent = 'Painel Empresa';
-                } else if (userType === 'candidato') {
-                    perfilBtn.textContent = 'Meu Perfil';
-                } else {
-                    perfilBtn.textContent = 'Entrar';
-                }
+        function inscreverVaga(id) {
+            alert(`Inscrição realizada para a vaga ${id}!`);
+        }
 
-                // Lógica de redirecionamento ao clicar
-                perfilBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (userType === 'empresa') {
-                        window.location.href = "../Vaga/HomeEmpresa.html";
-                    } else if (userType === 'candidato') {
-                        window.location.href = "../Candidato/homeCandidato.html";
-                    } else {
-                        window.location.href = "../Cadastro_Login/login.html";
-                    }
-                });
-            }
-        });
+        function verDetalhes(id) {
+            alert(`Detalhes da vaga ${id}`);
+        }
+
+        // Carregar vagas quando a página carregar
+        document.addEventListener('DOMContentLoaded', carregarVagas);
     </script>
 </body>
 
