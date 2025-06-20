@@ -150,6 +150,66 @@
     box-shadow: 0 2px 8px 0 rgba(16,185,129,0.08);
     letter-spacing: 0.02em;
 }
+.empresa-resumo {
+    border-left: 5px solid var(--primary-color);
+    margin-bottom: 2.5rem;
+}
+.vaga-empresa-flex {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+    justify-content: center;
+}
+.empresa-info-lateral {
+    min-width: 260px;
+    max-width: 320px;
+    width: 100%;
+}
+.empresa-info-box {
+    background: #f8fafc;
+    border-radius: 1.2rem;
+    box-shadow: 0 2px 8px 0 rgb(145 71 255 / 0.07);
+    padding: 2rem 1.2rem 1.5rem 1.2rem;
+    text-align: center;
+    border-left: 5px solid var(--primary-color);
+}
+.empresa-info-nome {
+    color: var(--primary-color);
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+}
+.empresa-info-setor,
+.empresa-info-cidade {
+    color: var(--accent-color);
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+}
+.empresa-info-avaliacao {
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1.25rem;
+    color: #f59e0b;
+    font-weight: 700;
+}
+.empresa-info-stars {
+    letter-spacing: 0.1em;
+    font-size: 1.3em;
+}
+.empresa-info-nota {
+    color: var(--text-light);
+    font-size: 1em;
+    margin-left: 0.5em;
+}
+@media (max-width: 900px) {
+    .vaga-empresa-flex {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .empresa-info-lateral {
+        max-width: 100%;
+        min-width: 0;
+    }
+}
         @media (max-width: 768px) {
             .vaga-detalhe-card {
                 padding: 1.2rem 0.5rem;
@@ -265,7 +325,6 @@ function carregarDetalhes() {
     })
     .then(vaga => {
       /* ---------- monta o card ---------- */
-      document.getElementById("titulo-vaga-header").textContent = vaga.titulo;
       const detalhesVaga = document.getElementById("detalhesVaga");
       const buttonId     = `inscreverBtn-${vaga.id}`;
 
@@ -274,27 +333,79 @@ function carregarDetalhes() {
           <i class="fas fa-file-alt"></i> Vaga exige teste técnico
         </div>` : "";
 
-      detalhesVaga.innerHTML = `
-        <div class="vaga-detalhe-card">
-          <ul class="list-unstyled mb-4">
-            <li><span class="vaga-label">Empresa:</span> ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}</li>
-            <li><span class="vaga-label">Lançamento:</span> ${vaga.dataCriacao ? formatarData(vaga.dataCriacao) : "Data não informada"}</li>
-            <li><span class="vaga-label">Data de Publicação:</span> ${vaga.dataFinal ? formatarData(vaga.dataFinal) : "Data não informada"}</li>
-            <li><span class="vaga-label">Tipo de Contrato:</span> ${vaga.tipoContrato}</li>
-            <li><span class="vaga-label">Modalidade:</span> ${vaga.modalidade}</li>
-            <li><span class="vaga-label">Benefícios:</span> ${vaga.beneficios}</li>
-            <li><span class="vaga-label">Descrição:</span> ${vaga.descricao}</li>
-            <li><span class="vaga-label">Salário:</span> <span class="vaga-salario">R$ ${vaga.salario}</span></li>
-          </ul>
-          ${testeAlerta}
-          <div id="testeDownload" class="d-flex justify-content-center mb-3"></div>
-          <div class="vaga-actions">
-            <button class="btn btn-lg" id="${buttonId}"
-                    onclick="inscreverVaga(${vaga.id}, '${vaga.dataFinal}', '${buttonId}')">
-              Inscrever-se
-            </button>
+      const isFechada = vaga.status && vaga.status.toLowerCase() === "fechada";
+
+      const empresa = vaga.empresa || {};
+      const empresaResumo = `
+        <div class="empresa-resumo mb-4 p-4 rounded shadow-sm" style="background: #f8fafc;">
+          <div style="display: flex; align-items: center; gap: 1.5rem;">
+              <h2 style="margin:0;color:var(--primary-color);font-weight:800;">${empresa.nome || "Empresa não informada"}</h2>
+              ${empresa.descricao ? `<p style="margin:0.3rem 0 0 0;color:var(--text-light);font-size:1.08rem;">${empresa.descricao}</p>` : ""}
+              ${empresa.localizacao ? `<p style="margin:0;color:var(--accent-color);font-size:0.98rem;"><i class="fas fa-map-marker-alt"></i> ${empresa.localizacao}</p>` : ""}
+            </div>
           </div>
-        </div>`;
+        </div>
+      `;
+
+      detalhesVaga.innerHTML = `
+  <div class="vaga-empresa-flex">
+    <!-- Card de detalhes da vaga (lado esquerdo) -->
+    <div class="vaga-detalhe-card content-card" style="max-width:700px;flex:2;">
+      <div class="vaga-titulo-bloco" style="text-align:center; margin-bottom: 2rem;">
+        <h2 style="color:var(--primary-color);font-weight:900;font-size:2.1rem; margin-bottom:0.5rem;">
+          ${getIconeVaga(vaga.titulo)} ${vaga.titulo}
+        </h2>
+        <div style="font-size:1.25rem; color:var(--accent-color); font-weight:700; display:inline-flex; align-items:center; gap:0.5rem;">
+          <i class="fas fa-building"></i>
+          ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}
+        </div>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <div class="meta-item"><i class="fas fa-calendar"></i> <span><strong>Lançamento:</strong> ${vaga.dataCriacao ? formatarData(vaga.dataCriacao) : "Data não informada"}</span></div>
+          <div class="meta-item"><i class="fas fa-calendar-check"></i> <span><strong>Fim das inscrições:</strong> ${vaga.dataFinal ? formatarData(vaga.dataFinal) : "Data não informada"}</span></div>
+          <div class="meta-item"><i class="fas fa-file-contract"></i> <span><strong>Tipo de Contrato:</strong> ${vaga.tipoContrato || "Não informado"}</span></div>
+          <div class="meta-item"><i class="fas fa-map-marker-alt"></i> <span><strong>Modalidade:</strong> ${vaga.modalidade || "Não informado"}</span></div>
+        </div>
+        <div class="col-md-6">
+          <div class="meta-item"><i class="fas fa-money-bill-wave"></i> <span><strong>Salário:</strong> <span class="vaga-salario">R$ ${vaga.salario ? vaga.salario : "A combinar"}</span></span></div>
+          <div class="meta-item"><i class="fas fa-gift"></i> <span><strong>Benefícios:</strong> ${vaga.beneficios || "Não informado"}</span></div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="meta-item"><i class="fas fa-align-left"></i> <span><strong>Descrição:</strong> ${vaga.descricao || "Não informada"}</span></div>
+      </div>
+      ${testeAlerta}
+      <div id="testeDownload" class="d-flex justify-content-center mb-3"></div>
+      <div class="vaga-actions text-center mt-4">
+        <button class="btn btn-lg" id="${buttonId}"
+                ${isFechada ? 'disabled style="background:var(--error-color);color:#fff;cursor:not-allowed;"' : `onclick="inscreverVaga(${vaga.id}, '${vaga.dataFinal}', '${buttonId}')"`}>
+          ${isFechada ? 'Vaga encerrada pela empresa' : 'Inscrever-se'}
+        </button>
+      </div>
+    </div>
+    <!-- Card lateral da empresa (lado direito) -->
+    <aside class="empresa-info-lateral">
+      <div class="empresa-info-box" style="background:#fff; border-left: none; box-shadow: 0 2px 8px 0 rgb(145 71 255 / 0.07); text-align: left;">
+        <h5 style="color:var(--primary-color);font-weight:800;margin-bottom:1.2rem;">Informações da empresa</h5>
+        ${empresa.descricao ? `<p class="empresa-info-sobre" style="margin-bottom:0.7rem;"><i class="fas fa-info-circle"></i> ${empresa.descricao}</p>` : ""}
+        ${empresa.setor ? `<p class="empresa-info-setor" style="margin-bottom:0.7rem;"><i class="fas fa-industry"></i> ${empresa.setor}</p>` : ""}
+        ${empresa.cidade ? `<p class="empresa-info-cidade" style="margin-bottom:0.7rem;"><i class="fas fa-map-marker-alt"></i> ${empresa.cidade}</p>` : ""}
+        <div class="empresa-info-avaliacao" style="margin-bottom:1.2rem;">
+          <span class="empresa-info-stars" style="color:#f59e0b;">
+            ${empresa.avaliacao ? '★'.repeat(Math.round(empresa.avaliacao)) + '☆'.repeat(5 - Math.round(empresa.avaliacao)) : '☆☆☆☆☆'}
+          </span>
+          <span class="empresa-info-nota" style="color:var(--text-light);margin-left:0.5em;">
+            ${empresa.avaliacao ? empresa.avaliacao.toFixed(1) : 'Sem avaliação'}
+          </span>
+        </div>
+        <a href="../Vaga/perfilEmpresa.html?id=${empresa.id}" class="btn btn-primary mt-2 w-100" style="background:var(--primary-color);border:none;" target="_blank">
+          Mais informações
+        </a>
+      </div>
+    </aside>
+  </div>
+`;
 
       /* ---------- verifica inscrição ---------- */
       verificarInscricao(vaga.id, async inscrito => {
@@ -340,6 +451,22 @@ function carregarDetalhes() {
       document.getElementById("detalhesVaga").innerHTML =
         `<div class="text-danger text-center">Erro ao carregar detalhes da vaga. Tente novamente mais tarde.</div>`;
     });
+}
+
+/* ------------------------------------------------------------------
+   NOVO → FUNÇÃO PARA OBTER ÍCONE DA VAGA
+   ------------------------------------------------------------------ */
+function getIconeVaga(titulo) {
+    if (!titulo) return '<i class="fa-solid fa-briefcase"></i>';
+    const t = titulo.toLowerCase();
+    if (t.includes("dev") || t.includes("programador") || t.includes("software")) return '<i class="fa-solid fa-laptop-code"></i>';
+    if (t.includes("design")) return '<i class="fa-solid fa-palette"></i>';
+    if (t.includes("analista") || t.includes("dados") || t.includes("bi")) return '<i class="fa-solid fa-chart-line"></i>';
+    if (t.includes("vendas") || t.includes("comercial")) return '<i class="fa-solid fa-cart-shopping"></i>';
+    if (t.includes("rh") || t.includes("recursos humanos")) return '<i class="fa-solid fa-user-tie"></i>';
+    if (t.includes("engenheiro") || t.includes("engenharia")) return '<i class="fa-solid fa-gears"></i>';
+    if (t.includes("administrativo") || t.includes("administração")) return '<i class="fa-solid fa-building"></i>';
+    return '<i class="fa-solid fa-briefcase"></i>';
 }
 </script>
 </body>

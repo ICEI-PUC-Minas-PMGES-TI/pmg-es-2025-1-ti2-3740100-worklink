@@ -97,17 +97,23 @@
             font-weight: 700;
         }
 
+        h3 {
+            color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
         #vagas-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2.5rem;
             margin-bottom: 3rem;
+            margin-top: 1rem;
         }
 
         .vaga-card {
             background: var(--white);
-            border-radius: 1.5rem;
-            padding: 2rem;
+            border-radius: 1.7rem;
+            padding: 2.3rem 2.1rem;
             box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
             border: 1px solid transparent;
@@ -116,7 +122,8 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 320px;
+            min-height: 350px;
+            margin-bottom: 0.5rem;
         }
 
         .vaga-card:hover {
@@ -126,16 +133,20 @@
         }
 
         .vaga-info h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
             color: var(--secondary-color);
         }
 
         .vaga-info p {
-            margin: 0.25rem 0;
-            font-size: 1rem;
+            margin: 0.5rem 0;
+            font-size: 1.05rem;
             color: var(--text-color);
+        }
+
+        .vaga-info .col-md-6 {
+            margin-bottom: 0.5rem;
         }
 
         .vaga-actions {
@@ -206,6 +217,10 @@
             .vaga-actions {
                 flex-direction: column;
                 gap: 0.5rem;
+            }
+
+            .vaga-info.row > div {
+                margin-bottom: 0.7rem;
             }
         }
     </style>
@@ -288,52 +303,171 @@
                         return response.json();
                     })
                     .then(vagas => {
-                        // Limpa o container antes de adicionar novas vagas
-                        vagasContainer.innerHTML = "";
+                        const hoje = new Date();
+                        const atualizacoes = [];
 
-                        // Itera sobre as vagas e cria os cards
+                        // Fecha automaticamente vagas cujo prazo já passou
                         vagas.forEach(vaga => {
-                            const vagaCard = document.createElement("div");
-                            vagaCard.classList.add("vaga-card");
-
-                            const buttonId = `inscreverBtn-${vaga.id}`;
-
-                            // Se a vaga exige teste, mostra aviso, mas não mostra botão de download
-                            const testeInfo = vaga.teste
-                                ? `<div class="alert alert-warning mt-2" role="alert">
-                                        <i class="fas fa-file-alt"></i> Vaga exige teste
-                                   </div>`
-                                : '';
-
-                            vagaCard.innerHTML = `
-                                <div class="vaga-info">
-                                    <h3>${vaga.titulo}</h3>
-                                    <p><strong>Empresa:</strong> ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}</p>
-                                    <p><strong>Lançamento:</strong> ${vaga.dataCriacao ? formatarData(vaga.dataCriacao) : "Data não informada"}</p>
-                                    <p><strong>Descrição:</strong> ${vaga.descricao}</p>
-                                    <p><strong>Tipo de Contrato:</strong> ${vaga.tipoContrato}</p>
-                                    <p><strong>Data de Publicação:</strong> ${vaga.dataFinal ? formatarData(vaga.dataFinal) : "Data não informada"}</p>
-                                </div>
-                                ${testeInfo}
-                                <div class="vaga-actions mt-2">
-                                    <button class="btn-inscrever" id="${buttonId}" onclick="inscreverVaga(${vaga.id}, '${vaga.dataFinal}', '${buttonId}')">Inscrever-se</button>
-                                    <button class="btn-detalhes" onclick="verDetalhes(${vaga.id})">Ver Detalhes</button>
-                                </div>
-                            `;
-
-                            vagasContainer.appendChild(vagaCard);
-
-                            // Verifica se o candidato já está inscrito
-                            verificarInscricao(vaga.id, inscrito => {
-                                if (inscrito) {
-                                    const inscreverBtn = document.getElementById(buttonId);
-                                    inscreverBtn.disabled = true;
-                                    inscreverBtn.textContent = "Já inscrito";
-                                    inscreverBtn.classList.remove("btn-inscrever");
-                                    inscreverBtn.classList.add("btn-inscrito");
-                                }
-                            });
+                            const prazoEncerrado = vaga.dataFinal && (hoje > new Date(vaga.dataFinal.split('T')[0]));
+                            const isFechada = vaga.status && vaga.status.toLowerCase() === "fechada";
+                            if (prazoEncerrado && !isFechada) {
+                                // Atualiza o status para "Fechada" via API
+                                const atualizacao = fetch(`http://localhost:8080/vagas/${vaga.id}`, {
+                                    method: 'PUT',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ ...vaga, status: "Fechada" })
+                                });
+                                atualizacoes.push(atualizacao);
+                            }
                         });
+
+                        // Aguarda todas as atualizações antes de renderizar
+                        Promise.all(atualizacoes).then(() => {
+                            // Recarrega as vagas para garantir que o status está atualizado
+                            fetch(apiUrl)
+                                .then(response => response.json())
+                                .then(vagasAtualizadas => {
+                                    // Ordena: abertas primeiro, fechadas por último
+                                    vagasAtualizadas.sort((a, b) => {
+                                        const statusA = (a.status || '').toLowerCase();
+                                        const statusB = (b.status || '').toLowerCase();
+                                        if (statusA === statusB) return 0;
+                                        if (statusA === "fechada") return 1;
+                                        if (statusB === "fechada") return -1;
+                                        return 0;
+                                    });
+
+                                    // Renderiza as vagas normalmente
+                                    vagasContainer.innerHTML = "";
+                                    vagasAtualizadas.forEach(vaga => {
+                                        const vagaCard = document.createElement("div");
+                                        vagaCard.classList.add("vaga-card");
+
+                                        const buttonId = `inscreverBtn-${vaga.id}`;
+
+                                        // Se a vaga exige teste, mostra aviso, mas não mostra botão de download
+                                        const testeInfo = vaga.teste
+                                            ? `<div class="alert alert-warning mt-2" role="alert">
+                                                    <i class="fas fa-file-alt"></i> Vaga exige teste
+                                               </div>`
+                                            : '';
+
+                                        const prazoEncerrado = vaga.dataFinal && (new Date() > new Date(vaga.dataFinal.split('T')[0]));
+                                        const isFechada = vaga.status && vaga.status.toLowerCase() === "fechada";
+
+                                        vagaCard.innerHTML = `
+                                            <div class="vaga-info row">
+                                                <div class="col-12 mb-2">
+                                                    <h3>${getIconeVaga(vaga.titulo)} ${vaga.titulo}</h3>
+                                                    <h5><i class="fas fa-building"></i> ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}</h5>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><i class="fas fa-align-left"></i> <strong>Descrição:</strong> ${vaga.descricao}</p>
+                                                    <p><i class="fas fa-gift"></i> <strong>Benefícios:</strong> ${vaga.beneficios ? vaga.beneficios : "Não informado"}</p>
+                                                    <p><i class="fas fa-file-contract"></i> <strong>Tipo de Contrato:</strong> ${vaga.tipoContrato}</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><i class="fas fa-calendar"></i> <strong>Data de publicação:</strong> ${vaga.dataCriacao ? formatarData(vaga.dataCriacao) : "Data não informada"}</p>
+                                                    <p><i class="fas fa-calendar-check"></i> <strong>Fim das inscrições:</strong> ${vaga.dataFinal ? formatarData(vaga.dataFinal) : "Data não informada"}</p>
+                                                </div>
+                                            </div>
+                                            ${testeInfo}
+                                            <div class="vaga-actions mt-2">
+                                                <button class="btn-inscrever${isFechada || prazoEncerrado ? ' btn-inscrito' : ''}" id="${buttonId}" 
+                                                    ${(isFechada || prazoEncerrado) ? 'disabled' : `onclick="inscreverVaga(${vaga.id}, '${vaga.dataFinal}', '${buttonId}')"`}>
+                                                    ${(isFechada || prazoEncerrado) ? 'Inscrições encerradas' : 'Inscrever-se'}
+                                                </button>
+                                                <button class="btn-detalhes" onclick="verDetalhes(${vaga.id})">Ver Detalhes</button>
+                                            </div>
+                                        `;
+
+                                        vagasContainer.appendChild(vagaCard);
+
+                                        // Verifica se o candidato já está inscrito
+                                        verificarInscricao(vaga.id, inscrito => {
+                                            if (inscrito) {
+                                                const inscreverBtn = document.getElementById(buttonId);
+                                                inscreverBtn.disabled = true;
+                                                inscreverBtn.textContent = "Já inscrito";
+                                                inscreverBtn.classList.remove("btn-inscrever");
+                                                inscreverBtn.classList.add("btn-inscrito");
+                                            }
+                                        });
+                                    });
+                                });
+                        });
+
+                        // Se não teve nenhuma atualização, ordena e renderiza direto
+                        if (atualizacoes.length === 0) {
+                            // Ordena: abertas primeiro, fechadas por último
+                            vagas.sort((a, b) => {
+                                const statusA = (a.status || '').toLowerCase();
+                                const statusB = (b.status || '').toLowerCase();
+                                if (statusA === statusB) return 0;
+                                if (statusA === "fechada") return 1;
+                                if (statusB === "fechada") return -1;
+                                return 0;
+                            });
+
+                            // Renderiza as vagas normalmente
+                            vagasContainer.innerHTML = "";
+                            vagas.forEach(vaga => {
+                                const vagaCard = document.createElement("div");
+                                vagaCard.classList.add("vaga-card");
+
+                                const buttonId = `inscreverBtn-${vaga.id}`;
+
+                                // Se a vaga exige teste, mostra aviso, mas não mostra botão de download
+                                const testeInfo = vaga.teste
+                                    ? `<div class="alert alert-warning mt-2" role="alert">
+                                            <i class="fas fa-file-alt"></i> Vaga exige teste
+                                       </div>`
+                                    : '';
+
+                                const prazoEncerrado = vaga.dataFinal && (new Date() > new Date(vaga.dataFinal.split('T')[0]));
+                                const isFechada = vaga.status && vaga.status.toLowerCase() === "fechada";
+
+                                vagaCard.innerHTML = `
+                                    <div class="vaga-info row">
+                                        <div class="col-12 mb-2">
+                                            <h3>${getIconeVaga(vaga.titulo)} ${vaga.titulo}</h3>
+                                            <h5><i class="fas fa-building"></i> ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}</h5>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><i class="fas fa-align-left"></i> <strong>Lançamento:</strong> ${vaga.dataCriacao ? formatarData(vaga.dataCriacao) : "Data não informada"}</p>
+                                            <p><i class="fas fa-align-left"></i> <strong>Descrição:</strong> ${vaga.descricao}</p>
+                                            <p><i class="fas fa-gift"></i> <strong>Benefícios:</strong> ${vaga.beneficios ? vaga.beneficios : "Não informado"}</p>
+                                            <p><i class="fas fa-file-contract"></i> <strong>Tipo de Contrato:</strong> ${vaga.tipoContrato}</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><i class="fas fa-calendar"></i> <strong>Data de publicação:</strong> ${vaga.dataCriacao ? formatarData(vaga.dataCriacao) : "Data não informada"}</p>
+                                            <p><i class="fas fa-calendar-check"></i> <strong>Fim das inscrições:</strong> ${vaga.dataFinal ? formatarData(vaga.dataFinal) : "Data não informada"}</p>
+                                        </div>
+                                    </div>
+                                    ${testeInfo}
+                                    <div class="vaga-actions mt-2">
+                                        <button class="btn-inscrever${isFechada || prazoEncerrado ? ' btn-inscrito' : ''}" id="${buttonId}" 
+                                            ${(isFechada || prazoEncerrado) ? 'disabled' : `onclick="inscreverVaga(${vaga.id}, '${vaga.dataFinal}', '${buttonId}')"`}>
+                                            ${(isFechada || prazoEncerrado) ? 'Inscrições encerradas' : 'Inscrever-se'}
+                                        </button>
+                                        <button class="btn-detalhes" onclick="verDetalhes(${vaga.id})">Ver Detalhes</button>
+                                    </div>
+                                `;
+
+                                vagasContainer.appendChild(vagaCard);
+
+                                // Verifica se o candidato já está inscrito
+                                verificarInscricao(vaga.id, inscrito => {
+                                    if (inscrito) {
+                                        const inscreverBtn = document.getElementById(buttonId);
+                                        inscreverBtn.disabled = true;
+                                        inscreverBtn.textContent = "Já inscrito";
+                                        inscreverBtn.classList.remove("btn-inscrever");
+                                        inscreverBtn.classList.add("btn-inscrito");
+                                    }
+                                });
+                            });
+                        }
                     })
                     .catch(error => {
                         console.error("Erro ao carregar vagas:", error);
@@ -350,6 +484,19 @@
         function verDetalhes(vagaId) {
             // Redireciona para a página de detalhes com o ID da vaga na URL
             window.location.href = `detalhesVaga.html?vagaId=${vagaId}`;
+        }
+
+        function getIconeVaga(titulo) {
+            if (!titulo) return '<i class="fa-solid fa-briefcase"></i>';
+            const t = titulo.toLowerCase();
+            if (t.includes("dev") || t.includes("programador") || t.includes("software")) return '<i class="fa-solid fa-laptop-code"></i>';
+            if (t.includes("design")) return '<i class="fa-solid fa-palette"></i>';
+            if (t.includes("analista") || t.includes("dados") || t.includes("bi")) return '<i class="fa-solid fa-chart-line"></i>';
+            if (t.includes("vendas") || t.includes("comercial")) return '<i class="fa-solid fa-cart-shopping"></i>';
+            if (t.includes("rh") || t.includes("recursos humanos")) return '<i class="fa-solid fa-user-tie"></i>';
+            if (t.includes("engenheiro") || t.includes("engenharia")) return '<i class="fa-solid fa-gears"></i>';
+            if (t.includes("administrativo") || t.includes("administração")) return '<i class="fa-solid fa-building"></i>';
+            return '<i class="fa-solid fa-briefcase"></i>';
         }
 
         // Adicione este script ao final do <body> das páginas que possuem o botão de perfil

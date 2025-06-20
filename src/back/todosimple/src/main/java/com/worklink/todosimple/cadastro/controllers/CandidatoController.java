@@ -64,16 +64,19 @@ public class CandidatoController {
             @RequestParam("habilidades") String habilidades,
             @RequestParam("email") String email,
             @RequestParam("telefone") String telefone,
+            @RequestParam(value = "sobre", required = false) String sobre,
+            @RequestParam(value = "links", required = false) String links,
+            @RequestParam(value = "idiomas", required = false) String idiomas,
+            @RequestParam(value = "disponibilidade", required = false) String disponibilidade,
+            @RequestParam(value = "experiencias", required = false) String experiencias, // <-- NOVO CAMPO
             @RequestParam(value = "fotoPerfil", required = false) MultipartFile fotoPerfil) {
 
         try {
-            // Busca o candidato pelo ID
             Candidato candidato = usuarioService.findCandidatoById(id);
             if (candidato == null) {
                 return ResponseEntity.notFound().build();
             }
 
-            // Atualiza os campos do candidato
             candidato.setNome(nome);
             candidato.setFormacao(formacao);
             candidato.setAreaAtuacao(areaAtuacao);
@@ -82,13 +85,18 @@ public class CandidatoController {
             candidato.setEmail(email);
             candidato.setTelefone(telefone);
 
-            // Salva a nova imagem de perfil, se fornecida
+            // Novos campos
+            if (sobre != null) candidato.setSobre(sobre);
+            if (links != null) candidato.setLinks(links);
+            if (idiomas != null) candidato.setIdiomas(idiomas);
+            if (disponibilidade != null) candidato.setDisponibilidade(disponibilidade);
+            if (experiencias != null) candidato.setExperiencias(experiencias); // <-- NOVO CAMPO
+
             if (fotoPerfil != null && !fotoPerfil.isEmpty()) {
                 String caminhoImagem = salvarImagem(fotoPerfil);
                 candidato.setFotoPerfil(caminhoImagem);
             }
 
-            // Atualiza o candidato no banco de dados
             usuarioService.updateCandidato(candidato);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {

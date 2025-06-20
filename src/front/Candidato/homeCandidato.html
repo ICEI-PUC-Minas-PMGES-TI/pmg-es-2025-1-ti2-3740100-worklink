@@ -7,24 +7,32 @@
     <title>Home Candidato - Worklink</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --primary-color: #9147ff;
             --secondary-color: #6d6e7c;
             --background-color: #f9fafb;
-            --text-color: #3c3c3c;
-            --text-color2: #ffffff;
+            --text-color: #1e293b;
+            --text-light: #64748b;
             --accent-color: #4e4f58;
             --highlight-color: #4F3F86;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
         }
 
         body {
+            font-family: 'Inter', sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
         }
 
         .navbar {
@@ -245,41 +253,6 @@
             letter-spacing: 0.02em;
         }
 
-        /* Estilo para o modal de feedback */
-        .modal-backdrop {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1040;
-        }
-
-        .modal {
-            display: block;
-            z-index: 1050;
-        }
-
-        #feedback-text {
-            margin-top: 0;
-            /* Remove qualquer margem superior */
-            text-align: left;
-            /* Alinha o texto à esquerda */
-            display: block;
-            /* Garante que o texto ocupe o espaço disponível */
-            vertical-align: top;
-            /* Alinha o conteúdo ao topo */
-            background-color: #c9c9c9;
-            /* Cor de fundo clara */
-            padding: 1rem;
-            /* Adiciona espaçamento interno */
-            border-radius: 8px;
-            /* Bordas arredondadas */
-            box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
-            /* Adiciona sombra */
-        }
-
         .candidatura-item .button-container {
             display: flex;
             /* Usa Flexbox para alinhar os botões */
@@ -292,6 +265,60 @@
             justify-content: flex-start;
             /* Alinha os botões à esquerda */
         }
+
+        .content-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .experience-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: #f1f1f1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-item h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        .experience-item p {
+            margin: 0.5rem 0;
+            color: var(--text-color);
+        }
+
+        .experience-item .badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+        }
+
+        .experience-item .badge.aprovado {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .experience-item .badge.reprovado {
+            background-color: #dc3545;
+            color: white;
+        }
+
     </style>
 </head>
 
@@ -331,6 +358,9 @@
                                 id="candidato-email">candidato@email.com</span></p>
                         <p><i class="fas fa-phone"></i> <strong>Telefone:</strong> <span id="candidato-telefone">(00)
                                 00000-0000</span></p>
+                        <div id="candidato-idiomas">
+                            <!-- Os idiomas serão carregados aqui via JavaScript -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -364,6 +394,14 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="content-card">
+                    <h3 class="card-title">
+                        <i class="fas fa-briefcase"></i>
+                        Experiência Profissional
+                    </h3>
+                    <div id="candidato-experiencias"></div>
+                </div>
             </div>
     </main>
 
@@ -393,6 +431,21 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" onclick="fecharModalFeedback()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Feedback da Empresa -->
+    <div class="modal fade" id="modalFeedback" tabindex="-1" aria-labelledby="modalFeedbackLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalFeedbackLabel">Feedback da Empresa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body" id="feedbackConteudo">
+                    <!-- O feedback será inserido aqui -->
                 </div>
             </div>
         </div>
@@ -476,6 +529,43 @@
                     } else {
                         document.getElementById('candidato-avatar').src = "../assets/img/img-padrão.png";
                     }
+
+                    // Carregar idiomas
+                    if (dadosCandidato.idiomas) {
+                        let idiomas = [];
+                        try {
+                            idiomas = JSON.parse(dadosCandidato.idiomas);
+                        } catch {
+                            idiomas = [];
+                        }
+                        const idiomasDiv = document.getElementById('candidato-idiomas');
+                        idiomasDiv.innerHTML = idiomas.length
+                            ? idiomas.map(i => `<span class="badge bg-primary me-2">${i.nome} - ${i.nivel}</span>`).join('')
+                            : '<span class="text-muted">Nenhum idioma informado</span>';
+                    }
+
+                    // Carregar experiências
+                    if (dadosCandidato.experiencias) {
+                        let experiencias = [];
+                        try {
+                            experiencias = JSON.parse(dadosCandidato.experiencias);
+                        } catch {
+                            experiencias = [];
+                        }
+                        const experienciasDiv = document.getElementById('candidato-experiencias');
+                        experienciasDiv.innerHTML = experiencias.length
+                            ? experiencias.map(e => `
+                            <div class="experience-item">
+                                <h4>${e.cargo} - ${e.empresa}</h4>
+                                <p><i class="fas fa-calendar-alt"></i> ${formatarData(e.dataInicio)} a ${e.dataFim ? formatarData(e.dataFim) : 'Atual'}</p>
+                                <p>${e.descricao}</p>
+                                <span class="badge ${e.status === 'Aprovado' ? 'aprovado' : e.status === 'Reprovado' ? 'reprovado' : 'em-andamento'}">
+                                    ${e.status}
+                                </span>
+                            </div>
+                        `).join('')
+                            : '<p class="text-muted">Nenhuma experiência profissional cadastrada.</p>';
+                    }
                 })
                 .catch(error => {
                     alert("Erro ao carregar dados do candidato.");
@@ -522,14 +612,18 @@
                         candidaturaItem.classList.add("candidatura-item", "mb-4");
 
                         let testeEnviadoBtn = "";
-                        if (candidatura.testeResposta) {
-                            testeEnviadoBtn = `
-                        <a href="http://localhost:8080${candidatura.testeResposta}" target="_blank" class="btn btn-sm btn-outline-success mt-2">
-                            <i class="fas fa-file-alt"></i> Ver Teste Enviado
-                        </a>`;
-                        } else {
-                            testeEnviadoBtn = `
-                        <p class="text-danger mt-2"><i class="fas fa-exclamation-circle"></i> Teste não enviado</p>`;
+                        if (candidatura.vaga.teste) {
+                            if (candidatura.testeResposta) {
+                                testeEnviadoBtn = `
+            <a href="http://localhost:8080${candidatura.testeResposta}" target="_blank" class="btn btn-sm btn-outline-success">
+                <i class="fas fa-file-alt"></i> Ver Teste Enviado
+            </a>`;
+                            } else {
+                                testeEnviadoBtn = `
+            <button class="btn btn-outline-secondary btn-sm ms-auto" onclick="abrirUploadTeste(${candidatura.id}, '${candidatura.vaga.titulo}')">
+                <i class="fas fa-upload"></i> Enviar Teste
+            </button>`;
+                            }
                         }
 
                         let feedbackBtn = "";
@@ -563,13 +657,7 @@
         <button class="btn btn-outline-primary btn-sm me-2" onclick="baixarTeste(${vaga.id})">
             <i class="fas fa-download"></i> Baixar Teste
         </button>
-        ${candidatura.testeResposta ? `
-            <a href="http://localhost:8080${candidatura.testeResposta}" target="_blank" class="btn btn-sm btn-outline-success">
-                <i class="fas fa-file-alt"></i> Ver Teste Enviado
-            </a>` : `
-            <div class="d-flex align-items-center">
-                <p class="text-danger mb-0"><i class="fas fa-exclamation-circle"></i> Teste não enviado</p>
-            </div>`}
+        ${testeEnviadoBtn}
         ${feedbackBtn}
     </div>
 `;
@@ -610,50 +698,31 @@
             window.location.href = `envioTesteVaga.html?candidaturaId=${candidaturaId}`;
         }
 
-        function abrirUploadTeste(candidaturaId) {
-            const input = document.getElementById('input-upload-teste');
-            input.value = ""; // Limpa seleção anterior
-            input.onchange = function () {
-                if (input.files.length > 0) {
-                    // Busca o nome da vaga para exibir na mensagem
-                    const candidaturaItem = input.closest('.candidatura-item') || document;
-                    let vagaTitulo = "";
-                    // Tenta encontrar o título da vaga no card mais próximo
-                    if (candidaturaItem) {
-                        const h4 = candidaturaItem.querySelector('h4');
-                        if (h4) vagaTitulo = h4.textContent.trim();
-                    }
-                    if (!vagaTitulo) vagaTitulo = "selecionada";
-
-                    if (confirm(`Você está prestes a enviar o teste da vaga "${vagaTitulo}". Essa ação é irreversível. Tem certeza?`)) {
-                        enviarArquivoTeste(candidaturaId, input.files[0]);
-                    }
-                    // Se cancelar, não faz nada
+        function abrirUploadTeste(candidaturaId, vagaTitulo) {
+            const input = document.createElement("input");
+            input.type = "file";
+            input.accept = ".pdf,.zip,.rar";
+            input.addEventListener("change", () => {
+                if (input.files.length === 0) return;
+                if (confirm(`Você está prestes a enviar o teste da vaga "${vagaTitulo}". Essa ação é irreversível. Tem certeza?`)) {
+                    enviarArquivoTeste(candidaturaId, input.files[0])
+                        .catch(e => alert(e.message));
                 }
-            };
+            });
             input.click();
         }
 
-        function enviarArquivoTeste(candidaturaId, file) {
+        async function enviarArquivoTeste(candidaturaId, file) {
             const formData = new FormData();
             formData.append("file", file);
 
-            fetch(`http://localhost:8080/aplicacoes/${candidaturaId}/teste-resposta`, {
+            const resp = await fetch(`http://localhost:8080/aplicacoes/${candidaturaId}/teste-resposta`, {
                 method: "POST",
                 body: formData
-            })
-                .then(resp => {
-                    if (!resp.ok) throw new Error("Erro ao enviar teste");
-                    return resp.text();
-                })
-                .then(msg => {
-                    alert("Teste enviado com sucesso!");
-                    // Atualize a lista de candidaturas para refletir o novo status
-                    carregarCandidaturas();
-                })
-                .catch(err => {
-                    alert("Erro ao enviar teste: " + err.message);
-                });
+            });
+            if (!resp.ok) throw new Error("Erro ao enviar teste");
+            alert("Teste enviado com sucesso!");
+            carregarCandidaturas(); // Atualiza a lista
         }
 
         // Função para fechar o modal de feedback
@@ -669,44 +738,27 @@
 
         // Exemplo de como abrir o modal de feedback com texto
         function abrirModalFeedback(candidaturaId) {
-            const modal = document.getElementById("feedback-modal");
-            const backdrop = document.createElement("div");
-            backdrop.className = "modal-backdrop";
-            backdrop.id = "modal-backdrop";
-
             fetch(`http://localhost:8080/aplicacoes/${candidaturaId}`)
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Erro ao buscar feedback");
-                    }
+                    if (!response.ok) throw new Error("Erro ao buscar feedback");
                     return response.json();
                 })
                 .then(candidatura => {
                     let feedback = candidatura.feedback || "Nenhum feedback disponível.";
                     const empresaNome = candidatura.vaga.empresa.nome;
                     const vagaTitulo = candidatura.vaga.titulo;
-
-                    // Remove aspas do feedback, caso existam
                     feedback = feedback.replace(/^"|"$/g, "");
-
-                    // Atualiza o título do modal com o nome da empresa e da vaga
-                    document.querySelector(".modal-title").textContent = `Feedback da empresa ${empresaNome} para a vaga ${vagaTitulo}`;
-
-                    // Atualiza o texto do feedback no modal
-                    const feedbackTextElement = document.getElementById("feedback-text");
-                    feedbackTextElement.innerHTML = `<p>${feedback}</p>`;
-                    feedbackTextElement.style.marginTop = "0"; // Garante que o texto comece no topo
+                    document.getElementById("modalFeedbackLabel").textContent = `Feedback da empresa ${empresaNome} para a vaga ${vagaTitulo}`;
+                    document.getElementById("feedbackConteudo").innerHTML = `<div padding:1rem;border-radius:10px;">${feedback}</div>`;
+                    const modal = new bootstrap.Modal(document.getElementById('modalFeedback'));
+                    modal.show();
                 })
                 .catch(error => {
-                    console.error("Erro ao carregar feedback:", error);
-                    document.querySelector(".modal-title").textContent = "Erro ao carregar feedback";
-                    document.getElementById("feedback-text").innerHTML = `
-                <p class="text-danger">Erro ao carregar feedback.</p>
-            `;
+                    document.getElementById("modalFeedbackLabel").textContent = "Erro ao carregar feedback";
+                    document.getElementById("feedbackConteudo").innerHTML = `<p class="text-danger">Erro ao carregar feedback.</p>`;
+                    const modal = new bootstrap.Modal(document.getElementById('modalFeedback'));
+                    modal.show();
                 });
-
-            document.body.appendChild(backdrop); // Adiciona o fundo opaco
-            modal.style.display = "block";
         }
 
         function baixarTeste(vagaId) {

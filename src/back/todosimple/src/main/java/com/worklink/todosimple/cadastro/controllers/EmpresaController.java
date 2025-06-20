@@ -98,18 +98,15 @@ public class EmpresaController {
             @RequestParam("numero") String numero,
             @RequestParam("nomeResponsavel") String nomeResponsavel,
             @RequestParam("cargo") String cargo,
+            @RequestParam("setor") String setor, // Novo campo
             @RequestParam(value = "fotoPerfil", required = false) MultipartFile fotoPerfil) {
 
         try {
-            System.out.println("Iniciando atualização da empresa com ID: " + id);
-
             Empresa empresa = usuarioService.findEmpresaById(id);
             if (empresa == null) {
-                System.out.println("Empresa não encontrada com ID: " + id);
                 return ResponseEntity.notFound().build();
             }
 
-            // Atualiza os campos da empresa
             empresa.setNome(nome);
             empresa.setDescricao(descricao);
             empresa.setEndereco(endereco);
@@ -120,26 +117,16 @@ public class EmpresaController {
             empresa.setNumero(numero);
             empresa.setNomeResponsavel(nomeResponsavel);
             empresa.setCargo(cargo);
+            empresa.setSetor(setor); // Atualiza o setor
 
-            // Salva a imagem no servidor e atualiza o caminho no banco de dados
             if (fotoPerfil != null && !fotoPerfil.isEmpty()) {
-                try {
-                    System.out.println("Salvando imagem...");
-                    String caminhoImagem = salvarImagem(fotoPerfil);
-                    empresa.setFotoPerfil(caminhoImagem);
-                    System.out.println("Imagem salva em: " + caminhoImagem);
-                } catch (IOException e) {
-                    System.err.println("Erro ao salvar a imagem: " + e.getMessage());
-                    return ResponseEntity.status(500).body(null);
-                }
+                String caminhoImagem = salvarImagem(fotoPerfil);
+                empresa.setFotoPerfil(caminhoImagem);
             }
 
             usuarioService.updateEmpresa(empresa);
-            System.out.println("Empresa atualizada com sucesso!");
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
-            System.err.println("Erro ao atualizar empresa: " + e.getMessage());
-            e.printStackTrace();
             return ResponseEntity.status(500).build();
         }
     }
@@ -157,6 +144,7 @@ public class EmpresaController {
             @RequestParam("numero") String numero,
             @RequestParam("nomeResponsavel") String nomeResponsavel,
             @RequestParam("cargo") String cargo,
+            @RequestParam("setor") String setor, // <-- ADICIONE ESTA LINHA
             @RequestParam(value = "fotoPerfil", required = false) MultipartFile fotoPerfil) {
 
         try {
@@ -177,6 +165,7 @@ public class EmpresaController {
             empresa.setNumero(numero);
             empresa.setNomeResponsavel(nomeResponsavel);
             empresa.setCargo(cargo);
+            empresa.setSetor(setor); // <-- SALVA O SETOR
 
             // Salva a imagem no servidor e atualiza o caminho no banco de dados
             if (fotoPerfil != null && !fotoPerfil.isEmpty()) {

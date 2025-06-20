@@ -1,3 +1,22 @@
+:root {
+            --primary-color: #9147ff;
+            --secondary-color: #6d6e7c;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --accent-color: #4e4f58;
+            --highlight-color: #4F3F86;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
 
 
 body {
@@ -27,96 +46,121 @@ h1 {
 }
 
 #empresa-perfil-nome {
-    color: var(--secondary-color);
+    color: var(--highlight-color);
 }
 
+/* Novo padrão de card de vaga estilo ExibirVagas/Detalhes */
 .vaga-card {
-    background: #fff; /* fundo branco */
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    box-shadow: 0 4px 8px rgba(90, 61, 46, 0.08);
-    border: 2px solid var(--primary-color);
-    color: var(--text-color);
-    transition: box-shadow 0.2s, border-color 0.2s;
+    background: var(--white);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 320px;
+    margin-bottom: 2rem;
 }
 
 .vaga-card:hover {
-    box-shadow: 0 8px 16px rgba(212, 119, 42, 0.15);
-    border-color: var(--highlight-color);
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
 }
 
-.vaga-card h2 {
-    margin-top: 0;
-    color: var(--secondary-color);
+.vaga-info {
+    margin-bottom: 1rem;
 }
 
-.vaga-card p {
-    margin: 8px 0;
+.vaga-info h2 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
 }
 
-.vaga-card button {
-    margin: 5px 5px 0 0;
-    padding: 8px 12px;
+.vaga-info h5 {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.vaga-info p {
+    margin: 0.25rem 0;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.vaga-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.btn-detalhes {
+    background: var(--accent-color);
+    color: var(--white);
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.btn-detalhes:hover {
+    background: var(--secondary-color);
+    color: var(--white);
 }
 
-.vaga-card button.editar {
-    background-color: var(--accent-color) !important;
-    color: white !important;
+.btn-editar {
+    background: var(--primary-color);
+    color: var(--white);
     border: none;
-    transition: background 0.2s;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.btn-editar:hover {
+    background: var(--highlight-color);
+    color: var(--white);
 }
 
-.vaga-card button.editar:hover {
-    background-color: #6d7a41 !important; /* tom mais escuro do accent-color */
+.btn-excluir {
+    background: var(--error-color);
+    color: var(--white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.btn-excluir:hover {
+    background: #b91c1c;
+    color: var(--white);
 }
 
-button.excluir {
-    background-color: var(--highlight-color);
-    color: white;
+.btn-candidatos {
+    background: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
 }
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: var(--highlight-color);
-}
-
-.btn-outline {
-    background-color: var(--accent-color);
-    color: white;
-    border-color: var(--background-color);
-}
-
-.btn-outline:hover {
-    background-color: #626d41;
-}
-
-.botoes-header {
-    text-decoration: none;
-}
-
-#btn-editar-empresa {
-    background-color: var(--primary-color);
-}
-
-#btn-editar-empresa:hover {
-    background-color: #944009;
-}
-
-.stat-value {
-    color: var(--secondary-color);
-}
-
-.btn-secondary {
-    background-color: var(--accent-color);
-    color: white;
+.btn-candidatos:hover {
+    background: var(--accent-color);
+    color: var(--white);
 }
 
 /* Estilo para a lista de vagas */
@@ -126,24 +170,40 @@ button.excluir {
     margin: 0;
 }
 
+
+.vaga-card, .vaga-item {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(90, 61, 46, 0.08);
+    border: none; /* Remove a borda padrão */
+    color: var(--text-color);
+    transition: box-shadow 0.2s, border-color 0.2s, border-width 0.2s;
+}
+
+.vaga-card:hover, .vaga-item:hover {
+    box-shadow: 0 8px 16px rgba(20, 11, 3, 0.15);
+    border: 1px solid var(--primary-color) !important; 
+    border-radius: 4px;/* Mostra a borda só no hover */
+}
+
 .vaga-item {
-    border: 1px solid var(--primary-color); /* Borda com a cor primária */
-    border-radius: 10px; /* Bordas arredondadas */
+    border-radius: 4px; /* Bordas arredondadas */
     padding: 15px; /* Espaçamento interno */
     margin-bottom: 15px; /* Espaçamento entre os itens */
     background-color: #fff; /* Fundo branco */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
     transition: box-shadow 0.2s, border-color 0.2s;
+    border: none;
 }
 
 .vaga-item:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra mais intensa no hover */
-    border-color: var(--highlight-color); /* Cor de destaque no hover */
+    border-color: var(--primary-color) !important;
 }
 
 .vaga-item h3 {
     margin-top: 0;
-    color: var(--secondary-color); /* Cor secundária para o título */
+    color: var(--primary-color); /* Cor secundária para o título */
 }
 
 .vaga-item p {
@@ -161,24 +221,88 @@ button.excluir {
 }
 
 .vaga-item button.editar {
-    background-color: var(--accent-color); /* Cor de destaque para o botão "Editar" */
+    background-color: var(--highlight-color); /* Cor de destaque para o botão "Editar" */
     color: white;
 }
 
 .vaga-item button.editar:hover {
-    background-color: #6d7a41; /* Tom mais escuro no hover */
+    background-color: var(--primary-color); /* Tom mais escuro no hover */
 }
 
 .vaga-item button.excluir {
     background-color: var(--highlight-color); /* Cor de destaque para o botão "Excluir" */
     color: white;
 }
-
-.vaga-item button.ver-candidaturas {
-    background-color: var(--secondary-color); /* Cor secundária para o botão "Ver candidaturas" */
+.vaga-item button.excluir:hover {
+    background-color: var(--primary-color); /* Cor de destaque para o botão "Excluir" */
     color: white;
 }
 
+.vaga-item button.ver-candidaturas {
+    background-color: var(--highlight-color); /* Cor secundária para o botão "Ver candidaturas" */
+    color: white;
+}
 .vaga-item button.ver-candidaturas:hover {
-    background-color: #4a2d20; /* Tom mais escuro no hover */
+    background-color: var(--primary-color); /* Cor secundária para o botão "Ver candidaturas" */
+    color: white;
+}
+
+
+
+/* Select de status moderno Worklink */
+.vaga-status-select {
+    min-width: 120px;
+    padding: 0.35rem 1.2rem 0.35rem 0.7rem;
+    border-radius: 1rem;
+    border: 1.5px solid --highlight-color;
+    background: var(--background-color);
+    color: var(--highlight-color);
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px 0 rgb(145 71 255 / 0.07);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    margin-left: 1rem;
+    margin-top: 0.1rem;
+    appearance: none;
+    cursor: pointer;
+}
+
+.vaga-status-select:focus {
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 0 2px #9147ff33;
+}
+
+.vaga-status-select option {
+    color: var(--text-color);
+    background: var(--white);
+}
+
+.vaga-status-select.fechada {
+    border-color: var(--error-color) !important;
+    color: var(--error-color) !important;
+    background-color: #fff5f5 !important;
+}
+
+/* Opcional: alinhar o select no topo direito do card */
+.vaga-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.section-header h2 {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+.empresa-perfil-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px; /* Espaço entre as estatísticas de vagas */
+    margin-top: 2rem;
 }

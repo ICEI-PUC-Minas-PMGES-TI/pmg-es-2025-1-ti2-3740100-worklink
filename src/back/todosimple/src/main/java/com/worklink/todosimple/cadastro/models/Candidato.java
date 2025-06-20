@@ -37,6 +37,21 @@ public class Candidato extends Usuario {
     @Column(name = "habilidades", length = 500, nullable = false)
     private String habilidades;
 
+    @Column(name = "sobre", length = 1000)
+    private String sobre;
+
+    @Column(name = "links", length = 1000)
+    private String links; // Pode ser uma string separada por vírgula ou JSON
+
+    @Column(name = "idiomas", length = 1000)
+    private String idiomas; // Armazene como JSON string
+
+    @Column(name = "disponibilidade", length = 100)
+    private String disponibilidade;
+
+    @Column(name = "experiencias", columnDefinition = "TEXT")
+    private String experiencias; // Armazena um array JSON
+
     public String getCpf() {
         return cpf;
     }
@@ -91,5 +106,45 @@ public class Candidato extends Usuario {
 
     public void setHabilidades(String habilidades) {
         this.habilidades = habilidades;
+    }
+
+    public String getSobre() {
+        return sobre;
+    }
+
+    public void setSobre(String sobre) {
+        this.sobre = sobre;
+    }
+
+    public String getLinks() {
+        return links;
+    }
+
+    public void setLinks(String links) {
+        this.links = links;
+    }
+
+    public String getIdiomas() {
+        return idiomas;
+    }
+
+    public void setIdiomas(String idiomas) {
+        this.idiomas = idiomas;
+    }
+
+    public String getDisponibilidade() {
+        return disponibilidade;
+    }
+
+    public void setDisponibilidade(String disponibilidade) {
+        this.disponibilidade = disponibilidade;
+    }
+
+    public String getExperiencias() {
+        return experiencias;
+    }
+
+    public void setExperiencias(String experiencias) {
+        this.experiencias = experiencias;
     }
 }

@@ -379,6 +379,57 @@
                 gap: 0.5rem;
             }
         }
+
+        .vagas-scroll {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            overflow-y: auto;
+            overflow-x: unset;
+            max-height: 650px;
+            padding: 2rem 20px 1rem 0; /* Adiciona padding-top de 2rem para evitar corte no hover do topo */
+            scroll-behavior: smooth;
+            width: 100%;
+            position: relative;
+            margin-top: 2.5rem;
+            margin-right: 0;
+        }
+        .vagas-scroll .job-card {
+            min-width: unset;
+            max-width: unset;
+            width: 100%;
+            flex: 0 0 auto;
+            transition: box-shadow 0.3s cubic-bezier(.4,0,.2,1);
+            z-index: 1;
+            position: relative;
+        }
+        .vagas-scroll .job-card:hover,
+        .vagas-scroll .job-card:focus-within {
+            box-shadow: 0 8px 32px 0 rgba(145,71,255,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.08);
+        }
+        .vagas-scroll::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background: transparent;
+            transition: background 0.2s;
+        }
+        .vagas-scroll::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .vagas-scroll:hover::-webkit-scrollbar-thumb,
+        .vagas-scroll:active::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+        }
+        /* Firefox */
+        .vagas-scroll {
+            scrollbar-color: #e2e8f0 transparent;
+            scrollbar-width: thin;
+        }
+        .vagas-scroll:hover {
+            scrollbar-color: var(--primary-color) transparent;
+        }
     </style>
 </head>
 
@@ -476,10 +527,10 @@
                         Sobre a Empresa
                     </h3>
                     <p id="company-description">
-                        A TechCorp Inovação é uma empresa líder em soluções tecnológicas, especializada no desenvolvimento de software empresarial e consultoria em transformação digital. Com mais de 13 anos no mercado, atendemos clientes de diversos segmentos, sempre buscando a excelência e inovação em nossos projetos.
+                        
                     </p>
                     <p>
-                        Nossa missão é transformar ideias em soluções tecnológicas que impactem positivamente a vida das pessoas e o crescimento dos negócios. Valorizamos a diversidade, criatividade e o desenvolvimento contínuo de nossos colaboradores.
+                        
                     </p>
                 </div>
 
@@ -489,29 +540,15 @@
                         <div class="stat-icon">
                             <i class="fas fa-briefcase"></i>
                         </div>
-                        <div class="stat-number">45</div>
-                        <div class="stat-label">Vagas Ativas</div>
+                        <div class="stat-number" id="vagas-ativas">0</div>
+                        <div class="stat-label">Vagas Abertas</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-briefcase"></i>
                         </div>
-                        <div class="stat-number">750</div>
-                        <div class="stat-label">Funcionários</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <div class="stat-number">15</div>
-                        <div class="stat-label">Prêmios</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="stat-number">13</div>
-                        <div class="stat-label">Anos de Mercado</div>
+                        <div class="stat-number" id="vagas-totais">0</div>
+                        <div class="stat-label">Vagas criadas</div>
                     </div>
                 </div>
 
@@ -521,54 +558,8 @@
                         <i class="fas fa-briefcase"></i>
                         Vagas Disponíveis
                     </h3>
-                    
-                    <div id="jobs-container">
-                        <!-- Jobs will be loaded dynamically -->
-                        <div class="job-card">
-                            <div class="job-title">Desenvolvedor Full Stack Senior</div>
-                            <div class="job-meta">
-                                <span class="job-tag">Remoto</span>
-                                <span class="job-tag">CLT</span>
-                                <span class="job-salary">R$ 8.000 - R$ 12.000</span>
-                            </div>
-                            <p class="text-muted mb-3">Buscamos um desenvolvedor experiente em React e Node.js para liderar projetos inovadores...</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Publicada há 2 dias</small>
-                                <button class="btn apply-btn">Candidatar-se</button>
-                            </div>
-                        </div>
-                        
-                        <div class="job-card">
-                            <div class="job-title">UX/UI Designer</div>
-                            <div class="job-meta">
-                                <span class="job-tag">Híbrido</span>
-                                <span class="job-tag">CLT</span>
-                                <span class="job-salary">R$ 6.000 - R$ 9.000</span>
-                            </div>
-                            <p class="text-muted mb-3">Procuramos um designer criativo para criar experiências digitais incríveis...</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Publicada há 1 semana</small>
-                                <button class="btn apply-btn">Candidatar-se</button>
-                            </div>
-                        </div>
-                        
-                        <div class="job-card">
-                            <div class="job-title">Product Manager</div>
-                            <div class="job-meta">
-                                <span class="job-tag">Presencial</span>
-                                <span class="job-tag">CLT</span>
-                                <span class="job-salary">R$ 10.000 - R$ 15.000</span>
-                            </div>
-                            <p class="text-muted mb-3">Oportunidade para gerenciar produtos digitais em uma empresa em crescimento...</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Publicada há 3 dias</small>
-                                <button class="btn apply-btn">Candidatar-se</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center mt-3">
-                        <a href="../aplicacao/ExibirVagas.html" class="btn btn-outline-primary">Ver Todas as Vagas</a>
+                    <div id="lista-vagas" class="vagas-scroll">
+                        <!-- As vagas serão carregadas dinamicamente -->
                     </div>
                 </div>
 
@@ -644,19 +635,17 @@
                     
                     <div class="mb-3">
                         <strong>Setor:</strong><br>
-                        <span id="company-sector">Setor não informado</span>
+                        <span id="company-sector">Não informado</span>
                     </div>
                     
                     <div class="mb-3">
-                        <strong>Descrição:</strong><br>
-                        <span id="company-details">Descrição não informada</span>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <strong>Informações Adicionais:</strong><br>
+                        <strong>Responsável</strong><br>
                         <ul class="list-unstyled mt-2">
-                            <li><i class="fas fa-info-circle text-primary me-2"></i>Dados adicionais podem ser editados pelo responsável</li>
-                            <li><i class="fas fa-building text-primary me-2"></i>Empresa cadastrada na plataforma</li>
+                            <li>
+                                <i class="fas fa-user-tie text-primary me-2"></i>
+                                <span id="company-responsavel">Responsável não informado</span>
+                                <span id="company-cargo" class="text-muted"></span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -699,6 +688,7 @@
         </div>
     </div>
 
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Follow/Unfollow functionality
@@ -751,9 +741,12 @@
             
             // Update company details
             document.getElementById('company-cnpj').textContent = empresa.cnpj || 'CNPJ não informado';
-            document.getElementById('company-sector').textContent = 'Empresa';
-            document.getElementById('company-details').textContent = empresa.descricao || 'Descrição não informada';
-            
+            document.getElementById('company-sector').textContent = empresa.setor && empresa.setor.trim() ? empresa.setor : 'Não informado';
+
+            // Responsável e cargo
+            document.getElementById('company-responsavel').textContent = empresa.nomeResponsavel && empresa.nomeResponsavel.trim() ? empresa.nomeResponsavel : 'Responsável não informado';
+            document.getElementById('company-cargo').textContent = empresa.cargo && empresa.cargo.trim() ? `(${empresa.cargo})` : '';
+
             // Update contact information
             const emailElement = document.getElementById('company-email');
             emailElement.textContent = empresa.email || 'Email não informado';
@@ -780,6 +773,86 @@
             document.getElementById('company-size').textContent = companyData.size;
             document.getElementById('company-founded').textContent = companyData.founded;
             document.getElementById('company-description').textContent = companyData.description;
+        }
+
+        // Função para carregar e exibir todas as vagas da empresa em carrossel horizontal
+        function carregarVagasEmpresa() {
+            const cnpj = localStorage.getItem("empresaCnpj");
+            const listaVagas = document.getElementById("lista-vagas");
+
+            if (!cnpj) {
+                listaVagas.innerHTML = `
+                    <div class="alert alert-warning">CNPJ da empresa não encontrado.</div>
+                `;
+                return;
+            }
+
+            const apiUrl = `http://localhost:8080/vagas/empresa/cnpj/${encodeURIComponent(cnpj)}`;
+
+            function formatarData(data) {
+                if (!data) return "";
+                const [ano, mes, dia] = data.split('T')[0].split('-');
+                return `${dia}/${mes}/${ano}`;
+            }
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error("Erro ao buscar vagas");
+                    return response.json();
+                })
+                .then(vagas => {
+                    listaVagas.innerHTML = "";
+                    if (!vagas || vagas.length === 0) {
+                        listaVagas.innerHTML = `
+                            <div class="text-center p-4">
+                                <i class="fas fa-briefcase mb-3" style="font-size: 2rem; color: var(--text-light);"></i>
+                                <p class="text-muted">Nenhuma vaga disponível no momento.</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    // Ordena as vagas pela data de criação (mais recente primeiro)
+                    vagas.sort((a, b) => new Date(b.dataCriacao) - new Date(a.dataCriacao));
+
+                    vagas.forEach(vaga => {
+                        const vagaCard = document.createElement("div");
+                        vagaCard.classList.add("job-card");
+                        const salarioFormatado = vaga.salario 
+                            ? `R$ ${parseFloat(vaga.salario).toLocaleString('pt-BR', {minimumFractionDigits: 2})}` 
+                            : 'A combinar';
+                        vagaCard.innerHTML = `
+                            <h4 class="job-title">${vaga.titulo || 'Vaga sem título'}</h4>
+                            <div class="job-meta">
+                                <span class="job-tag">${vaga.tipoContrato || 'Não especificado'}</span>
+                                <span class="job-salary">${salarioFormatado}</span>
+                            </div>
+                            <p>${vaga.descricao || 'Sem descrição'}</p>
+                            <div class="d-flex align-items-center justify-content-between mt-3">
+                                <small class="text-muted">Publicada: ${formatarData(vaga.dataCriacao)}</small>
+                                <button class="btn apply-btn" onclick="verDetalhes(${vaga.id})">Ver Detalhes</button>
+                            </div>
+                        `;
+                        listaVagas.appendChild(vagaCard);
+                    });
+                })
+                .catch(error => {
+                    console.error("Erro ao carregar vagas:", error);
+                    listaVagas.innerHTML = `
+                        <div class="alert alert-danger" role="alert">
+                            Erro ao carregar vagas. Tente novamente mais tarde.
+                        </div>
+                    `;
+                });
+        }
+
+        // Carregar vagas automaticamente ao abrir a página
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarVagasEmpresa();
+        });
+
+        function verDetalhes(vagaId) {
+            window.location.href = `../aplicacao/detalhesVaga.html?vagaId=${vagaId}`;
         }
 
         // Load data when page loads
@@ -811,6 +884,39 @@
                     }
                 });
             }
+        });
+
+        // Função para contar vagas abertas e totais
+        function contarVagasEmpresa() {
+            const cnpj = localStorage.getItem("empresaCnpj");
+            if (!cnpj) {
+                document.getElementById('vagas-ativas').textContent = '0';
+                document.getElementById('vagas-totais').textContent = '0';
+                return;
+            }
+
+            const apiUrl = `http://localhost:8080/vagas/empresa/cnpj/${encodeURIComponent(cnpj)}`;
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error("Erro ao buscar vagas");
+                    return response.json();
+                })
+                .then(vagas => {
+                    const total = vagas.length;
+                    const abertas = vagas.filter(v => v.status && v.status.toLowerCase() === "aberta").length;
+                    document.getElementById('vagas-ativas').textContent = abertas;
+                    document.getElementById('vagas-totais').textContent = total;
+                })
+                .catch(() => {
+                    document.getElementById('vagas-ativas').textContent = '0';
+                    document.getElementById('vagas-totais').textContent = '0';
+                });
+        }
+
+        // Chame a função ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            contarVagasEmpresa();
         });
     </script>
 </body>

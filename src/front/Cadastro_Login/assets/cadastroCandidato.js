@@ -66,7 +66,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 sexo: document.getElementById("sexo").value,
                 formacao: document.getElementById("formacao").value,
                 experiencia: parseInt(document.getElementById("experiencia").value),
-                habilidades: document.getElementById("habilidades").value
+                habilidades: document.getElementById("habilidades").value,
+                sobre: document.getElementById("sobre").value,
+                links: document.getElementById("links").value,
+                idiomas: document.getElementById("idiomas").value,
+                disponibilidade: document.getElementById("disponibilidade").value
             };
 
             // Exibe os dados no console
@@ -189,4 +193,102 @@ document.addEventListener("DOMContentLoaded", function() {
             icon.classList.add('fa-eye');
         }
     };
+
+    // Idiomas
+    let idiomasArray = [];
+
+    document.getElementById('add-idioma-btn').onclick = function() {
+        const idioma = document.getElementById('novo-idioma').value.trim();
+        const nivel = document.getElementById('novo-nivel').value;
+        if (idioma && nivel) {
+            idiomasArray.push({ nome: idioma, nivel: nivel });
+            atualizarIdiomasList();
+            document.getElementById('novo-idioma').value = '';
+            document.getElementById('novo-nivel').value = '';
+        }
+    };
+
+    function atualizarIdiomasList() {
+        const list = document.getElementById('idiomas-list');
+        list.innerHTML = '';
+        idiomasArray.forEach((item, idx) => {
+            const div = document.createElement('span');
+            div.className = 'idioma-badge mb-2';
+            div.innerHTML = `
+                <span><strong>${item.nome}</strong> - ${item.nivel}</span>
+                <button type="button" class="remove-idioma-btn" title="Remover" onclick="removerIdioma(${idx})">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            list.appendChild(div);
+        });
+        document.getElementById('idiomas').value = JSON.stringify(idiomasArray);
+    }
+
+    window.removerIdioma = function(idx) {
+        idiomasArray.splice(idx, 1);
+        atualizarIdiomasList();
+    };
+
+    // Experiências
+    let experienciasArray = [];
+
+    document.getElementById('add-exp-btn').onclick = function() {
+        const empresa = document.getElementById('exp-empresa').value.trim();
+        const cargo = document.getElementById('exp-cargo').value.trim();
+        const anoInicio = document.getElementById('exp-ano-inicio').value.trim();
+        const anoFim = document.getElementById('exp-ano-fim').value.trim();
+        const atualmente = document.getElementById('exp-atual').checked;
+        const desc = document.getElementById('exp-desc').value.trim();
+
+        let periodo = "";
+        if (anoInicio && (anoFim || atualmente)) {
+            periodo = atualmente ? `${anoInicio} - Atualmente` : `${anoInicio} - ${anoFim}`;
+        } else {
+            periodo = "";
+        }
+
+        if (empresa && cargo && periodo && desc) {
+            experienciasArray.push({ empresa, cargo, periodo, desc });
+            atualizarExperienciasList();
+            document.getElementById('exp-empresa').value = '';
+            document.getElementById('exp-cargo').value = '';
+            document.getElementById('exp-ano-inicio').value = '';
+            document.getElementById('exp-ano-fim').value = '';
+            document.getElementById('exp-atual').checked = false;
+            document.getElementById('exp-desc').value = '';
+        }
+    };
+
+    function atualizarExperienciasList() {
+        const list = document.getElementById('experiencias-list');
+        list.innerHTML = '';
+        experienciasArray.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'exp-card';
+            div.innerHTML = `
+                <button type="button" class="exp-remove-btn" onclick="removerExperiencia(${idx})" title="Remover">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="exp-title">${item.empresa} — ${item.cargo}</div>
+                <div class="exp-period">${item.periodo}</div>
+                <div class="exp-desc">${item.desc}</div>
+            `;
+            list.appendChild(div);
+        });
+        document.getElementById('experiencias').value = JSON.stringify(experienciasArray);
+    }
+
+    window.removerExperiencia = function(idx) {
+        experienciasArray.splice(idx, 1);
+        atualizarExperienciasList();
+    };
+
+    // Desabilita ano fim se "Atualmente" estiver marcado
+    document.getElementById('exp-atual').addEventListener('change', function () {
+        document.getElementById('exp-ano-fim').disabled = this.checked;
+        if (this.checked) {
+            document.getElementById('exp-ano-fim').value = '';
+        }
+    });
 });
