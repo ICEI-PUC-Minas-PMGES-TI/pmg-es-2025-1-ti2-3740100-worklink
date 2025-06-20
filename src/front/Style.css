@@ -1,0 +1,67 @@
+
+ :root {
+            --primary-color: #9147ff;
+            --secondary-color: #6d6e7c;
+            --background-color: #f9fafb;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --accent-color: #4e4f58;
+            --highlight-color: #4F3F86;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+
+.navbar {
+    background: var(--white);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e2e8f0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+    /* margem inferior para separar do conteúdo principal */
+    margin-bottom: 32px; /* <-- margem adicionada */
+}
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.nav-link {
+    color: var(--text-color) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.nav-link:hover {
+    color: var(--primary-color) !important;
+}
+.btn-primary-custom {
+    background: var(--gradient-primary);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    color: var(--white);
+    transition: all 0.3s ease;
+}
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--white);
+}
+
+body {
+        padding-top: 50px; /* Garante espaço para navbar fixa */
+        }

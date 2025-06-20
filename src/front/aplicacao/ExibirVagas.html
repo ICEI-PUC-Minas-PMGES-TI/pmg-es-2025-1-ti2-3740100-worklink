@@ -8,6 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="../Script.js"></script>
+    <!-- Ajuste os caminhos dos favicons para ficarem corretos, considerando a estrutura do seu projeto -->
+    <link rel="icon" type="image/png" href="../favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
     <style>
         :root {
             --primary-color: #9147ff;
@@ -22,7 +29,6 @@
             --error-color: #ef4444;
             --white: #ffffff;
             --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
-            --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
@@ -40,10 +46,9 @@
             background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
-            padding-top: 80px;
+             padding-top: 50px; /* Ajuste para compensar a navbar fixa */
         }
 
-        /* Header */
         .navbar {
             background: var(--white);
             backdrop-filter: blur(10px);
@@ -52,7 +57,7 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
         }
 
         .navbar-brand {
@@ -68,38 +73,20 @@
             color: var(--text-color) !important;
             font-weight: 500;
             transition: color 0.3s ease;
-            position: relative;
         }
 
         .nav-link:hover {
             color: var(--primary-color) !important;
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 50%;
-            background: var(--gradient-primary);
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-            left: 0;
-        }
-
         .btn-primary-custom {
             background: var(--gradient-primary);
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
             font-weight: 600;
             color: var(--white);
             transition: all 0.3s ease;
-            box-shadow: var(--shadow-md);
         }
 
         .btn-primary-custom:hover {
@@ -108,131 +95,13 @@
             color: var(--white);
         }
 
-        .btn-outline-custom {
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline-custom:hover {
-            background: var(--primary-color);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        /* Notification Bell */
-        .notification-bell {
-            position: relative;
-            margin-right: 1rem;
-            color: var(--text-color);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .notification-bell:hover {
-            color: var(--primary-color);
-            transform: scale(1.1);
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--error-color);
-            color: var(--white);
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-        }
-
-        /* Sidebar Ads */
-        .sidebar-ads {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .ad-card {
-            background: var(--white);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: var(--shadow-md);
-            border: 1px solid #e2e8f0;
-            width: 200px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .ad-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .ad-card h4 {
-            color: var(--primary-color);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .ad-card p {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
-        .ad-card .btn {
-            background: var(--gradient-primary);
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            color: var(--white);
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .ad-card .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            color: var(--white);
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-right: 240px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .section-title {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-        }
-
         .vagas-section {
             margin-top: 2rem;
+        }
+
+        h2 {
+            color: var(--primary-color) !important;
+            font-weight: 700;
         }
 
         h3 {
@@ -250,13 +119,12 @@
 
         .vaga-card {
             background: var(--white);
-            border-radius: 1.7rem;
-            padding: 2.3rem 2.1rem;
+            border-radius: 1.5rem;
+            padding: 2rem;
             box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
             border: 1px solid transparent;
             position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -265,7 +133,7 @@
         }
 
         .vaga-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-xl);
             border-color: var(--primary-color);
         }
@@ -303,6 +171,26 @@
             transition: all 0.3s ease;
         }
 
+        /* CSS do .page-header igual ao candidatos.html */
+/* filepath: c:\Users\Teste\Documents\PROGRAMAÇÃO\WORKLINK\pmg-es-2025-1-ti2-3740100-worklink\src\front\Vaga\candidatos.html */
+.page-header {
+    background: var(--gradient-primary);
+    color: var(--white);
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
         .btn-inscrever {
             background: var(--gradient-primary);
             color: var(--white);
@@ -311,8 +199,6 @@
         .btn-inscrever:hover {
             background: var(--primary-color);
             color: var(--white);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
         }
 
         .btn-detalhes {
@@ -323,8 +209,6 @@
         .btn-detalhes:hover {
             background: var(--secondary-color);
             color: var(--white);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
         }
 
         .btn-inscrito {
@@ -339,66 +223,94 @@
             opacity: 0.8;
         }
 
-        /* Footer */
         footer {
-            background: var(--gradient-primary);
-            color: var(--white);
+            background: var(--primary-color);
+            color: #fff;
             text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
+            padding: 20px 0;
+            margin-top: 20px;
         }
 
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .footer-links a {
-            color: var(--white);
-            text-decoration: none;
-            margin-left: 2rem;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            opacity: 0.8;
-        }
-
-        .alert-custom {
-            background-color: var(--white);
-            color: var(--primary-color);
-            border: none;
-            border-radius: 1rem;
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
+        .filters-panel {
+            background: var(--white);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
             box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
         }
 
-        /* Responsive */
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .filter-option {
+            margin-bottom: 0.3rem;
+        }
+
+        .filter-select {
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0;
+            background: var(--background-color);
+        }
+
+        .search-filters {
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            border-radius: 0.5rem 0 0 0.5rem;
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            flex: 1;
+        }
+
+        .search-btn {
+            border-radius: 0 0.5rem 0.5rem 0;
+            background: var(--primary-color);
+            color: var(--white);
+            border: 1px solid var(--primary-color);
+            padding: 0.5rem 1rem;
+        }
+
+        /* Adicione ou ajuste no seu <style> para o botão "Limpar Filtros" ficar com o padrão Worklink */
+
+        .btn-primary-custom,
+        #clear-vaga-filters.btn-primary-custom {
+            background: var(--gradient-primary);
+            border: none;
+            color: var(--white);
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        #clear-vaga-filters.btn-primary-custom:hover,
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
+            background: var(--primary-color);
+        }
+
         @media (max-width: 768px) {
-            .sidebar-ads {
-                display: none;
-            }
-            
-            .main-content {
-                margin-right: 0;
-            }
-            
             #vagas-container {
                 grid-template-columns: 1fr;
             }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 1rem;
+
+            .vaga-card {
+                padding: 1rem;
             }
-            
-            .footer-links a {
-                margin: 0 1rem;
+
+            .vaga-actions {
+                flex-direction: column;
+                gap: 0.5rem;
             }
 
             .vaga-info.row > div {
@@ -406,162 +318,172 @@
             }
         }
     </style>
+
 </head>
 
 <body>
-    <!-- Sidebar Ads -->
-    <div class="sidebar-ads">
-        <div class="ad-card">
-            <h4>🎯 Vagas em Destaque</h4>
-            <p>Encontre as melhores oportunidades para sua carreira</p>
-            <button class="btn">Ver mais</button>
-        </div>
-        <div class="ad-card">
-            <h4>📈 Salários Altos</h4>
-            <p>Vagas com os melhores salários do mercado</p>
-            <button class="btn">Explorar</button>
-        </div>
-        <div class="ad-card">
-            <h4>🚀 Startups</h4>
-            <p>Oportunidades em empresas inovadoras</p>
-            <button class="btn">Descobrir</button>
-        </div>
-    </div>
-
-    <!-- Navigation -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">Worklink</a>
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-link"></i> Worklink
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Vagas</a>
+                        <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Empresas</a>
+                        <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Perfil</a>
+                        <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
                     </li>
                 </ul>
-                <div class="d-flex align-items-center">
-                    <div class="dropdown">
-                        <button class="btn btn-outline-custom dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown">
-                            <i class="fas fa-user"></i> Perfil
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Configurações</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
-                        </ul>
-                    </div>
-                    <div class="notification-bell">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">5</span>
-                    </div>
+                <div class="d-flex gap-2">
+                    <a href="../Candidato/homeCandidato.html" class="btn btn-primary-custom">Meu Perfil</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="main-content">
+    <section class="page-header">
         <div class="container">
-            <h1 class="section-title">Vagas Disponíveis</h1>
-            
-            <div class="alert alert-custom" role="alert">
-                <i class="fas fa-info-circle"></i>
-                Encontramos <strong>24 vagas</strong> que combinam com seu perfil!
-            </div>
-
-            <div class="vagas-section">
-                <div id="vagas-container">
-                    <!-- As vagas serão carregadas aqui via JavaScript -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>Vagas Disponíveis</h1>
+                    <p>Encontre a vaga ideal para você.
+                        Conecte-se com empresas que valorizam o seu talento e dê o próximo passo na sua carreira.</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <section class="vagas-section">
+                <div class="row">
+                    <!-- Filters Sidebar -->
+                    <div class="col-lg-3">
+                        <div class="filters-panel">
+                            <div class="filter-group">
+                                <div class="filter-title">Tipo de Contrato</div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="clt" value="CLT">
+                                    <label for="clt">CLT</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="pj" value="PJ">
+                                    <label for="pj">PJ</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="estagio" value="Estágio">
+                                    <label for="estagio">Estágio</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="temporario" value="Temporário">
+                                    <label for="temporario">Temporário</label>
+                                </div>
+                            </div>
+
+                            <div class="filter-group">
+                                <div class="filter-title">Modalidade</div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="remoto" value="Remoto">
+                                    <label for="remoto">Remoto</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="hibrido" value="Híbrido">
+                                    <label for="hibrido">Híbrido</label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="presencial" value="Presencial">
+                                    <label for="presencial">Presencial</label>
+                                </div>
+                            </div>
+
+                            <div class="filter-group">
+                                <div class="filter-title">Cidade</div>
+                                <select class="form-select filter-select" id="vaga-location-filter">
+                                    <option value="">Todas as cidades</option>
+                                    <!-- Opções serão preenchidas dinamicamente -->
+                                </select>
+                            </div>
+
+                            <div class="filter-group">
+                                <div class="filter-title">Empresa</div>
+                                <input type="text" class="form-control" id="empresa-filter" placeholder="Buscar empresa...">
+                            </div>
+
+                            <div class="filter-group">
+                                <div class="filter-title">Salário</div>
+                                <div class="filter-option">
+                                    <input type="number" class="form-control mb-1" id="salario-min-filter" placeholder="Mínimo">
+                                </div>
+                                <div class="filter-option">
+                                    <input type="number" class="form-control" id="salario-max-filter" placeholder="Máximo">
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary-custom w-100" id="clear-vaga-filters">
+                                <i class="fas fa-times"></i> Limpar Filtros
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <!-- Vagas Grid -->
+                    <div class="col-lg-9">
+                        <div class="search-filters mb-3">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control search-input" placeholder="Buscar por título, empresa ou benefício..." id="vaga-search-input">
+                                <select class="form-select" id="vaga-location-inline-filter" style="max-width:180px;">
+                                    <option value="">Todas as cidades</option>
+                                    <!-- Opções preenchidas dinamicamente -->
+                                </select>
+                                <button class="btn search-btn" type="button" id="vaga-search-btn">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="vagas-container">
+                            <!-- As vagas serão carregadas dinamicamente aqui -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div>
-                <p>&copy; 2024 Worklink. Todos os direitos reservados.</p>
-            </div>
-            <div class="footer-links">
-                <a href="#">Sobre</a>
-                <a href="#">Privacidade</a>
-                <a href="#">Termos</a>
-                <a href="#">Contato</a>
-            </div>
+        <div class="container">
+            <p>&copy; 2025 WorkLink. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
     <script>
-        // Dados de exemplo das vagas
-        const vagas = [
-            {
-                id: 1,
-                titulo: "Desenvolvedor Full Stack",
-                empresa: "TechCorp",
-                local: "São Paulo, SP",
-                salario: "R$ 8.000 - 12.000",
-                tipo: "CLT",
-                descricao: "Desenvolvimento de aplicações web modernas usando React, Node.js e PostgreSQL."
-            },
-            {
-                id: 2,
-                titulo: "UX/UI Designer",
-                empresa: "DesignStudio",
-                local: "Remoto",
-                salario: "R$ 6.000 - 9.000",
-                tipo: "PJ",
-                descricao: "Criação de interfaces intuitivas e experiências de usuário excepcionais."
-            },
-            {
-                id: 3,
-                titulo: "Analista de Dados",
-                empresa: "DataTech",
-                local: "Rio de Janeiro, RJ",
-                salario: "R$ 7.000 - 10.000",
-                tipo: "CLT",
-                descricao: "Análise de dados e criação de relatórios para tomada de decisões estratégicas."
-            }
-        ];
+        document.addEventListener("DOMContentLoaded", function () {
+            const vagasContainer = document.getElementById("vagas-container");
 
-        function carregarVagas() {
-            const container = document.getElementById('vagas-container');
-            
-            vagas.forEach(vaga => {
-                const vagaCard = document.createElement('div');
-                vagaCard.className = 'vaga-card';
-                vagaCard.innerHTML = `
-                    <div class="vaga-info">
-                        <h3>${vaga.titulo}</h3>
-                        <p><i class="fas fa-building"></i> ${vaga.empresa}</p>
-                        <p><i class="fas fa-map-marker-alt"></i> ${vaga.local}</p>
-                        <p><i class="fas fa-money-bill-wave"></i> ${vaga.salario}</p>
-                        <p><i class="fas fa-briefcase"></i> ${vaga.tipo}</p>
-                        <p>${vaga.descricao}</p>
-                    </div>
-                    <div class="vaga-actions">
-                        <button class="btn-inscrever" onclick="inscreverVaga(${vaga.id})">
-                            <i class="fas fa-paper-plane"></i> Inscrever-se
-                        </button>
-                        <button class="btn-detalhes" onclick="verDetalhes(${vaga.id})">
-                            <i class="fas fa-eye"></i> Ver Detalhes
-                        </button>
-                    </div>
-                `;
-                container.appendChild(vagaCard);
-            });
-        }
+            // URL do endpoint para buscar todas as vagas
+            const apiUrl = "http://localhost:8080/vagas";
+
+            // Função para formatar a data no formato brasileiro
+            function formatarData(data) {
+                if (!data) return "";
+                // Aceita tanto "2025-06-16T12:34:56" quanto "2025-06-16"
+                const [ano, mes, dia] = data.split('T')[0].split('-');
+                return `${dia}/${mes}/${ano}`;
+            }
 
             // Função para carregar as vagas
             function carregarVagas() {
@@ -629,7 +551,20 @@
                                             <div class="vaga-info row">
                                                 <div class="col-12 mb-2">
                                                     <h3>${getIconeVaga(vaga.titulo)} ${vaga.titulo}</h3>
-                                                    <h5><i class="fas fa-building"></i> ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}</h5>
+                                                    <h5>
+                                                        <i class="fas fa-building"></i>
+                                                        ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}
+                                                        ${vaga.empresa && vaga.empresa.cidade ? ' - ' + vaga.empresa.cidade : ''}
+                                                    </h5>
+                                                    <p>
+                                                        <i class="fas fa-money-bill-wave"></i>
+                                                        <strong>Salário:</strong>
+                                                        ${
+                                                            vaga.salario
+                                                                ? `R$ ${vaga.salario}`
+                                                                : "Não informado"
+                                                        }
+                                                    </p>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p><i class="fas fa-align-left"></i> <strong>Descrição:</strong> ${vaga.descricao}</p>
@@ -701,7 +636,20 @@
                                     <div class="vaga-info row">
                                         <div class="col-12 mb-2">
                                             <h3>${getIconeVaga(vaga.titulo)} ${vaga.titulo}</h3>
-                                            <h5><i class="fas fa-building"></i> ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}</h5>
+                                            <h5>
+                                                <i class="fas fa-building"></i>
+                                                ${vaga.empresa ? vaga.empresa.nome : "Empresa não informada"}
+                                                ${vaga.empresa && vaga.empresa.cidade ? ' - ' + vaga.empresa.cidade : ''}
+                                            </h5>
+                                            <p>
+                                                <i class="fas fa-money-bill-wave"></i>
+                                                <strong>Salário:</strong>
+                                                ${
+                                                    vaga.salario
+                                                        ? `R$ ${vaga.salario}`
+                                                        : "Não informado"
+                                                }
+                                            </p>
                                         </div>
                                         <div class="col-md-6">
                                             <p><i class="fas fa-align-left"></i> <strong>Lançamento:</strong> ${vaga.dataCriacao ? formatarData(vaga.dataCriacao) : "Data não informada"}</p>
@@ -796,6 +744,221 @@
                 });
             }
         });
+
+        // Filtros e pesquisa para vagas
+        let vagaFilters = {
+            search: '',
+            tipoContrato: [],
+            modalidade: [],
+            cidade: '',
+            empresa: '',
+            salarioMin: '',
+            salarioMax: ''
+        };
+
+        // Preencher cidades dinamicamente
+        function carregarCidadesVagasFiltro() {
+            fetch('http://localhost:8080/vagas')
+                .then(response => response.json())
+                .then(vagas => {
+                    const cidades = new Set();
+                    vagas.forEach(v => {
+                        // Pega a cidade da empresa responsável pela vaga, se existir
+                        if (v.empresa && v.empresa.cidade && v.empresa.cidade.trim() !== "") {
+                            cidades.add(v.empresa.cidade.trim());
+                        }
+                    });
+                    // Lateral
+                    const locationFilter = document.getElementById('vaga-location-filter');
+                    while (locationFilter.options.length > 1) locationFilter.remove(1);
+                    // Inline
+                    const locationInline = document.getElementById('vaga-location-inline-filter');
+                    while (locationInline.options.length > 1) locationInline.remove(1);
+
+                    Array.from(cidades).sort().forEach(cidade => {
+                        const option1 = document.createElement('option');
+                        option1.value = cidade;
+                        option1.textContent = cidade;
+                        locationFilter.appendChild(option1);
+
+                        const option2 = document.createElement('option');
+                        option2.value = cidade;
+                        option2.textContent = cidade;
+                        locationInline.appendChild(option2);
+                    });
+                });
+        }
+
+        // Eventos dos filtros
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarCidadesVagasFiltro();
+
+            // Pesquisa
+            document.getElementById('vaga-search-btn').addEventListener('click', function() {
+                vagaFilters.search = document.getElementById('vaga-search-input').value.toLowerCase();
+                filtrarVagas();
+            });
+            document.getElementById('vaga-search-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    vagaFilters.search = this.value.toLowerCase();
+                    filtrarVagas();
+                }
+            });
+
+            // Filtro localidade lateral
+            document.getElementById('vaga-location-filter').addEventListener('change', function() {
+                vagaFilters.cidade = this.value;
+                // Sincroniza o filtro inline
+                document.getElementById('vaga-location-inline-filter').value = this.value;
+                filtrarVagas();
+            });
+            // Filtro localidade inline
+            document.getElementById('vaga-location-inline-filter').addEventListener('change', function() {
+                vagaFilters.cidade = this.value;
+                // Sincroniza o filtro lateral
+                document.getElementById('vaga-location-filter').value = this.value;
+                filtrarVagas();
+            });
+
+            // Empresa
+            document.getElementById('empresa-filter').addEventListener('input', function() {
+                vagaFilters.empresa = this.value.toLowerCase();
+                filtrarVagas();
+            });
+
+            // Salário
+            document.getElementById('salario-min-filter').addEventListener('input', function() {
+                vagaFilters.salarioMin = this.value;
+                filtrarVagas();
+            });
+            document.getElementById('salario-max-filter').addEventListener('input', function() {
+                vagaFilters.salarioMax = this.value;
+                filtrarVagas();
+            });
+
+            // Checkbox filtros
+            document.querySelectorAll('.filters-panel input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const tipo = this.value;
+                    if (['CLT', 'PJ', 'Estágio', 'Temporário'].includes(tipo)) {
+                        if (this.checked) {
+                            if (!vagaFilters.tipoContrato.includes(tipo)) vagaFilters.tipoContrato.push(tipo);
+                        } else {
+                            vagaFilters.tipoContrato = vagaFilters.tipoContrato.filter(t => t !== tipo);
+                        }
+                    }
+                    if (['Remoto', 'Híbrido', 'Presencial'].includes(tipo)) {
+                        if (this.checked) {
+                            if (!vagaFilters.modalidade.includes(tipo)) vagaFilters.modalidade.push(tipo);
+                        } else {
+                            vagaFilters.modalidade = vagaFilters.modalidade.filter(m => m !== tipo);
+                        }
+                    }
+                    filtrarVagas();
+                });
+            });
+
+            document.getElementById('clear-vaga-filters').addEventListener('click', function() {
+                vagaFilters = {
+                    search: '',
+                    tipoContrato: [],
+                    modalidade: [],
+                    cidade: '',
+                    empresa: '',
+                    salarioMin: '',
+                    salarioMax: ''
+                };
+                document.getElementById('vaga-search-input').value = '';
+                document.getElementById('vaga-location-filter').value = '';
+                document.getElementById('vaga-location-inline-filter').value = '';
+                document.getElementById('empresa-filter').value = '';
+                document.getElementById('salario-min-filter').value = '';
+                document.getElementById('salario-max-filter').value = '';
+                document.querySelectorAll('.filters-panel input[type="checkbox"]').forEach(cb => cb.checked = false);
+                filtrarVagas();
+            });
+        });
+
+        // Corrija o filtro de modalidade para buscar no campo correto:
+        function filtrarVagas() {
+            const cards = document.querySelectorAll('.vaga-card');
+            cards.forEach(card => {
+                let show = true;
+
+                // Busca texto
+                if (vagaFilters.search) {
+                    const titulo = card.querySelector('.vaga-info h3').textContent.toLowerCase();
+                    const empresa = card.querySelector('.vaga-info h5').textContent.toLowerCase();
+                    const beneficios = card.querySelector('.vaga-info').textContent.toLowerCase();
+                    if (!titulo.includes(vagaFilters.search) && !empresa.includes(vagaFilters.search) && !beneficios.includes(vagaFilters.search)) {
+                        show = false;
+                    }
+                }
+
+                // Cidade (corrigido: busca cidade da empresa no <h5> OU no objeto data-vaga)
+                if (vagaFilters.cidade) {
+                    let cidadeEmpresa = "";
+                    const empresaH5 = card.querySelector('.vaga-info h5');
+                    if (empresaH5) {
+                        const texto = empresaH5.textContent;
+                        const partes = texto.split('-');
+                        if (partes.length > 1) {
+                            cidadeEmpresa = partes[1].trim();
+                        } else {
+                            const partesVirgula = texto.split(',');
+                            if (partesVirgula.length > 1) {
+                                cidadeEmpresa = partesVirgula[1].trim();
+                            }
+                        }
+                    }
+                    if (!cidadeEmpresa && card.dataset.cidade) {
+                        cidadeEmpresa = card.dataset.cidade.trim();
+                    }
+                    const normalizar = s => s ? s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim() : "";
+                    if (!cidadeEmpresa || normalizar(cidadeEmpresa) !== normalizar(vagaFilters.cidade)) show = false;
+                }
+
+                // Empresa
+                if (vagaFilters.empresa) {
+                    const empresa = card.querySelector('.vaga-info h5').textContent.toLowerCase();
+                    if (!empresa.includes(vagaFilters.empresa)) show = false;
+                }
+
+                // Tipo de contrato
+                if (vagaFilters.tipoContrato.length > 0) {
+                    const tipo = card.querySelector('.vaga-info').textContent;
+                    if (!vagaFilters.tipoContrato.some(tc => tipo.includes(tc))) show = false;
+                }
+
+                // Modalidade
+                if (vagaFilters.modalidade.length > 0) {
+                    const modalidade = card.querySelector('.vaga-info').textContent;
+                    if (!vagaFilters.modalidade.some(m => modalidade.toLowerCase().includes(m.toLowerCase()))) show = false;
+                }
+
+                // Salário (agora só considera um valor único)
+                if (vagaFilters.salarioMin || vagaFilters.salarioMax) {
+                    let salarioVaga = null;
+                    const salarioP = Array.from(card.querySelectorAll('.vaga-info p')).find(p =>
+                        p.textContent.toLowerCase().includes('salário')
+                    );
+                    if (salarioP) {
+                        // Extrai o valor único do salário
+                        const texto = salarioP.textContent.replace(/\./g, '').replace(',', '.');
+                        const match = texto.match(/(\d+(\.\d+)?)/);
+                        if (match) {
+                            salarioVaga = parseFloat(match[1]);
+                        }
+                    }
+                    // Se não encontrou salário, não mostra a vaga
+                    if (salarioVaga === null) show = false;
+                    if (show && vagaFilters.salarioMin && salarioVaga < parseFloat(vagaFilters.salarioMin)) show = false;
+                    if (show && vagaFilters.salarioMax && salarioVaga > parseFloat(vagaFilters.salarioMax)) show = false;
+                }
+
+                card.style.display = show ? 'flex' : 'none';
+            });
+        }
     </script>
 </body>
 

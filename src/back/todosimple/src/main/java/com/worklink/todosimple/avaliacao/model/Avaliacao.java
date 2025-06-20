@@ -22,7 +22,7 @@ public class Avaliacao {
     private Candidato candidato;
 
     @Column(name = "nota", nullable = false)
-    private Integer nota;
+    private Double nota;
 
     @Column(name = "comentario", length = 500)
     private String comentario;
@@ -55,11 +55,11 @@ public class Avaliacao {
         this.candidato = candidato;
     }
 
-    public Integer getNota() {
+    public Double getNota() {
         return nota;
     }
 
-    public void setNota(Integer nota) {
+    public void setNota(Double nota) {
         this.nota = nota;
     }
 

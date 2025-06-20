@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.worklink.todosimple.avaliacao.model.Avaliacao;
+import com.worklink.todosimple.avaliacao.repository.AvaliacaoRepository;
 import com.worklink.todosimple.cadastro.models.Empresa;
-import com.worklink.todosimple.cadastro.services.UsuarioService;
 import com.worklink.todosimple.cadastro.repositories.EmpresaRepository;
+import com.worklink.todosimple.cadastro.services.UsuarioService;
 
 @RestController
 @RequestMapping("/empresas")
@@ -29,6 +31,9 @@ public class EmpresaController {
 
     @Autowired
     private EmpresaRepository empresaRepository;
+
+    @Autowired
+    private AvaliacaoRepository avaliacaoRepository;
 
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody Empresa empresa) {
@@ -221,5 +226,28 @@ public class EmpresaController {
         
         // Retorna o caminho relativo para o frontend
         return "/uploads/" + nomeArquivo;
+    }
+
+    // Endpoint para listar empresas com média e quantidade de avaliações
+    @GetMapping("/com-avaliacoes")
+    public ResponseEntity<List<Map<String, Object>>> findAllWithAvaliacao() {
+        List<Empresa> empresas = usuarioService.findAllEmpresas();
+        List<Map<String, Object>> resultado = empresas.stream().map(empresa -> {
+            List<Avaliacao> avals = avaliacaoRepository.findAll().stream()
+                .filter(a -> a.getEmpresa().getId().equals(empresa.getId()))
+                .toList();
+            double media = avals.stream().mapToDouble(Avaliacao::getNota).average().orElse(0.0);
+            int qtd = avals.size();
+            Map<String, Object> map = new java.util.HashMap<>();
+            map.put("id", empresa.getId());
+            map.put("nome", empresa.getNome());
+            map.put("setor", empresa.getSetor());
+            map.put("cidade", empresa.getCidade());
+            map.put("mediaAvaliacao", media);
+            map.put("qtdAvaliacoes", qtd);
+            // Adicione outros campos que quiser exibir no card
+            return map;
+        }).toList();
+        return ResponseEntity.ok(resultado);
     }
 }

@@ -11,29 +11,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../Style.css">
+    <script src="../Script.js"></script>
     <style>
         :root {
             --primary-color: #9147ff;
             --secondary-color: #6d6e7c;
             --background-color: #f9fafb;
-            --text-color: #ffffff;
+            --text-color: #1e293b;
+            --text-light: #64748b;
             --accent-color: #4e4f58;
             --highlight-color: #4F3F86;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
         }
 
         body {
             background-color: var(--background-color);
             color: var(--text-color);
-        }
-
-        .navbar {
-            background-color: var(--primary-color);
-            padding: 1rem;
-        }
-
-        .navbar-brand {
-            color: var(--text-color) !important;
-            font-weight: bold;
         }
 
         .form-section {
@@ -123,8 +125,8 @@
             display: none;
         }
 
-        .container {
-            margin-bottom: 5vh;
+        h1{
+            color: var(--primary-color);
         }
 
         .password-field {
@@ -135,14 +137,18 @@
 
 <body>
 
-    <nav class="navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="">
-                <i class="fas fa-briefcase"></i>
-                Worklink
-            </a>
+   <nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="../index.html">
+            <i class="fas fa-link"></i> Worklink
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
         </div>
-    </nav>
+    </div>
+</nav>
 
     <div class="container">
         <div class="row" style="margin-top: 5vh;">

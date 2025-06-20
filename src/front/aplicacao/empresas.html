@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="../Script.js"></script>
     <style>
         :root {
             --primary-color: #9147ff;
@@ -21,7 +22,6 @@
             --error-color: #ef4444;
             --white: #ffffff;
             --gradient-primary: linear-gradient(135deg, #9147ff 0%, #4F3F86 100%);
-            --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
@@ -51,7 +51,7 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
         }
 
         .navbar-brand {
@@ -67,38 +67,20 @@
             color: var(--text-color) !important;
             font-weight: 500;
             transition: color 0.3s ease;
-            position: relative;
         }
 
         .nav-link:hover {
             color: var(--primary-color) !important;
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 50%;
-            background: var(--gradient-primary);
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-            left: 0;
-        }
-
         .btn-primary-custom {
             background: var(--gradient-primary);
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
             font-weight: 600;
             color: var(--white);
             transition: all 0.3s ease;
-            box-shadow: var(--shadow-md);
         }
 
         .btn-primary-custom:hover {
@@ -107,567 +89,1050 @@
             color: var(--white);
         }
 
-        .btn-outline-custom {
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline-custom:hover {
-            background: var(--primary-color);
+        /* Page Header */
+        .page-header {
+            background: var(--gradient-primary);
             color: var(--white);
-            transform: translateY(-2px);
+            padding: 3rem 0;
+            margin-bottom: 2rem;
         }
 
-        /* Notification Bell */
-        .notification-bell {
-            position: relative;
-            margin-right: 1rem;
-            color: var(--text-color);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .notification-bell:hover {
-            color: var(--primary-color);
-            transform: scale(1.1);
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--error-color);
-            color: var(--white);
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-        }
-
-        /* Sidebar Ads */
-        .sidebar-ads {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .ad-card {
-            background: var(--white);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: var(--shadow-md);
-            border: 1px solid #e2e8f0;
-            width: 200px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .ad-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .ad-card h4 {
-            color: var(--primary-color);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .ad-card p {
-            color: var(--text-light);
-            font-size: 0.85rem;
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
             margin-bottom: 1rem;
         }
 
-        .ad-card .btn {
-            background: var(--gradient-primary);
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            color: var(--white);
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
 
-        .ad-card .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            color: var(--white);
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-right: 240px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .section-title {
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-        }
-
-        .search-section {
+        /* Filters Section */
+        .filters-section {
             background: var(--white);
-            border-radius: 1.5rem;
             padding: 2rem;
-            margin-bottom: 3rem;
+            border-radius: 1rem;
             box-shadow: var(--shadow-md);
-            border: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
         }
 
-        .search-form {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+        .filter-group {
+            margin-bottom: 1.5rem;
         }
 
-        .form-group {
-            flex: 1;
-            min-width: 200px;
+        .filter-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
         }
 
-        .form-control {
-            border: 1px solid #e2e8f0;
-            border-radius: 0.75rem;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
+        .filter-select {
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
             transition: all 0.3s ease;
         }
 
-        .form-control:focus {
+        .filter-select:focus {
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(145, 71, 255, 0.1);
             outline: none;
         }
 
-        .btn-search {
+        .search-input {
+            border: 2px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(145, 71, 255, 0.1);
+            outline: none;
+        }
+
+        .search-btn {
             background: var(--gradient-primary);
             border: none;
-            padding: 0.75rem 2rem;
+            padding: 1rem 2rem;
             border-radius: 0.75rem;
             color: var(--white);
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: var(--shadow-md);
         }
 
-        .btn-search:hover {
+        .search-btn:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
             color: var(--white);
         }
 
-        .empresas-grid {
+        /* Company Grid */
+        .companies-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
 
-        .empresa-card {
+        .company-card {
             background: var(--white);
             border-radius: 1.5rem;
             padding: 2rem;
             box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
-            text-align: center;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
 
-        .empresa-card:hover {
+        .company-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .company-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-xl);
+            border-color: var(--primary-color);
         }
 
-        .empresa-logo {
+        .company-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .company-logo {
             width: 80px;
             height: 80px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
             background: var(--gradient-primary);
+            border-radius: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
             font-size: 2rem;
-            font-weight: 700;
+            flex-shrink: 0;
         }
 
-        .empresa-info h3 {
-            color: var(--secondary-color);
+        .company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+
+        .company-info h3 {
             font-size: 1.3rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-color);
         }
 
-        .empresa-info p {
+        .company-industry {
             color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .company-location {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-top: 0.25rem;
+        }
+
+        .company-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             margin-bottom: 1rem;
         }
 
-        .empresa-stats {
-            display: flex;
-            justify-content: space-around;
-            margin: 1rem 0;
-            padding: 1rem 0;
-            border-top: 1px solid #e2e8f0;
-            border-bottom: 1px solid #e2e8f0;
+        .stars {
+            color: var(--warning-color);
+        }
+
+        .rating-value {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .review-count {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        .company-description {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .company-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .stat-item {
             text-align: center;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.75rem;
         }
 
         .stat-number {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--primary-color);
+            display: block;
         }
 
         .stat-label {
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             color: var(--text-light);
+            margin-top: 0.25rem;
         }
 
-        .empresa-actions {
+        .company-tags {
             display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .company-tag {
+            background: rgba(145, 71, 255, 0.1);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .company-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 0.75rem;
-            margin-top: 1rem;
         }
 
-        .btn-ver-perfil,
-        .btn-avaliar {
-            flex: 1;
+        .view-btn {
+            background: var(--gradient-primary);
             border: none;
-            padding: 0.75rem 1rem;
+            padding: 0.75rem;
             border-radius: 0.75rem;
+            color: var(--white);
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-ver-perfil {
-            background: var(--gradient-primary);
-            color: var(--white);
-        }
-
-        .btn-ver-perfil:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            color: var(--white);
-        }
-
-        .btn-avaliar {
-            background: var(--accent-color);
-            color: var(--white);
-        }
-
-        .btn-avaliar:hover {
-            background: var(--secondary-color);
-            color: var(--white);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--gradient-primary);
-            color: var(--white);
+            text-decoration: none;
             text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
-        .footer-content {
+        .view-btn:hover {
+            transform: translateY(-2px);
+            color: var(--white);
+        }
+
+        .follow-btn {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .follow-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Results Info */
+        .results-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem 0;
         }
 
-        .footer-links a {
+        .results-count {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .sort-select {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--white);
+        }
+
+        /* Pagination */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .pagination .page-link {
+            border: none;
+            color: var(--text-color);
+            padding: 0.75rem 1rem;
+            margin: 0 0.25rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .pagination .page-link:hover {
+            background: var(--primary-color);
             color: var(--white);
-            text-decoration: none;
-            margin-left: 2rem;
-            transition: opacity 0.3s ease;
         }
 
-        .footer-links a:hover {
-            opacity: 0.8;
+        .pagination .page-item.active .page-link {
+            background: var(--gradient-primary);
+            border-color: var(--primary-color);
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-light);
+        }
+
+        .no-results i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .spinner {
+            width: 3rem;
+            height: 3rem;
+            border: 3px solid #e2e8f0;
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .sidebar-ads {
-                display: none;
+            .page-header h1 {
+                font-size: 2rem;
             }
             
-            .main-content {
-                margin-right: 0;
-            }
-            
-            .search-form {
-                flex-direction: column;
-            }
-            
-            .empresas-grid {
+            .companies-grid {
                 grid-template-columns: 1fr;
             }
             
-            .empresa-actions {
-                flex-direction: column;
-            }
-            
-            .footer-content {
+            .results-info {
                 flex-direction: column;
                 gap: 1rem;
+                align-items: stretch;
             }
             
-            .footer-links a {
-                margin: 0 1rem;
+            .company-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .company-actions {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- Sidebar Ads -->
-    <div class="sidebar-ads">
-        <div class="ad-card">
-            <h4>🏢 Empresas Top</h4>
-            <p>Conheça as melhores empresas para trabalhar</p>
-            <button class="btn">Ver ranking</button>
-        </div>
-        <div class="ad-card">
-            <h4>⭐ Avaliações</h4>
-            <p>Veja o que os funcionários dizem sobre as empresas</p>
-            <button class="btn">Ler reviews</button>
-        </div>
-        <div class="ad-card">
-            <h4>💼 Vagas Exclusivas</h4>
-            <p>Acesso antecipado a vagas das melhores empresas</p>
-            <button class="btn">Inscrever-se</button>
-        </div>
-    </div>
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">Worklink</a>
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-link"></i> Worklink
+            </a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Vagas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Empresas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Perfil</a>
-                    </li>
-                </ul>
-                <div class="d-flex align-items-center">
-                    <div class="dropdown">
-                        <button class="btn btn-outline-custom dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown">
-                            <i class="fas fa-user"></i> Perfil
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Configurações</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
-                        </ul>
-                    </div>
-                    <div class="notification-bell">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">2</span>
-                    </div>
+                           <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
+                </li>
+            </ul>
+                
+                <div class="d-flex gap-2">
+                    <a href="#" id="meuPerfilBtn" class="btn btn-primary-custom">Meu Perfil</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="main-content">
+    <!-- Page Header -->
+    <section class="page-header">
         <div class="container">
-            <h1 class="section-title">Empresas</h1>
-            
-            <!-- Search Section -->
-            <div class="search-section">
-                <form class="search-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Buscar empresa...">
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control">
-                            <option value="">Setor</option>
-                            <option value="tecnologia">Tecnologia</option>
-                            <option value="saude">Saúde</option>
-                            <option value="educacao">Educação</option>
-                            <option value="financeiro">Financeiro</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control">
-                            <option value="">Localização</option>
-                            <option value="sp">São Paulo</option>
-                            <option value="rj">Rio de Janeiro</option>
-                            <option value="mg">Minas Gerais</option>
-                            <option value="remoto">Remoto</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-search">
-                        <i class="fas fa-search"></i> Buscar
-                    </button>
-                </form>
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>Descobrir Empresas</h1>
+                    <p>Explore empresas incríveis, conheça suas culturas e encontre seu próximo emprego dos sonhos.</p>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Empresas Grid -->
-            <div class="empresas-grid" id="empresas-container">
-                <!-- As empresas serão carregadas aqui via JavaScript -->
+    <div class="container">
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control search-input" placeholder="Buscar empresas..." id="search-input">
+                        <button class="btn search-btn" type="button" id="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="filter-group">
+                                <div class="filter-label">Setor</div>
+                                <select class="form-select filter-select" id="industry-filter">
+                                    <option value="">Todos os setores</option>
+                                    <option value="technology">Tecnologia</option>
+                                    <option value="finance">Financeiro</option>
+                                    <option value="health">Saúde</option>
+                                    <option value="education">Educação</option>
+                                    <option value="retail">Varejo</option>
+                                    <option value="consulting">Consultoria</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="filter-group">
+                                <div class="filter-label">Tamanho</div>
+                                <select class="form-select filter-select" id="size-filter">
+                                    <option value="">Qualquer tamanho</option>
+                                    <option value="startup">Startup (1-50)</option>
+                                    <option value="small">Pequena (51-200)</option>
+                                    <option value="medium">Média (201-1000)</option>
+                                    <option value="large">Grande (1000+)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="filter-group">
+                                <div class="filter-label">Localização</div>
+                                <select class="form-select filter-select" id="location-filter">
+                                    <option value="">Todas as cidades</option>
+                                    <option value="sao-paulo">São Paulo, SP</option>
+                                    <option value="rio-janeiro">Rio de Janeiro, RJ</option>
+                                    <option value="belo-horizonte">Belo Horizonte, MG</option>
+                                    <option value="porto-alegre">Porto Alegre, RS</option>
+                                    <option value="brasilia">Brasília, DF</option>
+                                    <option value="remote">Remoto</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="filter-group">
+                                <div class="filter-label">Avaliação</div>
+                                <select class="form-select filter-select" id="rating-filter">
+                                    <option value="">Qualquer avaliação</option>
+                                    <option value="4.5">4.5+ estrelas</option>
+                                    <option value="4.0">4.0+ estrelas</option>
+                                    <option value="3.5">3.5+ estrelas</option>
+                                    <option value="3.0">3.0+ estrelas</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <!-- Results Info -->
+        <div class="results-info">
+            <div class="results-count" id="results-count">
+                Mostrando 1-12 de 156 empresas
+            </div>
+            <div>
+                <select class="sort-select" id="sort-select">
+                    <option value="relevance">Mais relevantes</option>
+                    <option value="rating">Melhor avaliadas</option>
+                    <option value="size">Maior número de funcionários</option>
+                    <option value="jobs">Mais vagas disponíveis</option>
+                    <option value="alphabetical">Ordem alfabética</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Carregando empresas...</p>
+        </div>
+
+        <!-- Companies Grid -->
+        <div class="companies-grid" id="companies-grid">
+            <!-- Companies will be loaded dynamically -->
+            
+            <!-- Example Company Cards -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div class="company-logo">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="company-info">
+                        <h3>TechCorp Inovação</h3>
+                        <div class="company-industry">Tecnologia da Informação</div>
+                        <div class="company-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            São Paulo, SP
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="company-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="rating-value">4.5</span>
+                    <span class="review-count">(127 avaliações)</span>
+                </div>
+                
+                <p class="company-description">
+                    Empresa líder em soluções tecnológicas com foco em inovação e desenvolvimento de software empresarial.
+                </p>
+                
+                <div class="company-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">750</span>
+                        <div class="stat-label">Funcionários</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">45</span>
+                        <div class="stat-label">Vagas</div>
+                    </div>
+                </div>
+                
+                <div class="company-tags">
+                    <span class="company-tag">Remoto</span>
+                    <span class="company-tag">Benefícios</span>
+                    <span class="company-tag">Startup</span>
+                </div>
+                
+                <div class="company-actions">
+                    <a href="../Vaga/perfilEmpresa.html" class="view-btn">
+                        <i class="fas fa-eye"></i> Ver Perfil
+                    </a>
+                    <button class="btn follow-btn">
+                        <i class="fas fa-plus"></i> Seguir
+                    </button>
+                </div>
+            </div>
+            
+            <!-- More example cards... -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div class="company-logo">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="company-info">
+                        <h3>InvestPlus</h3>
+                        <div class="company-industry">Serviços Financeiros</div>
+                        <div class="company-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Rio de Janeiro, RJ
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="company-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <span class="rating-value">4.2</span>
+                    <span class="review-count">(89 avaliações)</span>
+                </div>
+                
+                <p class="company-description">
+                    Fintech inovadora focada em soluções de investimento e gestão financeira para pessoas físicas e jurídicas.
+                </p>
+                
+                <div class="company-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">320</span>
+                        <div class="stat-label">Funcionários</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">12</span>
+                        <div class="stat-label">Vagas</div>
+                    </div>
+                </div>
+                
+                <div class="company-tags">
+                    <span class="company-tag">Fintech</span>
+                    <span class="company-tag">Híbrido</span>
+                    <span class="company-tag">Crescimento</span>
+                </div>
+                
+                <div class="company-actions">
+                    <a href="../Vaga/perfilEmpresa.html" class="view-btn">
+                        <i class="fas fa-eye"></i> Ver Perfil
+                    </a>
+                    <button class="btn follow-btn">
+                        <i class="fas fa-plus"></i> Seguir
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results -->
+        <div class="no-results" id="no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h4>Nenhuma empresa encontrada</h4>
+            <p>Tente ajustar seus filtros ou termo de busca para encontrar mais resultados.</p>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div>
-                <p>&copy; 2024 Worklink. Todos os direitos reservados.</p>
-            </div>
-            <div class="footer-links">
-                <a href="#">Sobre</a>
-                <a href="#">Privacidade</a>
-                <a href="#">Termos</a>
-                <a href="#">Contato</a>
-            </div>
-        </div>
-    </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Dados de exemplo das empresas
-        const empresas = [
-            {
-                id: 1,
-                nome: "TechCorp",
-                setor: "Tecnologia",
-                localizacao: "São Paulo, SP",
-                vagas: 12,
-                funcionarios: 150,
-                avaliacao: 4.5
-            },
-            {
-                id: 2,
-                nome: "DesignStudio",
-                setor: "Design",
-                localizacao: "Remoto",
-                vagas: 8,
-                funcionarios: 45,
-                avaliacao: 4.8
-            },
-            {
-                id: 3,
-                nome: "DataTech",
-                setor: "Tecnologia",
-                localizacao: "Rio de Janeiro, RJ",
-                vagas: 15,
-                funcionarios: 200,
-                avaliacao: 4.2
-            },
-            {
-                id: 4,
-                nome: "HealthCare",
-                setor: "Saúde",
-                localizacao: "São Paulo, SP",
-                vagas: 6,
-                funcionarios: 80,
-                avaliacao: 4.6
-            }
-        ];
+document.addEventListener('DOMContentLoaded', function() {
+    const perfilBtn = document.querySelector('.btn.btn-primary-custom, #meuPerfilBtn');
+    if (perfilBtn) {
+        // Lógica para alterar o texto do botão conforme o tipo de usuário
+        const userType = localStorage.getItem('userType');
+        if (userType === 'empresa') {
+            perfilBtn.textContent = 'Painel Empresa';
+        } else if (userType === 'candidato') {
+            perfilBtn.textContent = 'Meu Perfil';
+        } else {
+            perfilBtn.textContent = 'Entrar';
+        }
 
-        function carregarEmpresas() {
-            const container = document.getElementById('empresas-container');
+        // Lógica de redirecionamento ao clicar
+        perfilBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (userType === 'empresa') {
+                window.location.href = "../Vaga/HomeEmpresa.html";
+            } else if (userType === 'candidato') {
+                window.location.href = "../Candidato/homeCandidato.html";
+            } else {
+                window.location.href = "../Cadastro_Login/login.html";
+            }
+        });
+    }
+});
+
+        // Filter and search functionality
+        let currentFilters = {
+            search: '',
+            industry: '',
+            size: '',
+            location: '',
+            rating: '',
+            sort: 'relevance'
+        };
+
+        // Search functionality
+        document.getElementById('search-btn').addEventListener('click', performSearch);
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Filter change handlers
+        document.getElementById('industry-filter').addEventListener('change', function() {
+            currentFilters.industry = this.value;
+            applyFilters();
+        });
+
+        document.getElementById('size-filter').addEventListener('change', function() {
+            currentFilters.size = this.value;
+            applyFilters();
+        });
+
+        document.getElementById('location-filter').addEventListener('change', function() {
+            currentFilters.location = this.value;
+            applyFilters();
+        });
+
+        document.getElementById('rating-filter').addEventListener('change', function() {
+            currentFilters.rating = this.value;
+            applyFilters();
+        });
+
+        document.getElementById('sort-select').addEventListener('change', function() {
+            currentFilters.sort = this.value;
+            applyFilters();
+        });
+
+        function performSearch() {
+            currentFilters.search = document.getElementById('search-input').value.toLowerCase();
+            applyFilters();
+        }
+
+        function applyFilters() {
+            showLoading();
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                filterCompanies();
+                hideLoading();
+            }, 800);
+        }
+
+        function filterCompanies() {
+            const companies = document.querySelectorAll('.company-card');
+            let visibleCount = 0;
+            
+            companies.forEach(company => {
+                let shouldShow = true;
+                
+                // Search filter
+                if (currentFilters.search) {
+                    const companyName = company.querySelector('.company-info h3').textContent.toLowerCase();
+                    const companyIndustry = company.querySelector('.company-industry').textContent.toLowerCase();
+                    if (!companyName.includes(currentFilters.search) && !companyIndustry.includes(currentFilters.search)) {
+                        shouldShow = false;
+                    }
+                }
+                
+                // Industry filter
+                if (currentFilters.industry) {
+                    const industryText = company.querySelector('.company-industry').textContent.toLowerCase();
+                    const industryMatch = {
+                        'technology': 'tecnologia',
+                        'finance': 'financeiro',
+                        'health': 'saúde',
+                        'education': 'educação',
+                        'retail': 'varejo',
+                        'consulting': 'consultoria'
+                    };
+                    
+                    if (!industryText.includes(industryMatch[currentFilters.industry] || currentFilters.industry)) {
+                        shouldShow = false;
+                    }
+                }
+                
+                if (shouldShow) {
+                    company.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    company.style.display = 'none';
+                }
+            });
+            
+            // Update results count
+            updateResultsCount(visibleCount);
+            
+            // Show/hide no results message
+            const noResults = document.getElementById('no-results');
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+                document.getElementById('companies-grid').style.display = 'none';
+            } else {
+                noResults.style.display = 'none';
+                document.getElementById('companies-grid').style.display = 'grid';
+            }
+        }
+
+        function updateResultsCount(count) {
+            const resultsCount = document.getElementById('results-count');
+            if (count === 0) {
+                resultsCount.textContent = 'Nenhuma empresa encontrada';
+            } else {
+                resultsCount.textContent = `Mostrando ${count} empresa${count !== 1 ? 's' : ''} encontrada${count !== 1 ? 's' : ''}`;
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('companies-grid').style.display = 'none';
+            document.getElementById('no-results').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('companies-grid').style.display = 'grid';
+        }
+
+        // Follow/Unfollow functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('follow-btn') || e.target.closest('.follow-btn')) {
+                const btn = e.target.closest('.follow-btn') || e.target;
+                const isFollowing = btn.innerHTML.includes('Seguindo');
+                
+                if (isFollowing) {
+                    btn.innerHTML = '<i class="fas fa-plus"></i> Seguir';
+                    btn.classList.remove('btn-secondary');
+                    btn.classList.add('follow-btn');
+                } else {
+                    btn.innerHTML = '<i class="fas fa-check"></i> Seguindo';
+                    btn.classList.remove('follow-btn');
+                    btn.classList.add('btn-secondary');
+                }
+            }
+        });
+
+        // Load real company data from API
+        function loadCompaniesFromAPI() {
+            showLoading();
+
+            // Busca empresas com avaliações
+            fetch('http://localhost:8080/empresas/com-avaliacoes')
+                .then(response => response.json())
+                .then(empresas => {
+                    hideLoading();
+                    renderCompanies(empresas);
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar empresas:', error);
+                    hideLoading();
+                    showNoResultsAPI();
+                });
+        }
+
+        function renderCompanies(empresas) {
+            const companiesGrid = document.getElementById('companies-grid');
+            
+            if (empresas.length === 0) {
+                showNoResultsAPI();
+                return;
+            }
+            
+            // Clear existing mock data
+            companiesGrid.innerHTML = '';
             
             empresas.forEach(empresa => {
-                const empresaCard = document.createElement('div');
-                empresaCard.className = 'empresa-card';
-                empresaCard.innerHTML = `
-                    <div class="empresa-logo">
-                        ${empresa.nome.charAt(0)}
-                    </div>
-                    <div class="empresa-info">
-                        <h3>${empresa.nome}</h3>
-                        <p><i class="fas fa-industry"></i> ${empresa.setor}</p>
-                        <p><i class="fas fa-map-marker-alt"></i> ${empresa.localizacao}</p>
-                    </div>
-                    <div class="empresa-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">${empresa.vagas}</div>
-                            <div class="stat-label">Vagas</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">${empresa.funcionarios}</div>
-                            <div class="stat-label">Funcionários</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">${empresa.avaliacao}</div>
-                            <div class="stat-label">Avaliação</div>
-                        </div>
-                    </div>
-                    <div class="empresa-actions">
-                        <button class="btn-ver-perfil" onclick="verPerfil(${empresa.id})">
-                            <i class="fas fa-eye"></i> Ver Perfil
-                        </button>
-                        <button class="btn-avaliar" onclick="avaliarEmpresa(${empresa.id})">
-                            <i class="fas fa-star"></i> Avaliar
-                        </button>
-                    </div>
-                `;
-                container.appendChild(empresaCard);
+                const companyCard = createCompanyCard(empresa);
+                companiesGrid.appendChild(companyCard);
             });
+            
+            updateResultsCount(empresas.length);
         }
 
-        function verPerfil(id) {
-            alert(`Ver perfil da empresa ${id}`);
+        function createCompanyCard(empresa) {
+            const card = document.createElement('div');
+            card.className = 'company-card';
+
+            // Limita a descrição para exibição
+            const descricaoLimitada = empresa.descricao ?
+                (empresa.descricao.length > 150 ? empresa.descricao.substring(0, 150) + '...' : empresa.descricao) :
+                'Empresa focada em inovação e excelência no atendimento.';
+
+            // Lógica do logo: usa imagem da empresa se existir, senão ícone padrão
+            let logoHtml;
+            if (empresa.fotoPerfil) {
+                // Se já vier com http(s), usa direto, senão concatena com o backend
+                const fotoUrl = empresa.fotoPerfil.startsWith('http') ? empresa.fotoPerfil : `http://localhost:8080${empresa.fotoPerfil}`;
+                logoHtml = `<img src="${fotoUrl}" alt="Logo da Empresa" style="width:100%;height:100%;object-fit:cover;border-radius:1rem;">`;
+            } else {
+                logoHtml = `<i class="fas fa-building"></i>`;
+            }
+
+            // Cria um id único para o campo de vagas deste card
+            const vagasId = `vagas-empresa-${empresa.id}`;
+
+            // Lógica de avaliação igual ao avaliarEmpresas
+            const avaliacao = empresa.mediaAvaliacao || 0;
+            const qtdAvaliacoes = empresa.qtdAvaliacoes || 0;
+
+            function arredondarEstrela(nota) {
+                const inteiro = Math.floor(nota);
+                const decimal = nota - inteiro;
+                if (decimal < 0.25) return inteiro;
+                if (decimal < 0.75) return inteiro + 0.5;
+                return inteiro + 1;
+            }
+            const notaArredondada = arredondarEstrela(avaliacao);
+
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                if (notaArredondada >= i) {
+                    starsHtml += '<i class="fas fa-star"></i>';
+                } else if (notaArredondada >= i - 0.5) {
+                    starsHtml += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    starsHtml += '<i class="far fa-star"></i>';
+                }
+            }
+
+            card.innerHTML = `
+                <div class="company-header">
+                    <div class="company-logo">
+                        ${logoHtml}
+                    </div>
+                    <div class="company-info">
+                        <h3>${empresa.nome || 'Nome não informado'}</h3>
+                        <div class="company-industry">${empresa.setor || 'Empresa'}</div>
+                        <div class="company-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            ${empresa.cidade || 'Localização não informada'}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="company-rating">
+                    <div class="stars">
+                        ${starsHtml}
+                    </div>
+                    <span class="rating-value">${avaliacao > 0 ? avaliacao.toFixed(1) : '0.0'}</span>
+                    <span class="review-count">(${qtdAvaliacoes} avaliação${qtdAvaliacoes === 1 ? '' : 'es'})</span>
+                </div>
+                
+                <p class="company-description">
+                    ${descricaoLimitada}
+                </p>
+                
+                <div class="company-stats">
+                    <div class="stat-item" style="grid-column: 1 / -1; text-align: center;">
+                        <span id="${vagasId}" class="stat-number" style="display: block; font-size: 1.5rem;">...</span>
+                        <div class="stat-label">Vagas Ativas</div>
+                    </div>
+                </div>
+                
+                <div class="company-tags">
+                    <span class="company-tag">Empresa</span>
+                    <span class="company-tag">Oportunidades</span>
+                </div>
+                
+                <div class="company-actions">
+                    <a href="../Vaga/perfilEmpresa.html?id=${empresa.id}" class="view-btn">
+                        <i class="fas fa-eye"></i> Ver Perfil
+                    </a>
+                    <button class="btn follow-btn" onclick="followCompany(${empresa.id})">
+                        <i class="fas fa-plus"></i> Seguir
+                    </button>
+                </div>
+            `;
+            
+            // Busca o número de vagas da empresa via API e atualiza o campo
+            if (empresa.cnpj) {
+                fetch(`http://localhost:8080/vagas/empresa/cnpj/${encodeURIComponent(empresa.cnpj)}`)
+                    .then(resp => resp.json())
+                    .then(vagas => {
+                        const vagasSpan = card.querySelector(`#${vagasId}`);
+                        if (vagasSpan) {
+                            vagasSpan.textContent = vagas.length;
+                        }
+                    })
+                    .catch(() => {
+                        const vagasSpan = card.querySelector(`#${vagasId}`);
+                        if (vagasSpan) {
+                            vagasSpan.textContent = '0';
+                        }
+                    });
+            } else {
+                setTimeout(() => {
+                    const vagasSpan = card.querySelector(`#${vagasId}`);
+                    if (vagasSpan) vagasSpan.textContent = '0';
+                }, 0);
+            }
+
+            return card;
         }
 
-        function avaliarEmpresa(id) {
-            alert(`Avaliar empresa ${id}`);
+        function followCompany(companyId) {
+            alert(`Seguindo empresa ID: ${companyId}\nFuncionalidade de seguir será implementada em breve!`);
         }
 
-        // Carregar empresas quando a página carregar
-        document.addEventListener('DOMContentLoaded', carregarEmpresas);
+        function showNoResultsAPI() {
+            document.getElementById('no-results').style.display = 'block';
+            document.getElementById('companies-grid').style.display = 'none';
+            updateResultsCount(0);
+        }
+
+        // Initialize with API data
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCompaniesFromAPI();
+        });
     </script>
 </body>
 </html>

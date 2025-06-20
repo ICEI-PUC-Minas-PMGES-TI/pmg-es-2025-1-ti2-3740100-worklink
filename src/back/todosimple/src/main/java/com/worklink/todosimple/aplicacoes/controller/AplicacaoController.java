@@ -143,4 +143,17 @@ public class AplicacaoController {
         }
         return ResponseEntity.ok(aplicacao);
     }
+
+    @GetMapping("/indicadores/avaliacao-por-empresa")
+    public ResponseEntity<Double> getPercentualCandidaturasAvaliadas() {
+        List<Aplicacao> aplicacoes = aplicacaoRepository.findAll();
+        if (aplicacoes.isEmpty()) return ResponseEntity.ok(0.0);
+
+        long avaliadas = aplicacoes.stream()
+            .filter(a -> a.getStatus() != null && !a.getStatus().equalsIgnoreCase("Pendente"))
+            .count();
+
+        double percentual = (avaliadas * 100.0) / aplicacoes.size();
+        return ResponseEntity.ok(percentual);
+    }
 }

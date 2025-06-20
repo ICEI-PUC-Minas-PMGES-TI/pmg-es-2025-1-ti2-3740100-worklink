@@ -7,6 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="../Script.js"></script>
+        <!-- Ajuste os caminhos dos favicons para ficarem corretos, considerando a estrutura do seu projeto -->
+    <link rel="icon" type="image/png" href="../favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
     <style>
         :root {
             --primary-color: #9147ff;
@@ -38,7 +45,7 @@
             background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
-            padding-top: 80px;
+            padding-top: 50px; /* Ajuste para compensar a navbar fixa */
         }
 
         /* Header */
@@ -279,13 +286,8 @@
         }
 
         .candidate-meta {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: #f8fafc;
-            border-radius: 0.75rem;
+            justify-content: center;
+            display: flex;
         }
 
         .meta-item {
@@ -582,7 +584,7 @@
                                 <option value="">Experiência</option>
                                 <option value="junior">Júnior (0-2 anos)</option>
                                 <option value="pleno">Pleno (3-5 anos)</option>
-                                <option value="senior">Sênior (5+ anos)</option>
+                                <option value="senior">Sênior (6+ anos)</option>
                             </select>
                         </div>
                     </div>
@@ -671,7 +673,7 @@
                         <select class="sort-select" id="sort-select">
                             <option value="relevance">Mais relevantes</option>
                             <option value="experience">Mais experientes</option>
-                            <option value="recent">Cadastros recentes</option>
+                            <option value="less-experience">Menos experiência</option>
                             <option value="availability">Disponibilidade</option>
                         </select>
                     </div>
@@ -717,14 +719,10 @@
                             <span class="skill-tag">PostgreSQL</span>
                         </div>
                         
-                        <div class="candidate-meta">
+                        <div class="candidate-meta" style="justify-content: center; display: flex;">
                             <div class="meta-item">
                                 <div class="meta-value">5+ anos</div>
                                 <div class="meta-label">Experiência</div>
-                            </div>
-                            <div class="meta-item">
-                                <div class="meta-value">R$ 8-12k</div>
-                                <div class="meta-label">Pretensão</div>
                             </div>
                         </div>
                         
@@ -770,14 +768,10 @@
                             <span class="skill-tag">Prototyping</span>
                         </div>
                         
-                        <div class="candidate-meta">
+                        <div class="candidate-meta" style="justify-content: center; display: flex;">
                             <div class="meta-item">
                                 <div class="meta-value">4 anos</div>
                                 <div class="meta-label">Experiência</div>
-                            </div>
-                            <div class="meta-item">
-                                <div class="meta-value">R$ 6-9k</div>
-                                <div class="meta-label">Pretensão</div>
                             </div>
                         </div>
                         
@@ -822,14 +816,10 @@
                             <span class="skill-tag">SQL</span>
                         </div>
                         
-                        <div class="candidate-meta">
+                        <div class="candidate-meta" style="justify-content: center; display: flex;">
                             <div class="meta-item">
                                 <div class="meta-value">7 anos</div>
                                 <div class="meta-label">Experiência</div>
-                            </div>
-                            <div class="meta-item">
-                                <div class="meta-value">R$ 12-18k</div>
-                                <div class="meta-label">Pretensão</div>
                             </div>
                         </div>
                         
@@ -944,13 +934,54 @@
 
         function applyFilters() {
             showLoading();
-            
-            // Simulate API call delay
+
             setTimeout(() => {
                 filterCandidates();
+                sortCandidates(); // <-- Adicione esta linha para ordenar após filtrar
                 hideLoading();
             }, 800);
         }
+
+        // Função para ordenar os cards de candidatos conforme o select de ordenação
+function sortCandidates() {
+    const sortValue = document.getElementById('sort-select').value;
+    const grid = document.getElementById('candidates-grid');
+    const cards = Array.from(grid.querySelectorAll('.candidate-card')).filter(card => card.style.display !== 'none');
+
+    let sortedCards = cards;
+
+    if (sortValue === 'experience') {
+        // Mais experientes primeiro
+        sortedCards = cards.sort((a, b) => {
+            const expA = parseInt(a.querySelector('.meta-value').textContent) || 0;
+            const expB = parseInt(b.querySelector('.meta-value').textContent) || 0;
+            return expB - expA;
+        });
+    } else if (sortValue === 'less-experience') {
+        // Menos experientes primeiro
+        sortedCards = cards.sort((a, b) => {
+            const expA = parseInt(a.querySelector('.meta-value').textContent) || 0;
+            const expB = parseInt(b.querySelector('.meta-value').textContent) || 0;
+            return expA - expB;
+        });
+    } else if (sortValue === 'availability') {
+        // Disponíveis primeiro
+        sortedCards = cards.sort((a, b) => {
+            const availA = a.querySelector('.availability-indicator').classList.contains('available') ? 1 : 0;
+            const availB = b.querySelector('.availability-indicator').classList.contains('available') ? 1 : 0;
+            return availB - availA;
+        });
+    } else if (sortValue === 'relevance') {
+        // Mais relevantes: mais habilidades primeiro
+        sortedCards = cards.sort((a, b) => {
+            const skillsA = a.querySelectorAll('.candidate-skills .skill-tag').length;
+            const skillsB = b.querySelectorAll('.candidate-skills .skill-tag').length;
+            return skillsB - skillsA;
+        });
+    }
+
+    sortedCards.forEach(card => grid.appendChild(card));
+}
 
         function filterCandidates() {
             const candidates = document.querySelectorAll('.candidate-card');
@@ -983,6 +1014,22 @@
                     }
                 }
                 
+                // Experience filter
+                if (currentFilters.experience) {
+                    // Pega o texto da experiência e extrai o número de anos
+                    const expText = candidate.querySelector('.meta-value').textContent;
+                    const anos = parseInt(expText) || 0;
+                    if (currentFilters.experience === 'junior' && !(anos >= 0 && anos <= 2)) {
+                        shouldShow = false;
+                    }
+                    if (currentFilters.experience === 'pleno' && !(anos >= 3 && anos <= 5)) {
+                        shouldShow = false;
+                    }
+                    if (currentFilters.experience === 'senior' && !(anos >= 6)) {
+                        shouldShow = false;
+                    }
+                }
+
                 if (shouldShow) {
                     candidate.style.display = 'block';
                     visibleCount++;
@@ -1152,16 +1199,14 @@
                     ${habilidadesArray.map(skill => `<span class="skill-tag">${skill.trim()}</span>`).join('')}
                 </div>
                 
-                <div class="candidate-meta">
+                <div class="candidate-meta" style="justify-content: center; display: flex;">
                     <div class="meta-item">
                         <div class="meta-value">${experienciaTexto}</div>
                         <div class="meta-label">Experiência</div>
                     </div>
-                    <div class="meta-item">
-                        <div class="meta-value">A combinar</div>
-                        <div class="meta-label">Pretensão</div>
-                    </div>
                 </div>
+                
+                <div style="height: 1.5rem;"></div> <!-- Espaço entre experiência e botões -->
                 
                 <div class="candidate-actions">
                     <a href="../Candidato/perfilCandidato.html?id=${candidato.id}" class="view-profile-btn">
@@ -1186,10 +1231,123 @@
             updateResultsCount(0);
         }
 
-        // Initialize with API data
-        document.addEventListener('DOMContentLoaded', function() {
-            loadCandidatesFromAPI();
+        // Função para buscar todas as cidades dos candidatos no banco e popular o filtro de localização
+function carregarCidadesFiltro() {
+    fetch('http://localhost:8080/candidatos')
+        .then(response => response.json())
+        .then(candidatos => {
+            const cidades = new Set();
+            candidatos.forEach(c => {
+                if (c.cidade && c.cidade.trim() !== "") {
+                    cidades.add(c.cidade.trim());
+                }
+            });
+            const locationFilter = document.getElementById('location-filter');
+            // Remove opções antigas (exceto a primeira)
+            while (locationFilter.options.length > 1) {
+                locationFilter.remove(1);
+            }
+            // Adiciona as cidades únicas
+            Array.from(cidades).sort().forEach(cidade => {
+                const option = document.createElement('option');
+                option.value = cidade.toLowerCase().replace(/\s+/g, '-');
+                option.textContent = cidade;
+                locationFilter.appendChild(option);
+            });
+            // Mantém opções extras fixas, se desejar
+            // Exemplo: Remoto
+            if (!Array.from(locationFilter.options).some(opt => opt.value === 'remoto')) {
+                const optionRemoto = document.createElement('option');
+                option.value = 'remoto';
+                option.textContent = 'Remoto';
+                locationFilter.appendChild(optionRemoto);
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao carregar cidades para o filtro:', error);
         });
+}
+
+// Atualize o filtro de experiência para valores numéricos
+function carregarExperienciasFiltro() {
+    fetch('http://localhost:8080/candidatos')
+        .then(response => response.json())
+        .then(candidatos => {
+            const experiencias = new Set();
+            candidatos.forEach(c => {
+                if (c.experiencia !== undefined && c.experiencia !== null && c.experiencia !== "") {
+                    experiencias.add(Number(c.experiencia));
+                }
+            });
+            const experienceFilter = document.getElementById('experience-filter');
+            // Remove opções antigas (exceto a primeira)
+            while (experienceFilter.options.length > 1) {
+                experienceFilter.remove(1);
+            }
+            // Adiciona opções fixas para Júnior, Pleno e Sênior
+            const opcoes = [
+                { value: 'junior', label: 'Júnior (0-2 anos)' },
+                { value: 'pleno', label: 'Pleno (3-5 anos)' },
+                { value: 'senior', label: 'Sênior (6+ anos)' }
+            ];
+            opcoes.forEach(op => {
+                const option = document.createElement('option');
+                option.value = op.value;
+                option.textContent = op.label;
+                experienceFilter.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Erro ao carregar experiências para o filtro:', error);
+        });
+}
+
+function ajustarFiltrosDinamicamente() {
+    fetch('http://localhost:8080/candidatos')
+        .then(response => response.json())
+        .then(candidatos => {
+            let temArea = false;
+            let temDisponibilidade = false;
+            let temModalidade = false;
+            let temPretensaoSalarial = false;
+
+            for (const c of candidatos) {
+                if (c.areaAtuacao && c.areaAtuacao.trim() !== "") temArea = true;
+                if (c.disponibilidade && c.disponibilidade.trim() !== "") temDisponibilidade = true;
+                if (c.modalidade && c.modalidade.trim() !== "") temModalidade = true;
+                if (
+                    (c.pretensaoSalarialMin && c.pretensaoSalarialMin !== 0) ||
+                    (c.pretensaoSalarialMax && c.pretensaoSalarialMax !== 0)
+                ) temPretensaoSalarial = true;
+            }
+
+            // Função auxiliar para esconder grupos de filtro pelo texto do título
+            function hideFilterGroupByTitle(title) {
+                document.querySelectorAll('.filter-group').forEach(group => {
+                    const titleDiv = group.querySelector('.filter-title');
+                    if (titleDiv && titleDiv.textContent.trim() === title) {
+                        group.style.display = 'none';
+                    }
+                });
+            }
+
+            if (!temArea) hideFilterGroupByTitle('Área de Atuação');
+            if (!temDisponibilidade) hideFilterGroupByTitle('Disponibilidade');
+            if (!temModalidade) hideFilterGroupByTitle('Modalidade');
+            if (!temPretensaoSalarial) hideFilterGroupByTitle('Pretensão Salarial');
+        })
+        .catch(error => {
+            console.error('Erro ao ajustar filtros dinamicamente:', error);
+        });
+}
+
+// Chame junto com os outros carregamentos
+document.addEventListener('DOMContentLoaded', function() {
+    carregarCidadesFiltro();
+    carregarExperienciasFiltro();
+    loadCandidatesFromAPI();
+    ajustarFiltrosDinamicamente();
+});
 
         // Adicione este script ao final do <body> das páginas que possuem o botão de perfil
         document.addEventListener('DOMContentLoaded', function() {
