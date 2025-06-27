@@ -187,7 +187,7 @@ h1 {
 }
 
 .vaga-item {
-    border-radius: 4px; /* Bordas arredondadas */
+    border-radius: 10px; /* Bordas arredondadas */
     padding: 15px; /* Espaçamento interno */
     margin-bottom: 15px; /* Espaçamento entre os itens */
     background-color: #fff; /* Fundo branco */

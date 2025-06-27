@@ -415,27 +415,33 @@
                     const formData = new FormData();
                     formData.append("arquivoTeste", arquivo, "teste_tecnico." + mime.split('/')[1]);
 
+                    // Desabilita o botão para evitar múltiplos envios
+                    document.querySelector('.btn-primary').disabled = true;
+
                     fetch(`http://localhost:8080/vagas/${vagaCriada.id}/teste`, {
                         method: 'POST',
                         body: formData
                     })
                     .then(resp => {
+                        // Não use alert aqui!
                         if (resp.ok) {
-    sessionStorage.clear();
-    alert("Vaga e teste publicados!");
-    window.location.href = "HomeEmpresa.html";
-} else {
-    sessionStorage.clear();
-    alert("Vaga publicada, mas erro ao enviar teste.");
-    window.location.href = "HomeEmpresa.html";
-}
+                            // Mensagem visual opcional
+                            // document.getElementById('mensagem').textContent = "Vaga e teste publicados!";
+                        }
+                        // Não precisa else, sempre redireciona
+                    })
+                    .catch(err => {
+                        // document.getElementById('mensagem').textContent = "Vaga publicada, mas erro ao enviar teste.";
+                    })
+                    .finally(() => {
+                        // Redireciona SEM alert
+                        sessionStorage.clear();
+                        window.location.href = "HomeEmpresa.html";
                     });
                 } else {
-                    alert("Vaga publicada sem teste técnico.");
+                    // Caso sem teste
                     sessionStorage.clear();
-                    setTimeout(() => {
-                        window.location.href = "HomeEmpresa.html";
-                    }, 100);
+                    window.location.href = "HomeEmpresa.html";
                 }
             })
             .catch(error => {

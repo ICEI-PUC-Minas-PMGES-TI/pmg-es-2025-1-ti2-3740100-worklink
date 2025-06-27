@@ -134,6 +134,7 @@
             margin-bottom: 2rem;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             position: relative;
+            z-index: 1; /* Garante que o card fique abaixo da engrenagem, mas acima do restante */
         }
 
         .settings-icon {
@@ -144,7 +145,7 @@
             color: var(--secondary-color);
             font-size: 2rem;
             transition: transform 0.3s ease;
-            z-index: 1001;
+            z-index: 2; /* Reduzido para evitar sobreposição */
             padding: 0.5rem;
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.8);
@@ -665,27 +666,31 @@
                     }
 
                     // Carregar experiências
+                    const experienciasDiv = document.getElementById('candidato-experiencias');
+                    let experiencias = [];
                     if (dadosCandidato.experiencias) {
-                        let experiencias = [];
-                        try {
-                            experiencias = JSON.parse(dadosCandidato.experiencias);
-                        } catch {
-                            experiencias = [];
+                        if (Array.isArray(dadosCandidato.experiencias)) {
+                            experiencias = dadosCandidato.experiencias;
+                        } else if (typeof dadosCandidato.experiencias === "string" && dadosCandidato.experiencias.trim() !== "") {
+                            try {
+                                experiencias = JSON.parse(dadosCandidato.experiencias);
+                            } catch {
+                                experiencias = [];
+                            }
                         }
-                        const experienciasDiv = document.getElementById('candidato-experiencias');
-                        experienciasDiv.innerHTML = experiencias.length
-                            ? experiencias.map(e => `
-                            <div class="experience-item">
-                                <h4>${e.cargo} - ${e.empresa}</h4>
-                                <p><i class="fas fa-calendar-alt"></i> ${formatarData(e.dataInicio)} a ${e.dataFim ? formatarData(e.dataFim) : 'Atual'}</p>
-                                <p>${e.descricao}</p>
-                                <span class="badge ${e.status === 'Aprovado' ? 'aprovado' : e.status === 'Reprovado' ? 'reprovado' : 'em-andamento'}">
-                                    ${e.status}
-                                </span>
-                            </div>
-                        `).join('')
-                            : '<p class="text-muted">Nenhuma experiência profissional cadastrada.</p>';
                     }
+                    experienciasDiv.innerHTML = experiencias.length
+                        ? experiencias.map(e => `
+        <div class="experience-item">
+            <h4>${e.cargo} - ${e.empresa}</h4>
+            <p><i class="fas fa-calendar-alt"></i> ${formatarData(e.dataInicio)} a ${e.dataFim ? formatarData(e.dataFim) : 'Atual'}</p>
+            <p>${e.descricao}</p>
+            <span class="badge ${e.status === 'Aprovado' ? 'aprovado' : e.status === 'Reprovado' ? 'reprovado' : 'em-andamento'}">
+                ${e.status}
+            </span>
+        </div>
+    `).join('')
+    : '<p class="text-muted">Nenhuma experiência profissional cadastrada.</p>';
                 })
                 .catch(error => {
                     alert("Erro ao carregar dados do candidato.");
@@ -770,7 +775,7 @@
 if (vaga.teste) {
     baixarTesteBtn = `
     <a href="http://localhost:8080${vaga.teste}" target="_blank" class="btn btn-outline-primary btn-sm me-2">
-        <i class="fas fa-download"></i> Baixar Teste
+        <i class="fas fa-download"></i> Baixar Teste Técnico
     </a>`;
 }
 
@@ -795,10 +800,10 @@ ${aprovadoAlert}
     <button class="btn btn-primary btn-sm me-2" onclick="verDetalhesVaga(${vaga.id})">
         <i class="fas fa-info-circle"></i> Ver detalhes
     </button>
-    ${vaga.teste ? `
-    <button class="btn btn-outline-primary btn-sm me-2" onclick="baixarTeste(${vaga.id})">
-        <i class="fas fa-download"></i> Baixar Teste
-    </button>` : ''}
+ ${vaga.teste ? `
+    <a href="http://localhost:8080${vaga.teste}" target="_blank" class="btn btn-outline-primary btn-sm me-2">
+        <i class="fas fa-download"></i> Baixar Teste Técnico
+    </a>` : ''}
     ${testeEnviadoBtn}
     ${feedbackBtn}
 </div>
@@ -902,10 +907,6 @@ ${aprovadoAlert}
                     const modal = new bootstrap.Modal(document.getElementById('modalFeedback'));
                     modal.show();
                 });
-        }
-
-        function baixarTeste(vagaId) {
-            window.open(`http://localhost:8080/vagas/${vagaId}/teste`, "_blank");
         }
 
         // Limpa o localStorage ao clicar em logout
