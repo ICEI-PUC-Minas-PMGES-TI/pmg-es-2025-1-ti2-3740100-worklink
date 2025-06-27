@@ -725,72 +725,85 @@
 
         // Função para carregar e exibir todas as vagas da empresa em carrossel horizontal
         function carregarVagasEmpresa() {
-            const cnpj = localStorage.getItem("empresaCnpj");
-            const listaVagas = document.getElementById("lista-vagas");
+            // Tenta pegar o ID da empresa pela URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const empresaId = urlParams.get('id');
 
-            if (!cnpj) {
-                listaVagas.innerHTML = `
-                    <div class="alert alert-warning">CNPJ da empresa não encontrado.</div>
-                `;
+            const listaVagas = document.getElementById("lista-vagas");
+            if (!empresaId) {
+                listaVagas.innerHTML = `<div class="alert alert-warning">Empresa não encontrada.</div>`;
                 return;
             }
 
-            const apiUrl = `http://localhost:8080/vagas/empresa/cnpj/${encodeURIComponent(cnpj)}`;
-
-            function formatarData(data) {
-                if (!data) return "";
-                const [ano, mes, dia] = data.split('T')[0].split('-');
-                return `${dia}/${mes}/${ano}`;
-            }
-
-            fetch(apiUrl)
+            // Busca o CNPJ da empresa pelo ID
+            fetch(`http://localhost:8080/empresas/${empresaId}`)
                 .then(response => {
-                    if (!response.ok) throw new Error("Erro ao buscar vagas");
+                    if (!response.ok) throw new Error("Empresa não encontrada");
                     return response.json();
                 })
-                .then(vagas => {
-                    listaVagas.innerHTML = "";
-                    if (!vagas || vagas.length === 0) {
-                        listaVagas.innerHTML = `
-                            <div class="text-center p-4">
-                                <i class="fas fa-briefcase mb-3" style="font-size: 2rem; color: var(--text-light);"></i>
-                                <p class="text-muted">Nenhuma vaga disponível no momento.</p>
-                            </div>
-                        `;
-                        return;
+                .then(empresa => {
+                    const cnpj = empresa.cnpj;
+                    if (!cnpj) throw new Error("CNPJ não encontrado");
+                    const apiUrl = `http://localhost:8080/vagas/empresa/cnpj/${encodeURIComponent(cnpj)}`;
+
+                    function formatarData(data) {
+                        if (!data) return "";
+                        const [ano, mes, dia] = data.split('T')[0].split('-');
+                        return `${dia}/${mes}/${ano}`;
                     }
 
-                    // Ordena as vagas pela data de criação (mais recente primeiro)
-                    vagas.sort((a, b) => new Date(b.dataCriacao) - new Date(a.dataCriacao));
+                    fetch(apiUrl)
+                        .then(response => {
+                            if (!response.ok) throw new Error("Erro ao buscar vagas");
+                            return response.json();
+                        })
+                        .then(vagas => {
+                            listaVagas.innerHTML = "";
+                            if (!vagas || vagas.length === 0) {
+                                listaVagas.innerHTML = `
+                                    <div class="text-center p-4">
+                                        <i class="fas fa-briefcase mb-3" style="font-size: 2rem; color: var(--text-light);"></i>
+                                        <p class="text-muted">Nenhuma vaga disponível no momento.</p>
+                                    </div>
+                                `;
+                                return;
+                            }
 
-                    vagas.forEach(vaga => {
-                        const vagaCard = document.createElement("div");
-                        vagaCard.classList.add("job-card");
-                        const salarioFormatado = vaga.salario 
-                            ? `R$ ${parseFloat(vaga.salario).toLocaleString('pt-BR', {minimumFractionDigits: 2})}` 
-                            : 'A combinar';
-                        vagaCard.innerHTML = `
-                            <h4 class="job-title">${vaga.titulo || 'Vaga sem título'}</h4>
-                            <div class="job-meta">
-                                <span class="job-tag">${vaga.tipoContrato || 'Não especificado'}</span>
-                                <span class="job-salary">${salarioFormatado}</span>
-                            </div>
-                            <p>${vaga.descricao || 'Sem descrição'}</p>
-                            <div class="d-flex align-items-center justify-content-between mt-3">
-                                <small class="text-muted">Publicada: ${formatarData(vaga.dataCriacao)}</small>
-                                <button class="btn apply-btn" onclick="verDetalhes(${vaga.id})">Ver Detalhes</button>
-                            </div>
-                        `;
-                        listaVagas.appendChild(vagaCard);
-                    });
+                            // Ordena as vagas pela data de criação (mais recente primeiro)
+                            vagas.sort((a, b) => new Date(b.dataCriacao) - new Date(a.dataCriacao));
+
+                            vagas.forEach(vaga => {
+                                const vagaCard = document.createElement("div");
+                                vagaCard.classList.add("job-card");
+                                const salarioFormatado = vaga.salario 
+                                    ? `R$ ${parseFloat(vaga.salario).toLocaleString('pt-BR', {minimumFractionDigits: 2})}` 
+                                    : 'A combinar';
+                                vagaCard.innerHTML = `
+                                    <h4 class="job-title">${vaga.titulo || 'Vaga sem título'}</h4>
+                                    <div class="job-meta">
+                                        <span class="job-tag">${vaga.tipoContrato || 'Não especificado'}</span>
+                                        <span class="job-salary">${salarioFormatado}</span>
+                                    </div>
+                                    <p>${vaga.descricao || 'Sem descrição'}</p>
+                                    <div class="d-flex align-items-center justify-content-between mt-3">
+                                        <small class="text-muted">Publicada: ${formatarData(vaga.dataCriacao)}</small>
+                                        <button class="btn apply-btn" onclick="verDetalhes(${vaga.id})">Ver Detalhes</button>
+                                    </div>
+                                `;
+                                listaVagas.appendChild(vagaCard);
+                            });
+                        })
+                        .catch(error => {
+                            console.error("Erro ao carregar vagas:", error);
+                            listaVagas.innerHTML = `
+                                <div class="alert alert-danger" role="alert">
+                                    Erro ao carregar vagas. Tente novamente mais tarde.
+                                </div>
+                            `;
+                        });
                 })
                 .catch(error => {
-                    console.error("Erro ao carregar vagas:", error);
-                    listaVagas.innerHTML = `
-                        <div class="alert alert-danger" role="alert">
-                            Erro ao carregar vagas. Tente novamente mais tarde.
-                        </div>
-                    `;
+                    listaVagas.innerHTML = `<div class="alert alert-danger">Erro ao buscar empresa.</div>`;
                 });
         }
 
@@ -836,16 +849,27 @@
 
         // Função para contar vagas abertas e totais
         function contarVagasEmpresa() {
-            const cnpj = localStorage.getItem("empresaCnpj");
-            if (!cnpj) {
+            // Tenta pegar o ID da empresa pela URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const empresaId = urlParams.get('id');
+            if (!empresaId) {
                 document.getElementById('vagas-ativas').textContent = '0';
                 document.getElementById('vagas-totais').textContent = '0';
                 return;
             }
 
-            const apiUrl = `http://localhost:8080/vagas/empresa/cnpj/${encodeURIComponent(cnpj)}`;
-
-            fetch(apiUrl)
+            // Busca o CNPJ da empresa pelo ID
+            fetch(`http://localhost:8080/empresas/${empresaId}`)
+                .then(response => {
+                    if (!response.ok) throw new Error("Empresa não encontrada");
+                    return response.json();
+                })
+                .then(empresa => {
+                    const cnpj = empresa.cnpj;
+                    if (!cnpj) throw new Error("CNPJ não encontrado");
+                    const apiUrl = `http://localhost:8080/vagas/empresa/cnpj/${encodeURIComponent(cnpj)}`;
+                    return fetch(apiUrl);
+                })
                 .then(response => {
                     if (!response.ok) throw new Error("Erro ao buscar vagas");
                     return response.json();

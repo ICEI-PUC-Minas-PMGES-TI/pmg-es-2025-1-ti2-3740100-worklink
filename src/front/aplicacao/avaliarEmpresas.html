@@ -738,6 +738,14 @@
     }
 
     alert("Avaliação enviada com sucesso!");
+
+    // Fecha o modal após o envio
+    const ratingModal = document.getElementById('ratingModal');
+    if (ratingModal) {
+        const modal = bootstrap.Modal.getInstance(ratingModal) || new bootstrap.Modal(ratingModal);
+        modal.hide();
+    }
+
     submitRating();
     carregarEmpresas(); // Atualiza a lista de empresas/avaliações
 }
@@ -786,6 +794,18 @@ empresas.forEach(empresa => {
         av.empresa && av.empresa.id === empresa.id
     );
 
+    // Verifica se está logado
+    const cpfCandidato = localStorage.getItem('cpfUsuario');
+    const isLogado = !!cpfCandidato;
+
+    // Verifica se o candidato já participou de algum processo na empresa
+    let participouProcesso = false;
+    if (isLogado && window.aplicacoesCandidato && Array.isArray(window.aplicacoesCandidato)) {
+        participouProcesso = window.aplicacoesCandidato.some(aplicacao =>
+            aplicacao.vaga && aplicacao.vaga.empresa && aplicacao.vaga.empresa.id === empresa.id
+        );
+    }
+
     // Função para arredondar para o mais próximo de 0, 0.5 ou 1
     function arredondarEstrela(nota) {
         const inteiro = Math.floor(nota);
@@ -799,12 +819,28 @@ empresas.forEach(empresa => {
     let starsHtml = '';
     for (let i = 1; i <= 5; i++) {
         if (notaArredondada >= i) {
-            starsHtml += '<i class="fas fa-star" style="color: #f59e0b;"></i>'; // cheia
+            starsHtml += '<i class="fas fa-star" style="color: #f59e0b;"></i>';
         } else if (notaArredondada >= i - 0.5) {
-            starsHtml += '<i class="fas fa-star-half-alt" style="color: #f59e0b;"></i>'; // meia
+            starsHtml += '<i class="fas fa-star-half-alt" style="color: #f59e0b;"></i>';
         } else {
-            starsHtml += '<i class="far fa-star" style="color: #e2e8f0;"></i>'; // vazia
+            starsHtml += '<i class="far fa-star" style="color: #e2e8f0;"></i>';
         }
+    }
+
+    // Botão Avaliar: desabilitado e com mensagem se não logado ou não participou de processo
+    let btnHtml = '';
+    if (!isLogado) {
+        btnHtml = `<button class="btn rate-company-btn btn-de-avaliacao btn-ja-avaliada" disabled title="Apenas usuários logados podem avaliar empresas.">
+            Apenas logados podem avaliar
+        </button>`;
+    } else if (!participouProcesso) {
+        btnHtml = `<button class="btn rate-company-btn btn-de-avaliacao btn-ja-avaliada" disabled title="Você só pode avaliar empresas em que já participou de um processo seletivo.">
+            Avaliação disponível apenas após participação em processo
+        </button>`;
+    } else {
+        btnHtml = `<button class="btn rate-company-btn btn-de-avaliacao ${jaAvaliou ? 'btn-ja-avaliada' : ''}" data-bs-toggle="modal" data-bs-target="#ratingModal" data-empresa="${empresa.nome}" ${jaAvaliou ? 'disabled title="Você já avaliou esta empresa"' : ''}>
+            ${jaAvaliou ? 'Já Avaliada' : 'Avaliar'}
+        </button>`;
     }
 
     container.innerHTML += `
@@ -820,13 +856,11 @@ empresas.forEach(empresa => {
                 </div>
             </div>
             <div class="text-end">
-                <button class="btn rate-company-btn btn-de-avaliacao ${jaAvaliou ? 'btn-ja-avaliada' : ''}" data-bs-toggle="modal" data-bs-target="#ratingModal" data-empresa="${empresa.nome}" ${jaAvaliou ? 'disabled title="Você já avaliou esta empresa"' : ''}>
-                    ${jaAvaliou ? 'Já Avaliada' : 'Avaliar'}
-                </button>
+                ${btnHtml}
             </div>
         </div>
     `;
-                });
+});
             }catch(err){
                 container.innerHTML = '<div style="text-align:center;color:red">Erro ao carregar empresas.</div>';
                 console.error(err);
@@ -834,64 +868,24 @@ empresas.forEach(empresa => {
         }
 
         document.addEventListener('DOMContentLoaded', async function() {
-    let empresas = [];
-
-    try {
-        const resp = await fetch('http://localhost:8080/empresas');
-        if (resp.ok) {
-            empresas = await resp.json();
+    const cpfCandidato = localStorage.getItem('cpfUsuario');
+    if (cpfCandidato) {
+        try {
+            const respAplicacoes = await fetch(`http://localhost:8080/aplicacoes/candidato/${cpfCandidato}`);
+            if (respAplicacoes.ok) {
+                window.aplicacoesCandidato = await respAplicacoes.json();
+            } else {
+                window.aplicacoesCandidato = [];
+            }
+        } catch (e) {
+            window.aplicacoesCandidato = [];
         }
-    } catch (e) {
-        console.error('Erro ao buscar empresas para autocomplete', e);
+    } else {
+        window.aplicacoesCandidato = [];
     }
 
-    const inputEmpresa = document.querySelector('#ratingModal input[placeholder="Digite o nome da empresa..."]');
-    const listaSugestoes = document.createElement('div');
-    listaSugestoes.className = 'autocomplete-list';
-    listaSugestoes.style.position = 'absolute';
-    listaSugestoes.style.zIndex = '9999';
-    listaSugestoes.style.background = '#fff';
-    listaSugestoes.style.border = '1px solid #ccc';
-    listaSugestoes.style.width = '100%';
-    listaSugestoes.style.maxHeight = '200px';
-    listaSugestoes.style.overflowY = 'auto';
-    listaSugestoes.style.display = 'none';
-
-    inputEmpresa.parentNode.appendChild(listaSugestoes);
-
-    inputEmpresa.addEventListener('input', function() {
-        const valor = this.value.trim().toLowerCase();
-        listaSugestoes.innerHTML = '';
-        if (!valor) {
-            listaSugestoes.style.display = 'none';
-            return;
-        }
-        // Filtra empresas pelo nome
-        const filtradas = empresas.filter(emp => emp.nome && emp.nome.toLowerCase().includes(valor));
-        if (filtradas.length === 0) {
-            listaSugestoes.style.display = 'none';
-            return;
-        }
-        filtradas.forEach(emp => {
-            const item = document.createElement('div');
-            item.textContent = emp.nome;
-            item.style.padding = '8px 12px';
-            item.style.cursor = 'pointer';
-            item.addEventListener('mousedown', function(e) {
-                e.preventDefault();
-                inputEmpresa.value = emp.nome;
-                listaSugestoes.style.display = 'none';
-            });
-            listaSugestoes.appendChild(item);
-        });
-        listaSugestoes.style.display = 'block';
-    });
-
-    document.addEventListener('mousedown', function(e) {
-        if (!inputEmpresa.contains(e.target) && !listaSugestoes.contains(e.target)) {
-            listaSugestoes.style.display = 'none';
-        }
-    });
+    carregarEmpresas();
+    // ...restante dos seus eventos...
 });
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -984,7 +978,6 @@ empresas.forEach(empresa => {
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        carregarEmpresas();
 
         // Eventos de busca
         document.getElementById('search-btn').addEventListener('click', performSearch);

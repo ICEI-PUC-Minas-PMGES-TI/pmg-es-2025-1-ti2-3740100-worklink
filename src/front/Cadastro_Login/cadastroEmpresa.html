@@ -203,7 +203,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="cidade">Cidade</label>
-                                    <input type="text" class="form-control" id="cidade" required readonly>
+                                    <input type="text" class="form-control" id="cidade" required readonly onfocus="this.removeAttribute('readonly');">
                                 </div>
                             </div>
                             <div class="row">
@@ -253,6 +253,16 @@
                             </div>
                         </div>
 
+                        <div class="form-section">
+                            <h3>Setor</h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="setor">Setor</label>
+                                    <input type="text" class="form-control" id="setor" required>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="text-center mt-4">
                             <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
                         </div>
@@ -286,32 +296,26 @@
         $('#cep').on('blur', function () {
             let cep = this.value.replace(/\D/g, '');
 
-            // Verifica se o CEP tem 8 dígitos
             if (cep.length === 8) {
-                // Mostra um indicador de carregamento
                 $('#cidade').val('Buscando...');
                 $('#endereco').val('Buscando...');
 
-                // Faz a requisição para a API do ViaCEP
                 fetch(`https://viacep.com.br/ws/${cep}/json/`)
                     .then(response => response.json())
                     .then(data => {
                         if (!data.erro) {
-                            // Preenche os campos com os dados retornados
-                            $('#cidade').val(data.localidade);
-                            $('#endereco').val(data.logradouro);
+                            $('#cidade').val(data.localidade).prop('readonly', true);
+                            $('#endereco').val(data.logradouro).prop('readonly', true);
                         } else {
-                            // Se houver erro, limpa os campos
-                            $('#cidade').val('');
-                            $('#endereco').val('');
-                            alert('CEP não encontrado');
+                            $('#cidade').val('').prop('readonly', false);
+                            $('#endereco').val('').prop('readonly', false);
+                            alert('CEP não encontrado. Preencha a cidade e o endereço manualmente.');
                         }
                     })
                     .catch(error => {
-                        console.error('Erro ao buscar CEP:', error);
-                        $('#cidade').val('');
-                        $('#endereco').val('');
-                        alert('Erro ao buscar CEP');
+                        $('#cidade').val('').prop('readonly', false);
+                        $('#endereco').val('').prop('readonly', false);
+                        alert('Erro ao buscar CEP. Preencha a cidade e o endereço manualmente.');
                     });
             }
         });
@@ -343,21 +347,29 @@
         $('#formCadastroEmpresa').on('submit', function (e) {
             e.preventDefault();
 
+            // Validação extra para cidade
+            if (!$('#cidade').val()) {
+                alert('Preencha o campo cidade.');
+                $('#cidade').focus();
+                return;
+            }
+
             // Coleta todos os dados do formulário
             const dadosEmpresa = {
-                nome: $('#nome').val(),
-                cnpj: $('#cnpj').val().replace(/\D/g, ''),
-                email: $('#email').val(),
-                telefone: $('#telefone').val().replace(/\D/g, ''),
-                cep: $('#cep').val().replace(/\D/g, ''),
-                cidade: $('#cidade').val(),
-                endereco: $('#endereco').val(),
-                numero: $('#numero').val(),
-                nomeResponsavel: $('#nomeResponsavel').val(),
-                cargo: $('#cargo').val(),
-                senha: $('#senha').val(),
-                descricao: $('#descricao').val() || "" // <-- envia string vazia se não preencher
-            };
+    nome: $('#nome').val(),
+    cnpj: $('#cnpj').val().replace(/\D/g, ''),
+    email: $('#email').val(),
+    telefone: $('#telefone').val().replace(/\D/g, ''),
+    cep: $('#cep').val().replace(/\D/g, ''),
+    cidade: $('#cidade').val(), // <-- Corrija aqui
+    endereco: $('#endereco').val(),
+    numero: $('#numero').val(),
+    nomeResponsavel: $('#nomeResponsavel').val(),
+    cargo: $('#cargo').val(),
+    setor: $('#setor').val() || "",
+    senha: $('#senha').val(),
+    descricao: $('#descricao').val() || ""
+};
 
             // Envia os dados para o backend
             fetch('http://localhost:8080/empresas', {

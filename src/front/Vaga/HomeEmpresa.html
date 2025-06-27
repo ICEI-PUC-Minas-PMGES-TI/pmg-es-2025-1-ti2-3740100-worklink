@@ -297,45 +297,65 @@
             .empresa-perfil-container { padding: 1.2rem 0.5rem; }
             .empresa-perfil-header { gap: 1rem; }
             .vagas-scroll { padding: 1rem 0.5rem 1rem 0; }
+            .job-card {
+        padding: 1rem 0.5rem;
+        min-width: 0;
+        word-break: break-word;
+    }
+    .job-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch;
+    }
         }
         @media (max-width: 767px) {
             .empresa-perfil-header { flex-direction: column; align-items: flex-start; }
             .empresa-perfil-logo { margin-bottom: 1rem; }
             .job-card { padding: 1rem 0.5rem; }
         }
+        @media (max-width: 600px) {
+    .job-card {
+        padding: 0.7rem 0.2rem;
+    }
+    .job-actions .btn {
+        font-size: 0.95rem;
+        padding: 0.4rem 0.7rem;
+    }
+}
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="../index.html">
-            <i class="fas fa-link"></i> Worklink
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
-                </li>
-            </ul>
-            <div class="d-flex gap-2">
-                <a href="../Candidato/homeCandidato.html" class="btn btn-primary-custom">Meu Perfil</a>
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-link"></i> Worklink
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
+                    </li>
+                </ul>
+                <div class="d-flex gap-2" id="perfil-actions">
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <main class="container">
         <section class="empresa-perfil">

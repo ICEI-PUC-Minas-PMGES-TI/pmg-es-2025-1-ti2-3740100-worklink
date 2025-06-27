@@ -1024,6 +1024,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Cria um id único para o campo de vagas deste card
             const vagasId = `vagas-empresa-${empresa.id}`;
+    card.innerHTML = `
+        ... // seu HTML do card
+        <div class="company-stats">
+            <div class="stat-item" style="grid-column: 1 / -1; text-align: center;">
+                <span id="${vagasId}" class="stat-number" style="display: block; font-size: 1.5rem;">...</span>
+                <div class="stat-label">Vagas Ativas</div>
+            </div>
+        </div>
+        ...
+    `;
 
             // Lógica de avaliação igual ao avaliarEmpresas
             const avaliacao = empresa.mediaAvaliacao || 0;
@@ -1099,30 +1109,27 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             
             // Busca o número de vagas da empresa via API e atualiza o campo
-            if (empresa.cnpj) {
-                fetch(`http://localhost:8080/vagas/empresa/cnpj/${encodeURIComponent(empresa.cnpj)}`)
-                    .then(resp => resp.json())
-                    .then(vagas => {
-                        const vagasSpan = card.querySelector(`#${vagasId}`);
-                        if (vagasSpan) {
-                            vagasSpan.textContent = vagas.length;
-                        }
-                    })
-                    .catch(() => {
-                        const vagasSpan = card.querySelector(`#${vagasId}`);
-                        if (vagasSpan) {
-                            vagasSpan.textContent = '0';
-                        }
-                    });
-            } else {
-                setTimeout(() => {
-                    const vagasSpan = card.querySelector(`#${vagasId}`);
-                    if (vagasSpan) vagasSpan.textContent = '0';
-                }, 0);
-            }
+                 fetch(`http://localhost:8080/empresas/${empresa.id}`)
+        .then(resp => resp.json())
+        .then(emp => {
+            if (!emp.cnpj) throw new Error("CNPJ não encontrado");
+            return fetch(`http://localhost:8080/vagas/empresa/cnpj/${encodeURIComponent(emp.cnpj)}`);
+        })
+        .then(resp => resp.json())
+        .then(vagas => {
+            const vagasSpan = card.querySelector(`#${vagasId}`);
+            const vagasAtivas = Array.isArray(vagas)
+                ? vagas.filter(v => v.status && v.status.toLowerCase() === "aberta").length
+                : 0;
+            if (vagasSpan) vagasSpan.textContent = vagasAtivas;
+        })
+        .catch(() => {
+            const vagasSpan = card.querySelector(`#${vagasId}`);
+            if (vagasSpan) vagasSpan.textContent = '0';
+        });
 
-            return card;
-        }
+    return card;
+}
 
         function followCompany(companyId) {
             alert(`Seguindo empresa ID: ${companyId}\nFuncionalidade de seguir será implementada em breve!`);

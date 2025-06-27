@@ -90,11 +90,10 @@
         }
         .btn-feedback,
         .btn.btn-feedback {
-            background: linear-gradient(90deg, #f80000 0%, #fbbf24 100%);
-            color: #fff !important;
-            border: none;
+            background: white;
+            color: #ff0606 !important;
+            border: rgb(255, 2, 2) 2px; 
             font-weight: 600;
-            border-radius: 0.5rem;
             padding: 0.5rem 1.2rem;
             box-shadow: 0 2px 8px 0 rgba(245, 158, 11, 0.08);
             transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
@@ -105,8 +104,9 @@
 
         .btn-feedback:hover,
         .btn-feedback:focus {
-            background: linear-gradient(90deg, #920a00 0%, #ff0f0ffa 100%);
-            color: #fff !important;
+            background:rgb(255, 255, 255);
+            color: red !important;
+            border: red;
             box-shadow: 0 4px 16px 0 rgba(245, 158, 11, 0.18);
             transform: translateY(-2px) scale(1.03);
             text-decoration: none;
@@ -115,34 +115,35 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="../index.html">
-            <i class="fas fa-link"></i> Worklink
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
-                </li>
-            </ul>
-            <div class="d-flex gap-2">
-                <a href="../Candidato/homeCandidato.html" class="btn btn-primary-custom">Meu Perfil</a>
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-link"></i> Worklink
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
+                    </li>
+                </ul>
+                <div class="d-flex gap-2" id="perfil-actions">
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <!-- Main Content -->
     <main class="container mt-4">

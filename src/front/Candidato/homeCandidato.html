@@ -84,11 +84,11 @@
         }
 
         .btn-outline-danger {
-            background-color: #dacd96;
+            background-color: #ffffff;
             /* Cor de fundo clara */
-            color: #ff9900;
+            color: #ff0000;
             /* Texto vermelho */
-            border-color: #ffae00;
+            border-color: #fc0202;
             /* Borda vermelha */
         }
 
@@ -103,12 +103,12 @@
             /* Borda vermelha */
         }
 
-        .btn-feedback {
-            background: linear-gradient(90deg, #f80000 0%, #fbbf24 100%);
-            color: #fff !important;
-            border: none;
+        .btn-feedback,
+        .btn.btn-feedback {
+            background: white;
+            color: #ff0606 !important;
+            border: rgb(255, 2, 2) 2px; 
             font-weight: 600;
-            border-radius: 0.5rem;
             padding: 0.5rem 1.2rem;
             box-shadow: 0 2px 8px 0 rgba(245, 158, 11, 0.08);
             transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
@@ -119,8 +119,9 @@
 
         .btn-feedback:hover,
         .btn-feedback:focus {
-            background: linear-gradient(90deg, #920a00 0%, #ff0f0ffa 100%);
-            color: #fff !important;
+            background:rgb(255, 255, 255);
+            color: red !important;
+            border: red;
             box-shadow: 0 4px 16px 0 rgba(245, 158, 11, 0.18);
             transform: translateY(-2px) scale(1.03);
             text-decoration: none;
@@ -396,33 +397,36 @@
 
 <body>
     <nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="../index.html">
-            <i class="fas fa-link"></i> Worklink
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
-                </li>
-            </ul>
-            <div class="d-flex gap-2">
-                <a href="../Candidato/homeCandidato.html" class="btn btn-primary-custom">Meu Perfil</a>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-link"></i> Worklink
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
+                    </li>
+                </ul>
+                <div class="d-flex gap-2" id="perfil-actions">
+                </div>
             </div>
         </div>
-    </div>
+    </nav>
 </nav>
 
     <main class="container mt-4">
@@ -762,6 +766,14 @@
             `;
                         }
 
+                        let baixarTesteBtn = "";
+if (vaga.teste) {
+    baixarTesteBtn = `
+    <a href="http://localhost:8080${vaga.teste}" target="_blank" class="btn btn-outline-primary btn-sm me-2">
+        <i class="fas fa-download"></i> Baixar Teste
+    </a>`;
+}
+
                         candidaturaItem.innerHTML = `
 <div class="d-flex justify-content-between align-items-start">
     <div>
@@ -783,9 +795,10 @@ ${aprovadoAlert}
     <button class="btn btn-primary btn-sm me-2" onclick="verDetalhesVaga(${vaga.id})">
         <i class="fas fa-info-circle"></i> Ver detalhes
     </button>
+    ${vaga.teste ? `
     <button class="btn btn-outline-primary btn-sm me-2" onclick="baixarTeste(${vaga.id})">
         <i class="fas fa-download"></i> Baixar Teste
-    </button>
+    </button>` : ''}
     ${testeEnviadoBtn}
     ${feedbackBtn}
 </div>
