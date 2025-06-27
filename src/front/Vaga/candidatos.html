@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="../Script.js"></script>
+    <link rel="stylesheet" href="../Style.css">
         <!-- Ajuste os caminhos dos favicons para ficarem corretos, considerando a estrutura do seu projeto -->
     <link rel="icon" type="image/png" href="../favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
@@ -77,22 +78,6 @@
 
         .nav-link:hover {
             color: var(--primary-color) !important;
-        }
-
-        .btn-primary-custom {
-            background: var(--gradient-primary);
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            color: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            color: var(--white);
         }
 
         /* Page Header */
@@ -522,7 +507,7 @@
             </button>
             
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
                     </li>
@@ -533,12 +518,10 @@
                         <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="candidatos.html">Candidatos</a>
+                        <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
                     </li>
                 </ul>
-                
-                <div class="d-flex gap-2">
-                    <a href="HomeEmpresa.html" class="btn btn-primary-custom">Painel Empresa</a>
+                <div class="d-flex gap-2" id="perfil-actions">
                 </div>
             </div>
         </div>

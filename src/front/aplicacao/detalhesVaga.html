@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="../Script.js"></script>
+    <link rel="stylesheet" href="../Style.css">
+        <!-- Ajuste os caminhos dos favicons para ficarem corretos, considerando a estrutura do seu projeto -->
+    <link rel="icon" type="image/png" href="../favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
     <style>
         :root {
             --primary-color: #9147ff;
@@ -220,31 +227,32 @@
 </head>
 <body>
     <!-- Navbar igual empresas.html -->
-    <nav class="navbar navbar-expand-lg">
+       <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="../index.html">
                 <i class="fas fa-link"></i> Worklink
             </a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="ExibirVagas.html">Vagas</a>
+                        <a class="nav-link" href="../aplicacao/ExibirVagas.html">Vagas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="empresas.html">Empresas</a>
+                        <a class="nav-link" href="../aplicacao/empresas.html">Empresas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="avaliarEmpresas.html">Avaliar</a>
+                        <a class="nav-link" href="../aplicacao/avaliarEmpresas.html">Avaliar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../Vaga/candidatos.html">Candidatos</a>
                     </li>
                 </ul>
-                <div class="d-flex gap-2">
-                    <a href="../Candidato/homeCandidato.html" class="btn btn-primary-custom">Meu Perfil</a>
+                <div class="d-flex gap-2" id="perfil-actions">
                 </div>
             </div>
         </div>

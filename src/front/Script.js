@@ -1,43 +1,42 @@
 // NAVBAR PADRÃO WORKLINK - comportamento do botão de perfil e do link Worklink
 document.addEventListener('DOMContentLoaded', function() {
-    const perfilBtn = document.querySelector('.btn.btn-primary-custom, #meuPerfilBtn');
-    const navbarBrand = document.querySelector('.navbar-brand');
-    const userType = localStorage.getItem('userType');
+    // --- NOVA LÓGICA PARA OS BOTÕES DA NAVBAR ---
+    const perfilActions = document.getElementById('perfil-actions');
+    if (perfilActions) {
+        perfilActions.innerHTML = ''; // Limpa qualquer conteúdo
 
-    // Esconde o botão "Meu Perfil" se não estiver logado
-    if (!userType && perfilBtn) {
-        perfilBtn.style.display = 'none';
+        // Considere logado apenas se userType E algum identificador de usuário existirem
+        const userType = localStorage.getItem('userType');
+        const empresaCnpj = localStorage.getItem('empresaCnpj');
+        const candidatoCpf = localStorage.getItem('cpfUsuario');
+
+        if (userType === 'empresa' && empresaCnpj) {
+            perfilActions.innerHTML = `<a href="../Vaga/HomeEmpresa.html" class="btn-primary-custom">Painel Empresa</a>`;
+        } else if (userType === 'candidato' && candidatoCpf) {
+            perfilActions.innerHTML = `<a href="../Candidato/homeCandidato.html" class="btn-primary-custom">Meu Perfil</a>`;
+        } else {
+            // Não logado: mostra os dois botões
+            perfilActions.innerHTML = `
+                <a href="../Cadastro_Login/Login.html" class="btn-primary-custom">Entrar</a>
+                <a href="../Cadastro_Login/escolhaCadastro.html" class="btn-primary-custom">Cadastrar</a>
+            `;
+        }
     }
 
-    // Ajusta o link do Worklink conforme login
+    // --- AJUSTE DO LINK DA MARCA WORKLINK ---
+    const navbarBrand = document.querySelector('.navbar-brand');
+    const userType = localStorage.getItem('userType');
     if (navbarBrand) {
         navbarBrand.addEventListener('click', function(e) {
             if (!userType) {
-                // Não logado: vai para index.html
                 navbarBrand.setAttribute('href', '../index.html');
             } else if (userType === 'empresa') {
-                // Empresa logada: vai para painel da empresa
                 e.preventDefault();
                 window.location.href = "../Vaga/HomeEmpresa.html";
             } else if (userType === 'candidato') {
-                // Candidato logado: vai para home do candidato
                 e.preventDefault();
                 window.location.href = "../Candidato/homeCandidato.html";
             }
         });
-    }
-
-    // Ajusta o botão de perfil conforme login
-    if (perfilBtn) {
-        if (userType === 'empresa') {
-            perfilBtn.textContent = 'Painel Empresa';
-            perfilBtn.href = "../Vaga/HomeEmpresa.html";
-        } else if (userType === 'candidato') {
-            perfilBtn.textContent = 'Meu Perfil';
-            perfilBtn.href = "../Candidato/homeCandidato.html";
-        } else {
-            perfilBtn.textContent = 'Entrar';
-            perfilBtn.href = "../Cadastro_Login/login.html";
-        }
     }
 });

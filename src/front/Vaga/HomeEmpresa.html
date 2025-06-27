@@ -9,8 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="../Script.js"></script>
     <link rel="stylesheet" href="../Style.css">
-    <script src="../Script.js"></script>
+        <!-- Ajuste os caminhos dos favicons para ficarem corretos, considerando a estrutura do seu projeto -->
+    <link rel="icon" type="image/png" href="../favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
     <style>
         :root {
             --primary-color: #9147ff;
@@ -346,7 +352,7 @@
                             <a href="editarEmpresa.html"><i class="fas fa-user-edit"></i> Editar Perfil</a>
                             <a href="formularioVaga.html"><i class="fas fa-plus"></i> Nova Vaga</a>
                             <a href="../Vaga/IndicadorDesempenho.html"><i class="fas fa-chart-line"></i> Indicadores</a>
-                            <a href="../Cadastro_Login/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            <a href="../Cadastro_Login/login.html" id="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
                         <h2 id="empresa-perfil-nome" style="display: inline-block; cursor: pointer;"></h2>
                     </div>
@@ -462,6 +468,16 @@
         });
         document.getElementById('settingsMenu').addEventListener('click', function (event) {
             event.stopPropagation();
+        });
+
+        // Limpa o localStorage ao clicar em logout
+        document.addEventListener('DOMContentLoaded', function () {
+            const logoutLink = document.getElementById('logout-link');
+            if (logoutLink) {
+                logoutLink.addEventListener('click', function () {
+                    localStorage.clear();
+                });
+            }
         });
 
         // Função para contar vagas abertas e totais (adaptada do perfilEmpresa.html)

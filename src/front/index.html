@@ -89,38 +89,41 @@
             left: 0;
         }
 
-        .btn-primary-custom {
-            background: var(--gradient-primary);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            color: var(--white);
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-primary-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            color: var(--white);
-        }
-
-        .btn-outline-custom {
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline-custom:hover {
-            background: var(--primary-color);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
+        .btn-primary-custom,
+.btn-outline-custom {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 1rem;
+    min-width: 120px;
+    text-align: center;
+    box-sizing: border-box;
+    line-height: 1.2;
+    display: inline-block;
+    border: none;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+.btn-primary-custom {
+    background: var(--gradient-primary);
+    color: var(--white);
+}
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--white);
+}
+.btn-outline-custom {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    background: #fff; /* branco puro */
+    box-shadow: var(--shadow-md);
+}
+.btn-outline-custom:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
 
         /* Hero Section */
         .hero {
@@ -378,9 +381,9 @@
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#" id="home-link">
+            <a class="navbar-brand" href="index.html">
                 <i class="fas fa-link"></i> Worklink
             </a>
             
@@ -389,21 +392,25 @@
             </button>
             
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#vagas">Vagas</a>
+                        <a class="nav-link" href="aplicacao/ExibirVagas.html">Vagas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#empresas">Empresas</a>
+                        <a class="nav-link" href="aplicacao/empresas.html">Empresas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aplicacao/avaliarEmpresas.html">Avaliar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Vaga/candidatos.html">Candidatos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#sobre">Sobre</a>
                     </li>
                 </ul>
-                
-                <div class="d-flex gap-2">
-                    <a href="Cadastro_Login/Login.html" class="btn btn-outline-custom">Entrar</a>
-                    <a href="Cadastro_Login/escolhaCadastro.html" class="btn btn-primary-custom">Cadastrar</a>
+                <div class="d-flex gap-2" id="perfil-actions">
+                    <!-- Os botões serão inseridos via JS -->
                 </div>
             </div>
         </div>
@@ -714,4 +721,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
